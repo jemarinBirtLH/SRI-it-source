@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor Binario a Hexadecimal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --success: #2ecc71;
+        }
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .result-box {
+            background-color: #f8f9fa;
+            border-left: 5px solid var(--success);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        .result {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            color: var(--primary);
+        }
+        .process-display {
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="bi bi-house-door"></i> Inicio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="guia_redes.html">Redes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="linux_cheatsheet.html">Linux</a></li>
+                    <li class="nav-item"><a class="nav-link" href="virtualbox.html">VirtualBox</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="conversor_binario_hexadecimal.html">Conversor</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card p-4">
+                    <h1 class="text-center mb-4"><i class="bi bi-arrow-left-right"></i> Conversor Binario &lt;-&gt; Hexadecimal</h1>
+                    <p class="lead text-center">Convierte números entre binario y hexadecimal con explicación.</p>
+                    
+                    <div class="d-flex justify-content-center mb-3">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="conversion-mode" id="mode-bin-hex" value="bin-hex" checked>
+                            <label class="form-check-label" for="mode-bin-hex">Binario a Hexadecimal</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="conversion-mode" id="mode-hex-bin" value="hex-bin">
+                            <label class="form-check-label" for="mode-hex-bin">Hexadecimal a Binario</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="main-input" class="form-label fw-bold" id="input-label">Número binario:</label>
+                        <input type="text" class="form-control form-control-lg" id="main-input" placeholder="Ej: 11010111" maxlength="32">
+                        <div class="form-text" id="input-help">Máximo 32 bits (solo 0 y 1)</div>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-primary flex-grow-1" id="convert-btn"><i class="bi bi-sync"></i> Convertir</button>
+                        <button class="btn btn-secondary flex-grow-1" id="clear-btn"><i class="bi bi-broom"></i> Limpiar</button>
+                    </div>
+
+                    <div class="result-box mt-4" id="result-box" style="display: none;">
+                        <div class="text-muted" id="result-label">Resultado en hexadecimal:</div>
+                        <div class="result" id="result">0</div>
+                        <div class="process-display" id="process-display"></div>
+                    </div>
+                </div>
+
+                <!-- Tabla de referencia -->
+                <div class="card mt-4 p-3">
+                    <h3><i class="bi bi-table"></i> Tabla de conversión</h3>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Binario (4 bits)</th>
+                                    <th>Hexadecimal</th>
+                                    <th>Binario (4 bits)</th>
+                                    <th>Hexadecimal</th>
+                                </tr>
+                            </thead>
+                            <tbody id="conversion-table"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p>© 2026 - Conversor interactivo</p>
+    </footer>
+
+    <script>
+        const conversionTable = [
+            { binary: '0000', hex: '0' }, { binary: '0001', hex: '1' }, { binary: '0010', hex: '2' }, { binary: '0011', hex: '3' },
+            { binary: '0100', hex: '4' }, { binary: '0101', hex: '5' }, { binary: '0110', hex: '6' }, { binary: '0111', hex: '7' },
+            { binary: '1000', hex: '8' }, { binary: '1001', hex: '9' }, { binary: '1010', hex: 'A' }, { binary: '1011', hex: 'B' },
+            { binary: '1100', hex: 'C' }, { binary: '1101', hex: 'D' }, { binary: '1110', hex: 'E' }, { binary: '1111', hex: 'F' }
+        ];
+
+        const elements = {
+            mainInput: document.getElementById('main-input'),
+            inputLabel: document.getElementById('input-label'),
+            inputHelp: document.getElementById('input-help'),
+            resultLabel: document.getElementById('result-label'),
+            result: document.getElementById('result'),
+            processDisplay: document.getElementById('process-display'),
+            resultBox: document.getElementById('result-box')
+        };
+
+        function populateConversionTable() {
+            const tbody = document.getElementById('conversion-table');
+            tbody.innerHTML = '';
+            for (let i = 0; i < conversionTable.length; i += 2) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${conversionTable[i].binary}</td><td><strong>${conversionTable[i].hex}</strong></td>
+                    <td>${conversionTable[i+1]?.binary || ''}</td><td><strong>${conversionTable[i+1]?.hex || ''}</strong></td>
+                `;
+                tbody.appendChild(row);
+            }
+        }
+
+        function isValidBinary(bin) {
+            return /^[01]+$/.test(bin) || bin === '';
+        }
+
+        function isValidHex(hex) {
+            return /^[0-9a-fA-F]+$/.test(hex) || hex === '';
+        }
+
+        function binaryToHex(bin) {
+            bin = bin.replace(/\s/g, '');
+            if (bin === '') return { result: '0', steps: '' };
+            
+            let paddedBin = bin;
+            while (paddedBin.length % 4 !== 0) {
+                paddedBin = '0' + paddedBin;
+            }
+            
+            let groups = paddedBin.match(/.{4}/g) || [];
+            let hex = groups.map(g => conversionTable.find(item => item.binary === g).hex).join('');
+            hex = hex.replace(/^0+/, '') || '0';
+
+            const steps = `
+                <hr><p class="fw-bold">Proceso (Binario a Hex):</p>
+                <p>1. Binario original: ${bin}</p>
+                <p>2. Rellenar con ceros a la izquierda hasta un múltiplo de 4: ${paddedBin}</p>
+                <p>3. Agrupar en bloques de 4 bits: ${groups.join(' ')}</p>
+                <p>4. Convertir cada grupo a su equivalente hexadecimal: ${groups.map(g => `${g} = <strong>${conversionTable.find(i=>i.binary===g).hex}</strong>`).join(', ')}</p>
+                <p>5. Unir los resultados: <strong>${hex}</strong></p>
+            `;
+
+            return { result: hex, steps };
+        }
+
+        function hexToBinary(hex) {
+            hex = hex.toUpperCase().replace(/\s/g, '');
+            if (hex === '') return { result: '0', steps: '' };
+
+            let chars = hex.split('');
+            let binary = chars.map(c => conversionTable.find(item => item.hex === c).binary).join('');
+            
+            const steps = `
+                <hr><p class="fw-bold">Proceso (Hex a Binario):</p>
+                <p>1. Hexadecimal original: ${hex}</p>
+                <p>2. Convertir cada dígito a su equivalente binario de 4 bits: ${chars.map(c => `${c} = <strong>${conversionTable.find(i=>i.hex===c).binary}</strong>`).join(', ')}</p>
+                <p>3. Unir los resultados: <strong>${binary}</strong></p>
+            `;
+
+            return { result: binary, steps };
+        }
+
+        function updateMode() {
+            const mode = document.querySelector('input[name="conversion-mode"]:checked').value;
+            clearAll();
+            if (mode === 'bin-hex') {
+                elements.inputLabel.textContent = 'Número binario:';
+                elements.mainInput.placeholder = 'Ej: 11010111';
+                elements.mainInput.maxLength = 32;
+                elements.inputHelp.textContent = 'Máximo 32 bits (solo 0 y 1)';
+                elements.resultLabel.textContent = 'Resultado en hexadecimal:';
+            } else { // hex-bin
+                elements.inputLabel.textContent = 'Número hexadecimal:';
+                elements.mainInput.placeholder = 'Ej: D7';
+                elements.mainInput.maxLength = 8;
+                elements.inputHelp.textContent = 'Máximo 8 dígitos (0-9, A-F)';
+                elements.resultLabel.textContent = 'Resultado en binario:';
+            }
+        }
+
+        function convert() {
+            const mode = document.querySelector('input[name="conversion-mode"]:checked').value;
+            const input = elements.mainInput.value.trim();
+
+            if (input === '') return;
+
+            let conversionResult;
+            if (mode === 'bin-hex') {
+                if (!isValidBinary(input)) {
+                    alert('Entrada inválida. Use solo dígitos binarios (0 y 1).');
+                    return;
+                }
+                conversionResult = binaryToHex(input);
+            } else { // hex-bin
+                if (!isValidHex(input)) {
+                    alert('Entrada inválida. Use solo dígitos hexadecimales (0-9, A-F).');
+                    return;
+                }
+                conversionResult = hexToBinary(input);
+            }
+
+            elements.result.textContent = conversionResult.result;
+            elements.processDisplay.innerHTML = conversionResult.steps;
+            elements.resultBox.style.display = 'block';
+        }
+
+        function clearAll() {
+            elements.mainInput.value = '';
+            elements.resultBox.style.display = 'none';
+        }
+
+        document.querySelectorAll('input[name="conversion-mode"]').forEach(radio => {
+            radio.addEventListener('change', updateMode);
+        });
+
+        document.getElementById('convert-btn').addEventListener('click', convert);
+        document.getElementById('clear-btn').addEventListener('click', clearAll);
+
+        populateConversionTable();
+        updateMode(); // Initialize UI
+    </script>
+</body>
+</html>

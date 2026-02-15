@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Cheatsheet - Comandos y Shell</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0a4d68;
+            --secondary-color: #088395;
+            --accent-color: #05bfdb;
+        }
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef3 100%);
+            font-family: 'Inter', sans-serif;
+        }
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 0 0 20px 20px;
+        }
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 4px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin: 2rem 0 1.5rem 0;
+        }
+        .command-list {
+            list-style: none;
+            padding: 0;
+        }
+        .command-list li {
+            background: white;
+            margin: 0.5rem 0;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+            transition: 0.2s;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .command-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        code {
+            background: #f1f3f5;
+            color: #e74c3c;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #abb2bf;
+            padding: 1.5rem;
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            overflow-x: auto;
+        }
+        .badge-cmd {
+            background: var(--accent-color);
+            color: white;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 5px;
+        }
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="bi bi-house-door"></i> Inicio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="guia_redes.html">Redes</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="linux_cheatsheet.html">Linux</a></li>
+                    <li class="nav-item"><a class="nav-link" href="virtualbox.html">VirtualBox</a></li>
+                    <li class="nav-item"><a class="nav-link" href="conversor_binario_hexadecimal.html">Conversor</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero text-center">
+        <h1 class="display-4 fw-bold"><i class="bi bi-terminal"></i> Linux Cheatsheet</h1>
+        <p class="lead">Comandos esenciales, shell, permisos, expresiones regulares y más.</p>
+    </div>
+
+    <div class="container py-5">
+        <!-- Aviso: redirección a guía de redes -->
+        <div class="alert alert-info d-flex align-items-center" role="alert">
+            <i class="bi bi-info-circle-fill me-2 fs-4"></i>
+            <div>Para temas de <strong>redes (subnetting, DHCP, DNS)</strong> visita la <a href="guia_redes.html" class="alert-link">Guía de Redes</a>.</div>
+        </div>
+
+        <!-- Navegación y archivos -->
+        <h2 class="section-title"><i class="bi bi-folder2-open"></i> Navegación y archivos</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="command-list">
+                    <li><span class="badge-cmd">ls</span> listar directorio</li>
+                    <li><span class="badge-cmd">cd</span> cambiar directorio</li>
+                    <li><span class="badge-cmd">pwd</span> directorio actual</li>
+                    <li><span class="badge-cmd">cp</span> copiar</li>
+                    <li><span class="badge-cmd">mv</span> mover/renombrar</li>
+                    <li><span class="badge-cmd">rm</span> eliminar</li>
+                    <li><span class="badge-cmd">mkdir</span> crear directorio</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="command-list">
+                    <li><span class="badge-cmd">rmdir</span> eliminar directorio vacío</li>
+                    <li><span class="badge-cmd">touch</span> crear archivo vacío</li>
+                    <li><span class="badge-cmd">find</span> buscar archivos</li>
+                    <li><span class="badge-cmd">locate</span> buscar en base de datos</li>
+                    <li><span class="badge-cmd">which</span> ubicación de ejecutable</li>
+                    <li><span class="badge-cmd">tree</span> mostrar árbol de directorios</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Visualización de archivos -->
+        <h2 class="section-title"><i class="bi bi-file-earmark-text"></i> Visualización de archivos</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="command-list">
+                    <li><span class="badge-cmd">cat</span> concatenar y mostrar</li>
+                    <li><span class="badge-cmd">less</span> paginar avanzado</li>
+                    <li><span class="badge-cmd">more</span> paginar básico</li>
+                    <li><span class="badge-cmd">head</span> primeras líneas</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="command-list">
+                    <li><span class="badge-cmd">tail</span> últimas líneas</li>
+                    <li><span class="badge-cmd">nano</span> editor simple</li>
+                    <li><span class="badge-cmd">vim</span> editor avanzado</li>
+                    <li><span class="badge-cmd">echo/printf</span> mostrar texto</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Procesos -->
+        <h2 class="section-title"><i class="bi bi-cpu"></i> Gestión de procesos</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="command-list">
+                    <li><span class="badge-cmd">ps</span> lista de procesos</li>
+                    <li><span class="badge-cmd">top</span> monitor interactivo</li>
+                    <li><span class="badge-cmd">htop</span> top mejorado</li>
+                    <li><span class="badge-cmd">kill</span> terminar por PID</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="command-list">
+                    <li><span class="badge-cmd">killall</span> terminar por nombre</li>
+                    <li><span class="badge-cmd">pkill</span> terminar por patrón</li>
+                    <li><span class="badge-cmd">bg/fg/jobs</span> control de trabajos</li>
+                    <li><span class="badge-cmd">nice/renice</span> prioridad</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Sistema e información -->
+        <h2 class="section-title"><i class="bi bi-info-circle"></i> Sistema e información</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="command-list">
+                    <li><span class="badge-cmd">uname -a</span> info del kernel</li>
+                    <li><span class="badge-cmd">hostname</span> nombre del equipo</li>
+                    <li><span class="badge-cmd">uptime</span> tiempo encendido</li>
+                    <li><span class="badge-cmd">whoami</span> usuario actual</li>
+                    <li><span class="badge-cmd">id</span> identidad del usuario</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="command-list">
+                    <li><span class="badge-cmd">date</span> fecha/hora</li>
+                    <li><span class="badge-cmd">cal</span> calendario</li>
+                    <li><span class="badge-cmd">df -h</span> espacio en discos</li>
+                    <li><span class="badge-cmd">du -sh</span> uso de disco</li>
+                    <li><span class="badge-cmd">free -h</span> memoria RAM</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Red (comandos básicos) -->
+        <h2 class="section-title"><i class="bi bi-hdd-network"></i> Comandos de red</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="command-list">
+                    <li><span class="badge-cmd">ping</span> prueba conectividad</li>
+                    <li><span class="badge-cmd">ip a</span> mostrar interfaces</li>
+                    <li><span class="badge-cmd">ip route</span> tabla de rutas</li>
+                    <li><span class="badge-cmd">ss -tulnp</span> puertos escuchando</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="command-list">
+                    <li><span class="badge-cmd">traceroute</span> ruta de paquetes</li>
+                    <li><span class="badge-cmd">nslookup</span> consulta DNS</li>
+                    <li><span class="badge-cmd">dig</span> consulta DNS detallada</li>
+                    <li><span class="badge-cmd">curl/wget</span> transferir datos</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Permisos y usuarios -->
+        <h2 class="section-title"><i class="bi bi-shield-lock"></i> Permisos y usuarios</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="command-list">
+                    <li><span class="badge-cmd">chmod</span> cambiar permisos</li>
+                    <li><span class="badge-cmd">chown</span> cambiar propietario</li>
+                    <li><span class="badge-cmd">chgrp</span> cambiar grupo</li>
+                    <li><span class="badge-cmd">umask</span> máscara por defecto</li>
+                    <li><span class="badge-cmd">useradd/usermod/userdel</span> gestión usuarios</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="command-list">
+                    <li><span class="badge-cmd">passwd</span> cambiar contraseña</li>
+                    <li><span class="badge-cmd">su</span> cambiar de usuario</li>
+                    <li><span class="badge-cmd">sudo</span> ejecutar como otro</li>
+                    <li><span class="badge-cmd">visudo</span> editar sudoers</li>
+                    <li><span class="badge-cmd">groups</span> grupos del usuario</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Discos y particiones -->
+        <h2 class="section-title"><i class="bi bi-hdd"></i> Discos y particiones</h2>
+        <ul class="command-list">
+            <li><span class="badge-cmd">fdisk / parted</span> particionado</li>
+            <li><span class="badge-cmd">mkfs</span> crear sistema de archivos</li>
+            <li><span class="badge-cmd">mount / umount</span> montar/desmontar</li>
+            <li><span class="badge-cmd">lsblk</span> listar dispositivos de bloque</li>
+            <li><span class="badge-cmd">blkid</span> mostrar UUID</li>
+        </ul>
+
+        <!-- Apps de shell (filtros) -->
+        <h2 class="section-title"><i class="bi bi-filter"></i> Apps de shell (filtros)</h2>
+        <div class="accordion" id="accordionShell">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGrep">
+                        <span class="badge-cmd me-2">grep</span> Búsqueda de patrones
+                    </button>
+                </h2>
+                <div id="collapseGrep" class="accordion-collapse collapse show" data-bs-parent="#accordionShell">
+                    <div class="accordion-body">
+                        <div class="code-block">
+# Uso básico
+grep "patrón" archivo.txt
+grep -i "patrón" archivo    # insensible
+grep -v "patrón" archivo    # líneas que NO contienen
+grep -r "patrón" directorio/ # recursivo
+grep -l "patrón" *.txt      # solo nombres de archivo
+grep -c "patrón" archivo    # contar
+grep -n "patrón" archivo    # mostrar número de línea
+grep -A 2 -B 2 "patrón"     # contexto
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAwk">
+                        <span class="badge-cmd me-2">awk</span> Procesamiento por campos
+                    </button>
+                </h2>
+                <div id="collapseAwk" class="accordion-collapse collapse" data-bs-parent="#accordionShell">
+                    <div class="accordion-body">
+                        <div class="code-block">
+# Imprimir columnas
+awk '{print $1}' archivo.txt
+awk -F: '{print $1}' /etc/passwd   # delimitador :
+awk '$3 > 100 {print $1}' archivo  # condición
+awk '{sum+=$3} END {print sum}'    # suma
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSed">
+                        <span class="badge-cmd me-2">sed</span> Editor de flujo
+                    </button>
+                </h2>
+                <div id="collapseSed" class="accordion-collapse collapse" data-bs-parent="#accordionShell">
+                    <div class="accordion-body">
+                        <div class="code-block">
+# Sustitución
+sed 's/old/new/g' archivo.txt
+sed -i 's/old/new/g' archivo   # in-place
+
+# Eliminación
+sed '/patrón/d' archivo.txt
+sed '1,5d' archivo.txt
+
+# Impresión selectiva
+sed -n '/patrón/p' archivo.txt
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCutTr">
+                        <span class="badge-cmd me-2">cut, tr, sort, uniq, wc</span>
+                    </button>
+                </h2>
+                <div id="collapseCutTr" class="accordion-collapse collapse" data-bs-parent="#accordionShell">
+                    <div class="accordion-body">
+                        <div class="code-block">
+# cut - extraer columnas
+cut -d: -f1 /etc/passwd
+cut -c1-5 archivo.txt
+
+# tr - traducir
+tr 'a-z' 'A-Z' < archivo.txt
+tr -d ' ' < archivo.txt
+tr -s '\n' < archivo.txt
+
+# sort - ordenar
+sort -n archivo.txt
+sort -r archivo.txt
+sort -k2 archivo.txt
+
+# uniq - duplicados
+uniq -c archivo.txt
+sort archivo.txt | uniq
+
+# wc - contar
+wc -l archivo.txt   # líneas
+wc -w               # palabras
+wc -c               # bytes
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFind">
+                        <span class="badge-cmd me-2">find + xargs</span>
+                    </button>
+                </h2>
+                <div id="collapseFind" class="accordion-collapse collapse" data-bs-parent="#accordionShell">
+                    <div class="accordion-body">
+                        <div class="code-block">
+# Buscar por nombre, tipo, tamaño
+find /ruta -name "*.txt"
+find /ruta -type f -size +100M
+find /ruta -mtime -7
+
+# Ejecutar comandos
+find /ruta -name "*.tmp" -delete
+find /ruta -name "*.txt" -exec cat {} \;
+find /ruta -name "*.log" | xargs rm
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Expresiones regulares -->
+        <h2 class="section-title"><i class="bi bi-regex"></i> Expresiones regulares</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="command-list">
+                    <li><span class="badge-cmd">.</span> cualquier carácter</li>
+                    <li><span class="badge-cmd">*</span> 0 o más veces</li>
+                    <li><span class="badge-cmd">+</span> 1 o más veces (ERE)</li>
+                    <li><span class="badge-cmd">?</span> 0 o 1 vez (ERE)</li>
+                    <li><span class="badge-cmd">^</span> inicio de línea</li>
+                    <li><span class="badge-cmd">$</span> fin de línea</li>
+                    <li><span class="badge-cmd">[abc]</span> conjunto</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="command-list">
+                    <li><span class="badge-cmd">[^abc]</span> negación</li>
+                    <li><span class="badge-cmd">(abc|def)</span> alternancia</li>
+                    <li><span class="badge-cmd">{n,m}</span> de n a m veces</li>
+                    <li><span class="badge-cmd">\d</span> dígito (Perl)</li>
+                    <li><span class="badge-cmd">\w</span> alfanumérico</li>
+                    <li><span class="badge-cmd">\s</span> espacio</li>
+                </ul>
+            </div>
+        </div>
+        <div class="alert alert-warning">
+            <i class="bi bi-lightbulb"></i> Para usar expresiones extendidas en grep: <code>grep -E</code> o <code>egrep</code>.
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 - Linux Cheatsheet · Basado en Debian 13 (Trixie)</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VirtualBox y Debian 13 - Guía ASIR</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --primary-color: #0a4d68;
+            --secondary-color: #088395;
+            --accent-color: #05bfdb;
+        }
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef3 100%);
+        }
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 0 0 20px 20px;
+        }
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 4px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin: 2rem 0;
+        }
+        .step-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--accent-color);
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #61dafb;
+            padding: 1.2rem;
+            border-radius: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            overflow-x: auto;
+        }
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="bi bi-house-door"></i> Inicio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="guia_redes.html">Redes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="linux_cheatsheet.html">Linux</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="virtualbox.html">VirtualBox</a></li>
+                    <li class="nav-item"><a class="nav-link" href="conversor_binario_hexadecimal.html">Conversor</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero text-center">
+        <h1 class="display-4 fw-bold"><i class="bi bi-hdd-stack"></i> VirtualBox con Debian 13 (Trixie)</h1>
+        <p class="lead">Aprende a crear y configurar máquinas virtuales paso a paso.</p>
+    </div>
+
+    <div class="container py-5">
+        <!-- Introducción -->
+        <div class="alert alert-info">
+            <i class="bi bi-info-circle"></i> <strong>Debian 13 "Trixie"</strong> es la versión en desarrollo (año 2026). Los pasos son aplicables a cualquier versión de Debian.
+        </div>
+
+        <!-- 1. Instalación de VirtualBox -->
+        <h2 class="section-title"><i class="bi bi-download"></i> 1. Instalación de VirtualBox</h2>
+        <div class="step-card">
+            <h4><span class="badge bg-primary me-2">1</span> Descargar e instalar</h4>
+            <p>Descarga desde <a href="https://www.virtualbox.org/" target="_blank">virtualbox.org</a> el paquete para tu sistema operativo (Windows, Linux, macOS).</p>
+            <p>En Linux (Debian/Ubuntu):</p>
+            <div class="code-block">
+# Añadir repositorio de VirtualBox
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbox/debian $(lsb_release -sc) contrib" | sudo tee /etc/apt/sources.list.d/virtualbox.list
+wget -O- https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo gpg --dearmor --yes --output /usr/share/keyrings/oracle-virtualbox-2016.gpg
+sudo apt update
+sudo apt install virtualbox-7.0
+            </div>
+            <p>Instalar <strong>Extension Pack</strong> (para USB 2.0/3.0, RDP, etc.)</p>
+            <div class="code-block">
+# Descargar e instalar
+wget https://download.virtualbox.org/virtualbox/7.0.18/Oracle_VM_VirtualBox_Extension_Pack-7.0.18.vbox-extpack
+sudo VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-7.0.18.vbox-extpack
+            </div>
+        </div>
+
+        <!-- 2. Crear una nueva VM -->
+        <h2 class="section-title"><i class="bi bi-plus-circle"></i> 2. Crear una nueva máquina virtual</h2>
+        <div class="step-card">
+            <h4><span class="badge bg-primary me-2">2</span> Configuración básica</h4>
+            <ul>
+                <li><strong>Nombre:</strong> Debian13</li>
+                <li><strong>Tipo:</strong> Linux</li>
+                <li><strong>Versión:</strong> Debian (64-bit)</li>
+                <li><strong>Memoria RAM:</strong> 2048 MB (mínimo 1024)</li>
+                <li><strong>Disco duro:</strong> Crear disco virtual ahora → VDI → Tamaño 20 GB (dinámico)</li>
+            </ul>
+        </div>
+
+        <!-- 3. Instalación de Debian 13 -->
+        <h2 class="section-title"><i class="bi bi-cd"></i> 3. Instalación de Debian 13</h2>
+        <div class="step-card">
+            <h4><span class="badge bg-primary me-2">3</span> Insertar ISO y arrancar</h4>
+            <p>Descarga la ISO de Debian 13 desde <a href="https://cdimage.debian.org/cdimage/trixie_di_alpha/" target="_blank">cdimage.debian.org</a> (versión alpha).</p>
+            <p>En la VM, ve a <strong>Configuración → Almacenamiento</strong>, añade la ISO como controlador IDE.</p>
+            <p>Arranca la VM y sigue el instalador (modo texto o gráfico).</p>
+            <h5 class="mt-3">Particionado recomendado:</h5>
+            <ul>
+                <li>/boot : 1 GB</li>
+                <li>/ : 15 GB (ext4)</li>
+                <li>swap : 2 GB</li>
+                <li>/home : resto (opcional)</li>
+            </ul>
+        </div>
+
+        <!-- 4. Configuración de red en la VM -->
+        <h2 class="section-title"><i class="bi bi-wifi"></i> 4. Configuración de red en VirtualBox</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="step-card">
+                    <h4><i class="bi bi-globe"></i> NAT (por defecto)</h4>
+                    <p>La VM comparte la IP del host para salida a Internet. No accesible desde la red local.</p>
+                    <p><strong>Redirección de puertos:</strong> Configura en <em>Red → Avanzadas → Reenvío de puertos</em> para acceder a servicios (ej. SSH).</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="step-card">
+                    <h4><i class="bi bi-diagram-3"></i> Red Interna / Host-Only</h4>
+                    <p><strong>Host-Only:</strong> Comunicación solo entre host y VM. Útil para laboratorios.</p>
+                    <p><strong>Red Interna:</strong> Solo entre VMs que usen el mismo nombre de red.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="step-card">
+                    <h4><i class="bi bi-bridge"></i> Adaptador puente (Bridged)</h4>
+                    <p>La VM obtiene una IP en la misma red física que el host. Parece un equipo más en la LAN.</p>
+                    <p>Ideal para servidores accesibles desde la red local.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="step-card">
+                    <h4><i class="bi bi-shuffle"></i> NAT Network</h4>
+                    <p>Varias VMs pueden comunicarse entre sí y salir a Internet mediante NAT. Configura en <em>Archivo → Preferencias → Red → Redes NAT</em>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Configuración de red dentro de Debian 13 -->
+        <h2 class="section-title"><i class="bi bi-gear"></i> 5. Configuración de red en Debian 13</h2>
+        <div class="step-card">
+            <p>Dentro de la VM, edita los archivos según el modo de red elegido.</p>
+            <h5>Interfaz con DHCP (ej. NAT, Bridged)</h5>
+            <div class="code-block">
+# /etc/network/interfaces (si usas ifupdown)
+auto enp0s3
+iface enp0s3 inet dhcp
+
+# Con netplan (Ubuntu) o systemd-networkd
+# Para systemd-networkd (Debian 12+ puede usar)
+sudo systemctl enable systemd-networkd
+sudo nano /etc/systemd/network/10-enp0s3.network
+[Match]
+Name=enp0s3
+[Network]
+DHCP=yes
+            </div>
+            <h5 class="mt-3">IP estática (Host-Only o Bridged)</h5>
+            <div class="code-block">
+# Ejemplo con systemd-networkd
+[Match]
+Name=enp0s3
+[Network]
+Address=192.168.56.10/24
+Gateway=192.168.56.1
+DNS=8.8.8.8
+            </div>
+        </div>
+
+        <!-- 6. Comandos útiles de VBoxManage -->
+        <h2 class="section-title"><i class="bi bi-terminal"></i> 6. Comandos VBoxManage útiles</h2>
+        <div class="step-card">
+            <div class="code-block">
+# Listar VMs
+VBoxManage list vms
+
+# Iniciar VM en modo headless (sin interfaz)
+VBoxManage startvm "Debian13" --type headless
+
+# Apagar VM
+VBoxManage controlvm "Debian13" poweroff
+
+# Crear snapshot
+VBoxManage snapshot "Debian13" take "Después de instalación"
+
+# Restaurar snapshot
+VBoxManage snapshot "Debian13" restore "Después de instalación"
+
+# Modificar red de una VM en caliente
+VBoxManage controlvm "Debian13" nic1 nat
+VBoxManage controlvm "Debian13" nic1 bridged "eth0"
+
+# Clonar VM
+VBoxManage clonevm "Debian13" --name "Debian13-clon" --register
+            </div>
+        </div>
+
+        <!-- 7. Ejemplo completo: laboratorio con dos Debian -->
+        <h2 class="section-title"><i class="bi bi-layers"></i> 7. Ejemplo: laboratorio con dos Debian en red interna</h2>
+        <div class="step-card">
+            <ol>
+                <li>Crea dos VMs: <strong>Servidor</strong> y <strong>Cliente</strong>.</li>
+                <li>En ambas, configura una <strong>red interna</strong> (ej. "intranet").</li>
+                <li>En el Servidor, asigna IP estática 192.168.100.1/24.</li>
+                <li>En el Cliente, asigna IP estática 192.168.100.2/24.</li>
+                <li>Verifica conectividad con <code>ping</code>.</li>
+            </ol>
+            <p><strong>Configuración en Servidor:</strong></p>
+            <div class="code-block">
+# /etc/systemd/network/10-enp0s3.network
+[Match]
+Name=enp0s3
+[Network]
+Address=192.168.100.1/24
+            </div>
+            <p><strong>Configuración en Cliente:</strong></p>
+            <div class="code-block">
+[Match]
+Name=enp0s3
+[Network]
+Address=192.168.100.2/24
+            </div>
+            <p>Reinicia systemd-networkd: <code>sudo systemctl restart systemd-networkd</code></p>
+        </div>
+
+        <!-- 8. Snapshots y clonación -->
+        <h2 class="section-title"><i class="bi bi-camera"></i> 8. Snapshots y clonación</h2>
+        <div class="step-card">
+            <p>Antes de hacer cambios importantes, crea un snapshot desde la interfaz gráfica o con:</p>
+            <div class="code-block">VBoxManage snapshot "Debian13" take "Antes de instalar LAMP"</div>
+            <p>Para clonar una VM (útil para laboratorios):</p>
+            <div class="code-block">VBoxManage clonevm "Debian13" --name "Debian13-copia" --register --mode machine</div>
+            <p>Opciones: <code>--mode all</code> (clona discos), <code>--mode machine</code> (solo configuración).</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 - Guía VirtualBox con Debian 13 · Práctica para ASIR</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
