@@ -426,72 +426,9 @@
             50% { left: 100%; }
             100% { left: 100%; }
         }
-
-        /* --- ANIMACIÓN MR. ROBOT --- */
-        #mr-robot-glitch {
-            position: fixed;
-            left: 0;
-            top: 30%;
-            font-size: 5rem;
-            font-weight: 900;
-            font-family: 'Orbitron', monospace;
-            white-space: nowrap;
-            color: #00ff88;
-            text-shadow: 2px 2px 0 #ff00ff, -2px -2px 0 #00ccff;
-            z-index: 9999;
-            pointer-events: none;
-            opacity: 0.9;
-            width: max-content;
-            animation: moveGlitch 15s linear forwards;
-        }
-
-        @keyframes moveGlitch {
-            0% {
-                left: 0;
-                transform: skew(0deg) scale(1);
-                text-shadow: 2px 2px 0 #ff00ff, -2px -2px 0 #00ccff;
-                opacity: 0.9;
-            }
-            10% {
-                transform: skew(5deg) scale(1.2);
-                text-shadow: 10px 5px 0 #ff00ff, -10px -5px 0 #00ccff;
-            }
-            20% {
-                transform: skew(-5deg) scale(1.1);
-                text-shadow: -8px 3px 0 cyan, 8px -3px 0 magenta;
-            }
-            30% {
-                transform: skew(8deg) scale(1.3);
-                text-shadow: 12px -6px 0 lime, -12px 6px 0 red;
-            }
-            50% {
-                left: 30%;
-                transform: skew(-10deg) scale(1.4);
-                text-shadow: -15px 8px 0 yellow, 15px -8px 0 blue;
-            }
-            70% {
-                left: 60%;
-                transform: skew(7deg) scale(1.2);
-                text-shadow: 5px -10px 0 purple, -5px 10px 0 cyan;
-            }
-            90% {
-                left: 90%;
-                transform: skew(-3deg) scale(1);
-                text-shadow: 2px -2px 0 red, -2px 2px 0 green;
-            }
-            100% {
-                left: calc(100% - 400px);
-                transform: skew(0deg) scale(0.8);
-                text-shadow: 0 0 10px #00ff88;
-                opacity: 0;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Animación Mr. Robot (se desvanece tras 15s) -->
-    <div id="mr-robot-glitch">🤖 Hello, friend</div>
-
     <!-- Navbar Neón -->
     <nav class="navbar-neon navbar navbar-expand-lg sticky-top">
         <div class="container">
@@ -578,7 +515,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Temas del navbar (mismo código que tenías)
         const themes = ['rainbow', 'cyberpunk', 'synthwave', 'holographic', 'plasma'];
         let currentTheme = localStorage.getItem('navbarTheme') || 'rainbow';
         const navbar = document.querySelector('.navbar-neon');
@@ -601,14 +537,6 @@
 
         themeBtn.addEventListener('click', nextTheme);
         applyTheme(currentTheme);
-
-        // Ocultar la animación de Mr. Robot después de 15 segundos
-        const robot = document.getElementById('mr-robot-glitch');
-        if (robot) {
-            robot.addEventListener('animationend', () => {
-                robot.style.display = 'none';
-            });
-        }
     </script>
 </body>
 </html>
