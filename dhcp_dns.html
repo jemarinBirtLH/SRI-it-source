@@ -8,7 +8,169 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
+        /* Estilos del Navbar Neón */
+        .navbar-neon {
+            background: #0a0e27;
+            border-bottom: 2px solid #00ff88;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            padding: 1rem 0;
+            transition: all 0.5s ease;
+        } {
+            font-family: 'Arial Black', sans-serif;
+            font-weight: bold;
+            font-size: 1.5rem;
+            background: linear-gradient(90deg, #00ff88, #00ccff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 10px #00ff88) drop-shadow(0 0 20px #00ccff);
+            animation: wave-text 3s ease-in-out infinite;
+        }
+        .nav-link-neon {
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+            animation: rainbow-neon 4s ease-in-out infinite;
+        }
+        .nav-link-neon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, #00ff88, transparent);
+            animation: wave-hover 0.5s ease-in-out;
+        }
+        .nav-link-neon:hover {
+            color: #00ccff !important;
+            text-shadow: 0 0 15px #00ccff, 0 0 30px #00ff88, 0 0 45px #ff00ff;
+            transform: scale(1.1);
+        }
+        .nav-link-neon.active {
+            color: #ff00ff !important;
+            text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ff88;
+            border-bottom: 2px solid #ff00ff;
+        }
+        @keyframes wave-text {
+            0%, 100% {
+                filter: drop-shadow(0 0 10px #00ff88) drop-shadow(0 0 20px #00ccff);
+            }
+            50% {
+                filter: drop-shadow(0 0 20px #00ff88) drop-shadow(0 0 30px #ff00ff);
+            }
+        }
+        @keyframes wave-hover {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+        @keyframes rainbow-neon {
+            0% {
+                color: #FF0080 !important;
+                text-shadow: 0 0 10px #FF0080, 0 0 20px #FF1493, 0 0 30px #FF0080;
+            }
+            16% {
+                color: #FF6B00 !important;
+                text-shadow: 0 0 10px #FF6B00, 0 0 20px #FF8C00, 0 0 30px #FF6B00;
+            }
+            32% {
+                color: #FFFF00 !important;
+                text-shadow: 0 0 10px #FFFF00, 0 0 20px #FFD700, 0 0 30px #FFFF00;
+            }
+            48% {
+                color: #00FF88 !important;
+                text-shadow: 0 0 10px #00FF88, 0 0 20px #00FF00, 0 0 30px #00FF88;
+            }
+            64% {
+                color: #00CCFF !important;
+                text-shadow: 0 0 10px #00CCFF, 0 0 20px #00BFFF, 0 0 30px #00CCFF;
+            }
+            80% {
+                color: #0080FF !important;
+                text-shadow: 0 0 10px #0080FF, 0 0 20px #1E90FF, 0 0 30px #0080FF;
+            }
+            100% {
+                color: #FF00FF !important;
+                text-shadow: 0 0 10px #FF00FF, 0 0 20px #FF1493, 0 0 30px #FF00FF;
+            }
+        }
+        /* TEMA 2: Cyberpunk Glitch */
+        .navbar-neon.theme-cyberpunk {
+            background: #0d0221;
+            border-bottom: 2px solid #00d4ff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5), -3px 3px 0px #ff006e;
+        }
+        .navbar-neon.theme-cyberpunk .nav-link-neon {
+            animation: glitch-text 3s ease-in-out infinite;
+        }
+        @keyframes glitch-text {
+            0% { color: #00d4ff !important; text-shadow: -2px 0 #ff006e, 2px 0 #00d4ff; }
+            25% { color: #ff006e !important; text-shadow: -2px 0 #00d4ff, 2px 0 #ff006e; }
+            50% { color: #00d4ff !important; text-shadow: -2px 0 #ff006e, 2px 0 #00d4ff; }
+            75% { color: #ff006e !important; text-shadow: -2px 0 #00d4ff, 2px 0 #ff006e; }
+            100% { color: #00d4ff !important; text-shadow: -2px 0 #ff006e, 2px 0 #00d4ff; }
+        }
+        /* TEMA 3: Synthwave */
+        .navbar-neon.theme-synthwave {
+            background: linear-gradient(90deg, #241e30 0%, #3d2645 100%);
+            border-bottom: 3px solid #ff006e;
+            box-shadow: 0 0 30px rgba(255, 0, 110, 0.4);
+        }
+        .navbar-neon.theme-synthwave .nav-link-neon {
+            animation: synthwave-pulse 2s ease-in-out infinite;
+        }
+        @keyframes synthwave-pulse {
+            0%, 100% { color: #ffd60a !important; text-shadow: 0 0 10px #ffd60a, 0 0 20px #ff006e; }
+            50% { color: #ff006e !important; text-shadow: 0 0 15px #ff006e, 0 0 30px #ffd60a; }
+        }
+        /* TEMA 4: Holographic */
+        .navbar-neon.theme-holographic {
+            background: rgba(10, 20, 50, 0.9);
+            border-bottom: 2px solid #00ffff;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3), inset 0 0 30px rgba(255, 0, 255, 0.1);
+        }
+        .navbar-neon.theme-holographic .nav-link-neon {
+            animation: holographic-shift 4s ease-in-out infinite;
+        }
+        @keyframes holographic-shift {
+            0% { color: #00ffff !important; text-shadow: 0 0 10px #00ffff, 0 0 20px #ff1493; }
+            25% { color: #ff1493 !important; text-shadow: 0 0 10px #ff1493, 0 0 20px #00ff88; }
+            50% { color: #00ff88 !important; text-shadow: 0 0 10px #00ff88, 0 0 20px #00ffff; }
+            75% { color: #ffff00 !important; text-shadow: 0 0 10px #ffff00, 0 0 20px #ff1493; }
+            100% { color: #00ffff !important; text-shadow: 0 0 10px #00ffff, 0 0 20px #ff1493; }
+        }
+        /* TEMA 5: Neon Plasma */
+        .navbar-neon.theme-plasma {
+            background: #0c0221;
+            border-bottom: 3px solid #ff00ff;
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.6);
+        }
+        .navbar-neon.theme-plasma .nav-link-neon {
+            animation: plasma-surge 2.5s ease-in-out infinite;
+        }
+        @keyframes plasma-surge {
+            0% { color: #ff00ff !important; text-shadow: 0 0 15px #ff00ff, 0 0 30px #ff0080, 0 0 45px #ff00ff; }
+            33% { color: #00ff00 !important; text-shadow: 0 0 15px #00ff00, 0 0 30px #00ff88, 0 0 45px #00ff00; }
+            66% { color: #00ffff !important; text-shadow: 0 0 15px #00ffff, 0 0 30px #00ccff, 0 0 45px #00ffff; }
+            100% { color: #ff00ff !important; text-shadow: 0 0 15px #ff00ff, 0 0 30px #ff0080, 0 0 45px #ff00ff; }
+        }
+        .theme-btn {
+            background: rgba(0, 255, 136, 0.2) !important;
+            border: 1px solid #00ff88 !important;
+            color: #00ff88 !important;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+        .theme-btn:hover {
+            background: rgba(0, 255, 136, 0.4) !important;
+            text-shadow: 0 0 10px #00ff88;
+        }        :root {
             --primary-color: #0a4d68;
             --secondary-color: #088395;
             --accent-color: #05bfdb;
@@ -142,32 +304,38 @@
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <!-- Navbar Neón -->
+    <nav class="navbar-neon navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html"><i class="bi bi-house-door"></i> Inicio</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <a class="neon-text" href="index.html"><i class="bi bi-house-door"></i> SOURCE-IT</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border-color: #00ff88;">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="guia_redes.html">Redes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="linux_cheatsheet.html">Linux</a></li>
-                    <li class="nav-item"><a class="nav-link" href="virtualbox.html">VirtualBox</a></li>
-                    <li class="nav-item"><a class="nav-link" href="conversor_binario_hexadecimal.html">Conversor</a></li>
-                    <li class="nav-item"><a class="nav-link" href="MySQL.html">MySQL</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="dhcp_dns.html">DHCP/DNS</a></li>
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link-neon" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="guia_redes.html">Redes</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="linux_cheatsheet.html">Linux</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="virtualbox.html">VirtualBox</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="conversor_binario_hexadecimal.html">Conversor</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="MySQL.html">MySQL</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="dhcp_dns.html">DHCP/DNS</a></li>
+                    <li class="nav-item ms-3"><button id="themeToggle" class="theme-btn btn" title="Cambiar tema"><i class="bi bi-palette-fill"></i></button></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-<div class="container py-5">
-    <h1>🌐 Configuración de servidor DHCP y DNS en VirtualBox<br>con máquinas Windows y Linux</h1>
-
-    <div class="note">
-        <strong>📌 Objetivo:</strong> Aprender a desplegar un servidor DHCP y DNS en una máquina virtual Debian, que asigne direcciones IP automáticas a clientes Windows y Linux en una red interna de VirtualBox. Se incluyen reservas de IP, opciones de gateway y DNS, y verificación de logs y concesiones.
+    <!-- Hero Section -->
+    <div class="hero text-center mb-5" style="background: linear-gradient(135deg, #0a4d68, #088395); color: white; padding: 4rem 2rem; border-radius: 0 0 20px 20px;">
+        <h1 class="display-4 fw-bold"><i class="bi bi-router"></i> DHCP y DNS en VirtualBox</h1>
+        <p class="lead">Configuración de servidores DHCP y DNS con múltiples sistemas operativos</p>
     </div>
+
+    <div class="container py-5">
+        <div class="note">
+            <strong>📌 Objetivo:</strong> Aprender a desplegar un servidor DHCP y DNS en una máquina virtual Debian, que asigne direcciones IP automáticas a clientes Windows y Linux en una red interna de VirtualBox. Se incluyen reservas de IP, opciones de gateway y DNS, y verificación de logs y concesiones.
+        </div>
 
     <h2>1. Escenario de red</h2>
     <p>Vamos a simular una pequeña red de oficina con las siguientes máquinas virtuales:</p>
@@ -333,6 +501,28 @@ ipconfig /all</code></pre>
         <p>Created by Jemarin Birt LH ASIR 2025 ^^</p>
     </footer>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>    <script>
+        const themes = ['rainbow', 'cyberpunk', 'synthwave', 'holographic', 'plasma'];
+        let currentTheme = localStorage.getItem('navbarTheme') || 'rainbow';
+        const navbar = document.querySelector('.navbar-neon');
+        const themeBtn = document.getElementById('themeToggle');
+
+        function applyTheme(theme) {
+            navbar.className = 'navbar-neon navbar navbar-expand-lg sticky-top';
+            if (theme !== 'rainbow') {
+                navbar.classList.add(`theme-${theme}`);
+            }
+            localStorage.setItem('navbarTheme', theme);
+            currentTheme = theme;
+        }
+
+        function nextTheme() {
+            const currentIndex = themes.indexOf(currentTheme);
+            const nextIndex = (currentIndex + 1) % themes.length;
+            applyTheme(themes[nextIndex]);
+        }
+
+        themeBtn.addEventListener('click', nextTheme);
+        applyTheme(currentTheme);
+    </script></body>
 </html>
