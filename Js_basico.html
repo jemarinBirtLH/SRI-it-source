@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Basico - Source-IT</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+    <nav class="navbar-neon navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="neon-text" href="index.html"><i class="bi bi-house-door"></i> SOURCE-IT</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border-color:#00ff88;"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link-neon" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="guia_redes.html">Redes</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="linux_cheatsheet.html">Linux</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="virtualbox.html">VirtualBox</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="conversor_binario_hexadecimal.html">Conversor</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="MySQL.html">MySQL</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="dhcp_dns.html">DHCP/DNS</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="lenguajes_de_marcas.html">Lenguajes</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="Css_basico.html">CSS Basico</a></li>
+                    <li class="nav-item"><a class="nav-link-neon active" href="Js_basico.html">JavaScript</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="freeplane.html">Freeplane</a></li>
+                    <li class="nav-item ms-3"><button id="themeToggle" class="theme-btn btn" title="Cambiar tema"><i class="bi bi-palette-fill"></i></button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero text-center">
+        <h1 class="display-5 fw-bold"><i class="bi bi-filetype-js"></i> JavaScript Basico</h1>
+        <p class="lead">Fundamentos universitarios: sintaxis, DOM, asincronia, modulos y practicas reales.</p>
+    </div>
+
+    <main class="container py-5">
+        <h2 class="section-title"><i class="bi bi-book-half"></i> 1) Sintaxis y tipos</h2>
+        <div class="card-custom p-3 mb-4">
+            <p>JavaScript trabaja con tipado dinamico. Usa <code>const</code> por defecto y <code>let</code> cuando el valor cambie.</p>
+            <div class="code-block">const alumno = "Jemarin";
+let nota = 9.2;
+const aprobado = nota >= 5;
+const temas = ["variables", "funciones", "dom"];
+const perfil = { nombre: alumno, nota, aprobado };</div>
+        </div>
+
+        <h2 class="section-title"><i class="bi bi-diagram-3"></i> 2) Estructuras de control y funciones</h2>
+        <div class="card-custom p-3 mb-4">
+            <div class="code-block">function clasificarNota(nota) {
+  if (nota >= 9) return "sobresaliente";
+  if (nota >= 7) return "notable";
+  if (nota >= 5) return "aprobado";
+  return "suspenso";
+}
+
+const resumen = (nombre, nota) => `${nombre}: ${clasificarNota(nota)}`;</div>
+        </div>
+
+        <h2 class="section-title"><i class="bi bi-window"></i> 3) DOM y eventos</h2>
+        <div class="card-custom p-3 mb-4">
+            <p>El DOM permite modificar la interfaz en tiempo real. Escucha eventos para reaccionar a acciones del usuario.</p>
+            <div class="row g-3 align-items-center">
+                <div class="col-md-8"><input id="nameInput" class="form-control" placeholder="Escribe tu nombre"></div>
+                <div class="col-md-4 d-grid"><button id="helloBtn" class="btn btn-primary">Saludar</button></div>
+            </div>
+            <div id="helloOut" class="output mt-3">Esperando accion...</div>
+        </div>
+
+        <h2 class="section-title"><i class="bi bi-lightning-charge"></i> 4) Asincronia y Event Loop</h2>
+        <div class="card-custom p-3 mb-4">
+            <p>Microtareas (Promises) se ejecutan antes de macrotareas (setTimeout).</p>
+            <div class="code-block">console.log('A');
+setTimeout(() => console.log('B'), 0);
+Promise.resolve().then(() => console.log('C'));
+console.log('D');
+// salida: A, D, C, B</div>
+            <button id="loopBtn" class="btn btn-outline-primary">Simular orden</button>
+            <div id="loopOut" class="output mt-3">Sin ejecutar.</div>
+        </div>
+
+        <h2 class="section-title"><i class="bi bi-boxes"></i> 5) Modulos (ESM)</h2>
+        <div class="card-custom p-3 mb-4">
+            <div class="code-block">// math.js
+export const sumar = (a, b) => a + b;
+
+// app.js
+import { sumar } from './math.js';
+console.log(sumar(2, 3));</div>
+            <p class="mb-0">Modulos separan responsabilidades y facilitan mantenimiento.</p>
+        </div>
+
+        <h2 class="section-title"><i class="bi bi-router"></i> 6) Laboratorio: validador IPv4</h2>
+        <div class="card-custom p-3 mb-4">
+            <div class="row g-3">
+                <div class="col-md-8"><input id="ipInput" class="form-control" placeholder="Ejemplo: 192.168.1.10"></div>
+                <div class="col-md-4 d-grid"><button id="validateBtn" class="btn btn-primary">Validar IP</button></div>
+            </div>
+            <div id="validationResult" class="output mt-3">Esperando entrada...</div>
+        </div>
+
+        <h2 class="section-title"><i class="bi bi-check2-square"></i> 7) Buenas practicas</h2>
+        <div class="card-custom p-3 mb-4">
+            <ol class="mb-0">
+                <li>Evita estado global mutable.</li>
+                <li>Escribe funciones pequenas y testeables.</li>
+                <li>Valida entradas siempre.</li>
+                <li>Usa modulos y nombres claros.</li>
+                <li>Aplica lint y formateo automatico.</li>
+            </ol>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <p>Created by Jemarin Birt LH ASIR 2025 ^^</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function isValidIpv4(ip) {
+            const re = /^(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}$/;
+            return re.test(ip);
+        }
+
+        const nameInput = document.getElementById('nameInput');
+        const helloOut = document.getElementById('helloOut');
+        document.getElementById('helloBtn').addEventListener('click', () => {
+            const name = nameInput.value.trim();
+            helloOut.textContent = name ? `Hola ${name}, bienvenido a JS Basico.` : 'Escribe tu nombre primero.';
+        });
+
+        const loopOut = document.getElementById('loopOut');
+        document.getElementById('loopBtn').addEventListener('click', () => {
+            const logs = [];
+            logs.push('A');
+            setTimeout(() => {
+                logs.push('B');
+                loopOut.textContent = `Orden final: ${logs.join(', ')}`;
+            }, 0);
+            Promise.resolve().then(() => {
+                logs.push('C');
+            });
+            logs.push('D');
+            loopOut.textContent = `Orden parcial: ${logs.join(', ')}...`;
+        });
+
+        const input = document.getElementById('ipInput');
+        const result = document.getElementById('validationResult');
+        document.getElementById('validateBtn').addEventListener('click', () => {
+            const value = input.value.trim();
+            if (!value) {
+                result.textContent = 'Introduce una direccion IPv4 para validar.';
+                return;
+            }
+            result.textContent = isValidIpv4(value)
+                ? `La direccion ${value} es valida.`
+                : `La direccion ${value} no es valida.`;
+        });
+    </script>
+    <script src="assets/js/site-sfx.js"></script>
+    <script src="assets/js/site-theme.js"></script>
+</body>
+</html>
+
+
+
