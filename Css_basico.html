@@ -1,0 +1,583 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Básico - Guía Completa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0a4d68;
+            --secondary-color: #088395;
+            --accent-color: #05bfdb;
+            --success-color: #00c896;
+            --warning-color: #ff6b35;
+            --dark-color: #001524;
+            --border-color: #dbe4ee;
+        }
+        * { font-family: 'Space Mono', monospace; }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .navbar-neon {
+            background: #0a0e27;
+            border-bottom: 3px solid #00ff88;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.7), inset 0 0 20px rgba(0, 255, 136, 0.1);
+            padding: 0.8rem 0;
+            transition: all 0.5s ease;
+            backdrop-filter: blur(10px);
+        }
+        .neon-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.8rem;
+            background: linear-gradient(90deg, #00ff88, #00ccff, #ff00ff, #00ff88);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 15px #00ff88) drop-shadow(0 0 25px #00ccff);
+            animation: gradient-shift 4s ease infinite;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+        }
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+        }
+        .nav-link-neon {
+            font-weight: 700;
+            position: relative;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+            animation: rainbow-neon 4s ease-in-out infinite;
+            font-size: 1rem;
+        }
+        .nav-link-neon:hover {
+            color: #00ccff !important;
+            text-shadow: 0 0 15px #00ccff, 0 0 30px #00ff88;
+            transform: scale(1.08);
+        }
+        @keyframes rainbow-neon {
+            0% { color: #FF0080 !important; text-shadow: 0 0 10px #FF0080, 0 0 20px #FF1493; }
+            25% { color: #FF6B00 !important; text-shadow: 0 0 10px #FF6B00, 0 0 20px #FF8C00; }
+            50% { color: #00FF88 !important; text-shadow: 0 0 10px #00FF88, 0 0 20px #00FF00; }
+            75% { color: #00CCFF !important; text-shadow: 0 0 10px #00CCFF, 0 0 20px #00BFFF; }
+            100% { color: #FF00FF !important; text-shadow: 0 0 10px #FF00FF, 0 0 20px #FF1493; }
+        }
+        .theme-btn {
+            background: rgba(0, 255, 136, 0.2) !important;
+            border: 2px solid #00ff88 !important;
+            color: #00ff88 !important;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef3 100%);
+            font-family: 'Inter', sans-serif;
+        }
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3.2rem 2rem;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 2rem;
+        }
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 4px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin: 2.2rem 0 1.3rem 0;
+            font-weight: 700;
+        }
+        .card-custom {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            background: white;
+        }
+        .card-custom:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+        .card-header-custom {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.1rem 1.4rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .card-body { padding: 1.4rem; }
+        .code-block {
+            background: #1e1e1e;
+            color: #61dafb;
+            padding: 1rem;
+            border-radius: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            overflow-x: auto;
+            margin: 0.8rem 0;
+        }
+        .alert-custom {
+            border-left: 4px solid;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .alert-info-custom {
+            background: #e3f2fd;
+            border-left-color: #2196F3;
+        }
+        .accordion-item {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1rem;
+            background: white;
+        }
+        .accordion-header {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            background: linear-gradient(135deg, #0a4d68 0%, #088395 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 0.98rem;
+            font-weight: 700;
+            text-align: left;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .accordion-header:hover { filter: brightness(1.08); }
+        .accordion-header::after {
+            content: '▼';
+            transition: transform 0.3s ease;
+            font-size: 0.75rem;
+        }
+        .accordion-item.active .accordion-header::after { transform: rotate(180deg); }
+        .accordion-content {
+            display: none;
+            padding: 1.2rem;
+            border-top: 2px solid var(--border-color);
+            animation: slideDown 0.3s ease-out;
+        }
+        .accordion-item.active .accordion-content { display: block; }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar-neon navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="neon-text" href="index.html"><i class="bi bi-house-door"></i> SOURCE-IT</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border-color: #00ff88;">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link-neon" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="guia_redes.html">Redes</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="linux_cheatsheet.html">Linux</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="virtualbox.html">VirtualBox</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="conversor_binario_hexadecimal.html">Conversor</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="MySQL.html">MySQL</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="dhcp_dns.html">DHCP/DNS</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="lenguajes_de_marcas.html">Lenguajes</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="Css_basico.html">CSS Básico</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="javascript_universitario.html">JavaScript</a></li>
+                    <li class="nav-item ms-3"><button id="themeToggle" class="theme-btn btn" title="Cambiar tema"><i class="bi bi-palette-fill"></i></button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero text-center">
+        <h1 class="display-5 fw-bold"><i class="bi bi-filetype-css"></i> CSS Básico</h1>
+        <p class="lead">Unidad 7 completa: desde introducción hasta metodología de nomenclatura profesional.</p>
+    </div>
+
+    <div class="container py-4">
+        <div class="card-custom">
+            <div class="card-header-custom"><i class="bi bi-mortarboard"></i> CSS Especial - Programa Integrado</div>
+            <div class="card-body">
+                <p>Contenido desarrollado a nivel formativo completo, estructurado por unidades temáticas de CSS: aplicación, selectores, modelo de cajas, posicionamiento, pseudoclases, formularios y buenas prácticas.</p>
+                <div class="alert alert-info-custom alert-custom">
+                    <strong>Meta:</strong> construir hojas de estilo escalables, mantenibles y accesibles, con criterio técnico para proyectos reales.
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title" id="css-especial"><i class="bi bi-stars"></i> CSS Básico - Temario Completo</h2>
+        <div class="accordion" id="cssEspecialAccordion">
+            <div class="accordion-item">
+                <button class="accordion-header">1) Introducción a CSS</button>
+                <div class="accordion-content">
+                    <p>CSS separa presentación de estructura HTML, permitiendo consistencia visual, mantenibilidad y reutilización.</p>
+                    <div class="code-block">selector {
+  propiedad: valor;
+}</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">2) Cómo aplicar CSS (inline, interno, externo)</button>
+                <div class="accordion-content">
+                    <p>En producción se prioriza CSS externo para modularidad y caché eficiente.</p>
+                    <div class="code-block">&lt;link rel="stylesheet" href="styles.css"&gt;</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">3) Selectores (básicos, combinadores y avanzados)</button>
+                <div class="accordion-content">
+                    <div class="code-block">* { box-sizing: border-box; }
+#menu { ... }
+.card > h3 { ... }
+input[type="email"] { ... }</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">4) Unidades de medida (px, em, rem, %, vw/vh)</button>
+                <div class="accordion-content">
+                    <p>Usa <code>rem</code> para tipografía base y <code>%</code>/<code>vw</code> para diseños fluidos.</p>
+                    <div class="code-block">html { font-size: 16px; }
+h1 { font-size: 2rem; }
+.container { width: min(90%, 1100px); }</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">5) Colores y fondo</button>
+                <div class="accordion-content">
+                    <div class="code-block">:root {
+  --brand: #0a4d68;
+  --accent: rgb(5 191 219);
+}
+.hero { background: linear-gradient(135deg, var(--brand), #088395); }</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">6) Propiedades de texto</button>
+                <div class="accordion-content">
+                    <div class="code-block">p {
+  text-align: justify;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">7) Propiedades de fuentes</button>
+                <div class="accordion-content">
+                    <div class="code-block">body { font-family: 'Inter', sans-serif; }
+h1 { font-family: 'Orbitron', sans-serif; font-weight: 900; }</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">8) Propiedades de listas</button>
+                <div class="accordion-content">
+                    <div class="code-block">ul.custom {
+  list-style: square inside;
+  padding-left: 1rem;
+}
+li::marker { color: #088395; }</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">9) Propiedades de tablas</button>
+                <div class="accordion-content">
+                    <div class="code-block">table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid #dbe4ee; padding: .75rem; }
+th { background: #0a4d68; color: white; }</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">10) Modelo de cajas (box model)</button>
+                <div class="accordion-content">
+                    <div class="code-block">* { box-sizing: border-box; }
+.card {
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid #cfd8e3;
+}</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">11) Tamaño, ancho y alto</button>
+                <div class="accordion-content">
+                    <div class="code-block">.panel {
+  width: clamp(280px, 60vw, 900px);
+  min-height: 200px;
+  max-height: 60vh;
+}</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">12) Posición y comportamiento del navegador</button>
+                <div class="accordion-content">
+                    <div class="code-block">.fixed-help { position: fixed; right: 1rem; bottom: 1rem; }
+.sticky-nav { position: sticky; top: 0; }
+.badge { position: absolute; top: .5rem; right: .5rem; }</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">13) Pseudoclases y pseudoelementos</button>
+                <div class="accordion-content">
+                    <div class="code-block">a:hover { color: #05bfdb; }
+input:focus { outline: 2px solid #088395; }
+.card::before { content: ''; display: block; height: 4px; background: #05bfdb; }</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">14) Overflow</button>
+                <div class="accordion-content">
+                    <div class="code-block">.code-block {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.modal-body { max-height: 70vh; overflow: auto; }</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">15) Formularios en CSS</button>
+                <div class="accordion-content">
+                    <div class="code-block">input, select, textarea {
+  width: 100%;
+  padding: .7rem;
+  border: 1px solid #cfd8e3;
+  border-radius: .5rem;
+}
+input:invalid { border-color: #ff6b35; }</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">16) Buenas prácticas</button>
+                <div class="accordion-content">
+                    <ul>
+                        <li>Define variables en <code>:root</code> para colores y espaciado.</li>
+                        <li>Evita selectores demasiado específicos.</li>
+                        <li>Organiza por capas: base, layout, componentes, utilidades.</li>
+                        <li>Prioriza accesibilidad y contraste.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">17) Metodologías de nomenclatura (BEM y similares)</button>
+                <div class="accordion-content">
+                    <p><strong>BEM:</strong> bloque, elemento y modificador para escalabilidad en equipos.</p>
+                    <div class="code-block">.card {}
+.card__title {}
+.card--featured {}</div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title"><i class="bi bi-journal-code"></i> 10 Ejercicios Prácticos Guiados</h2>
+        <div class="card-custom">
+            <div class="card-body">
+                <p>Bloque de práctica progresiva para afianzar la Unidad 7. Cada ejercicio incluye objetivo técnico y una solución base para comparar.</p>
+            </div>
+        </div>
+        <div class="accordion" id="cssEjerciciosAccordion">
+            <div class="accordion-item">
+                <button class="accordion-header">Ejercicio 1: Selectores básicos y combinados</button>
+                <div class="accordion-content">
+                    <p>Estiliza todos los párrafos dentro de <code>.articulo</code> y solo el primer párrafo de cada artículo.</p>
+                    <div class="code-block">.articulo p { color: #0a4d68; }
+.articulo p:first-of-type {
+  font-weight: 700;
+  border-left: 4px solid #05bfdb;
+  padding-left: .6rem;
+}</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">Ejercicio 2: Especificidad y cascada</button>
+                <div class="accordion-content">
+                    <p>Define un estilo base para botones y crea un modificador para botón crítico sin usar <code>!important</code>.</p>
+                    <div class="code-block">.btn { background: #0a4d68; color: #fff; }
+.btn--danger { background: #d90429; }</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">Ejercicio 3: Unidades relativas</button>
+                <div class="accordion-content">
+                    <p>Crea tipografía escalable usando <code>rem</code> y bloque fluido con <code>clamp()</code>.</p>
+                    <div class="code-block">html { font-size: 16px; }
+h1 { font-size: clamp(1.8rem, 2vw + 1rem, 3rem); }
+.contenedor { width: min(92%, 1100px); }</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">Ejercicio 4: Fondo y color con variables</button>
+                <div class="accordion-content">
+                    <p>Define paleta en <code>:root</code> y aplica gradiente al hero.</p>
+                    <div class="code-block">:root {
+  --bg-1: #0a4d68;
+  --bg-2: #088395;
+}
+.hero {
+  background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+  color: #fff;
+}</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">Ejercicio 5: Modelo de caja y spacing</button>
+                <div class="accordion-content">
+                    <p>Construye una tarjeta con padding interno, borde y sombra consistente.</p>
+                    <div class="code-block">* { box-sizing: border-box; }
+.card {
+  padding: 1rem;
+  margin: 1rem 0;
+  border: 1px solid #dbe4ee;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0,0,0,.08);
+}</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">Ejercicio 6: Flexbox para barra de acciones</button>
+                <div class="accordion-content">
+                    <p>Alinea título a la izquierda y botones a la derecha en una misma fila.</p>
+                    <div class="code-block">.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .75rem;
+}</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">Ejercicio 7: Grid responsive de tarjetas</button>
+                <div class="accordion-content">
+                    <p>Construye una rejilla que se adapte automáticamente al ancho disponible.</p>
+                    <div class="code-block">.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">Ejercicio 8: Pseudoclases y foco accesible</button>
+                <div class="accordion-content">
+                    <p>Aplica estados hover/focus-visible para navegación con teclado.</p>
+                    <div class="code-block">a:hover { color: #05bfdb; }
+button:focus-visible, a:focus-visible {
+  outline: 3px solid #05bfdb;
+  outline-offset: 2px;
+}</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">Ejercicio 9: Formularios con validación visual</button>
+                <div class="accordion-content">
+                    <p>Estiliza inputs válidos e inválidos sin JavaScript.</p>
+                    <div class="code-block">input {
+  border: 1px solid #cfd8e3;
+  border-radius: .5rem;
+  padding: .65rem;
+}
+input:valid { border-color: #00c896; }
+input:invalid { border-color: #ff6b35; }</div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">Ejercicio 10: Nomenclatura BEM aplicada</button>
+                <div class="accordion-content">
+                    <p>Refactoriza una card usando bloque, elemento y modificador.</p>
+                    <div class="code-block">.card {}
+.card__title {}
+.card__meta {}
+.card--destacada { border-color: #05bfdb; }</div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title"><i class="bi bi-bezier2"></i> Práctica Final Integrada</h2>
+        <div class="card-custom">
+            <div class="card-body">
+                <p>Construye una landing completa aplicando todos los temas: tipografía, tablas, formularios, flex/grid, pseudoclases, overflow y nomenclatura BEM.</p>
+                <div class="code-block">Checklist:
++- Variables globales CSS
++- Layout responsive (Grid + Flex)
++- Formulario con estados :focus y :invalid
++- Tabla con estilo semántico
++- Clases BEM en componentes
++- Buen contraste y accesibilidad</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Created by Jemarin Birt LH ASIR 2025 ^^</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) item.classList.add('active');
+            });
+        });
+    </script>
+    <script src="assets/js/site-theme.js"></script>
+</body>
+</html>
+
+
+
+

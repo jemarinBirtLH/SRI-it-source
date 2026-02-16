@@ -1,0 +1,1249 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lenguajes de Marcas - Guía Completa</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts - Fuentes futuristas -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0a4d68;
+            --secondary-color: #088395;
+            --accent-color: #05bfdb;
+            --success-color: #00c896;
+            --warning-color: #ff6b35;
+            --dark-color: #001524;
+        }
+        * {
+            font-family: 'Space Mono', monospace;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        /* Estilos del Navbar Neón MEJORADO */
+        .navbar-neon {
+            background: #0a0e27;
+            border-bottom: 3px solid #00ff88;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.7), inset 0 0 20px rgba(0, 255, 136, 0.1);
+            padding: 0.8rem 0;
+            transition: all 0.5s ease;
+            backdrop-filter: blur(10px);
+        }
+        .neon-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.8rem;
+            background: linear-gradient(90deg, #00ff88, #00ccff, #ff00ff, #00ff88);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 15px #00ff88) drop-shadow(0 0 25px #00ccff);
+            animation: wave-text-mega 3s ease-in-out infinite, gradient-shift 4s ease infinite;
+            letter-spacing: 0.1em;
+        }
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+        }
+        .nav-link-neon {
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin: 0 12px;
+            animation: rainbow-neon 4s ease-in-out infinite;
+            font-size: 1.05rem;
+            letter-spacing: 0.05em;
+        }
+        .nav-link-neon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, #00ff88, transparent);
+            animation: wave-hover 0.5s ease-in-out;
+        }
+        .nav-link-neon:hover {
+            color: #00ccff !important;
+            text-shadow: 0 0 20px #00ccff, 0 0 40px #00ff88, 0 0 60px #ff00ff;
+            transform: scale(1.15) skewX(-5deg);
+        }
+        .nav-link-neon.active {
+            color: #ff00ff !important;
+            text-shadow: 0 0 25px #ff00ff, 0 0 50px #00ff88;
+            border-bottom: 3px solid #ff00ff;
+        }
+        @keyframes wave-text-mega {
+            0%, 100% {
+                filter: drop-shadow(0 0 15px #00ff88) drop-shadow(0 0 25px #00ccff);
+            }
+            50% {
+                filter: drop-shadow(0 0 25px #00ff88) drop-shadow(0 0 40px #ff00ff);
+            }
+        }
+        @keyframes wave-hover {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+        @keyframes rainbow-neon {
+            0% {
+                color: #FF0080 !important;
+                text-shadow: 0 0 10px #FF0080, 0 0 20px #FF1493, 0 0 30px #FF0080;
+            }
+            16% {
+                color: #FF6B00 !important;
+                text-shadow: 0 0 10px #FF6B00, 0 0 20px #FF8C00, 0 0 30px #FF6B00;
+            }
+            32% {
+                color: #FFFF00 !important;
+                text-shadow: 0 0 10px #FFFF00, 0 0 20px #FFD700, 0 0 30px #FFFF00;
+            }
+            48% {
+                color: #00FF88 !important;
+                text-shadow: 0 0 10px #00FF88, 0 0 20px #00FF00, 0 0 30px #00FF88;
+            }
+            64% {
+                color: #00CCFF !important;
+                text-shadow: 0 0 10px #00CCFF, 0 0 20px #00BFFF, 0 0 30px #00CCFF;
+            }
+            80% {
+                color: #0080FF !important;
+                text-shadow: 0 0 10px #0080FF, 0 0 20px #1E90FF, 0 0 30px #0080FF;
+            }
+            100% {
+                color: #FF00FF !important;
+                text-shadow: 0 0 10px #FF00FF, 0 0 20px #FF1493, 0 0 30px #FF00FF;
+            }
+        }
+        /* TEMA 2: Cyberpunk Glitch */
+        .navbar-neon.theme-cyberpunk {
+            background: #0d0221;
+            border-bottom: 2px solid #00d4ff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5), -3px 3px 0px #ff006e;
+        }
+        .navbar-neon.theme-cyberpunk .nav-link-neon {
+            animation: glitch-text 3s ease-in-out infinite;
+        }
+        @keyframes glitch-text {
+            0% { color: #00d4ff !important; text-shadow: -2px 0 #ff006e, 2px 0 #00d4ff; }
+            25% { color: #ff006e !important; text-shadow: -2px 0 #00d4ff, 2px 0 #ff006e; }
+            50% { color: #00d4ff !important; text-shadow: -2px 0 #ff006e, 2px 0 #00d4ff; }
+            75% { color: #ff006e !important; text-shadow: -2px 0 #00d4ff, 2px 0 #ff006e; }
+            100% { color: #00d4ff !important; text-shadow: -2px 0 #ff006e, 2px 0 #00d4ff; }
+        }
+        /* TEMA 3: Synthwave */
+        .navbar-neon.theme-synthwave {
+            background: linear-gradient(90deg, #241e30 0%, #3d2645 100%);
+            border-bottom: 3px solid #ff006e;
+            box-shadow: 0 0 30px rgba(255, 0, 110, 0.4);
+        }
+        .navbar-neon.theme-synthwave .nav-link-neon {
+            animation: synthwave-pulse 2s ease-in-out infinite;
+        }
+        @keyframes synthwave-pulse {
+            0%, 100% { color: #ffd60a !important; text-shadow: 0 0 10px #ffd60a, 0 0 20px #ff006e; }
+            50% { color: #ff006e !important; text-shadow: 0 0 15px #ff006e, 0 0 30px #ffd60a; }
+        }
+        /* TEMA 4: Holographic */
+        .navbar-neon.theme-holographic {
+            background: rgba(10, 20, 50, 0.9);
+            border-bottom: 2px solid #00ffff;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3), inset 0 0 30px rgba(255, 0, 255, 0.1);
+        }
+        .navbar-neon.theme-holographic .nav-link-neon {
+            animation: holographic-shift 4s ease-in-out infinite;
+        }
+        @keyframes holographic-shift {
+            0% { color: #00ffff !important; text-shadow: 0 0 10px #00ffff, 0 0 20px #ff1493; }
+            25% { color: #ff1493 !important; text-shadow: 0 0 10px #ff1493, 0 0 20px #00ff88; }
+            50% { color: #00ff88 !important; text-shadow: 0 0 10px #00ff88, 0 0 20px #00ffff; }
+            75% { color: #ffff00 !important; text-shadow: 0 0 10px #ffff00, 0 0 20px #ff1493; }
+            100% { color: #00ffff !important; text-shadow: 0 0 10px #00ffff, 0 0 20px #ff1493; }
+        }
+        /* TEMA 5: Neon Plasma */
+        .navbar-neon.theme-plasma {
+            background: #0c0221;
+            border-bottom: 3px solid #ff00ff;
+            box-shadow: 0 0 40px rgba(255, 0, 255, 0.6);
+        }
+        .navbar-neon.theme-plasma .nav-link-neon {
+            animation: plasma-surge 2.5s ease-in-out infinite;
+        }
+        @keyframes plasma-surge {
+            0% { color: #ff00ff !important; text-shadow: 0 0 15px #ff00ff, 0 0 30px #ff0080, 0 0 45px #ff00ff; }
+            33% { color: #00ff00 !important; text-shadow: 0 0 15px #00ff00, 0 0 30px #00ff88, 0 0 45px #00ff00; }
+            66% { color: #00ffff !important; text-shadow: 0 0 15px #00ffff, 0 0 30px #00ccff, 0 0 45px #00ffff; }
+            100% { color: #ff00ff !important; text-shadow: 0 0 15px #ff00ff, 0 0 30px #ff0080, 0 0 45px #ff00ff; }
+        }
+        .theme-btn {
+            background: rgba(0, 255, 136, 0.2) !important;
+            border: 2px solid #00ff88 !important;
+            color: #00ff88 !important;
+            transition: all 0.3s ease;
+            font-size: 1.4rem;
+            padding: 0.5rem 0.8rem !important;
+            position: relative;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: theme-btn-pulse 2s ease-in-out infinite, theme-btn-rotate 8s linear infinite;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.5), inset 0 0 10px rgba(0, 255, 136, 0.3);
+            overflow: hidden;
+        }
+        .theme-btn::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: conic-gradient(#00ff88, #00ccff, #ff00ff, #ff006e, #ffd60a, #00ff88);
+            border-radius: 50%;
+            z-index: -1;
+            animation: theme-gradient-rotate 3s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .theme-btn:hover::before {
+            opacity: 1;
+        }
+        .theme-btn:hover {
+            background: rgba(0, 255, 136, 0.4) !important;
+            text-shadow: 0 0 15px #00ff88, 0 0 30px #00ccff;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.8), inset 0 0 15px rgba(0, 255, 136, 0.5), 0 0 40px rgba(255, 0, 255, 0.4);
+            transform: scale(1.15);
+        }
+        @keyframes theme-btn-pulse {
+            0%, 100% { box-shadow: 0 0 15px rgba(0, 255, 136, 0.5), inset 0 0 10px rgba(0, 255, 136, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(0, 255, 136, 0.8), inset 0 0 15px rgba(0, 255, 136, 0.5); }
+        }
+        @keyframes theme-btn-rotate {
+            from { transform: rotateZ(0deg); }
+            to { transform: rotateZ(360deg); }
+        }
+        @keyframes theme-gradient-rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        /* BOTONES PERSONALIZADOS NEON */
+        .btn {
+            border: 2px solid;
+            border-radius: 8px;
+            font-weight: 700;
+            padding: 12px 28px !important;
+            font-size: 1.05rem;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.05em;
+            margin: 8px 4px !important;
+            display: inline-block;
+            min-width: 140px;
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        .btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: transparent;
+            filter: drop-shadow(0 0 3px currentColor);
+        }
+        .btn-outline-primary {
+            color: #0080FF;
+            border-color: #0080FF;
+            background: transparent;
+        }
+        .btn-outline-primary:hover {
+            background: #0080FF;
+            color: #000;
+            border-color: #0080FF;
+            box-shadow: 0 0 20px rgba(0, 128, 255, 0.6), 
+                        inset 0 0 15px rgba(0, 128, 255, 0.3),
+                        0 0 40px rgba(0, 200, 255, 0.4);
+            transform: scale(1.08);
+        }
+        /* Temas de botones según el navbar */
+        .navbar-neon.rainbow .btn-outline-primary {
+            color: #00ff88;
+            border-color: #00ff88;
+        }
+        .navbar-neon.rainbow .btn-outline-primary:hover {
+            background: #00ff88;
+            color: #000;
+            border-color: #00ff88;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.8), 
+                        inset 0 0 15px rgba(0, 255, 136, 0.5),
+                        0 0 40px rgba(0, 200, 255, 0.5);
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .navbar-neon.cyberpunk .btn-outline-primary {
+            color: #00CCFF;
+            border-color: #FF00FF;
+            animation: btn-glitch 2s infinite;
+        }
+        .navbar-neon.cyberpunk .btn-outline-primary:hover {
+            background: #FF00FF;
+            color: #00CCFF;
+            border-color: #00CCFF;
+            box-shadow: 0 0 20px #FF00FF, 0 4px 0 #00CCFF, 
+                        0 -4px 0 #FF00FF, -4px 0 0 #00CCFF, 4px 0 0 #FF00FF;
+        }
+        .navbar-neon.synthwave .btn-outline-primary {
+            color: #FFD60A;
+            border-color: #FF006E;
+        }
+        .navbar-neon.synthwave .btn-outline-primary:hover {
+            background: #FFD60A;
+            color: #000;
+            border-color: #FF006E;
+            box-shadow: 0 0 20px rgba(255, 214, 10, 0.8),
+                        0 0 40px rgba(255, 0, 110, 0.6),
+                        inset 0 0 15px rgba(255, 214, 10, 0.4);
+        }
+        .navbar-neon.holographic .btn-outline-primary {
+            color: #00ff88;
+            border-color: #00CCFF;
+            background: rgba(0, 255, 136, 0.05);
+        }
+        .navbar-neon.holographic .btn-outline-primary:hover {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.3), rgba(0, 204, 255, 0.3));
+            color: #00CCFF;
+            border-color: #00CCFF;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.6),
+                        inset 0 0 20px rgba(0, 204, 255, 0.4),
+                        0 0 40px rgba(255, 0, 255, 0.3);
+        }
+        .navbar-neon.plasma .btn-outline-primary {
+            color: #FF00FF;
+            border-color: #00FF88;
+        }
+        .navbar-neon.plasma .btn-outline-primary:hover {
+            background: #00FF88;
+            color: #000;
+            border-color: #FF00FF;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.8),
+                        0 0 40px rgba(0, 255, 136, 0.6),
+                        inset 0 0 15px rgba(0, 255, 136, 0.5);
+        }
+        @keyframes btn-glitch {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-2px); }
+            40% { transform: translateX(2px); }
+            60% { transform: translateX(-2px); }
+            80% { transform: translateX(2px); }
+        }
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef3 100%);
+            font-family: 'Inter', sans-serif;
+        }
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 2rem;
+        }
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 4px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin: 2.5rem 0 1.5rem 0;
+            font-weight: 700;
+        }
+        .card-custom {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        .card-custom:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+        .card-header-custom {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.2rem 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .card-header-custom i {
+            margin-right: 0.5rem;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #61dafb;
+            padding: 1.2rem;
+            border-radius: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        .command-list {
+            list-style: none;
+            padding: 0;
+        }
+        .command-list li {
+            background: white;
+            margin: 0.5rem 0;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+            transition: 0.2s;
+        }
+        .command-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .badge-cmd {
+            background: var(--accent-color);
+            color: white;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 5px;
+        }
+        table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        th {
+            background: var(--primary-color);
+            color: white;
+        }
+        .alert-custom {
+            border-left: 4px solid;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .alert-info-custom {
+            background: #e3f2fd;
+            border-left-color: #2196F3;
+        }
+        .alert-warning-custom {
+            background: #fff3e0;
+            border-left-color: #ff6b35;
+        }
+        .alert-success-custom {
+            background: #d4edda;
+            border-left-color: #00c896;
+        }
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        /* Acordeón (reutilizado de index.html) */
+        .accordion-item {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1rem;
+        }
+        .accordion-header {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: left;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            transform: translateX(5px);
+        }
+        .accordion-header::after {
+            content: '▼';
+            transition: transform 0.3s ease;
+            font-size: 0.8rem;
+        }
+        .accordion-item.active .accordion-header::after {
+            transform: rotate(180deg);
+        }
+        .accordion-content {
+            display: none;
+            padding: 1.5rem;
+            background: white;
+            border-top: 2px solid var(--border-color);
+            animation: slideDown 0.3s ease-out;
+        }
+        .accordion-item.active .accordion-content {
+            display: block;
+        }
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Glosario (reutilizado) */
+        .glossary-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+        .glossary-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .glossary-intro {
+            color: var(--light-text);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: var(--light-bg);
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 4px;
+            padding-left: 1.2rem;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .glossary-item {
+            background: #f9fafb;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .glossary-item:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-color);
+            transform: translateY(-4px);
+        }
+        .glossary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        .glossary-item h4 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin: 0;
+            font-weight: 700;
+        }
+        .term-category {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .glossary-item p {
+            color: var(--dark-text);
+            line-height: 1.7;
+            margin-bottom: 0.8rem;
+            text-align: justify;
+        }
+        .glossary-item p:last-child {
+            margin-bottom: 0;
+        }
+        .glossary-item p strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        .example {
+            background: white;
+            border-left: 3px solid var(--secondary-color);
+            padding-left: 1rem;
+            padding: 0.8rem 0 0.8rem 1rem;
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+            color: var(--dark-text);
+            font-style: italic;
+        }
+        .example strong {
+            color: var(--secondary-color);
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        .comparison-table th {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.8rem;
+        }
+        .comparison-table td {
+            padding: 0.8rem;
+            border: 1px solid var(--border-color);
+        }
+        .comparison-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+    
+        /* --- ANIMACION MR. ROBOT --- */
+        #mr-robot-glitch {
+            position: fixed;
+            left: 0;
+            top: 30%;
+            font-size: 5rem;
+            font-weight: 900;
+            font-family: 'Orbitron', monospace;
+            white-space: nowrap;
+            color: #00ff88;
+            text-shadow: 2px 2px 0 #ff00ff, -2px -2px 0 #00ccff;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.9;
+            width: max-content;
+            animation: moveGlitch 15s linear forwards;
+        }
+
+        @keyframes moveGlitch {
+            0% {
+                left: 0;
+                transform: skew(0deg) scale(1);
+                text-shadow: 2px 2px 0 #ff00ff, -2px -2px 0 #00ccff;
+                opacity: 0.9;
+            }
+            10% {
+                transform: skew(5deg) scale(1.2);
+                text-shadow: 10px 5px 0 #ff00ff, -10px -5px 0 #00ccff;
+            }
+            20% {
+                transform: skew(-5deg) scale(1.1);
+                text-shadow: -8px 3px 0 cyan, 8px -3px 0 magenta;
+            }
+            30% {
+                transform: skew(8deg) scale(1.3);
+                text-shadow: 12px -6px 0 lime, -12px 6px 0 red;
+            }
+            50% {
+                left: 30%;
+                transform: skew(-10deg) scale(1.4);
+                text-shadow: -15px 8px 0 yellow, 15px -8px 0 blue;
+            }
+            70% {
+                left: 60%;
+                transform: skew(7deg) scale(1.2);
+                text-shadow: 5px -10px 0 purple, -5px 10px 0 cyan;
+            }
+            90% {
+                left: 90%;
+                transform: skew(-3deg) scale(1);
+                text-shadow: 2px -2px 0 red, -2px 2px 0 green;
+            }
+            100% {
+                left: calc(100% - 400px);
+                transform: skew(0deg) scale(0.8);
+                text-shadow: 0 0 10px #00ff88;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animacion Mr. Robot (se desvanece tras 15s) -->
+    <div id="mr-robot-glitch">Hello, friend</div>
+    <!-- Navbar Neón (idéntico al de las demás páginas) -->
+    <nav class="navbar-neon navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="neon-text" href="index.html"><i class="bi bi-house-door"></i> SOURCE-IT</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border-color: #00ff88;">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link-neon" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="guia_redes.html">Redes</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="linux_cheatsheet.html">Linux</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="virtualbox.html">VirtualBox</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="conversor_binario_hexadecimal.html">Conversor</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="MySQL.html">MySQL</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="dhcp_dns.html">DHCP/DNS</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="lenguajes_de_marcas.html">Lenguajes</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="Css_basico.html">CSS Básico</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="javascript_universitario.html">JavaScript</a></li>
+                    <!-- Nuevo enlace a Lenguajes de Marcas (opcional, puedes añadirlo si deseas) -->
+                    <!-- <li class="nav-item"><a class="nav-link-neon" href="lenguajes_marcas.html">Lenguajes</a></li> -->
+                    <li class="nav-item ms-3"><button id="themeToggle" class="theme-btn btn" title="Cambiar tema"><i class="bi bi-palette-fill"></i></button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="hero text-center">
+        <h1 class="display-4 fw-bold"><i class="bi bi-code-square"></i> Lenguajes de Marcas</h1>
+        <p class="lead">Guía completa: XML, HTML, DTD, XSD, XPath, XQuery, XSLT, RSS y más</p>
+    </div>
+
+    <div class="container py-4">
+        <!-- Introducción -->
+        <div class="card-custom">
+            <div class="card-header-custom">
+                <i class="bi bi-question-circle"></i> ¿Qué es un lenguaje de marcas?
+            </div>
+            <div class="card-body p-4">
+                <p>Un <strong>lenguaje de marcas</strong> (markup language) es un sistema para anotar un documento de manera que la notación sea distinguible del texto. Las marcas (etiquetas) describen la estructura y el significado del contenido, pero no su presentación (aunque pueden influirla).</p>
+                <p>Se diferencian de los lenguajes de programación en que <strong>no ejecutan instrucciones lógicas</strong>, sino que organizan y describen datos.</p>
+                <div class="alert alert-info-custom alert-custom mt-3">
+                    <strong>Ejemplos conocidos:</strong> HTML (para web), XML (para intercambio de datos), RSS (sindicación), SVG (gráficos vectoriales), MathML (fórmulas matemáticas).
+                </div>
+            </div>
+        </div>
+
+        <!-- Principales lenguajes -->
+        <h2 class="section-title" id="principales"><i class="bi bi-star"></i> Principales lenguajes de marcas</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card-custom">
+                    <div class="card-header-custom">SGML (Standard Generalized Markup Language)</div>
+                    <div class="card-body">
+                        <p>Estándar internacional (ISO 8879) para definir lenguajes de marcas. Es el "padre" de HTML y XML. Define la sintaxis y las reglas para crear lenguajes de marcas personalizados.</p>
+                        <p><strong>Características:</strong> muy potente, pero complejo. Hoy en día se usa principalmente a través de sus descendientes.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card-custom">
+                    <div class="card-header-custom">HTML (HyperText Markup Language)</div>
+                    <div class="card-body">
+                        <p>Lenguaje para crear páginas web. Se basa en SGML (hasta HTML4) o en XML (XHTML). HTML5 es la versión actual, con etiquetas semánticas y soporte multimedia.</p>
+                        <p><strong>Propósito:</strong> mostrar información en navegadores, con enlaces (hipertexto).</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card-custom">
+                    <div class="card-header-custom">XML (eXtensible Markup Language)</div>
+                    <div class="card-body">
+                        <p>Subconjunto simplificado de SGML. Diseñado para almacenar y transportar datos. No tiene etiquetas predefinidas; tú defines las que necesites.</p>
+                        <p><strong>Reglas:</strong> debe estar bien formado (elemento raíz, etiquetas cerradas, atributos entre comillas) y puede ser validado con DTD o XSD.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card-custom">
+                    <div class="card-header-custom">XHTML (eXtensible HyperText Markup Language)</div>
+                    <div class="card-body">
+                        <p>HTML reformulado como XML. Es decir, sigue las reglas sintácticas de XML (etiquetas siempre cerradas, atributos con comillas, etc.).</p>
+                        <p><strong>Ventaja:</strong> más estricto, evita errores y facilita el procesamiento automático.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparativa HTML vs XML -->
+        <h2 class="section-title" id="comparativa"><i class="bi bi-arrow-left-right"></i> HTML vs XML</h2>
+        <div class="card-custom">
+            <div class="card-body">
+                <table class="comparison-table">
+                    <thead>
+                        <tr><th>Característica</th><th>HTML</th><th>XML</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Propósito</strong></td><td>Mostrar contenido en navegadores</td><td>Almacenar y transportar datos</td></tr>
+                        <tr><td><strong>Etiquetas</strong></td><td>Predefinidas</td><td>Definidas por el usuario</td></tr>
+                        <tr><td><strong>Semántica</strong></td><td>Sí (describe estructura)</td><td>No (describe datos, el significado lo define el usuario)</td></tr>
+                        <tr><td><strong>Validación</strong></td><td>No estricta (puede tener errores)</td><td>Obligatorio estar bien formado; puede validarse</td></tr>
+                        <tr><td><strong>Uso típico</strong></td><td>Páginas web</td><td>Intercambio de datos, configuraciones, documentos</td></tr>
+                    </tbody>
+                </table>
+                <div class="alert alert-warning-custom alert-custom mt-3">
+                    <i class="bi bi-exclamation-triangle"></i> <strong>Importante:</strong> un documento XML bien formado puede transformarse en HTML mediante XSLT para ser visualizado.
+                </div>
+            </div>
+        </div>
+
+        <!-- Estructura de un documento XML -->
+        <h2 class="section-title" id="estructura"><i class="bi bi-diagram-3"></i> Estructura de un documento XML</h2>
+        <div class="card-custom">
+            <div class="card-body">
+                <h4>Bien formado</h4>
+                <p>Un documento XML está bien formado si cumple las reglas sintácticas básicas:</p>
+                <ul>
+                    <li>Declaración XML opcional pero recomendada: <code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;</code></li>
+                    <li>Un único elemento raíz que contiene todo.</li>
+                    <li>Todas las etiquetas deben cerrarse correctamente (o ser autocerradas: <code>&lt;elem/&gt;</code>).</li>
+                    <li>Los atributos deben ir entre comillas (simples o dobles).</li>
+                    <li>Los nombres de elementos no pueden empezar con número ni contener espacios.</li>
+                    <li>Los caracteres especiales (<, >, &, ", ') deben escaparse con entidades (&lt;, &gt;, &amp;, &quot;, &apos;).</li>
+                </ul>
+                <h4>Válido</h4>
+                <p>Un documento es válido si, además de estar bien formado, cumple con las reglas definidas en un esquema (DTD o XSD).</p>
+                <div class="code-block">
+&lt;?xml version="1.0"?&gt;
+&lt;biblioteca&gt;
+    &lt;libro id="1"&gt;
+        &lt;titulo&gt;El Quijote&lt;/titulo&gt;
+        &lt;autor&gt;Cervantes&lt;/autor&gt;
+    &lt;/libro&gt;
+&lt;/biblioteca&gt;
+                </div>
+            </div>
+        </div>
+
+        <!-- Validación: DTD y XSD -->
+        <h2 class="section-title" id="validacion"><i class="bi bi-check-circle"></i> Validación: DTD y XSD</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card-custom">
+                    <div class="card-header-custom">DTD (Document Type Definition)</div>
+                    <div class="card-body">
+                        <p>Sistema clásico de validación. Define qué elementos y atributos pueden aparecer y en qué orden.</p>
+                        <div class="code-block">
+&lt;!DOCTYPE biblioteca [
+    &lt;!ELEMENT biblioteca (libro+)&gt;
+    &lt;!ELEMENT libro (titulo, autor)&gt;
+    &lt;!ELEMENT titulo (#PCDATA)&gt;
+    &lt;!ELEMENT autor (#PCDATA)&gt;
+    &lt;!ATTLIST libro id ID #REQUIRED&gt;
+]&gt;
+                        </div>
+                        <p><strong>Operadores:</strong> * (0 o más), + (1 o más), ? (0 o 1), | (alternancia).</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card-custom">
+                    <div class="card-header-custom">XSD (XML Schema Definition)</div>
+                    <div class="card-body">
+                        <p>Más moderno y potente. Soporta tipos de datos (string, integer, date...), restricciones, herencia, etc.</p>
+                        <div class="code-block">
+&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;
+    &lt;xs:element name="biblioteca"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element name="libro" maxOccurs="unbounded"&gt;
+                    &lt;xs:complexType&gt;
+                        &lt;xs:sequence&gt;
+                            &lt;xs:element name="titulo" type="xs:string"/&gt;
+                            &lt;xs:element name="autor" type="xs:string"/&gt;
+                        &lt;/xs:sequence&gt;
+                        &lt;xs:attribute name="id" type="xs:ID" use="required"/&gt;
+                    &lt;/xs:complexType&gt;
+                &lt;/xs:element&gt;
+            &lt;/xs:sequence&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+&lt;/xs:schema&gt;
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tecnologías relacionadas -->
+        <h2 class="section-title" id="tecnologias"><i class="bi bi-gear"></i> Tecnologías relacionadas</h2>
+        <div class="accordion" id="techAccordion">
+            <div class="accordion-item">
+                <button class="accordion-header">📍 XPath (XML Path Language)</button>
+                <div class="accordion-content">
+                    <p>Lenguaje para navegar y seleccionar nodos en un documento XML. Se usa en XSLT y XQuery.</p>
+                    <div class="code-block">
+/biblioteca/libro[1]/titulo        // primer libro
+//libro[@id='1']                    // libro con id=1
+//libro[año > 2000]/autor           // autores de libros posteriores a 2000
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header">🔍 XQuery (XML Query Language)</button>
+                <div class="accordion-content">
+                    <p>Lenguaje de consulta funcional para XML, similar a SQL. Estructura FLWOR (For, Let, Where, Order by, Return).</p>
+                    <div class="code-block">
+for $libro in //libro
+where $libro/precio > 20
+order by $libro/titulo
+return &lt;libro&gt;{$libro/titulo}&lt;/libro&gt;
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header">🔄 XSLT (XML Stylesheet Language Transformations)</button>
+                <div class="accordion-content">
+                    <p>Transforma documentos XML a otros formatos (HTML, texto, XML diferente). Usa plantillas.</p>
+                    <div class="code-block">
+&lt;xsl:template match="/"&gt;
+    &lt;html&gt;
+        &lt;body&gt;
+            &lt;xsl:for-each select="//libro"&gt;
+                &lt;p&gt;&lt;xsl:value-of select="titulo"/&gt;&lt;/p&gt;
+            &lt;/xsl:for-each&gt;
+        &lt;/body&gt;
+    &lt;/html&gt;
+&lt;/xsl:template&gt;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sindicación -->
+        <h2 class="section-title" id="sindicacion"><i class="bi bi-rss"></i> Sindicación: RSS y Atom</h2>
+        <div class="card-custom">
+            <div class="card-body">
+                <p><strong>RSS (Really Simple Syndication)</strong> y <strong>Atom</strong> son formatos XML para distribuir contenido actualizado (noticias, blogs, podcasts). Permiten a los usuarios suscribirse y recibir novedades sin visitar cada sitio.</p>
+                <div class="code-block">
+&lt;rss version="2.0"&gt;
+    &lt;channel&gt;
+        &lt;title&gt;Mi Blog&lt;/title&gt;
+        &lt;link&gt;https://miblog.com&lt;/link&gt;
+        &lt;description&gt;Noticias&lt;/description&gt;
+        &lt;item&gt;
+            &lt;title&gt;Artículo 1&lt;/title&gt;
+            &lt;link&gt;...&lt;/link&gt;
+            &lt;pubDate&gt;Mon, 17 Jan 2026 10:00:00 GMT&lt;/pubDate&gt;
+        &lt;/item&gt;
+    &lt;/channel&gt;
+&lt;/rss&gt;
+                </div>
+            </div>
+        </div>
+
+        <!-- HTML Especial - Unidad 5 -->
+        <h2 class="section-title" id="html-especial"><i class="bi bi-filetype-html"></i> HTML Especial (Unidad 5 Completa)</h2>
+        <div class="card-custom">
+            <div class="card-header-custom"><i class="bi bi-mortarboard"></i> Programa Integrado de HTML</div>
+            <div class="card-body">
+                <p>Sección de estudio universitario que integra los contenidos de la Unidad 5: historia de HTML, fundamentos del lenguaje de marcas, estructura del documento, etiquetas esenciales, atributos globales y modelado semántico del contenido.</p>
+                <div class="alert alert-info-custom alert-custom">
+                    <strong>Objetivo académico:</strong> diseñar documentos HTML5 semánticos, accesibles y mantenibles, diferenciando estructura, presentación y comportamiento.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion" id="htmlEspecialAccordion">
+            <div class="accordion-item">
+                <button class="accordion-header">1) Historia de HTML y evolución de estándares</button>
+                <div class="accordion-content">
+                    <p>HTML nace para compartir documentos hipertexto y evoluciona desde versiones iniciales hasta HTML5, consolidando semántica, multimedia nativa y APIs de navegador.</p>
+                    <div class="code-block">
+HTML 1.0 -> HTML 2.0 -> HTML 3.2 -> HTML 4.01 -> XHTML -> HTML5
+W3C + WHATWG: evolución del estándar vivo
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">2) HTML como lenguaje de marcas</button>
+                <div class="accordion-content">
+                    <p>HTML no programa lógica; describe estructura y significado del contenido mediante etiquetas y atributos.</p>
+                    <div class="code-block">
+&lt;article&gt;
+  &lt;h2&gt;Título del artículo&lt;/h2&gt;
+  &lt;p&gt;Contenido semánticamente estructurado.&lt;/p&gt;
+&lt;/article&gt;
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">3) Estructura base y etiquetas del &lt;head&gt;</button>
+                <div class="accordion-content">
+                    <p>El <code>&lt;head&gt;</code> contiene metadatos, título, enlaces a CSS, scripts diferidos y configuración SEO/social.</p>
+                    <div class="code-block">
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Página académica&lt;/title&gt;
+  &lt;meta name="description" content="Resumen del contenido"&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">4) Encabezados (h1-h6) y jerarquía documental</button>
+                <div class="accordion-content">
+                    <p>Los encabezados definen la jerarquía lógica del documento. Debe existir coherencia semántica y no saltos arbitrarios.</p>
+                    <div class="code-block">
+&lt;h1&gt;Tema principal&lt;/h1&gt;
+&lt;h2&gt;Unidad 1&lt;/h2&gt;
+&lt;h3&gt;Subapartado&lt;/h3&gt;
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">5) Párrafos, saltos y separación del texto</button>
+                <div class="accordion-content">
+                    <p>El párrafo (<code>&lt;p&gt;</code>) representa una unidad de discurso. Evita usar <code>&lt;br&gt;</code> para maquetación.</p>
+                    <div class="code-block">
+&lt;p&gt;Primer bloque de ideas.&lt;/p&gt;
+&lt;p&gt;Segundo bloque con otra idea principal.&lt;/p&gt;
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">6) Enlaces e hipertexto</button>
+                <div class="accordion-content">
+                    <p>La etiqueta <code>&lt;a&gt;</code> conecta recursos internos y externos. Usa textos de enlace significativos para accesibilidad.</p>
+                    <div class="code-block">
+&lt;a href="https://developer.mozilla.org" target="_blank" rel="noopener noreferrer"&gt;
+  Referencia técnica
+&lt;/a&gt;
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">7) Imágenes y contenido alternativo</button>
+                <div class="accordion-content">
+                    <p><code>&lt;img&gt;</code> debe incluir <code>alt</code> descriptivo. Para imágenes informativas, el texto alternativo es obligatorio.</p>
+                    <div class="code-block">
+&lt;img src="topologia-red.png" alt="Topología en estrella con switch central" width="640"&gt;
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">8) Listas ordenadas y no ordenadas</button>
+                <div class="accordion-content">
+                    <p>Usa <code>&lt;ul&gt;</code> para conjuntos sin prioridad y <code>&lt;ol&gt;</code> cuando existe secuencia lógica.</p>
+                    <div class="code-block">
+&lt;ol&gt;
+  &lt;li&gt;Analizar requisitos&lt;/li&gt;
+  &lt;li&gt;Diseñar estructura&lt;/li&gt;
+  &lt;li&gt;Implementar&lt;/li&gt;
+&lt;/ol&gt;
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">9) Tablas semánticas</button>
+                <div class="accordion-content">
+                    <p>Las tablas representan datos tabulares, no layout visual. Incluye cabeceras con <code>&lt;th&gt;</code> y estructura con <code>&lt;thead&gt;</code>/<code>&lt;tbody&gt;</code>.</p>
+                    <div class="code-block">
+&lt;table&gt;
+  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Módulo&lt;/th&gt;&lt;th&gt;Horas&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Redes&lt;/td&gt;&lt;td&gt;160&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;
+&lt;/table&gt;
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">10) Formularios y captura de datos</button>
+                <div class="accordion-content">
+                    <p>Un formulario combina <code>&lt;form&gt;</code>, controles y validación. Asociar <code>&lt;label&gt;</code> con <code>for</code> mejora usabilidad y accesibilidad.</p>
+                    <div class="code-block">
+&lt;form action="/registro" method="post"&gt;
+  &lt;label for="email"&gt;Correo&lt;/label&gt;
+  &lt;input id="email" name="email" type="email" required&gt;
+  &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">11) Contenedores genéricos: div y span</button>
+                <div class="accordion-content">
+                    <p><code>&lt;div&gt;</code> agrupa bloques; <code>&lt;span&gt;</code> agrupa contenido en línea. Deben usarse cuando no exista etiqueta semántica más precisa.</p>
+                    <div class="code-block">
+&lt;div class="card"&gt;
+  Estado: &lt;span class="estado estado-ok"&gt;Activo&lt;/span&gt;
+&lt;/div&gt;
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">12) Atributos globales</button>
+                <div class="accordion-content">
+                    <p>Atributos como <code>id</code>, <code>class</code>, <code>title</code>, <code>lang</code>, <code>hidden</code>, <code>tabindex</code> y <code>data-*</code> aplican a múltiples elementos.</p>
+                    <div class="code-block">
+&lt;section id="intro" class="bloque" lang="es" data-modulo="html"&gt;...&lt;/section&gt;
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">13) HTML como lenguaje de marcas (parte 1, 2 y 3)</button>
+                <div class="accordion-content">
+                    <p>El desarrollo completo se articula en tres planos:</p>
+                    <ul>
+                        <li><strong>Parte 1:</strong> sintaxis y estructura mínima de un documento HTML5.</li>
+                        <li><strong>Parte 2:</strong> semántica de contenido y composición de secciones.</li>
+                        <li><strong>Parte 3:</strong> formularios, buenas prácticas y criterios de calidad.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">14) Buenas prácticas universitarias</button>
+                <div class="accordion-content">
+                    <ul>
+                        <li>Priorizar semántica antes que estilos visuales.</li>
+                        <li>Validar el HTML y evitar etiquetas obsoletas.</li>
+                        <li>Garantizar accesibilidad básica (alt, labels, orden lógico).</li>
+                        <li>Separar estructura (HTML), presentación (CSS) y lógica (JS).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <button class="accordion-header">15) Práctica integrada final</button>
+                <div class="accordion-content">
+                    <p>Proyecto recomendado: construir una página académica que incluya encabezados jerárquicos, navegación por enlaces, tabla de datos, formulario validado y metadatos completos en <code>&lt;head&gt;</code>.</p>
+                    <div class="code-block">
+Checklist de entrega:
+- Estructura HTML5 válida
+- Uso de etiquetas semánticas
+- Formularios con validación
+- Atributos globales bien aplicados
+- Accesibilidad mínima comprobada
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Glosario (reutilizado de index.html) -->
+        <div class="glossary-section" id="glosario">
+            <h3><i class="bi bi-book"></i> Glosario de términos</h3>
+            <p class="glossary-intro">Definiciones profesionales de los conceptos clave en Lenguajes de Marcas.</p>
+            <div class="glossary-grid">
+                <div class="glossary-item">
+                    <div class="glossary-header"><h4>XML</h4><span class="term-category">Lenguaje</span></div>
+                    <p><strong>eXtensible Markup Language.</strong> Lenguaje de marcas para almacenar y transportar datos. Permite definir etiquetas personalizadas.</p>
+                </div>
+                <div class="glossary-item">
+                    <div class="glossary-header"><h4>HTML</h4><span class="term-category">Lenguaje</span></div>
+                    <p><strong>HyperText Markup Language.</strong> Lenguaje para crear páginas web. Define la estructura semántica del contenido.</p>
+                </div>
+                <div class="glossary-item">
+                    <div class="glossary-header"><h4>DTD</h4><span class="term-category">Validación</span></div>
+                    <p><strong>Document Type Definition.</strong> Define la estructura permitida en un documento XML.</p>
+                </div>
+                <div class="glossary-item">
+                    <div class="glossary-header"><h4>XSD</h4><span class="term-category">Validación</span></div>
+                    <p><strong>XML Schema Definition.</strong> Esquema moderno para validar XML, con soporte de tipos de datos.</p>
+                </div>
+                <div class="glossary-item">
+                    <div class="glossary-header"><h4>XPath</h4><span class="term-category">Consulta</span></div>
+                    <p>Lenguaje para seleccionar nodos en un documento XML mediante rutas.</p>
+                </div>
+                <div class="glossary-item">
+                    <div class="glossary-header"><h4>XQuery</h4><span class="term-category">Consulta</span></div>
+                    <p>Lenguaje funcional para consultar y transformar XML, con estructura FLWOR.</p>
+                </div>
+                <div class="glossary-item">
+                    <div class="glossary-header"><h4>XSLT</h4><span class="term-category">Transformación</span></div>
+                    <p>Lenguaje para transformar XML a otros formatos (HTML, texto, etc.).</p>
+                </div>
+                <div class="glossary-item">
+                    <div class="glossary-header"><h4>RSS</h4><span class="term-category">Sindicación</span></div>
+                    <p><strong>Really Simple Syndication.</strong> Formato XML para distribuir contenido actualizado.</p>
+                </div>
+                <div class="glossary-item">
+                    <div class="glossary-header"><h4>Bien formado</h4><span class="term-category">XML</span></div>
+                    <p>Documento que cumple las reglas sintácticas de XML (elemento raíz, etiquetas cerradas, etc.).</p>
+                </div>
+                <div class="glossary-item">
+                    <div class="glossary-header"><h4>Válido</h4><span class="term-category">XML</span></div>
+                    <p>Documento bien formado que además cumple un esquema (DTD o XSD).</p>
+                </div>
+                <div class="glossary-item">
+                    <div class="glossary-header"><h4>Namespace</h4><span class="term-category">XML</span></div>
+                    <p>Mecanismo para evitar conflictos de nombres mediante prefijos y URIs.</p>
+                </div>
+                <div class="glossary-item">
+                    <div class="glossary-header"><h4>PCDATA</h4><span class="term-category">DTD</span></div>
+                    <p><strong>Parsed Character Data.</strong> Contenido de texto que será analizado por el parser.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Created by Jemarin Birt LH ASIR 2025 ^^</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const robot = document.getElementById('mr-robot-glitch');
+        if (robot) {
+            robot.addEventListener('animationend', () => {
+                robot.style.display = 'none';
+            });
+        }
+
+        // Acordeón manual (para los que no usan Bootstrap)
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const isActive = item.classList.contains('active');
+                // Cerrar otros (opcional)
+                document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+    <script src="assets/js/site-theme.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+

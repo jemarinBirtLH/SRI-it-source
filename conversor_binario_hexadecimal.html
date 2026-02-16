@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -353,6 +353,9 @@
                     <li class="nav-item"><a class="nav-link-neon" href="conversor_binario_hexadecimal.html">Conversor</a></li>
                     <li class="nav-item"><a class="nav-link-neon" href="MySQL.html">MySQL</a></li>
                     <li class="nav-item"><a class="nav-link-neon" href="dhcp_dns.html">DHCP/DNS</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="lenguajes_de_marcas.html">Lenguajes</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="Css_basico.html">CSS Básico</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="javascript_universitario.html">JavaScript</a></li>
                     <li class="nav-item ms-3"><button id="themeToggle" class="theme-btn btn" title="Cambiar tema"><i class="bi bi-palette-fill"></i></button></li>
                 </ul>
             </div>
@@ -561,27 +564,13 @@
         updateMode(); // Initialize UI
     </script>
     <script>
-        const themes = ['rainbow', 'cyberpunk', 'synthwave', 'holographic', 'plasma'];
-        let currentTheme = localStorage.getItem('navbarTheme') || 'rainbow';
-        const navbar = document.querySelector('.navbar-neon');
-        const themeBtn = document.getElementById('themeToggle');
-
-        function applyTheme(theme) {
-            navbar.className = 'navbar-neon navbar navbar-expand-lg sticky-top';
-            if (theme !== 'rainbow') {
-                navbar.classList.add(`theme-${theme}`);
-            }
-            localStorage.setItem('navbarTheme', theme);
-            currentTheme = theme;
-        }
-
-        function nextTheme() {
-            const currentIndex = themes.indexOf(currentTheme);
-            const nextIndex = (currentIndex + 1) % themes.length;
-            applyTheme(themes[nextIndex]);
-        }
-
-        themeBtn.addEventListener('click', nextTheme);
-        applyTheme(currentTheme);
-    </script></body>
+    </script>
+    <script src="assets/js/site-theme.js"></script>
+</body>
 </html>
+
+
+
+
+
+

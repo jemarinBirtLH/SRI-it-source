@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -485,6 +485,9 @@
                     <li class="nav-item"><a class="nav-link-neon" href="conversor_binario_hexadecimal.html">Conversor</a></li>
                     <li class="nav-item"><a class="nav-link-neon" href="MySQL.html">MySQL</a></li>
                     <li class="nav-item"><a class="nav-link-neon" href="dhcp_dns.html">DHCP/DNS</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="lenguajes_de_marcas.html">Lenguajes</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="Css_basico.html">CSS Básico</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="javascript_universitario.html">JavaScript</a></li>
                     <li class="nav-item ms-3"><button id="themeToggle" class="theme-btn btn" title="Cambiar tema"><i class="bi bi-palette-fill"></i></button></li>
                 </ul>
             </div>
@@ -1027,46 +1030,311 @@ Salto = 256 - último octeto de máscara
         <p>Created by Jemarin Birt LH ASIR 2025 ^^</p>
     </footer>
 
-    <!-- Script de la calculadora (el mismo de la versión anterior, adaptado) -->
     <script>
-        // Clase SubnetCalculator (incluir aquí el código original de la calculadora)
-        // Para abreviar, se asume que se copia el script completo de la versión anterior.
-        // En la práctica, deberías pegar aquí el código del SubnetCalculator que ya tenías en guia_redes.html.
-        // Por brevedad, no repito todo el código JavaScript, pero debe ser el mismo.
-        // Asegúrate de incluir la definición de SubnetCalculator y la inicialización.
-    </script>
-    <!-- Inicialización de la calculadora (debe estar al final) -->
-    <script>
+        class SubnetCalculator {
+            constructor() {
+                this.ipAddress = document.getElementById('ipAddress');
+                this.netmaskDecimal = document.getElementById('netmaskDecimal');
+                this.netmaskCIDR = document.getElementById('netmaskCIDR');
+                this.subnetMethod = document.getElementById('subnetMethod');
+                this.subnetValueContainer = document.getElementById('subnetValueContainer');
+                this.subnetValue = document.getElementById('subnetValue');
+                this.calculateBtn = document.getElementById('calculateBtn');
+                this.clearBtn = document.getElementById('clearBtn');
+                this.resultsSection = document.getElementById('resultsSection');
+                this.networkInfo = document.getElementById('networkInfo');
+                this.subnetsCard = document.getElementById('subnetsCard');
+                this.subnetsInfo = document.getElementById('subnetsInfo');
+
+                this.bindEvents();
+                this.syncMaskFromCIDR();
+            }
+
+            bindEvents() {
+                this.netmaskCIDR.addEventListener('input', () => this.syncMaskFromCIDR());
+                this.netmaskDecimal.addEventListener('blur', () => this.syncCIDRFromMask());
+                this.subnetMethod.addEventListener('change', () => this.toggleSubnetInput());
+                this.calculateBtn.addEventListener('click', () => this.calculate());
+                this.clearBtn.addEventListener('click', () => this.clear());
+            }
+
+            toggleSubnetInput() {
+                const method = this.subnetMethod.value;
+                if (method === 'none') {
+                    this.subnetValueContainer.style.display = 'none';
+                    this.subnetValue.value = '';
+                    return;
+                }
+
+                this.subnetValueContainer.style.display = 'block';
+                const label = this.subnetValueContainer.querySelector('label');
+                if (method === 'cidr') {
+                    label.textContent = 'Nuevo CIDR (/):';
+                    this.subnetValue.placeholder = 'Ej: 26';
+                    this.subnetValue.min = '0';
+                    this.subnetValue.max = '32';
+                } else if (method === 'count') {
+                    label.textContent = 'Número de subredes:';
+                    this.subnetValue.placeholder = 'Ej: 4';
+                    this.subnetValue.min = '2';
+                    this.subnetValue.max = '1048576';
+                } else {
+                    label.textContent = 'Hosts necesarios por subred:';
+                    this.subnetValue.placeholder = 'Ej: 50';
+                    this.subnetValue.min = '1';
+                    this.subnetValue.max = '4294967294';
+                }
+            }
+
+            calculate() {
+                try {
+                    const ip = this.ipAddress.value.trim();
+                    const cidr = parseInt(this.netmaskCIDR.value, 10);
+                    const method = this.subnetMethod.value;
+                    const subnetValueRaw = this.subnetValue.value.trim();
+
+                    if (!this.isValidIPv4(ip)) {
+                        throw new Error('Dirección IP inválida.');
+                    }
+                    if (Number.isNaN(cidr) || cidr < 0 || cidr > 32) {
+                        throw new Error('CIDR inválido. Debe estar entre 0 y 32.');
+                    }
+
+                    const base = this.calculateNetwork(ip, cidr);
+                    let targetCIDR = cidr;
+
+                    if (method === 'cidr') {
+                        if (!subnetValueRaw) {
+                            throw new Error('Introduce el nuevo CIDR.');
+                        }
+                        targetCIDR = parseInt(subnetValueRaw, 10);
+                        if (Number.isNaN(targetCIDR) || targetCIDR < cidr || targetCIDR > 32) {
+                            throw new Error(`El nuevo CIDR debe estar entre /${cidr} y /32.`);
+                        }
+                    }
+
+                    if (method === 'count') {
+                        if (!subnetValueRaw) {
+                            throw new Error('Introduce el número de subredes.');
+                        }
+                        const subnetCountRequested = parseInt(subnetValueRaw, 10);
+                        if (Number.isNaN(subnetCountRequested) || subnetCountRequested < 2) {
+                            throw new Error('El número de subredes debe ser mayor o igual a 2.');
+                        }
+                        const borrowedBits = Math.ceil(Math.log2(subnetCountRequested));
+                        targetCIDR = cidr + borrowedBits;
+                        if (targetCIDR > 32) {
+                            throw new Error('No es posible crear tantas subredes con la red base indicada.');
+                        }
+                    }
+
+                    if (method === 'hosts') {
+                        if (!subnetValueRaw) {
+                            throw new Error('Introduce los hosts necesarios.');
+                        }
+                        const hostsRequested = parseInt(subnetValueRaw, 10);
+                        if (Number.isNaN(hostsRequested) || hostsRequested < 1) {
+                            throw new Error('El número de hosts debe ser mayor o igual a 1.');
+                        }
+                        const hostBits = Math.ceil(Math.log2(hostsRequested + 2));
+                        targetCIDR = 32 - hostBits;
+                        if (targetCIDR < cidr) {
+                            throw new Error('La red base es demasiado pequeña para ese número de hosts por subred.');
+                        }
+                    }
+
+                    const subnets = this.generateSubnets(base.networkInt, cidr, targetCIDR);
+                    this.renderResults(base, targetCIDR, subnets);
+                } catch (err) {
+                    alert(err.message);
+                }
+            }
+
+            renderResults(base, targetCIDR, subnets) {
+                const hostsPerSubnet = this.getUsableHosts(targetCIDR);
+                this.networkInfo.innerHTML = `
+                    <div class="alert alert-info">
+                        <p><strong>Red base:</strong> ${base.networkAddress}/${base.cidr}</p>
+                        <p><strong>Broadcast base:</strong> ${base.broadcastAddress}</p>
+                        <p><strong>Máscara decimal:</strong> ${this.cidrToMask(base.cidr)}</p>
+                        <p><strong>Nueva máscara:</strong> /${targetCIDR} (${this.cidrToMask(targetCIDR)})</p>
+                        <p><strong>Subredes generadas:</strong> ${subnets.length}</p>
+                        <p><strong>Hosts utilizables por subred:</strong> ${hostsPerSubnet}</p>
+                    </div>
+                `;
+
+                const renderLimit = 256;
+                const visible = subnets.slice(0, renderLimit);
+                const rows = visible.map((s, i) => `
+                    <tr>
+                        <td>${i + 1}</td>
+                        <td>${s.network}/${targetCIDR}</td>
+                        <td>${s.firstHost}</td>
+                        <td>${s.lastHost}</td>
+                        <td>${s.broadcast}</td>
+                    </tr>
+                `).join('');
+
+                const warning = subnets.length > renderLimit
+                    ? `<div class="alert alert-warning mt-3">Mostrando ${renderLimit} de ${subnets.length} subredes para no saturar la página.</div>`
+                    : '';
+
+                this.subnetsInfo.innerHTML = `
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Red</th>
+                                    <th>Primer host</th>
+                                    <th>Último host</th>
+                                    <th>Broadcast</th>
+                                </tr>
+                            </thead>
+                            <tbody>${rows}</tbody>
+                        </table>
+                    </div>
+                    ${warning}
+                `;
+
+                this.resultsSection.style.display = 'block';
+                this.subnetsCard.style.display = 'block';
+            }
+
+            clear() {
+                this.ipAddress.value = '192.168.1.100';
+                this.netmaskCIDR.value = '24';
+                this.syncMaskFromCIDR();
+                this.subnetMethod.value = 'none';
+                this.subnetValue.value = '';
+                this.subnetValueContainer.style.display = 'none';
+                this.resultsSection.style.display = 'none';
+                this.subnetsCard.style.display = 'none';
+                this.networkInfo.innerHTML = '';
+                this.subnetsInfo.innerHTML = '';
+            }
+
+            syncMaskFromCIDR() {
+                const cidr = parseInt(this.netmaskCIDR.value, 10);
+                if (!Number.isNaN(cidr) && cidr >= 0 && cidr <= 32) {
+                    this.netmaskDecimal.value = this.cidrToMask(cidr);
+                }
+            }
+
+            syncCIDRFromMask() {
+                const mask = this.netmaskDecimal.value.trim();
+                const cidr = this.maskToCidr(mask);
+                if (cidr === null) {
+                    alert('Máscara decimal inválida.');
+                    return;
+                }
+                this.netmaskCIDR.value = String(cidr);
+            }
+
+            isValidIPv4(ip) {
+                const parts = ip.split('.');
+                if (parts.length !== 4) return false;
+                return parts.every(p => {
+                    if (!/^\d+$/.test(p)) return false;
+                    const n = Number(p);
+                    return n >= 0 && n <= 255;
+                });
+            }
+
+            ipToInt(ip) {
+                const parts = ip.split('.').map(Number);
+                return (((parts[0] << 24) >>> 0) + ((parts[1] << 16) >>> 0) + ((parts[2] << 8) >>> 0) + (parts[3] >>> 0)) >>> 0;
+            }
+
+            intToIp(intValue) {
+                return [
+                    (intValue >>> 24) & 255,
+                    (intValue >>> 16) & 255,
+                    (intValue >>> 8) & 255,
+                    intValue & 255
+                ].join('.');
+            }
+
+            cidrToMask(cidr) {
+                const mask = cidr === 0 ? 0 : (0xffffffff << (32 - cidr)) >>> 0;
+                return this.intToIp(mask);
+            }
+
+            maskToCidr(mask) {
+                if (!this.isValidIPv4(mask)) return null;
+                const maskInt = this.ipToInt(mask);
+                let sawZero = false;
+                let cidr = 0;
+                for (let i = 31; i >= 0; i--) {
+                    const bit = (maskInt >>> i) & 1;
+                    if (bit === 1) {
+                        if (sawZero) return null;
+                        cidr++;
+                    } else {
+                        sawZero = true;
+                    }
+                }
+                return cidr;
+            }
+
+            calculateNetwork(ip, cidr) {
+                const ipInt = this.ipToInt(ip);
+                const maskInt = cidr === 0 ? 0 : (0xffffffff << (32 - cidr)) >>> 0;
+                const networkInt = (ipInt & maskInt) >>> 0;
+                const blockSize = 2 ** (32 - cidr);
+                const broadcastInt = (networkInt + blockSize - 1) >>> 0;
+                return {
+                    cidr,
+                    networkInt,
+                    broadcastInt,
+                    networkAddress: this.intToIp(networkInt),
+                    broadcastAddress: this.intToIp(broadcastInt)
+                };
+            }
+
+            getUsableHosts(cidr) {
+                const hostBits = 32 - cidr;
+                if (hostBits === 0) return 1;
+                if (hostBits === 1) return 2;
+                return (2 ** hostBits) - 2;
+            }
+
+            generateSubnets(baseNetworkInt, baseCIDR, targetCIDR) {
+                const subnetBlockSize = 2 ** (32 - targetCIDR);
+                const subnetCount = 2 ** (targetCIDR - baseCIDR);
+                const result = [];
+
+                for (let i = 0; i < subnetCount; i++) {
+                    const networkInt = (baseNetworkInt + (i * subnetBlockSize)) >>> 0;
+                    const broadcastInt = (networkInt + subnetBlockSize - 1) >>> 0;
+                    const firstHostInt = targetCIDR >= 31 ? networkInt : (networkInt + 1) >>> 0;
+                    const lastHostInt = targetCIDR >= 31 ? broadcastInt : (broadcastInt - 1) >>> 0;
+
+                    result.push({
+                        network: this.intToIp(networkInt),
+                        firstHost: this.intToIp(firstHostInt),
+                        lastHost: this.intToIp(lastHostInt),
+                        broadcast: this.intToIp(broadcastInt)
+                    });
+                }
+                return result;
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            // Aquí se debe crear una instancia de SubnetCalculator si se copió el código
-            // new SubnetCalculator();
+            new SubnetCalculator();
         });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        const themes = ['rainbow', 'cyberpunk', 'synthwave', 'holographic', 'plasma'];
-        let currentTheme = localStorage.getItem('navbarTheme') || 'rainbow';
-        const navbar = document.querySelector('.navbar-neon');
-        const themeBtn = document.getElementById('themeToggle');
-
-        function applyTheme(theme) {
-            navbar.className = 'navbar-neon navbar navbar-expand-lg sticky-top';
-            if (theme !== 'rainbow') {
-                navbar.classList.add(`theme-${theme}`);
-            }
-            localStorage.setItem('navbarTheme', theme);
-            currentTheme = theme;
-        }
-
-        function nextTheme() {
-            const currentIndex = themes.indexOf(currentTheme);
-            const nextIndex = (currentIndex + 1) % themes.length;
-            applyTheme(themes[nextIndex]);
-        }
-
-        themeBtn.addEventListener('click', nextTheme);
-        applyTheme(currentTheme);
     </script>
+    <script src="assets/js/site-theme.js"></script>
 </body>
 </html>
+
+
+
+
+
+
