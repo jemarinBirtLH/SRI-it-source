@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía completa: Servidor DHCP y DNS en VirtualBox con múltiples SO</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0a4d68;
+            --secondary-color: #088395;
+            --accent-color: #05bfdb;
+            --success-color: #00c896;
+            --warning-color: #ff6b35;
+            --dark-color: #001524;
+        }
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef3 100%);
+            font-family: 'Inter', sans-serif;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            font-size: 2.2em;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            border-left: 5px solid #3498db;
+            padding-left: 15px;
+        }
+        h3 {
+            color: #34495e;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        ul, ol {
+            margin-bottom: 20px;
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95em;
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 10px #000;
+        }
+        code {
+            background: #ecf0f1;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #c0392b;
+        }
+        pre code {
+            background: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        .note {
+            background: #e7f3fe;
+            border-left: 6px solid #2196F3;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .warning {
+            background: #fff3cd;
+            border-left: 6px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .diagram {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 20px;
+            text-align: center;
+            font-family: monospace;
+            font-size: 1.1em;
+            line-height: 2;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        .diagram span {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            font-weight: bold;
+        }
+        .diagram .arrow {
+            font-size: 1.5em;
+            color: #7f8c8d;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="bi bi-house-door"></i> Inicio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="guia_redes.html">Redes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="linux_cheatsheet.html">Linux</a></li>
+                    <li class="nav-item"><a class="nav-link" href="virtualbox.html">VirtualBox</a></li>
+                    <li class="nav-item"><a class="nav-link" href="conversor_binario_hexadecimal.html">Conversor</a></li>
+                    <li class="nav-item"><a class="nav-link" href="MySQL.html">MySQL</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="dhcp_dns.html">DHCP/DNS</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<div class="container py-5">
+    <h1>🌐 Configuración de servidor DHCP y DNS en VirtualBox<br>con máquinas Windows y Linux</h1>
+
+    <div class="note">
+        <strong>📌 Objetivo:</strong> Aprender a desplegar un servidor DHCP y DNS en una máquina virtual Debian, que asigne direcciones IP automáticas a clientes Windows y Linux en una red interna de VirtualBox. Se incluyen reservas de IP, opciones de gateway y DNS, y verificación de logs y concesiones.
+    </div>
+
+    <h2>1. Escenario de red</h2>
+    <p>Vamos a simular una pequeña red de oficina con las siguientes máquinas virtuales:</p>
+    <ul>
+        <li><strong>SMarin (Debian 13):</strong> Servidor DHCP y DNS. IP fija: 192.168.25.100</li>
+        <li><strong>WApellido (Windows 10/11):</strong> Cliente que recibirá IP por DHCP con reserva: 192.168.25.28</li>
+        <li><strong>LApellido (Linux Mint):</strong> Cliente con IP del rango automático (192.168.25.102 - 149)</li>
+        <li><strong>PC5 (Windows o Linux):</strong> Segundo cliente automático.</li>
+    </ul>
+    <p><strong>Dominio interno:</strong> jmarin25.net (suponiendo alumno N=25, primer apellido Marín, inicial j).</p>
+    <p><strong>Red:</strong> 192.168.25.0/24, gateway: 192.168.25.1 (no existe físicamente, se usará como referencia).</p>
+
+    <div class="diagram">
+        <div>🌍 <span>Debian Server</span> 192.168.25.100</div>
+        <div class="arrow">⬇️⬇️⬇️</div>
+        <div>🪟 <span>Windows</span> 192.168.25.28 (fija por reserva)</div>
+        <div>🐧 <span>Linux Mint</span> 192.168.25.104 (automática)</div>
+        <div>💻 <span>PC5</span> 192.168.25.10x (automática)</div>
+        <div style="margin-top:15px;">🔌 <strong>Red interna VirtualBox:</strong> "red25" o similar</div>
+    </div>
+
+    <h2>2. Requisitos previos</h2>
+    <ul>
+        <li>Oracle VirtualBox instalado (versión 7.x recomendada).</li>
+        <li>ISOs o appliances de:
+            <ul>
+                <li>Debian 13 (para servidor)</li>
+                <li>Windows 10/11 (cliente)</li>
+                <li>Linux Mint 22.1 (cliente)</li>
+            </ul>
+        </li>
+        <li>Conocimientos básicos de línea de comandos en Linux y Windows.</li>
+    </ul>
+
+    <h2>3. Creación de la red interna en VirtualBox</h2>
+    <p>Para que las máquinas se comuniquen entre sí sin acceso a Internet (aisladas), creamos una red interna:</p>
+    <ol>
+        <li>Abre VirtualBox y ve a <em>Archivo → Herramientas → Administrador de redes host</em> (o redes NAT).</li>
+        <li>Crea una nueva <strong>red interna</strong> (por ejemplo, nombre: "intranet"). No necesita DHCP de VirtualBox.</li>
+        <li>Alternativamente, puedes usar un adaptador en modo "Red Interna" en cada máquina, asignando el mismo nombre.</li>
+    </ol>
+    <p>En cada máquina virtual, configura el adaptador de red como:</p>
+    <pre><code>Conectado a: Red interna
+Nombre: intranet</code></pre>
+
+    <h2>4. Configuración del servidor Debian (SMarin)</h2>
+    <h3>4.1 Instalación del sistema base</h3>
+    <p>Instala Debian 13 con los paquetes estándar. Durante la instalación, puedes dejar la red en DHCP temporalmente para acceder a Internet si necesitas actualizar, luego la cambiaremos a estática.</p>
+
+    <h3>4.2 Configuración de IP fija</h3>
+    <p>Editamos el archivo de interfaces de red (el método puede variar según versión; aquí usamos <code>/etc/network/interfaces</code> tradicional).</p>
+    <pre><code># /etc/network/interfaces
+auto lo
+iface lo inet loopback
+
+auto enp0s3
+iface enp0s3 inet static
+    address 192.168.25.100
+    netmask 255.255.255.0
+    gateway 192.168.25.1
+    dns-nameservers 192.168.25.100 8.8.8.8</code></pre>
+    <p>Luego reiniciamos el servicio de red o la máquina:</p>
+    <pre><code>sudo systemctl restart networking</code></pre>
+    <p>Verificamos con <code>ip a</code>.</p>
+
+    <h3>4.3 Instalación del servidor DHCP</h3>
+    <pre><code>sudo apt update
+sudo apt install isc-dhcp-server -y</code></pre>
+
+    <h3>4.4 Configuración del servidor DHCP</h3>
+    <p>Editamos el archivo de configuración <code>/etc/dhcp/dhcpd.conf</code>:</p>
+    <pre><code># /etc/dhcp/dhcpd.conf
+default-lease-time 3600;        # 1 hora
+max-lease-time 36000;            # 10 horas
+option domain-name "jmarin25.net";
+option domain-name-servers 192.168.25.100, 8.8.8.8;
+option routers 192.168.25.1;     # gateway (aunque no exista)
+
+subnet 192.168.25.0 netmask 255.255.255.0 {
+    range 192.168.25.102 192.168.25.149;
+}
+
+# Reserva para WApellido (Windows)
+host WApellido {
+    hardware ethernet 08:00:27:E2:34:0D;   # MAC de la interfaz Windows
+    fixed-address 192.168.25.28;
+}</code></pre>
+    <p>Especificamos la interfaz por la que escuchará el DHCP. Editamos <code>/etc/default/isc-dhcp-server</code>:</p>
+    <pre><code>INTERFACESv4="enp0s3"</code></pre>
+    <p>Reiniciamos el servicio:</p>
+    <pre><code>sudo systemctl restart isc-dhcp-server
+sudo systemctl status isc-dhcp-server</code></pre>
+    <p>Si hay errores, revisa los logs con <code>journalctl -u isc-dhcp-server</code>.</p>
+
+    <h2>5. Configuración de clientes</h2>
+    <h3>5.1 Cliente Windows (WApellido)</h3>
+    <p>En la máquina Windows, aseguramos que la tarjeta de red esté en <strong>Obtener una dirección IP automáticamente</strong> y <strong>Obtener dirección del servidor DNS automáticamente</strong>.</p>
+    <p>Abrimos <code>cmd</code> como administrador y renovamos:</p>
+    <pre><code>ipconfig /release
+ipconfig /renew
+ipconfig /all</code></pre>
+    <p>Debería aparecer la IP 192.168.25.28, con gateway 192.168.25.1 y DNS 192.168.25.100 y 8.8.8.8. El sufijo DNS será jmarin25.net.</p>
+
+    <h3>5.2 Cliente Linux Mint (LApellido)</h3>
+    <p>En Linux Mint (basado en Ubuntu), lo más sencillo es usar el cliente DHCP por defecto. Abrimos terminal y ejecutamos:</p>
+    <pre><code>sudo dhclient -v enp0s3   # o la interfaz correspondiente</code></pre>
+    <p>Para ver la IP asignada:</p>
+    <pre><code>ip a</code></pre>
+    <p>Normalmente obtendrá una IP del rango (por ejemplo, 192.168.25.104).</p>
+    <p>Para hacerlo persistente, configuramos el archivo de interfaces o NetworkManager en modo DHCP.</p>
+
+    <h3>5.3 Cliente PC5</h3>
+    <p>Similar a los anteriores. Si usas otra distribución Linux, el procedimiento es análogo. En Windows, igual que WApellido (sin reserva, obtendrá una IP del rango).</p>
+
+    <h2>6. Verificación y logs</h2>
+    <h3>6.1 Fichero de concesiones</h3>
+    <p>En el servidor, las concesiones activas se guardan en:</p>
+    <pre><code>cat /var/lib/dhcp/dhcpd.leases</code></pre>
+    <p>Veremos entradas similares a:</p>
+    <pre><code>lease 192.168.25.104 {
+    starts 1 2026/02/16 01:16:11;
+    ends 1 2026/02/16 02:16:11;
+    binding state active;
+    hardware ethernet 08:00:27:f9:2d:37;
+    client-hostname "LM22";
+}</code></pre>
+
+    <h3>6.2 Logs del servidor (DHCPOFFER)</h3>
+    <p>Podemos filtrar el log del sistema para ver las ofertas DHCP:</p>
+    <pre><code>grep DHCPOFFER /var/log/syslog | tail -10</code></pre>
+    <p>Salida esperada:</p>
+    <pre><code>Feb 16 10:15:22 Debian13 dhcpd[3318]: DHCPOFFER on 192.168.25.104 to 08:00:27:f9:2d:37 via enp0s3</code></pre>
+    <p>Esto confirma que el servidor está funcionando correctamente.</p>
+
+    <h2>7. Instalación básica del servidor DNS (opcional, preparación para siguiente actividad)</h2>
+    <p>Como en la tarea se menciona que más adelante se configurará DNS, podemos dejar instalado y preparado el servicio:</p>
+    <pre><code>sudo apt install bind9 -y</code></pre>
+    <p>Configuración mínima para que resuelva el dominio local <code>jmarin25.net</code> y apunte a los equipos. Por ejemplo, añadir una zona en <code>/etc/bind/named.conf.local</code>:</p>
+    <pre><code>zone "jmarin25.net" {
+    type master;
+    file "/etc/bind/db.jmarin25.net";
+};</code></pre>
+    <p>Y crear el archivo de zona con los registros A correspondientes (192.168.25.100 para ns, 192.168.25.28 para WApellido, etc.).</p>
+
+    <h2>8. Posibles errores y soluciones</h2>
+    <table>
+        <tr><th>Problema</th><th>Solución</th></tr>
+        <tr><td>El servicio DHCP no inicia</td><td>Revisar configuración con <code>dhcpd -t -cf /etc/dhcp/dhcpd.conf</code>. Verificar que la interfaz esté levantada y tenga IP estática.</td></tr>
+        <tr><td>Los clientes no obtienen IP</td><td>Comprobar que están en la misma red interna. Hacer <code>tcpdump -i enp0s3 port 67 or port 68</code> en el servidor para ver tráfico DHCP.</td></tr>
+        <tr><td>El gateway asignado es incorrecto</td><td>Asegurarse de que en <code>dhcpd.conf</code> aparece la opción <code>option routers 192.168.25.1;</code> y no la IP del servidor.</td></tr>
+        <tr><td>La reserva no funciona</td><td>Verificar la MAC en Windows con <code>ipconfig /all</code>. Debe coincidir exactamente (incluyendo formato).</td></tr>
+    </table>
+
+    <div class="warning">
+        <strong>⚠️ Importante:</strong> Si necesitas que los clientes tengan acceso a Internet, puedes configurar un NAT en VirtualBox además de la red interna, o poner un segundo adaptador en modo NAT. Pero para la práctica de DHCP puro, la red interna es suficiente.
+    </div>
+
+    <h2>9. Conclusión</h2>
+    <p>Hemos montado un escenario completo con servidor DHCP en Debian y clientes heterogéneos. Este conocimiento es base para administrar redes en entornos reales, donde la automatización de direccionamiento IP y la resolución de nombres son fundamentales. La práctica también introduce la reserva de IP por MAC, opciones de gateway y DNS, y la monitorización mediante logs.</p>
+    <p>Como mejora, se puede integrar el servidor DNS para que los clientes resuelvan nombres locales, y así tener un dominio interno funcional.</p>
+
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <p>Created by Jemarin Birt LH ASIR 2025 ^^</p>
+    </footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
