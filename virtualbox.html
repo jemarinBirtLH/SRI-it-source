@@ -52,6 +52,10 @@
             padding: 2rem 0;
             margin-top: 3rem;
         }
+        .table-networks th {
+            background-color: var(--primary-color);
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -68,6 +72,7 @@
                     <li class="nav-item"><a class="nav-link" href="linux_cheatsheet.html">Linux</a></li>
                     <li class="nav-item"><a class="nav-link active" href="virtualbox.html">VirtualBox</a></li>
                     <li class="nav-item"><a class="nav-link" href="conversor_binario_hexadecimal.html">Conversor</a></li>
+                    <li class="nav-item"><a class="nav-link" href="MySQL.html">MySQL</a></li>
                 </ul>
             </div>
         </div>
@@ -134,67 +139,184 @@ sudo VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-7.0.18.vbox-
             </ul>
         </div>
 
-        <!-- 4. Configuración de red en la VM -->
+        <!-- 4. Configuración de red en VirtualBox (DETALLADA) -->
         <h2 class="section-title"><i class="bi bi-wifi"></i> 4. Configuración de red en VirtualBox</h2>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="step-card">
-                    <h4><i class="bi bi-globe"></i> NAT (por defecto)</h4>
-                    <p>La VM comparte la IP del host para salida a Internet. No accesible desde la red local.</p>
-                    <p><strong>Redirección de puertos:</strong> Configura en <em>Red → Avanzadas → Reenvío de puertos</em> para acceder a servicios (ej. SSH).</p>
+        <div class="step-card">
+            <p>VirtualBox ofrece varios modos de red que determinan cómo la máquina virtual (MV) se comunica con el anfitrión, otras MVs y el exterior. Elegir el modo adecuado es clave para cada escenario.</p>
+            
+            <h4 class="mt-4">Tabla comparativa de modos de red</h4>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-networks">
+                    <thead>
+                        <tr>
+                            <th>Modo</th>
+                            <th>MV → Anfitrión</th>
+                            <th>Anfitrión → MV</th>
+                            <th>MV ↔ MV</th>
+                            <th>MV → Exterior</th>
+                            <th>Exterior → MV</th>
+                            <th>Uso típico</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>NAT</strong></td>
+                            <td>✅ Sí</td>
+                            <td>❌ No (por defecto)</td>
+                            <td>❌ No</td>
+                            <td>✅ Sí</td>
+                            <td>❌ No</td>
+                            <td>Por defecto. Solo salida a Internet.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Red NAT</strong></td>
+                            <td>✅ Sí</td>
+                            <td>❌ No (por defecto)</td>
+                            <td>✅ Sí</td>
+                            <td>✅ Sí</td>
+                            <td>❌ No</td>
+                            <td>Varias MVs comparten red y salida a Internet.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Adaptador puente</strong></td>
+                            <td>✅ Sí</td>
+                            <td>✅ Sí</td>
+                            <td>✅ Sí</td>
+                            <td>✅ Sí</td>
+                            <td>✅ Sí</td>
+                            <td>La MV es un equipo más en la LAN.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Solo anfitrión</strong></td>
+                            <td>✅ Sí</td>
+                            <td>✅ Sí</td>
+                            <td>✅ Sí</td>
+                            <td>❌ No</td>
+                            <td>❌ No</td>
+                            <td>Red privada solo con el anfitrión.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Red interna</strong></td>
+                            <td>❌ No</td>
+                            <td>❌ No</td>
+                            <td>✅ Sí</td>
+                            <td>❌ No</td>
+                            <td>❌ No</td>
+                            <td>Aislamiento total entre MVs.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4 class="mt-4">Descripción detallada de cada modo</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5><i class="bi bi-globe text-primary"></i> NAT (Predeterminado)</h5>
+                            <p>La MV comparte la IP del anfitrión para salir a Internet. No es accesible desde la red local. Útil para navegación y actualizaciones.</p>
+                            <p><strong>Redirección de puertos:</strong> Para acceder a servicios de la MV (SSH, web) desde el anfitrión, configura reenvío de puertos en <em>Red → Avanzadas → Reenvío de puertos</em>.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5><i class="bi bi-shuffle text-primary"></i> Red NAT</h5>
+                            <p>Crea una red privada entre MVs que también tiene salida a Internet mediante NAT. Configurable en <em>Archivo → Preferencias → Red → Redes NAT</em>. Ideal para laboratorios con varias MVs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5><i class="bi bi-bridge text-primary"></i> Adaptador puente (Bridged)</h5>
+                            <p>La MV obtiene una IP en la misma red física que el anfitrión, como si fuera un equipo más. Perfecto para servidores que deben ser accesibles desde la LAN.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5><i class="bi bi-diagram-3 text-primary"></i> Solo anfitrión (Host-only)</h5>
+                            <p>Red privada entre el anfitrión y las MVs. No hay acceso a Internet. Útil para transferencia de archivos o pruebas aisladas.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5><i class="bi bi-layers text-primary"></i> Red interna</h5>
+                            <p>Las MVs se comunican solo entre sí (mismo nombre de red). Ni siquiera el anfitrión tiene acceso. Máximo aislamiento.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="step-card">
-                    <h4><i class="bi bi-diagram-3"></i> Red Interna / Host-Only</h4>
-                    <p><strong>Host-Only:</strong> Comunicación solo entre host y VM. Útil para laboratorios.</p>
-                    <p><strong>Red Interna:</strong> Solo entre VMs que usen el mismo nombre de red.</p>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="step-card">
-                    <h4><i class="bi bi-bridge"></i> Adaptador puente (Bridged)</h4>
-                    <p>La VM obtiene una IP en la misma red física que el host. Parece un equipo más en la LAN.</p>
-                    <p>Ideal para servidores accesibles desde la red local.</p>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="step-card">
-                    <h4><i class="bi bi-shuffle"></i> NAT Network</h4>
-                    <p>Varias VMs pueden comunicarse entre sí y salir a Internet mediante NAT. Configura en <em>Archivo → Preferencias → Red → Redes NAT</em>.</p>
-                </div>
-            </div>
+
+            <h4 class="mt-4">Cómo ver y cambiar la configuración de red en VirtualBox</h4>
+            <ol>
+                <li>Abre el <strong>Administrador de VirtualBox</strong>.</li>
+                <li>Selecciona la MV y haz clic en <strong>Configuración</strong>.</li>
+                <li>Ve a la pestaña <strong>Red</strong>.</li>
+                <li>Verás hasta 4 adaptadores. Activa los que necesites y elige el modo en <strong>"Conectado a"</strong>.</li>
+                <li>Para opciones avanzadas (MAC, cable conectado, redirección de puertos), despliega <strong>"Avanzadas"</strong>.</li>
+            </ol>
+            <p><strong>Nota:</strong> Puedes tener múltiples adaptadores con distintos modos (ej. NAT para Internet + Host-only para comunicación con anfitrión).</p>
         </div>
 
-        <!-- 5. Configuración de red dentro de Debian 13 -->
+        <!-- 5. Configuración de red dentro de Debian 13 (ampliada) -->
         <h2 class="section-title"><i class="bi bi-gear"></i> 5. Configuración de red en Debian 13</h2>
         <div class="step-card">
-            <p>Dentro de la VM, edita los archivos según el modo de red elegido.</p>
-            <h5>Interfaz con DHCP (ej. NAT, Bridged)</h5>
-            <div class="code-block">
-# /etc/network/interfaces (si usas ifupdown)
-auto enp0s3
-iface enp0s3 inet dhcp
+            <p>Una vez elegido el modo de red en VirtualBox, hay que configurar la interfaz dentro de la MV. Dependiendo de si queremos IP por DHCP o estática, los archivos cambian.</p>
+            
+            <h5>Identificar la interfaz</h5>
+            <p>Ejecuta <code>ip link</code> o <code>ip a</code> para ver el nombre de la interfaz (normalmente <code>enp0s3</code> para el primer adaptador).</p>
 
-# Con netplan (Ubuntu) o systemd-networkd
-# Para systemd-networkd (Debian 12+ puede usar)
+            <h5 class="mt-3">Configuración con DHCP (automática)</h5>
+            <p>Para la mayoría de modos (NAT, Red NAT, puente), DHCP funciona sin problemas. En Debian 12+ se recomienda <strong>systemd-networkd</strong>:</p>
+            <div class="code-block">
+# Habilitar systemd-networkd (si no está activo)
 sudo systemctl enable systemd-networkd
+sudo systemctl start systemd-networkd
+
+# Crear archivo de configuración
 sudo nano /etc/systemd/network/10-enp0s3.network
 [Match]
 Name=enp0s3
 [Network]
 DHCP=yes
             </div>
-            <h5 class="mt-3">IP estática (Host-Only o Bridged)</h5>
+            <p>Reinicia el servicio: <code>sudo systemctl restart systemd-networkd</code></p>
+
+            <h5 class="mt-3">Configuración con IP estática</h5>
+            <p>Útil en modos como Host-only o Red interna. Ejemplo para red Host-only (suele usar la subred 192.168.56.0/24):</p>
             <div class="code-block">
-# Ejemplo con systemd-networkd
+# /etc/systemd/network/10-enp0s3.network
 [Match]
 Name=enp0s3
 [Network]
 Address=192.168.56.10/24
-Gateway=192.168.56.1
+# Opcional: gateway si hay salida (en Host-only no suele haber)
+# Gateway=192.168.56.1
 DNS=8.8.8.8
             </div>
+            <p>Para Bridged con estática, usa una IP libre de tu LAN, el gateway de tu router y DNS adecuados.</p>
+
+            <h5 class="mt-3">Método alternativo: /etc/network/interfaces</h5>
+            <p>Si prefieres el método clásico (ifupdown), instala <code>ifupdown</code> y edita:</p>
+            <div class="code-block">
+# /etc/network/interfaces
+auto enp0s3
+iface enp0s3 inet dhcp   # Para DHCP
+
+# Para estática
+auto enp0s3
+iface enp0s3 inet static
+    address 192.168.56.10
+    netmask 255.255.255.0
+    gateway 192.168.56.1
+            </div>
+            <p>Luego reinicia la red: <code>sudo systemctl restart networking</code></p>
         </div>
 
         <!-- 6. Comandos útiles de VBoxManage -->
@@ -216,9 +338,9 @@ VBoxManage snapshot "Debian13" take "Después de instalación"
 # Restaurar snapshot
 VBoxManage snapshot "Debian13" restore "Después de instalación"
 
-# Modificar red de una VM en caliente
-VBoxManage controlvm "Debian13" nic1 nat
-VBoxManage controlvm "Debian13" nic1 bridged "eth0"
+# Modificar red de una VM en caliente (mientras está apagada)
+VBoxManage modifyvm "Debian13" --nic1 nat
+VBoxManage modifyvm "Debian13" --nic1 bridged --bridgeadapter1 "eth0"
 
 # Clonar VM
 VBoxManage clonevm "Debian13" --name "Debian13-clon" --register
@@ -230,12 +352,12 @@ VBoxManage clonevm "Debian13" --name "Debian13-clon" --register
         <div class="step-card">
             <ol>
                 <li>Crea dos VMs: <strong>Servidor</strong> y <strong>Cliente</strong>.</li>
-                <li>En ambas, configura una <strong>red interna</strong> (ej. "intranet").</li>
+                <li>En ambas, configura una <strong>red interna</strong> (ej. "intranet") en el adaptador 1.</li>
                 <li>En el Servidor, asigna IP estática 192.168.100.1/24.</li>
                 <li>En el Cliente, asigna IP estática 192.168.100.2/24.</li>
                 <li>Verifica conectividad con <code>ping</code>.</li>
             </ol>
-            <p><strong>Configuración en Servidor:</strong></p>
+            <p><strong>Configuración en Servidor (systemd-networkd):</strong></p>
             <div class="code-block">
 # /etc/systemd/network/10-enp0s3.network
 [Match]
@@ -250,7 +372,8 @@ Name=enp0s3
 [Network]
 Address=192.168.100.2/24
             </div>
-            <p>Reinicia systemd-networkd: <code>sudo systemctl restart systemd-networkd</code></p>
+            <p>Reinicia systemd-networkd en ambas: <code>sudo systemctl restart systemd-networkd</code></p>
+            <p>Para comprobar: <code>ping 192.168.100.2</code> desde el servidor.</p>
         </div>
 
         <!-- 8. Snapshots y clonación -->
@@ -265,7 +388,7 @@ Address=192.168.100.2/24
     </div>
 
     <footer>
-        <p>© 2026 - Guía VirtualBox con Debian 13 · Práctica para ASIR</p>
+        <p>Created by Jemarin Birt LH ASIR 2025 ^^</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de MySQL - Permisos, Vistas y Cheatsheet</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0a4d68;
+            --secondary-color: #088395;
+            --accent-color: #05bfdb;
+            --success-color: #00c896;
+            --warning-color: #ff6b35;
+            --dark-color: #001524;
+        }
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef3 100%);
+            font-family: 'Inter', sans-serif;
+        }
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 2rem;
+        }
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 4px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin: 2.5rem 0 1.5rem 0;
+            font-weight: 700;
+        }
+        .card-custom {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        .card-custom:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+        .card-header-custom {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.2rem 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .card-header-custom i {
+            margin-right: 0.5rem;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1.2rem;
+            border-radius: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        .alert-custom {
+            border-left: 4px solid;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .alert-info-custom {
+            background: #e3f2fd;
+            border-left-color: #2196F3;
+        }
+        .alert-warning-custom {
+            background: #fff3e0;
+            border-left-color: #ff6b35;
+        }
+        table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        th {
+            background: var(--primary-color);
+            color: white;
+        }
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        .command-list li {
+            background: white;
+            margin: 0.5rem 0;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+            transition: 0.2s;
+        }
+        .command-list li:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="bi bi-house-door"></i> Inicio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="guia_redes.html">Redes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="linux_cheatsheet.html">Linux</a></li>
+                    <li class="nav-item"><a class="nav-link" href="virtualbox.html">VirtualBox</a></li>
+                    <li class="nav-item"><a class="nav-link" href="conversor_binario_hexadecimal.html">Conversor</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="MySQL.html">MySQL</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="hero text-center">
+        <h1 class="display-4 fw-bold"><i class="bi bi-database-gear"></i> Guía de MySQL</h1>
+        <p class="lead">Gestión de usuarios, permisos, vistas y buenas prácticas.</p>
+    </div>
+
+    <div class="container py-4">
+        
+        <p class="lead">Este documento recopila los comandos, ejemplos y buenas prácticas utilizadas durante la administración de usuarios, privilegios y vistas en MySQL.</p>
+
+        <!-- Índice rápido -->
+        <div class="card-custom mb-5">
+            <div class="card-header-custom"><i class="bi bi-list-stars"></i> Índice de Contenidos</div>
+            <div class="card-body p-4">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a href="#usuarios" class="text-decoration-none">1. Creación de Usuarios</a></li>
+                    <li class="list-group-item"><a href="#vistas" class="text-decoration-none">2. Vistas sobre Bases de Datos</a></li>
+                    <li class="list-group-item"><a href="#permisos" class="text-decoration-none">3. Permisos de Modificación</a></li>
+                    <li class="list-group-item"><a href="#columnas" class="text-decoration-none">4. Privilegios a Nivel de Columna</a></li>
+                    <li class="list-group-item"><a href="#cheatsheet" class="text-decoration-none">5. Cheatsheet de Comandos</a></li>
+                    <li class="list-group-item"><a href="#buenas-practicas" class="text-decoration-none">6. Buenas Prácticas</a></li>
+                    <li class="list-group-item"><a href="#bibliografia" class="text-decoration-none">7. Bibliografía</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 1. Creación de usuarios -->
+        <h2 class="section-title" id="usuarios">👥 1. Creación de usuarios</h2>
+        <div class="card-custom">
+            <div class="card-header-custom"><i class="bi bi-person-fill-gear"></i> Usuario administrador (solo servidor)</div>
+            <div class="card-body p-4">
+                <div class="code-block">CREATE USER 'jemarin_adm'@'localhost' IDENTIFIED BY 'contraseña_segura_adm';
+GRANT ALL PRIVILEGES ON *.* TO 'jemarin_adm'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;</div>
+                <p><strong>Características:</strong> Acceso total desde la propia máquina del servidor. Ideal para tareas de administración.</p>
+            </div>
+        </div>
+        <div class="card-custom">
+            <div class="card-header-custom"><i class="bi bi-person"></i> Usuario normal (solo desde cliente)</div>
+            <div class="card-body p-4">
+                <div class="code-block">CREATE USER 'jemarin_usu'@'192.168.10.20' IDENTIFIED BY 'contraseña_usu';</div>
+                <div class="alert alert-info-custom alert-custom mt-3">
+                    <strong>Verificación:</strong> <code>SELECT user, host FROM mysql.user WHERE user = 'jemarin_usu';</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Vistas -->
+        <h2 class="section-title" id="vistas">👁️ 2. Vistas sobre la base de datos Jardineria</h2>
+        <div class="card-custom">
+            <div class="card-header-custom"><i class="bi bi-file-earmark-spreadsheet"></i> Crear vista combinando Pedidos y Clientes</div>
+            <div class="card-body p-4">
+                <div class="code-block">USE Jardineria;
+CREATE VIEW vista_pedidos_clientes AS
+SELECT p.CodigoPedido, p.FechaPedido, p.Estado, c.NombreCliente, c.Telefono
+FROM Pedidos p JOIN Clientes c ON p.CodigoCliente = c.CodigoCliente;</div>
+                <p>Esta vista muestra información útil sin exponer datos internos de ambas tablas por separado.</p>
+            </div>
+        </div>
+        <div class="card-custom">
+            <div class="card-header-custom"><i class="bi bi-key"></i> Otorgar SELECT solo sobre la vista</div>
+            <div class="card-body p-4">
+                <div class="code-block">GRANT SELECT ON Jardineria.vista_pedidos_clientes TO 'jemarin_usu'@'192.168.10.20';
+FLUSH PRIVILEGES;</div>
+                <div class="alert alert-info-custom alert-custom mt-3">
+                    <strong>Comprobación desde el cliente:</strong><br>
+                    <code>SELECT * FROM vista_pedidos_clientes LIMIT 5;</code> → ✅ funciona.<br>
+                    <code>SELECT * FROM Clientes;</code> → ❌ error 1142 (comando denegado).
+                </div>
+            </div>
+        </div>
+        <div class="card-custom">
+            <div class="card-header-custom"><i class="bi bi-search"></i> Consultar definición de vistas</div>
+            <div class="card-body p-4">
+                <div class="code-block">SELECT TABLE_NAME, VIEW_DEFINITION FROM information_schema.VIEWS WHERE TABLE_SCHEMA = 'Jardineria';</div>
+                <p>Esta consulta muestra el código SQL con el que fue creada cada vista, útil para auditoría y documentación.</p>
+            </div>
+        </div>
+
+        <!-- 3. Permisos de modificación -->
+        <h2 class="section-title" id="permisos">✏️ 3. Permisos de modificación sobre tablas</h2>
+        <div class="card-custom">
+            <div class="card-header-custom"><i class="bi bi-pencil-square"></i> Permitir INSERT, UPDATE, DELETE</div>
+            <div class="card-body p-4">
+                <div class="code-block">GRANT SELECT, INSERT, UPDATE, DELETE ON Jardineria.Clientes TO 'jemarin_usu'@'192.168.10.20';
+FLUSH PRIVILEGES;</div>
+                <p>Con estos permisos el usuario puede consultar y modificar registros de <code>Clientes</code>.</p>
+            </div>
+        </div>
+        <div class="card-custom">
+            <div class="card-header-custom"><i class="bi bi-shield-slash"></i> Revocar permisos de modificación</div>
+            <div class="card-body p-4">
+                <div class="code-block">REVOKE INSERT, UPDATE, DELETE ON Jardineria.Clientes FROM 'jemarin_usu'@'192.168.10.20';
+FLUSH PRIVILEGES;</div>
+                <p>Tras esta operación, el usuario conserva el permiso <code>SELECT</code> pero ya no puede alterar datos.</p>
+            </div>
+        </div>
+
+        <!-- 4. Privilegios a nivel de columna -->
+        <h2 class="section-title" id="columnas">🔬 4. Privilegios a nivel de columna</h2>
+        <div class="card-custom">
+            <div class="card-header-custom"><i class="bi bi-grip-vertical"></i> Uso de columns_priv</div>
+            <div class="card-body p-4">
+                <p>Permite conceder permisos sobre columnas específicas. Por ejemplo, permitir modificar solo el teléfono:</p>
+                <div class="code-block">GRANT UPDATE (Telefono) ON Jardineria.Clientes TO 'jemarin_usu'@'192.168.10.20';</div>
+                <p>Para ver el registro generado en las tablas del sistema:</p>
+                <div class="code-block">SELECT * FROM mysql.columns_priv WHERE User = 'jemarin_usu'\G</div>
+                <p>Esta granularidad es clave para aplicar el principio de mínimo privilegio.</p>
+            </div>
+        </div>
+
+        <!-- 5. Cheatsheet -->
+        <h2 class="section-title" id="cheatsheet">🚀 5. Cheatsheet de Comandos</h2>
+        <div class="card-custom">
+            <div class="card-header-custom"><i class="bi bi-lightning-charge"></i> Comandos Esenciales de MySQL</div>
+            <div class="card-body p-4">
+                <ul class="list-group command-list">
+                    <li class="list-group-item"><code>SHOW DATABASES;</code> - Lista todas las bases de datos.</li>
+                    <li class="list-group-item"><code>USE [database];</code> - Selecciona una base de datos para trabajar.</li>
+                    <li class="list-group-item"><code>SHOW TABLES;</code> - Muestra las tablas de la base de datos actual.</li>
+                    <li class="list-group-item"><code>DESCRIBE [table];</code> - Muestra la estructura de una tabla.</li>
+                    <li class="list-group-item"><code>SELECT * FROM [table] LIMIT 10;</code> - Muestra las 10 primeras filas de una tabla.</li>
+                    <li class="list-group-item"><code>SHOW GRANTS FOR 'user'@'host';</code> - Muestra los privilegios de un usuario.</li>
+                    <li class="list-group-item"><code>SELECT user, host FROM mysql.user;</code> - Lista todos los usuarios y sus hosts.</li>
+                    <li class="list-group-item"><code>FLUSH PRIVILEGES;</code> - Recarga los privilegios desde las tablas de sistema.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 6. Buenas prácticas -->
+        <h2 class="section-title" id="buenas-practicas">🧠 6. Buenas prácticas en gestión de permisos</h2>
+        <div class="card-custom">
+            <div class="card-header-custom"><i class="bi bi-check-circle"></i> Resumen de Seguridad</div>
+            <div class="card-body p-4">
+                 <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Mínimo privilegio:</strong> conceder únicamente los permisos necesarios.</li>
+                    <li class="list-group-item"><strong>Restringir hosts:</strong> especificar la IP o rango de IPs del usuario.</li>
+                    <li class="list-group-item"><strong>Usar vistas:</strong> para limitar el acceso a datos sensibles (columnas o filas).</li>
+                    <li class="list-group-item"><strong>Revocar permisos:</strong> eliminar privilegios que ya no se necesiten.</li>
+                    <li class="list-group-item"><strong>Auditar regularmente:</strong> consultar las tablas `mysql.user`, `mysql.db`, `tables_priv`, etc.</li>
+                    <li class="list-group-item"><strong>Contraseñas seguras:</strong> usar contraseñas largas y complejas.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 7. Bibliografía -->
+        <h2 class="section-title" id="bibliografia">📚 7. Bibliografía / Webgrafía</h2>
+        <div class="card-custom">
+            <div class="card-header-custom"><i class="bi bi-book-half"></i> Fuentes Oficiales</div>
+             <div class="card-body p-4">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a href="https://dev.mysql.com/doc/refman/8.0/en/grant.html" target="_blank">MySQL 8.0 Manual: GRANT Statement</a></li>
+                    <li class="list-group-item"><a href="https://dev.mysql.com/doc/refman/8.0/en/revoke.html" target="_blank">MySQL 8.0 Manual: REVOKE Statement</a></li>
+                    <li class="list-group-item"><a href="https://dev.mysql.com/doc/refman/8.0/en/create-view.html" target="_blank">MySQL 8.0 Manual: CREATE VIEW Statement</a></li>
+                    <li class="list-group-item"><a href="https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html" target="_blank">MySQL 8.0 Manual: Privileges Provided by MySQL</a></li>
+                </ul>
+                <div class="alert alert-warning-custom alert-custom mt-3">
+                    📝 <strong>Nota:</strong> Todos los enlaces apuntan a la documentación oficial de MySQL y fueron verificados en Feb 2026.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <p>Created by Jemarin Birt LH ASIR 2025 ^^</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
