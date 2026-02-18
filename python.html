@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python - Ruta Completa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+    <section class="python-hero">
+        <div class="container">
+            <span class="python-kicker">Python - Anaconda - Jupyter Desktop - Flask</span>
+            <h1><i class="bi bi-filetype-py"></i> Python desde cero hasta proyectos web y escritorio</h1>
+            <p>Esta seccion esta pensada para que aprendas Python con flujo real de trabajo: entorno profesional con Anaconda/Conda, cuadernos con Jupyter, scripts de escritorio y salto a backend web con Flask.</p>
+        </div>
+    </section>
+
+    <main class="container py-4">
+        <section class="python-panel python-course-box">
+            <h2 class="h3 mb-2"><i class="bi bi-signpost-split"></i> Ruta recomendada (orden de estudio)</h2>
+            <p class="mb-0">Sigue este orden para avanzar mas rapido: 1) Python base, 2) entornos con Conda, 3) Jupyter para practicar, 4) scripts de escritorio, 5) Flask para APIs y web. No saltes a Flask sin dominar funciones, estructuras de datos y manejo de errores.</p>
+            <div class="python-meta">
+                <span>Duracion sugerida: 4-6 semanas</span>
+                <span>Nivel: inicial a intermedio</span>
+                <span>Enfoque: practica guiada</span>
+            </div>
+            <a class="python-btn" href="https://docs.python.org/3/tutorial/">Empezar con el tutorial oficial de Python</a>
+        </section>
+
+        <h2 class="python-section-title"><i class="bi bi-journal-code"></i> Bloques clave de aprendizaje</h2>
+        <section class="python-grid">
+            <article class="python-card">
+                <h3>1) Python base</h3>
+                <p>Variables, condicionales, bucles, funciones, listas, diccionarios y manejo de archivos. Esta base define todo lo que viene despues.</p>
+                <ul class="python-list">
+                    <li><a href="https://docs.python.org/3/tutorial/">Tutorial oficial de Python</a></li>
+                    <li><a href="https://docs.python.org/3/library/">Python Standard Library</a></li>
+                    <li><a href="https://www.youtube.com/results?search_query=python+desde+cero+espanol">Videos Python desde cero (YouTube)</a></li>
+                </ul>
+            </article>
+
+            <article class="python-card">
+                <h3>2) Anaconda y Conda</h3>
+                <p>Instala distribucion cientifica, crea entornos aislados y controla dependencias por proyecto para evitar conflictos.</p>
+                <ul class="python-list">
+                    <li><a href="https://www.anaconda.com/docs/getting-started/anaconda/install">Instalar Anaconda (guia oficial)</a></li>
+                    <li><a href="https://docs.conda.io/projects/conda/en/stable/user-guide/getting-started.html">Conda: guia oficial</a></li>
+                    <li><a href="https://www.youtube.com/results?search_query=anaconda+conda+tutorial+espanol">Videos Anaconda/Conda (YouTube)</a></li>
+                </ul>
+                <code class="python-code">conda create -n py-dev python=3.12
+conda activate py-dev
+python --version</code>
+            </article>
+
+            <article class="python-card">
+                <h3>3) Jupyter Notebook y Jupyter Desktop</h3>
+                <p>Jupyter es ideal para aprender y documentar practicas. Si quieres app de escritorio, usa JupyterLab Desktop.</p>
+                <ul class="python-list">
+                    <li><a href="https://docs.jupyter.org/en/latest/install/notebook-classic.html">Instalacion de Jupyter Notebook</a></li>
+                    <li><a href="https://jupyterlab.readthedocs.io/en/stable/">Documentacion JupyterLab</a></li>
+                    <li><a href="https://github.com/jupyterlab/jupyterlab-desktop">JupyterLab Desktop (GitHub oficial)</a></li>
+                    <li><a href="https://www.youtube.com/results?search_query=jupyter+notebook+tutorial+espanol">Videos Jupyter en espanol (YouTube)</a></li>
+                </ul>
+                <code class="python-code">conda activate py-dev
+conda install -c conda-forge notebook jupyterlab
+jupyter lab</code>
+            </article>
+
+            <article class="python-card">
+                <h3>4) Flask para web y APIs</h3>
+                <p>Con Flask puedes crear backend ligero, rutas HTTP, APIs REST y paneles internos rapidamente.</p>
+                <ul class="python-list">
+                    <li><a href="https://flask.palletsprojects.com/en/stable/quickstart/">Flask Quickstart oficial</a></li>
+                    <li><a href="https://flask.palletsprojects.com/en/stable/tutorial/">Flask Tutorial oficial</a></li>
+                    <li><a href="https://www.youtube.com/results?search_query=flask+tutorial+espanol">Videos Flask en espanol (YouTube)</a></li>
+                </ul>
+                <code class="python-code">pip install flask
+flask --app app run --debug</code>
+            </article>
+        </section>
+
+        <h2 class="python-section-title"><i class="bi bi-tools"></i> Instalacion guiada en Windows (rapida)</h2>
+        <section class="python-panel python-table-wrap">
+            <table class="python-table">
+                <thead>
+                    <tr>
+                        <th>Paso</th>
+                        <th>Que hacer</th>
+                        <th>Comando/Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="python-badge">Paso 1</span></td>
+                        <td>Instalar Python o Anaconda (recomendado para empezar con entorno completo).</td>
+                        <td><a href="https://www.python.org/downloads/">python.org</a> o <a href="https://www.anaconda.com/download">anaconda.com/download</a></td>
+                    </tr>
+                    <tr>
+                        <td><span class="python-badge">Paso 2</span></td>
+                        <td>Crear entorno de trabajo por proyecto.</td>
+                        <td><code>conda create -n py-dev python=3.12</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="python-badge">Paso 3</span></td>
+                        <td>Activar entorno y actualizar pip.</td>
+                        <td><code>conda activate py-dev</code><br><code>python -m pip install --upgrade pip</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="python-badge">Paso 4</span></td>
+                        <td>Instalar Jupyter y Flask en el mismo entorno.</td>
+                        <td><code>pip install notebook jupyterlab flask</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="python-badge">Paso 5</span></td>
+                        <td>Verificar que todo responde bien.</td>
+                        <td><code>python --version</code><br><code>jupyter --version</code><br><code>flask --version</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <h2 class="python-section-title"><i class="bi bi-play-circle"></i> Videos y practica guiada</h2>
+        <section class="python-grid">
+            <article class="python-card">
+                <h3>Playlists para Python base</h3>
+                <ul class="python-list">
+                    <li><a href="https://www.youtube.com/results?search_query=python+desde+cero+espanol+curso+completo">Curso completo Python (busqueda)</a></li>
+                    <li><a href="https://www.youtube.com/results?search_query=python+ejercicios+resueltos+espanol">Ejercicios resueltos Python</a></li>
+                </ul>
+            </article>
+            <article class="python-card">
+                <h3>Anaconda + Jupyter</h3>
+                <ul class="python-list">
+                    <li><a href="https://www.youtube.com/results?search_query=anaconda+jupyter+notebook+tutorial+espanol">Anaconda y Jupyter para principiantes</a></li>
+                    <li><a href="https://www.youtube.com/results?search_query=jupyterlab+desktop+tutorial">JupyterLab Desktop tutorial</a></li>
+                </ul>
+            </article>
+            <article class="python-card">
+                <h3>Flask practico</h3>
+                <ul class="python-list">
+                    <li><a href="https://www.youtube.com/results?search_query=flask+api+rest+espanol">Flask API REST (busqueda)</a></li>
+                    <li><a href="https://www.youtube.com/results?search_query=flask+crud+sqlite+espanol">Flask CRUD con SQLite</a></li>
+                </ul>
+            </article>
+        </section>
+
+        <h2 class="python-section-title"><i class="bi bi-collection"></i> Material didactico y documentacion</h2>
+        <section class="python-panel">
+            <ul class="python-list mb-0">
+                <li><a href="https://docs.python.org/3/tutorial/">Python Tutorial oficial</a></li>
+                <li><a href="https://docs.python.org/3/library/">Python Standard Library</a></li>
+                <li><a href="https://packaging.python.org/en/latest/tutorials/installing-packages/">Gestion de paquetes con pip</a></li>
+                <li><a href="https://www.anaconda.com/docs/getting-started/anaconda/main">Anaconda docs oficiales</a></li>
+                <li><a href="https://docs.jupyter.org/en/latest/">Jupyter docs oficiales</a></li>
+                <li><a href="https://flask.palletsprojects.com/en/stable/">Flask docs oficiales</a></li>
+            </ul>
+        </section>
+
+        <h2 class="python-section-title"><i class="bi bi-lightbulb"></i> Mis recomendaciones directas</h2>
+        <section class="python-panel">
+            <ol class="mb-0">
+                <li>Trabaja siempre con entornos por proyecto (`conda` o `venv`), nunca todo global.</li>
+                <li>No te quedes solo en teoria: cada concepto debe terminar en mini script o mini notebook.</li>
+                <li>Cuando aprendas Flask, empieza por API simple (JSON) antes de meter frontend.</li>
+                <li>Sube tus practicas a GitHub desde el dia 1 para crear historial real de progreso.</li>
+                <li>Haz un proyecto final por bloque: 1 script, 1 notebook y 1 app Flask pequena.</li>
+            </ol>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/site-sfx.js"></script>
+    <script src="assets/js/site-theme.js"></script>
+</body>
+</html>
+

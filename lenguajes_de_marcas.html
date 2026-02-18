@@ -507,6 +507,7 @@ Checklist de entrega:
     <script>
         const robot = document.getElementById('mr-robot-glitch');
         if (robot) {
+            robot.classList.add('robot-glitch-run');
             robot.addEventListener('animationend', () => {
                 robot.style.display = 'none';
             });

@@ -1,0 +1,170 @@
+﻿ESTRUCTURA DEL PROYECTO (resumen util)
+Ruta base: c:\Users\JESUS\Desktop\redes2
+
+Nota:
+- Se omiten detalles internos de .git para mantener el documento legible.
+
+ARBOL DE ARCHIVOS
+- index.html
+- guia_redes.html
+- linux_cheatsheet.html
+- virtualbox.html
+- conversor_binario_hexadecimal.html
+- MySQL.html
+- dhcp_dns.html
+- lenguajes_de_marcas.html
+- Css_basico.html
+- Js_basico.html
+- figma.html
+- hacking_etico.html
+- ia_lanzadera.html
+- git_github.html
+- freeplane.html
+- README.md
+- assets/
+  - css/
+    - site.css
+  - js/
+    - site-theme.js
+    - site-sfx.js
+
+ARQUITECTURA GENERAL DE LA WEB
+1) Base visual
+- Bootstrap 5 para layout/componentes.
+- Bootstrap Icons para iconografia.
+- site.css centraliza estilos globales y estilos de paginas especificas (ej. bloque FIGMA PAGE).
+
+2) JS global compartido
+- assets/js/site-theme.js
+  - Inyecta variables CSS y temas visuales globales.
+  - Gestiona estilos aleatorios via boton #themeToggle.
+  - Guarda estilo activo en localStorage (key: siteVisualStyle).
+  - Marca enlace activo del navbar segun pathname.
+
+- assets/js/site-sfx.js
+  - Crea un motor de sonido con Web Audio API.
+  - Desbloquea audio en primera interaccion (pointerdown/keydown).
+  - Reproduce SFX segun contexto (nav, theme, button, accordion, input, error).
+  - Expone API global: window.siteSfx.play() y window.siteSfx.unlock().
+
+3) Patron de paginas
+- La mayoria de paginas cargan:
+  - Bootstrap bundle
+  - site-sfx.js
+  - site-theme.js
+- Algunas agregan script inline para logica puntual (acordeones, calculadoras, validadores).
+
+LOGICA Y FUNCIONES POR PAGINA
+
+1) index.html (home + router SPA)
+- Funcion: normalizeRoute(route)
+  - Limpia hash/ruta y devuelve "home" o nombre de archivo.
+- Funcion: showHomeView()
+  - Muestra hero + grid principal y oculta contenedor SPA.
+- Funcion: clearSpaAssets()
+  - Elimina estilos/scripts inyectados dinamicamente al cambiar de ruta.
+- Funcion: ensureSpaFrame()
+  - Crea un iframe reutilizable para fallback de carga.
+- Funcion: loadRouteInIframe(normalized, pushState)
+  - Carga la ruta en iframe y actualiza history/title.
+- Funcion: injectPageStyles(doc, route)
+  - Copia estilos <style> de la pagina cargada al head actual.
+- Funcion: runPageScripts(doc, route)
+  - Ejecuta scripts de la pagina cargada (filtra bootstrap/site-theme).
+- Funcion async: loadRoute(route, pushState)
+  - Motor SPA principal:
+    - Si ruta invalida -> home.
+    - Si protocolo file: usa iframe.
+    - Si hay fetch exitoso: parsea HTML, inyecta body util (sin nav/footer/script), ejecuta scripts y pushState.
+    - Si falla: fallback a iframe.
+- Eventos:
+  - click delegado sobre links internos para navegar sin recargar.
+  - popstate para atras/adelante del navegador.
+- Extra:
+  - Oculta animacion "mr-robot-glitch" al terminar animacion.
+
+2) guia_redes.html (SubnetCalculator)
+- Clase: SubnetCalculator
+  - constructor(): cachea referencias DOM, enlaza eventos, sincroniza CIDR->mascara.
+  - bindEvents(): conecta inputs/botones.
+  - toggleSubnetInput(): ajusta UI segun metodo (none/cidr/count/hosts).
+  - calculate(): valida datos, calcula red base, deriva target CIDR por metodo y genera subredes.
+  - renderResults(base, targetCIDR, subnets): pinta resumen y tabla (limite visual: 256 filas).
+  - clear(): restaura estado inicial.
+  - syncMaskFromCIDR()/syncCIDRFromMask(): sincronizacion bidireccional.
+  - isValidIPv4(), ipToInt(), intToIp(), cidrToMask(), maskToCidr(): utilidades de conversion/validacion.
+  - calculateNetwork(): obtiene red y broadcast base.
+  - getUsableHosts(): hosts utilizables por prefijo.
+  - generateSubnets(): genera lista completa de subredes derivadas.
+- Inicializacion:
+  - DOMContentLoaded -> new SubnetCalculator().
+
+3) conversor_binario_hexadecimal.html
+- Datos: conversionTable (mapeo 4 bits <-> hex).
+- Funciones:
+  - populateConversionTable(): rellena tabla de referencia.
+  - isValidBinary(), isValidHex(): validaciones de entrada.
+  - binaryToHex(), hexToBinary(): conversion y generacion de pasos explicativos.
+  - updateMode(): cambia labels/placeholders/limites segun modo.
+  - convert(): orquesta validacion + conversion + render de resultado.
+  - clearAll(): limpia entrada/salida.
+- Eventos:
+  - change en radios de modo.
+  - click en botones convertir/limpiar.
+- Inicializacion:
+  - populateConversionTable() y updateMode().
+
+4) Js_basico.html
+- Funcion: isValidIpv4(ip)
+  - Valida IPv4 con expresion regular.
+- Interacciones:
+  - helloBtn: saludo personalizado.
+  - loopBtn: demo del event loop (orden parcial/final con setTimeout + Promise).
+  - validateBtn: validacion de IPv4 y mensaje de resultado.
+
+5) Css_basico.html
+- Logica de acordeon manual:
+  - click en .accordion-header activa item y cierra otros.
+- Demo evento DOM:
+  - alfabDemoBtn cambia texto y estilos de salida para mostrar manipulacion del DOM.
+
+6) hacking_etico.html
+- Logica de acordeon manual:
+  - mismo patron de activacion exclusiva por click.
+
+7) lenguajes_de_marcas.html
+- Oculta "mr-robot-glitch" al finalizar animacion.
+- Acordeon manual con cierre de elementos hermanos.
+
+8) ia_lanzadera.html
+- Datos: shortBrand (abreviaturas para logos).
+- Funcion: applyLogoFallback(img)
+  - Si falla carga de imagen de logo, reemplaza por texto corto (siglas) dentro de .logo-wrap.
+- Eventos:
+  - error en imagenes de logos.
+  - chequeo inmediato de imagen ya fallida (img.complete && naturalWidth === 0).
+
+9) figma.html
+- Sin JS inline funcional propio actualmente.
+- Usa estilos de pagina desde assets/css/site.css (bloque FIGMA PAGE).
+- Carga site-theme.js (tema global).
+
+10) Paginas con foco principalmente estatico/contenido
+- linux_cheatsheet.html
+- virtualbox.html
+- MySQL.html
+- dhcp_dns.html
+- git_github.html
+- freeplane.html
+- (ademas de secciones estaticas en otras paginas)
+
+DETALLES DE DISEÑO/COMPORTAMIENTO RELEVANTES
+- Navegacion hibrida:
+  - index.html actua como entrada SPA para varias paginas.
+  - Si fetch falla o se ejecuta en file://, usa iframe como fallback robusto.
+- Sonido y tema son transversales:
+  - Se aplican por listeners globales, sin acoplarse a una sola pagina.
+- Riesgo tecnico conocido:
+  - Ejecutar scripts de paginas inyectadas en SPA puede duplicar listeners si no se limpia bien; index ya limpia nodos script/style inyectados para mitigar.
+
+FIN DEL DOCUMENTO
