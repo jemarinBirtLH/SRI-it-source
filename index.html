@@ -34,6 +34,15 @@
             transition: all 0.5s ease;
             backdrop-filter: blur(10px);
         }
+        .navbar-neon .container {
+            max-width: 100% !important;
+            width: 100%;
+            padding-left: 0.2rem;
+            padding-right: 0.2rem;
+        }
+        .navbar-neon .navbar-collapse {
+            flex: 1 1 auto;
+        }
         .neon-text {
             font-family: 'Orbitron', sans-serif;
             font-weight: 900;
@@ -52,14 +61,26 @@
             50% { background-position: 100% center; }
         }
         .nav-link-neon {
+            font-family: 'JetBrains Mono', monospace;
             font-weight: 700;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s ease;
-            margin: 0 12px;
-            animation: rainbow-neon 4s ease-in-out infinite;
-            font-size: 1.05rem;
-            letter-spacing: 0.05em;
+            transition: all 0.22s ease;
+            margin: 0 4px;
+            animation: none;
+            font-size: 1rem;
+            letter-spacing: 0.03em;
+            color: #dfffee !important;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 0.55rem 0.85rem;
+            border-radius: 12px;
+            border: 1px solid transparent;
+            line-height: 1.2;
+            text-align: center;
+            text-shadow: 0 0 8px rgba(0, 255, 136, 0.25);
         }
         .nav-link-neon::before {
             content: '';
@@ -72,14 +93,67 @@
             animation: wave-hover 0.5s ease-in-out;
         }
         .nav-link-neon:hover {
-            color: #00ccff !important;
-            text-shadow: 0 0 20px #00ccff, 0 0 40px #00ff88, 0 0 60px #ff00ff;
-            transform: scale(1.15) skewX(-5deg);
+            color: #ffffff !important;
+            text-shadow: 0 0 12px #00ccff, 0 0 24px #00ff88;
+            background: rgba(0, 255, 136, 0.12);
+            border-color: rgba(0, 255, 136, 0.45);
+            transform: translateY(-1px);
         }
         .nav-link-neon.active {
-            color: #ff00ff !important;
-            text-shadow: 0 0 25px #ff00ff, 0 0 50px #00ff88;
-            border-bottom: 3px solid #ff00ff;
+            color: #ffffff !important;
+            text-shadow: 0 0 14px #00ff88, 0 0 22px #00ccff;
+            background: rgba(0, 204, 255, 0.18);
+            border: 1px solid rgba(0, 204, 255, 0.7);
+        }
+        .nav-link-neon:focus-visible {
+            outline: 2px solid #00ff88;
+            outline-offset: 2px;
+            box-shadow: 0 0 0 4px rgba(0, 255, 136, 0.18);
+        }
+        .navbar-neon .navbar-nav {
+            gap: 0.1rem;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: stretch;
+        }
+        .navbar-neon .navbar-nav .nav-item:not(.ms-3) {
+            flex: 1 1 0;
+            min-width: 0;
+            display: flex;
+        }
+        .navbar-neon .navbar-nav .nav-item:not(.ms-3) .nav-link-neon {
+            width: 100%;
+        }
+        .navbar-neon .navbar-toggler {
+            border-width: 2px;
+            min-width: 44px;
+            min-height: 44px;
+        }
+        @media (max-width: 991.98px) {
+            .navbar-neon .navbar-collapse {
+                margin-top: 0.65rem;
+                border: 1px solid rgba(0, 255, 136, 0.4);
+                border-radius: 14px;
+                background: rgba(3, 12, 24, 0.94);
+                padding: 0.7rem;
+                box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+            }
+            .navbar-neon .navbar-nav {
+                gap: 0.35rem;
+                width: 100%;
+                justify-content: flex-start;
+            }
+            .navbar-neon .navbar-nav .nav-item:not(.ms-3) {
+                flex: 0 0 auto;
+                width: 100%;
+            }
+            .nav-link-neon {
+                width: 100%;
+                justify-content: flex-start;
+                padding: 0.7rem 0.95rem;
+                min-height: 46px;
+            }
         }
         @keyframes wave-text-mega {
             0%, 100% {
@@ -192,7 +266,7 @@
             border: 2px solid #00ff88 !important;
             color: #00ff88 !important;
             transition: all 0.3s ease;
-            font-size: 1.4rem;
+            font-size: 2rem;
             padding: 0.5rem 0.8rem !important;
             position: relative;
             border-radius: 50%;
@@ -201,9 +275,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: theme-btn-pulse 2s ease-in-out infinite, theme-btn-rotate 8s linear infinite;
+            animation: theme-btn-pulse 2s ease-in-out infinite;
             box-shadow: 0 0 15px rgba(0, 255, 136, 0.5), inset 0 0 10px rgba(0, 255, 136, 0.3);
             overflow: hidden;
+        }
+        .theme-btn .penguin {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            font-size: 2.35rem;
+            line-height: 1;
+            animation: penguin-spin 2.8s ease-in-out infinite;
+            transform-origin: center;
         }
         .theme-btn::before {
             content: '';
@@ -233,6 +318,13 @@
             from { transform: rotateZ(0deg); }
             to { transform: rotateZ(360deg); }
         }
+        @keyframes penguin-spin {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(180deg); }
+            50% { transform: rotate(0deg); }
+            75% { transform: rotate(-180deg); }
+            100% { transform: rotate(0deg); }
+        }
         @keyframes theme-gradient-rotate {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
@@ -257,6 +349,75 @@
         .hero p {
             font-size: 1.3rem;
             font-weight: 600;
+        }
+        .music-player {
+            background: #0a0e27;
+            color: #eafff5;
+            border: 2px solid #00ff88;
+            border-radius: 16px;
+            box-shadow: 0 0 24px rgba(0, 255, 136, 0.35);
+        }
+        .music-player h2 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+        .music-meta {
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            color: #b2ffd9;
+        }
+        .music-controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .music-genre {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.8rem;
+        }
+        .music-genre select {
+            border: 1px solid #00ccff;
+            background: rgba(0, 204, 255, 0.12);
+            color: #dfffee;
+            border-radius: 10px;
+            padding: 0.45rem 0.65rem;
+            min-width: 180px;
+        }
+        .music-control-btn {
+            min-width: 56px;
+            padding: 8px 12px !important;
+            margin: 0 !important;
+            border-radius: 10px;
+            border: 1px solid #00ccff;
+            background: rgba(0, 204, 255, 0.12);
+            color: #c6f7ff;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .music-control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 14px rgba(0, 204, 255, 0.55);
+            color: #fff;
+        }
+        .music-volume {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-left: auto;
+        }
+        .music-volume input[type="range"] {
+            width: 140px;
+            accent-color: #00ff88;
+        }
+        .music-credit {
+            font-size: 0.82rem;
+            color: #9ae3ff;
+            margin-top: 0.8rem;
+        }
+        .music-credit a {
+            color: #9ae3ff;
         }
         .card {
             border: none;
@@ -495,23 +656,24 @@
     <!-- Navbar Neón -->
     <nav class="navbar-neon navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a class="neon-text" href="index.html"><i class="bi bi-house-door"></i> SOURCE-IT</a>
+            <a class="neon-text" href="index.html" target="_blank" rel="noopener noreferrer"><i class="bi bi-house-door"></i> SOURCE-IT</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border-color: #00ff88;">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link-neon" href="index.html">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="guia_redes.html">Redes</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="linux_cheatsheet.html">Linux</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="virtualbox.html">VirtualBox</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="conversor_binario_hexadecimal.html">Conversor</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="MySQL.html">MySQL</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="dhcp_dns.html">DHCP/DNS</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="lenguajes_de_marcas.html">Lenguajes</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="Css_basico.html">CSS Básico</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="javascript_universitario.html">JavaScript</a></li>
-                    <li class="nav-item ms-3"><button id="themeToggle" class="theme-btn btn" title="Cambiar tema"><i class="bi bi-palette-fill"></i></button></li>
+                <ul class="navbar-nav ms-auto align-items-center">                    <li class="nav-item"><a class="nav-link-neon" href="guia_redes.html" target="_blank" rel="noopener noreferrer">Redes</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="linux_cheatsheet.html" target="_blank" rel="noopener noreferrer">Linux</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="virtualbox.html" target="_blank" rel="noopener noreferrer">VirtualBox</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="conversor_binario_hexadecimal.html" target="_blank" rel="noopener noreferrer">Conversor</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="MySQL.html" target="_blank" rel="noopener noreferrer">MySQL</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="dhcp_dns.html" target="_blank" rel="noopener noreferrer">DHCP/DNS</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="lenguajes_de_marcas.html" target="_blank" rel="noopener noreferrer">Lenguajes</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="Css_basico.html" target="_blank" rel="noopener noreferrer">CSS Básico</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="Js_basico.html" target="_blank" rel="noopener noreferrer">JavaScript</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="hacking_etico.html" target="_blank" rel="noopener noreferrer">Hacking Ético</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="ia_lanzadera.html" target="_blank" rel="noopener noreferrer">IA</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="git_github.html" target="_blank" rel="noopener noreferrer">Git/GitHub</a></li>
+                    <li class="nav-item ms-3"><button id="themeToggle" class="theme-btn btn" title="Cambiar tema"><span class="penguin" aria-hidden="true">🐧</span><span class="visually-hidden">Cambiar tema</span></button></li>
                 </ul>
             </div>
         </div>
@@ -522,6 +684,34 @@
             <h1 class="display-4 fw-bold"><i class="bi bi-book"></i> SOURCE-IT My path by Jemarin</h1>
             <p class="lead">Recursos para aprender redes, Linux, VirtualBox, MySQL y más.</p>
         </div>
+        <section class="music-player p-4 mb-5">
+            <p class="mb-3 fw-bold text-info">Dale al play, deja la ventana sonando y elige un enlace :-)</p>
+            <h2><i class="bi bi-controller"></i> Reproductor Retro (música gratis)</h2>
+            <label class="music-genre" for="musicGenre">
+                <span><i class="bi bi-music-note-beamed"></i> Estilo</span>
+                <select id="musicGenre">
+                    <option value="tdah">TDAH / Focus</option>
+                    <option value="techno">Techno</option>
+                    <option value="clasica">Clásica</option>
+                    <option value="retro">Retro 8-bit</option>
+                </select>
+            </label>
+            <p id="nowPlaying" class="music-meta mb-2">Pista: cargando...</p>
+            <div class="music-controls">
+                <button id="musicPrev" class="btn music-control-btn" type="button" title="Canción anterior"><i class="bi bi-skip-start-fill"></i></button>
+                <button id="musicPlay" class="btn music-control-btn" type="button" title="Reproducir"><i class="bi bi-play-fill"></i></button>
+                <button id="musicStop" class="btn music-control-btn" type="button" title="Detener"><i class="bi bi-stop-fill"></i></button>
+                <button id="musicNext" class="btn music-control-btn" type="button" title="Siguiente canción"><i class="bi bi-skip-end-fill"></i></button>
+                <label class="music-volume" for="musicVolume">
+                    <span><i class="bi bi-volume-up-fill"></i> Volumen</span>
+                    <input id="musicVolume" type="range" min="0" max="1" step="0.01" value="0.6">
+                </label>
+            </div>
+            <p class="music-credit mb-0">
+                Pistas originales estilo retro generadas en tiempo real (uso libre en tu web).
+                <a id="trackSource" href="#" target="_self" rel="noopener noreferrer">Detalle de pista</a>
+            </p>
+        </section>
 
         <div class="row g-4">
             <div class="col-md-6 col-lg-3">
@@ -529,7 +719,7 @@
                     <i class="bi bi-diagram-3 fs-1"></i>
                     <h3 class="mt-3">Redes</h3>
                     <p>Subnetting, VLSM, DHCP, DNS y calculadora IP.</p>
-                    <a href="guia_redes.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                    <a href="guia_redes.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -537,7 +727,7 @@
                     <i class="bi bi-terminal fs-1"></i>
                     <h3 class="mt-3">Linux</h3>
                     <p>Comandos esenciales, shell, permisos, y cheatsheets.</p>
-                    <a href="linux_cheatsheet.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                    <a href="linux_cheatsheet.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -545,7 +735,7 @@
                     <i class="bi bi-hdd-stack fs-1"></i>
                     <h3 class="mt-3">VirtualBox</h3>
                     <p>Crea máquinas virtuales con Debian 13 y configura redes.</p>
-                    <a href="virtualbox.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                    <a href="virtualbox.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -553,7 +743,7 @@
                     <i class="bi bi-arrow-left-right fs-1"></i>
                     <h3 class="mt-3">Conversor</h3>
                     <p>Binario a hexadecimal con explicación paso a paso.</p>
-                    <a href="conversor_binario_hexadecimal.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                    <a href="conversor_binario_hexadecimal.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -561,7 +751,7 @@
                     <i class="bi bi-database-gear fs-1"></i>
                     <h3 class="mt-3">MySQL</h3>
                     <p>Gestión de usuarios, permisos y vistas en MySQL.</p>
-                    <a href="MySQL.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                    <a href="MySQL.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -569,7 +759,7 @@
                     <i class="bi bi-router fs-1"></i>
                     <h3 class="mt-3">DHCP/DNS</h3>
                     <p>Servidores DHCP y DNS en VirtualBox con múltiples SO.</p>
-                    <a href="dhcp_dns.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                    <a href="dhcp_dns.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -577,7 +767,7 @@
                     <i class="bi bi-code-square fs-1"></i>
                     <h3 class="mt-3">Lenguajes</h3>
                     <p>XML, HTML, XSD, XPath, XQuery y más.</p>
-                    <a href="lenguajes_de_marcas.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                    <a href="lenguajes_de_marcas.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -585,7 +775,7 @@
                     <i class="bi bi-filetype-css fs-1"></i>
                     <h3 class="mt-3">CSS Básico</h3>
                     <p>Cascada, especificidad, Grid/Flex y arquitectura de estilos.</p>
-                    <a href="Css_basico.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                    <a href="Css_basico.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -593,7 +783,31 @@
                     <i class="bi bi-filetype-js fs-1"></i>
                     <h3 class="mt-3">JavaScript</h3>
                     <p>Event loop, asincronía, modularidad y laboratorio práctico.</p>
-                    <a href="javascript_universitario.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                    <a href="Js_basico.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 p-4 text-center">
+                    <i class="bi bi-shield-lock fs-1"></i>
+                    <h3 class="mt-3">Hacking Ético</h3>
+                    <p>Conceptos, Wi-Fi, herramientas y comandos para auditoría autorizada.</p>
+                    <a href="hacking_etico.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 p-4 text-center">
+                    <i class="bi bi-stars fs-1"></i>
+                    <h3 class="mt-3">IA Lanzadera</h3>
+                    <p>Chatbots, vídeo IA, OpenClaw y plataformas creativas en un solo panel.</p>
+                    <a href="ia_lanzadera.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 p-4 text-center">
+                    <i class="bi bi-git fs-1"></i>
+                    <h3 class="mt-3">Git/GitHub</h3>
+                    <p>Instalación, comandos, repos útiles y flujo de trabajo para colaborar.</p>
+                    <a href="git_github.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
                 </div>
             </div>
         </div>
@@ -613,6 +827,197 @@
                 robot.style.display = 'none';
             });
         }
+
+        const nowPlaying = document.getElementById('nowPlaying');
+        const trackSource = document.getElementById('trackSource');
+        const playBtn = document.getElementById('musicPlay');
+        const stopBtn = document.getElementById('musicStop');
+        const nextBtn = document.getElementById('musicNext');
+        const prevBtn = document.getElementById('musicPrev');
+        const volumeControl = document.getElementById('musicVolume');
+        const genreSelect = document.getElementById('musicGenre');
+        const playlistsByGenre = {
+            tdah: [
+                { title: 'Focus Loop Alpha', tempo: 92, wave: 'triangle', notes: [60, 62, 64, null, 64, 62, 60, null, 67, 65, 64, null, 64, 62, 60, null] },
+                { title: 'Deep Focus Beta', tempo: 96, wave: 'sine', notes: [57, 60, 62, null, 62, 60, 57, null, 55, 57, 60, null, 60, 57, 55, null] },
+                { title: 'Calm Flow Gamma', tempo: 104, wave: 'triangle', notes: [64, null, 67, null, 69, null, 67, null, 65, null, 64, null, 62, null, 60, null] },
+                { title: 'Study Grid Delta', tempo: 100, wave: 'sine', notes: [60, 64, 67, 64, 60, 64, 67, 64, 59, 62, 65, 62, 59, 62, 65, 62] }
+            ],
+            techno: [
+                { title: 'Night Pulse', tempo: 132, wave: 'sawtooth', notes: [48, null, 48, null, 55, null, 55, null, 50, null, 50, null, 57, null, 57, null] },
+                { title: 'Neon Drive', tempo: 138, wave: 'square', notes: [52, 55, 59, 55, 52, 55, 59, 62, 52, 55, 59, 55, 50, 53, 57, 60] },
+                { title: 'Circuit Rave', tempo: 142, wave: 'sawtooth', notes: [57, null, 60, null, 64, null, 60, null, 55, null, 59, null, 62, null, 59, null] },
+                { title: 'Bass Reactor', tempo: 128, wave: 'square', notes: [45, 45, null, 45, 50, 50, null, 50, 48, 48, null, 48, 52, 52, null, 52] }
+            ],
+            clasica: [
+                { title: 'Mini Sonata I', tempo: 108, wave: 'triangle', notes: [60, 64, 67, 72, 71, 67, 64, 60, 62, 65, 69, 74, 72, 69, 65, 62] },
+                { title: 'Nocturno Pixel', tempo: 82, wave: 'sine', notes: [57, 60, 64, 69, 67, 64, 60, 57, 55, 59, 62, 67, 65, 62, 59, 55] },
+                { title: 'Valse Corta', tempo: 124, wave: 'triangle', notes: [60, 64, 67, 64, 62, 65, 69, 65, 59, 62, 67, 62, 57, 60, 64, 60] },
+                { title: 'Estudio en Do', tempo: 98, wave: 'sine', notes: [60, 62, 64, 65, 67, 69, 71, 72, 71, 69, 67, 65, 64, 62, 60, null] }
+            ],
+            retro: [
+                { title: 'Bloques Invasores', tempo: 144, wave: 'square', notes: [76, 71, 72, 74, 72, 71, 69, 69, 72, 76, 74, 72, 71, 72, 74, 76] },
+                { title: 'Mazmorra de Pixel', tempo: 126, wave: 'triangle', notes: [64, 67, 71, 72, 71, 67, 64, 67, 69, 71, 69, 67, 64, 62, 64, 67] },
+                { title: 'Plataforma Turbo', tempo: 168, wave: 'square', notes: [72, 76, 79, 76, 72, 74, 76, 77, 79, 81, 79, 77, 76, 74, 72, 71] },
+                { title: 'Boss de 8 Bits', tempo: 112, wave: 'sawtooth', notes: [52, 55, 59, 57, 55, 52, 55, 59, 62, 59, 55, 52, 50, 52, 55, 57] }
+            ]
+        };
+        const genreLabelMap = {
+            tdah: 'TDAH / Focus',
+            techno: 'Techno',
+            clasica: 'Clásica',
+            retro: 'Retro 8-bit'
+        };
+        let currentGenre = genreSelect.value;
+        let playlist = playlistsByGenre[currentGenre];
+
+        let audioCtx = null;
+        let masterGain = null;
+        let isPlaying = false;
+        let stepIndex = 0;
+        let currentTrack = 0;
+        let nextStepTimer = null;
+
+        function midiToFreq(midi) {
+            return 440 * Math.pow(2, (midi - 69) / 12);
+        }
+
+        function ensureAudio() {
+            if (!audioCtx) {
+                const Ctx = window.AudioContext || window.webkitAudioContext;
+                if (!Ctx) return false;
+                audioCtx = new Ctx();
+                masterGain = audioCtx.createGain();
+                masterGain.gain.value = Number(volumeControl.value);
+                masterGain.connect(audioCtx.destination);
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return true;
+        }
+
+        function playNote(midi, stepSeconds, wave) {
+            if (midi == null || !audioCtx || !masterGain) return;
+            const now = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.type = wave;
+            osc.frequency.setValueAtTime(midiToFreq(midi), now);
+
+            gain.gain.setValueAtTime(0.0001, now);
+            gain.gain.exponentialRampToValueAtTime(0.15, now + 0.01);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + Math.max(0.04, stepSeconds * 0.9));
+
+            osc.connect(gain);
+            gain.connect(masterGain);
+
+            osc.start(now);
+            osc.stop(now + stepSeconds);
+        }
+
+        function updateNowPlaying(extraText = '') {
+            const track = playlist[currentTrack];
+            const status = isPlaying ? 'Reproduciendo' : 'Lista';
+            nowPlaying.textContent = `Pista ${currentTrack + 1}/${playlist.length}: ${track.title} | ${status}${extraText}`;
+            trackSource.textContent = `Género: ${genreLabelMap[currentGenre]} | Tempo ${track.tempo} BPM | Onda ${track.wave}`;
+            trackSource.href = '#';
+        }
+
+        function clearPlaybackTimer() {
+            if (nextStepTimer) {
+                clearTimeout(nextStepTimer);
+                nextStepTimer = null;
+            }
+        }
+
+        function tickSequencer() {
+            if (!isPlaying) return;
+            const track = playlist[currentTrack];
+            const beatSeconds = 60 / track.tempo;
+            const stepSeconds = beatSeconds / 2;
+            const midi = track.notes[stepIndex % track.notes.length];
+
+            playNote(midi, stepSeconds, track.wave);
+            stepIndex = (stepIndex + 1) % track.notes.length;
+            nextStepTimer = setTimeout(tickSequencer, stepSeconds * 1000);
+        }
+
+        function startPlayback() {
+            if (!ensureAudio()) {
+                updateNowPlaying(' | Audio no soportado en este navegador');
+                return;
+            }
+            if (isPlaying) return;
+            isPlaying = true;
+            playBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+            playBtn.title = 'Pausar';
+            updateNowPlaying();
+            tickSequencer();
+        }
+
+        function pausePlayback() {
+            isPlaying = false;
+            clearPlaybackTimer();
+            playBtn.innerHTML = '<i class="bi bi-play-fill"></i>';
+            playBtn.title = 'Reproducir';
+            updateNowPlaying();
+        }
+
+        function stopPlayback() {
+            pausePlayback();
+            stepIndex = 0;
+            updateNowPlaying();
+        }
+
+        function selectTrack(index, autoplay = false) {
+            currentTrack = (index + playlist.length) % playlist.length;
+            stepIndex = 0;
+            updateNowPlaying();
+            if (autoplay) {
+                startPlayback();
+            }
+        }
+
+        playBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                pausePlayback();
+            } else {
+                startPlayback();
+            }
+        });
+
+        stopBtn.addEventListener('click', () => {
+            stopPlayback();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            const wasPlaying = isPlaying;
+            stopPlayback();
+            selectTrack(currentTrack + 1, wasPlaying);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            const wasPlaying = isPlaying;
+            stopPlayback();
+            selectTrack(currentTrack - 1, wasPlaying);
+        });
+
+        volumeControl.addEventListener('input', (event) => {
+            if (masterGain) {
+                masterGain.gain.value = Number(event.target.value);
+            }
+        });
+        genreSelect.addEventListener('change', (event) => {
+            const wasPlaying = isPlaying;
+            stopPlayback();
+            currentGenre = event.target.value;
+            playlist = playlistsByGenre[currentGenre];
+            selectTrack(0, wasPlaying);
+        });
+
+        selectTrack(0);
     </script>
     <script src="assets/js/site-theme.js"></script>
 </body>

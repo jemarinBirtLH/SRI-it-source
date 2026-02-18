@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git y GitHub - Source-IT</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <style>
+        .git-card {
+            background: #0c1528;
+            border: 1px solid rgba(0, 255, 136, 0.35);
+            border-radius: 14px;
+            color: #dcfff2;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+            height: 100%;
+        }
+        .git-meta {
+            font-size: 0.86rem;
+            color: #9af7d1;
+        }
+        .git-repo {
+            border-left: 3px solid #00ff88;
+            padding-left: 0.8rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar-neon navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="neon-text" href="index.html" target="_blank" rel="noopener noreferrer"><i class="bi bi-house-door"></i> SOURCE-IT</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border-color: #00ff88;">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link-neon" href="guia_redes.html" target="_blank" rel="noopener noreferrer">Redes</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="linux_cheatsheet.html" target="_blank" rel="noopener noreferrer">Linux</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="virtualbox.html" target="_blank" rel="noopener noreferrer">VirtualBox</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="conversor_binario_hexadecimal.html" target="_blank" rel="noopener noreferrer">Conversor</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="MySQL.html" target="_blank" rel="noopener noreferrer">MySQL</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="dhcp_dns.html" target="_blank" rel="noopener noreferrer">DHCP/DNS</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="lenguajes_de_marcas.html" target="_blank" rel="noopener noreferrer">Lenguajes</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="Css_basico.html" target="_blank" rel="noopener noreferrer">CSS Básico</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="Js_basico.html" target="_blank" rel="noopener noreferrer">JavaScript</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="hacking_etico.html" target="_blank" rel="noopener noreferrer">Hacking Ético</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="ia_lanzadera.html" target="_blank" rel="noopener noreferrer">IA</a></li>
+                    <li class="nav-item"><a class="nav-link-neon active" href="git_github.html" target="_blank" rel="noopener noreferrer">Git/GitHub</a></li>
+                    <li class="nav-item ms-3"><button id="themeToggle" class="theme-btn btn" title="Cambiar tema"><i class="bi bi-palette-fill"></i></button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero text-center">
+        <h1 class="display-5 fw-bold"><i class="bi bi-git"></i> Git y GitHub</h1>
+        <p class="lead">Página práctica para instalar, aprender flujo de trabajo y descubrir repos interesantes.</p>
+    </div>
+
+    <div class="container py-4">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="git-card p-3">
+                    <h4><i class="bi bi-download"></i> Descargar Git</h4>
+                    <p class="git-meta">Control de versiones local</p>
+                    <p>Git permite versionar tu proyecto, crear ramas y colaborar sin perder historial.</p>
+                    <a class="btn btn-outline-primary" href="https://git-scm.com/downloads" target="_blank" rel="noopener noreferrer">Descargar Git</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="git-card p-3">
+                    <h4><i class="bi bi-window"></i> GitHub Desktop</h4>
+                    <p class="git-meta">Interfaz gráfica oficial</p>
+                    <p>Cliente visual para commits, ramas, conflictos y pull requests sin usar terminal.</p>
+                    <a class="btn btn-outline-primary" href="https://desktop.github.com/download/" target="_blank" rel="noopener noreferrer">Descargar Desktop</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="git-card p-3">
+                    <h4><i class="bi bi-terminal"></i> GitHub CLI (gh)</h4>
+                    <p class="git-meta">Automatización y flujo en terminal</p>
+                    <p>Gestiona issues, PRs, repos y acciones desde la consola.</p>
+                    <a class="btn btn-outline-primary" href="https://cli.github.com/" target="_blank" rel="noopener noreferrer">Instalar gh</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title mt-4"><i class="bi bi-journal-code"></i> Comandos base recomendados</h2>
+        <div class="card-custom">
+            <div class="card-body">
+                <div class="code-block"># Configuración inicial
+git config --global user.name "Tu Nombre"
+git config --global user.email "tu@email.com"
+
+# Crear repositorio y primer commit
+git init
+git add .
+git commit -m "Primer commit"
+
+# Conectar con GitHub y subir
+git remote add origin https://github.com/usuario/repositorio.git
+git branch -M main
+git push -u origin main
+
+# Flujo diario
+git checkout -b feature/login
+git add .
+git commit -m "feat: login base"
+git push -u origin feature/login</div>
+            </div>
+        </div>
+
+        <h2 class="section-title mt-4"><i class="bi bi-stars"></i> Repositorios interesantes para aprender</h2>
+        <div class="card-custom">
+            <div class="card-body">
+                <div class="git-repo">
+                    <strong>freeCodeCamp/freeCodeCamp</strong><br>
+                    Aprende desarrollo full-stack con ejercicios y proyectos reales.<br>
+                    <a href="https://github.com/freeCodeCamp/freeCodeCamp" target="_blank" rel="noopener noreferrer">Abrir repositorio</a>
+                </div>
+                <div class="git-repo">
+                    <strong>public-apis/public-apis</strong><br>
+                    Listado enorme de APIs públicas para practicar integraciones.<br>
+                    <a href="https://github.com/public-apis/public-apis" target="_blank" rel="noopener noreferrer">Abrir repositorio</a>
+                </div>
+                <div class="git-repo">
+                    <strong>sindresorhus/awesome</strong><br>
+                    Índice de listas "awesome" para casi cualquier tecnología.<br>
+                    <a href="https://github.com/sindresorhus/awesome" target="_blank" rel="noopener noreferrer">Abrir repositorio</a>
+                </div>
+                <div class="git-repo">
+                    <strong>EbookFoundation/free-programming-books</strong><br>
+                    Libros de programación gratuitos en múltiples idiomas.<br>
+                    <a href="https://github.com/EbookFoundation/free-programming-books" target="_blank" rel="noopener noreferrer">Abrir repositorio</a>
+                </div>
+                <div class="git-repo">
+                    <strong>firstcontributions/first-contributions</strong><br>
+                    Proyecto ideal para hacer tu primera contribución open source.<br>
+                    <a href="https://github.com/firstcontributions/first-contributions" target="_blank" rel="noopener noreferrer">Abrir repositorio</a>
+                </div>
+                <div class="git-repo mb-0">
+                    <strong>git/git</strong><br>
+                    Código fuente oficial de Git (nivel avanzado).<br>
+                    <a href="https://github.com/git/git" target="_blank" rel="noopener noreferrer">Abrir repositorio</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title mt-4"><i class="bi bi-compass"></i> Explorar más en GitHub</h2>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="git-card p-3">
+                    <h5>Trending</h5>
+                    <p>Descubre qué repos están en tendencia.</p>
+                    <a class="btn btn-outline-primary" href="https://github.com/trending" target="_blank" rel="noopener noreferrer">Ir a Trending</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="git-card p-3">
+                    <h5>Topics</h5>
+                    <p>Explora por áreas: IA, seguridad, frontend, devops, etc.</p>
+                    <a class="btn btn-outline-primary" href="https://github.com/topics" target="_blank" rel="noopener noreferrer">Ir a Topics</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="git-card p-3">
+                    <h5>GitHub Skills</h5>
+                    <p>Laboratorios interactivos para Git y flujo de PR.</p>
+                    <a class="btn btn-outline-primary" href="https://skills.github.com/" target="_blank" rel="noopener noreferrer">Ir a Skills</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-success-custom alert-custom mt-4">
+            <strong>Contáctame:</strong> <a href="mailto:jesustelefonico@gmail.com">jesustelefonico@gmail.com</a>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <p class="mb-0">Made by Jemarin Source-IT</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/site-sfx.js"></script>
+    <script src="assets/js/site-theme.js"></script>
+</body>
+</html>

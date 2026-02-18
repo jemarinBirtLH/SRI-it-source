@@ -1,0 +1,334 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Ã‰tico - Conceptos, Herramientas y Laboratorio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <style>
+        .he-badge {
+            font-size: 0.75rem;
+            background: rgba(0, 255, 136, 0.14);
+            color: #00ff88;
+            border: 1px solid rgba(0, 255, 136, 0.5);
+            border-radius: 999px;
+            padding: 0.15rem 0.6rem;
+        }
+        .tool-table td, .tool-table th {
+            vertical-align: top;
+        }
+        .small-note {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar-neon navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="neon-text" href="index.html" target="_blank" rel="noopener noreferrer"><i class="bi bi-house-door"></i> SOURCE-IT</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border-color: #00ff88;">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">                    <li class="nav-item"><a class="nav-link-neon" href="guia_redes.html" target="_blank" rel="noopener noreferrer">Redes</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="linux_cheatsheet.html" target="_blank" rel="noopener noreferrer">Linux</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="virtualbox.html" target="_blank" rel="noopener noreferrer">VirtualBox</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="conversor_binario_hexadecimal.html" target="_blank" rel="noopener noreferrer">Conversor</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="MySQL.html" target="_blank" rel="noopener noreferrer">MySQL</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="dhcp_dns.html" target="_blank" rel="noopener noreferrer">DHCP/DNS</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="lenguajes_de_marcas.html" target="_blank" rel="noopener noreferrer">Lenguajes</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="Css_basico.html" target="_blank" rel="noopener noreferrer">CSS BÃ¡sico</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="Js_basico.html" target="_blank" rel="noopener noreferrer">JavaScript</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="freeplane.html" target="_blank" rel="noopener noreferrer">Freeplane</a></li>
+                    <li class="nav-item"><a class="nav-link-neon active" href="hacking_etico.html" target="_blank" rel="noopener noreferrer">Hacking Ã‰tico</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="ia_lanzadera.html" target="_blank" rel="noopener noreferrer">IA</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="git_github.html" target="_blank" rel="noopener noreferrer">Git/GitHub</a></li>
+                    <li class="nav-item ms-3"><button id="themeToggle" class="theme-btn btn" title="Cambiar tema"><i class="bi bi-palette-fill"></i></button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero text-center">
+        <h1 class="display-5 fw-bold"><i class="bi bi-shield-lock"></i> Hacking Ã‰tico</h1>
+        <p class="lead">GuÃ­a operativa para auditorÃ­a tÃ©cnica profesional en redes, web, sistemas, Wi-Fi e IA.</p>
+    </div>
+
+    <div class="container py-4">
+        <div class="alert alert-danger-custom alert-custom">
+            <strong>Uso legal obligatorio:</strong> todo comando de esta guÃ­a es para laboratorios propios o auditorÃ­as con autorizaciÃ³n escrita. No uses estas tÃ©cnicas fuera de alcance pactado.
+        </div>
+
+        <div class="card-custom">
+            <div class="card-header-custom"><i class="bi bi-map"></i> Flujo de trabajo recomendado</div>
+            <div class="card-body">
+                <ol class="mb-0">
+                    <li>Definir alcance y reglas del test (activos, ventanas horarias, tipo de pruebas).</li>
+                    <li>Reconocimiento pasivo y activo para inventario tÃ©cnico.</li>
+                    <li>Escaneo de superficie y detecciÃ³n de vulnerabilidades.</li>
+                    <li>ValidaciÃ³n manual de hallazgos y priorizaciÃ³n por impacto/riesgo.</li>
+                    <li>RemediaciÃ³n, retest y cierre con evidencia.</li>
+                </ol>
+            </div>
+        </div>
+
+        <h2 class="section-title"><i class="bi bi-terminal"></i> Comandos base (laboratorio)</h2>
+        <div class="card-custom">
+            <div class="card-body">
+                <p><span class="he-badge">Reconocimiento</span></p>
+                <div class="code-block">whois ejemplo.com
+dig ejemplo.com any +short
+nslookup -type=mx ejemplo.com
+theHarvester -d ejemplo.com -b all</div>
+
+                <p class="mt-3"><span class="he-badge">Escaneo</span></p>
+                <div class="code-block">nmap -sn 192.168.1.0/24
+nmap -sV -O -p- 192.168.1.10
+nmap --script vuln 192.168.1.10
+tcpdump -i eth0 -nn port 80</div>
+
+                <p class="mt-3"><span class="he-badge">Web</span></p>
+                <div class="code-block"># Burp/ZAP se usan en modo proxy interceptando navegador
+# Proxy local tÃ­pico:
+# 127.0.0.1:8080
+# Objetivo: inspeccionar peticiones, validar cabeceras, auth, sesiÃ³n y entradas.</div>
+
+                <p class="mt-3"><span class="he-badge">Wi-Fi (auditorÃ­a autorizada)</span></p>
+                <div class="code-block">iwconfig
+sudo airmon-ng start wlan0
+sudo airodump-ng wlan0mon
+sudo airodump-ng --bssid AA:BB:CC:DD:EE:FF -c 6 -w captura wlan0mon</div>
+            </div>
+        </div>
+
+        <h2 class="section-title"><i class="bi bi-tools"></i> Herramientas core (infra, web y post-explotaciÃ³n)</h2>
+        <div class="table-responsive card-custom">
+            <table class="table table-dark table-hover tool-table mb-0">
+                <thead>
+                    <tr>
+                        <th>Herramienta</th>
+                        <th>QuÃ© hace</th>
+                        <th>CÃ³mo funciona</th>
+                        <th>Enlace</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>whois</td><td>Consulta datos de dominio/IP.</td><td>Interroga registros pÃºblicos (registrador, ASN, contactos).</td><td><a href="https://linux.die.net/man/1/whois" target="_blank" rel="noopener noreferrer">Manual</a></td></tr>
+                    <tr><td>dig / nslookup</td><td>DiagnÃ³stico DNS.</td><td>EnvÃ­a consultas DNS directas a resolvers/autoritativos.</td><td><a href="https://linux.die.net/man/1/dig" target="_blank" rel="noopener noreferrer">dig</a> | <a href="https://linux.die.net/man/1/nslookup" target="_blank" rel="noopener noreferrer">nslookup</a></td></tr>
+                    <tr><td>theHarvester</td><td>OSINT de correos/subdominios.</td><td>Agrega datos de buscadores y fuentes pÃºblicas.</td><td><a href="https://github.com/laramies/theHarvester" target="_blank" rel="noopener noreferrer">GitHub</a></td></tr>
+                    <tr><td>PasteHunter</td><td>Busca fugas en pastes.</td><td>Rastrea servicios de paste por palabras clave.</td><td><a href="https://github.com/kevthehermit/PasteHunter" target="_blank" rel="noopener noreferrer">GitHub</a></td></tr>
+                    <tr><td>githubscraper</td><td>Busca secretos en repositorios.</td><td>Analiza cÃ³digo pÃºblico para credenciales/patrones.</td><td><a href="https://github.com/search?q=githubscraper&type=repositories" target="_blank" rel="noopener noreferrer">GitHub Search</a></td></tr>
+                    <tr><td>smtp-user-enum</td><td>Enumera usuarios por SMTP.</td><td>Prueba comandos SMTP para validar cuentas existentes.</td><td><a href="https://github.com/cytopia/smtp-user-enum" target="_blank" rel="noopener noreferrer">GitHub</a></td></tr>
+                    <tr><td>nbtscan / enum4linux</td><td>Enumera Windows/Samba.</td><td>Consulta NetBIOS/SMB para usuarios, shares y dominio.</td><td><a href="https://github.com/resurrecting-open-source-projects/nbtscan" target="_blank" rel="noopener noreferrer">nbtscan</a> | <a href="https://github.com/CiscoCXSecurity/enum4linux" target="_blank" rel="noopener noreferrer">enum4linux</a></td></tr>
+                    <tr><td>nmap / scripts nmap</td><td>Descubre hosts, puertos y servicios.</td><td>EnvÃ­a sondas TCP/UDP/ICMP y NSE para validaciones.</td><td><a href="https://nmap.org/" target="_blank" rel="noopener noreferrer">Oficial</a></td></tr>
+                    <tr><td>Zenmap</td><td>GUI de nmap.</td><td>Ejecuta perfiles de escaneo y visualiza topologÃ­a.</td><td><a href="https://nmap.org/zenmap/" target="_blank" rel="noopener noreferrer">Oficial</a></td></tr>
+                    <tr><td>Wireshark / tcpdump</td><td>AnÃ¡lisis de trÃ¡fico.</td><td>Capturan paquetes y permiten filtrar protocolos.</td><td><a href="https://www.wireshark.org/" target="_blank" rel="noopener noreferrer">Wireshark</a> | <a href="https://www.tcpdump.org/" target="_blank" rel="noopener noreferrer">tcpdump</a></td></tr>
+                    <tr><td>arp-scan / netdiscover</td><td>Descubrimiento LAN.</td><td>Inspeccionan ARP para inventariar dispositivos.</td><td><a href="https://github.com/royhills/arp-scan" target="_blank" rel="noopener noreferrer">arp-scan</a> | <a href="https://www.kali.org/tools/netdiscover/" target="_blank" rel="noopener noreferrer">netdiscover</a></td></tr>
+                    <tr><td>nc / netcat</td><td>Cliente/servidor TCP/UDP.</td><td>Abre conexiones directas para testeo de puertos y servicios.</td><td><a href="https://linux.die.net/man/1/nc" target="_blank" rel="noopener noreferrer">Manual</a></td></tr>
+                    <tr><td>vulscan</td><td>NSE para correlaciÃ³n CVE.</td><td>Cruza servicios detectados por nmap con bases CVE.</td><td><a href="https://github.com/scipag/vulscan" target="_blank" rel="noopener noreferrer">GitHub</a></td></tr>
+                    <tr><td>Nessus</td><td>EscÃ¡ner automÃ¡tico de vulnerabilidades.</td><td>Usa plugins para detectar CVE/configuraciÃ³n insegura.</td><td><a href="https://es-la.tenable.com/products/nessus" target="_blank" rel="noopener noreferrer">Oficial</a></td></tr>
+                    <tr><td>OpenVAS</td><td>Escaneo de vulnerabilidades open source.</td><td>Motor de pruebas con feed de vulnerabilidades.</td><td><a href="https://www.openvas.org" target="_blank" rel="noopener noreferrer">Oficial</a></td></tr>
+                    <tr><td>Burp Suite</td><td>Proxy y testing web.</td><td>Intercepta HTTP(S), modifica requests y automatiza checks.</td><td><a href="https://portswigger.net/burp" target="_blank" rel="noopener noreferrer">Oficial</a></td></tr>
+                    <tr><td>OWASP ZAP</td><td>Proxy/escÃ¡ner web open source.</td><td>Spider + active scan + scripting para pruebas web.</td><td><a href="https://www.zaproxy.org/" target="_blank" rel="noopener noreferrer">Oficial</a></td></tr>
+                    <tr><td>Echo Mirage</td><td>Utilidad para redes de voz/VoIP.</td><td>Captura y anÃ¡lisis sobre trÃ¡fico SIP/RTP en auditorÃ­a.</td><td><a href="https://sourceforge.net/projects/echomirage.oldbutgold.p/" target="_blank" rel="noopener noreferrer">SourceForge</a></td></tr>
+                    <tr><td>Exploit-DB / searchsploit</td><td>BÃºsqueda de PoC y exploits pÃºblicos.</td><td>Repositorio web + base local en Kali.</td><td><a href="https://www.exploit-db.com/" target="_blank" rel="noopener noreferrer">Exploit-DB</a> | <a href="https://www.kali.org/tools/exploitdb/" target="_blank" rel="noopener noreferrer">searchsploit</a></td></tr>
+                    <tr><td>Metasploit</td><td>Framework de explotaciÃ³n y post-explotaciÃ³n.</td><td>MÃ³dulos para comprobar exposiciÃ³n y evidenciar impacto.</td><td><a href="https://www.metasploit.com/" target="_blank" rel="noopener noreferrer">Oficial</a></td></tr>
+                    <tr><td>Cobalt Strike</td><td>Plataforma de simulaciÃ³n adversaria.</td><td>C2 y operaciones de Red Team controladas.</td><td><a href="https://www.cobaltstrike.com/" target="_blank" rel="noopener noreferrer">Oficial</a></td></tr>
+                    <tr><td>msfvenom</td><td>GeneraciÃ³n de payloads para laboratorio.</td><td>Construye artefactos para pruebas de detecciÃ³n/EDR.</td><td><a href="https://docs.metasploit.com/docs/using-metasploit/basics/how-to-use-msfvenom.html" target="_blank" rel="noopener noreferrer">Docs</a></td></tr>
+                    <tr><td>Shellter</td><td>Testing de evasiÃ³n en binarios.</td><td>Inserta cÃ³digo en ejecutables para medir defensas.</td><td><a href="https://www.shellterproject.com/" target="_blank" rel="noopener noreferrer">Oficial</a></td></tr>
+                    <tr><td>Patator / Medusa / Hydra</td><td>AuditorÃ­a de credenciales.</td><td>Prueban combinaciones contra servicios autorizados.</td><td><a href="https://github.com/lanjelot/patator" target="_blank" rel="noopener noreferrer">Patator</a> | <a href="https://github.com/jmk-foofus/medusa" target="_blank" rel="noopener noreferrer">Medusa</a> | <a href="https://github.com/vanhauser-thc/thc-hydra" target="_blank" rel="noopener noreferrer">Hydra</a></td></tr>
+                    <tr><td>PrivescCheck</td><td>RevisiÃ³n de debilidades en Windows.</td><td>Enumera configuraciones inseguras para escalado de privilegios.</td><td><a href="https://github.com/itm4n/PrivescCheck" target="_blank" rel="noopener noreferrer">GitHub</a></td></tr>
+                    <tr><td>winPEAS / linPEAS</td><td>EnumeraciÃ³n local post-compromiso.</td><td>Recolecta rutas de privilegio y malas configuraciones.</td><td><a href="https://github.com/carlospolop/PEASS-ng/tree/master/winPEAS" target="_blank" rel="noopener noreferrer">winPEAS</a> | <a href="https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS" target="_blank" rel="noopener noreferrer">linPEAS</a></td></tr>
+                    <tr><td>Mimikatz</td><td>AnÃ¡lisis de credenciales en memoria.</td><td>Demuestra riesgo de hardening insuficiente en Windows.</td><td><a href="https://github.com/gentilkiwi/mimikatz" target="_blank" rel="noopener noreferrer">GitHub</a></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="section-title"><i class="bi bi-wifi"></i> Herramientas de auditorÃ­a inalÃ¡mbrica</h2>
+        <div class="table-responsive card-custom">
+            <table class="table table-dark table-hover tool-table mb-0">
+                <thead>
+                    <tr>
+                        <th>Herramienta</th>
+                        <th>QuÃ© hace</th>
+                        <th>CÃ³mo funciona</th>
+                        <th>Enlace</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>airmon-ng</td><td>Activa modo monitor.</td><td>Configura interfaz para capturar tramas 802.11.</td><td><a href="https://www.aircrack-ng.org/" target="_blank" rel="noopener noreferrer">Aircrack-ng</a></td></tr>
+                    <tr><td>airodump-ng</td><td>Monitoriza AP/clientes.</td><td>Captura beacons, handshakes y metadatos de red.</td><td><a href="https://www.aircrack-ng.org/" target="_blank" rel="noopener noreferrer">Aircrack-ng</a></td></tr>
+                    <tr><td>aireplay-ng</td><td>InyecciÃ³n 802.11 en pruebas.</td><td>Genera trÃ¡fico para validar robustez de autenticaciÃ³n.</td><td><a href="https://www.aircrack-ng.org/" target="_blank" rel="noopener noreferrer">Aircrack-ng</a></td></tr>
+                    <tr><td>packetforge-ng</td><td>ConstrucciÃ³n de paquetes.</td><td>Crea tramas para escenarios de laboratorio controlado.</td><td><a href="https://www.aircrack-ng.org/" target="_blank" rel="noopener noreferrer">Aircrack-ng</a></td></tr>
+                    <tr><td>aircrack-ng</td><td>Cracking de capturas.</td><td>Audita robustez de claves offline sobre handshakes.</td><td><a href="https://www.aircrack-ng.org/" target="_blank" rel="noopener noreferrer">Oficial</a></td></tr>
+                    <tr><td>Kismet</td><td>IDS/monitor Wi-Fi.</td><td>Escucha pasiva multicanal y detecta anomalÃ­as.</td><td><a href="https://www.kismetwireless.net/" target="_blank" rel="noopener noreferrer">Oficial</a></td></tr>
+                    <tr><td>NetStumbler</td><td>Descubrimiento Wi-Fi en Windows.</td><td>Escanea SSID/AP en entorno local.</td><td><a href="http://stumbler.net/" target="_blank" rel="noopener noreferrer">Oficial</a></td></tr>
+                    <tr><td>Wifiphisher</td><td>SimulaciÃ³n de portal cautivo.</td><td>Emula AP para pruebas de concienciaciÃ³n y detecciÃ³n.</td><td><a href="https://github.com/wifiphisher/wifiphisher" target="_blank" rel="noopener noreferrer">GitHub</a></td></tr>
+                    <tr><td>Wigle</td><td>Mapa colaborativo de redes.</td><td>Consulta geolocalizaciÃ³n y presencia de SSID/BSSID.</td><td><a href="https://www.wigle.net" target="_blank" rel="noopener noreferrer">Oficial</a></td></tr>
+                    <tr><td>airgeddon</td><td>AutomatizaciÃ³n de auditorÃ­as Wi-Fi.</td><td>Orquesta pruebas sobre WEP/WPA/WPS en scripts.</td><td><a href="https://github.com/v1s1t0r1sh3r3/airgeddon" target="_blank" rel="noopener noreferrer">GitHub</a></td></tr>
+                    <tr><td>iwconfig / dhclient</td><td>GestiÃ³n de interfaz y red.</td><td>Configura NIC Wi-Fi y solicita IP por DHCP.</td><td><a href="https://linux.die.net/man/8/iwconfig" target="_blank" rel="noopener noreferrer">iwconfig</a> | <a href="https://linux.die.net/man/8/dhclient" target="_blank" rel="noopener noreferrer">dhclient</a></td></tr>
+                    <tr><td>John the Ripper / Hashcat</td><td>Cracking offline de hashes.</td><td>Valida complejidad de contraseÃ±as con diccionarios/reglas.</td><td><a href="https://www.openwall.com/john/" target="_blank" rel="noopener noreferrer">John</a> | <a href="https://hashcat.net/hashcat/" target="_blank" rel="noopener noreferrer">Hashcat</a></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="section-title"><i class="bi bi-cpu"></i> Stack actual 2026 (muy usado en pentesting)</h2>
+        <div class="table-responsive card-custom">
+            <table class="table table-dark table-hover tool-table mb-0">
+                <thead>
+                    <tr>
+                        <th>Herramienta</th>
+                        <th>Uso principal</th>
+                        <th>Ejemplo en laboratorio</th>
+                        <th>Enlace</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Amass</td><td>EnumeraciÃ³n de subdominios y superficie externa.</td><td><code>amass enum -d empresa.com</code></td><td><a href="https://github.com/owasp-amass/amass" target="_blank" rel="noopener noreferrer">GitHub</a></td></tr>
+                    <tr><td>Subfinder</td><td>Descubrimiento rÃ¡pido de subdominios.</td><td><code>subfinder -d empresa.com -silent</code></td><td><a href="https://github.com/projectdiscovery/subfinder" target="_blank" rel="noopener noreferrer">GitHub</a></td></tr>
+                    <tr><td>httpx</td><td>ValidaciÃ³n de hosts HTTP/HTTPS vivos.</td><td><code>cat hosts.txt | httpx -title -tech-detect</code></td><td><a href="https://github.com/projectdiscovery/httpx" target="_blank" rel="noopener noreferrer">GitHub</a></td></tr>
+                    <tr><td>Nuclei</td><td>DetecciÃ³n basada en plantillas de vulnerabilidades.</td><td><code>nuclei -u https://objetivo.lab -severity medium,high,critical</code></td><td><a href="https://github.com/projectdiscovery/nuclei" target="_blank" rel="noopener noreferrer">GitHub</a></td></tr>
+                    <tr><td>ffuf</td><td>Fuzzing web (rutas, vhosts, parÃ¡metros).</td><td><code>ffuf -u https://app.lab/FUZZ -w /usr/share/seclists/Discovery/Web-Content/common.txt</code></td><td><a href="https://github.com/ffuf/ffuf" target="_blank" rel="noopener noreferrer">GitHub</a></td></tr>
+                    <tr><td>Gobuster</td><td>EnumeraciÃ³n de directorios/DNS/vhosts.</td><td><code>gobuster dir -u https://app.lab -w wordlist.txt</code></td><td><a href="https://github.com/OJ/gobuster" target="_blank" rel="noopener noreferrer">GitHub</a></td></tr>
+                    <tr><td>RustScan</td><td>Escaneo rÃ¡pido de puertos + nmap.</td><td><code>rustscan -a 192.168.56.10 -- -sV</code></td><td><a href="https://github.com/RustScan/RustScan" target="_blank" rel="noopener noreferrer">GitHub</a></td></tr>
+                    <tr><td>BloodHound</td><td>AnÃ¡lisis de rutas de ataque en Active Directory.</td><td><code>bloodhound-python -d LAB.LOCAL -u auditor -p 'Password1!'</code></td><td><a href="https://bloodhound.specterops.io/" target="_blank" rel="noopener noreferrer">Oficial</a></td></tr>
+                    <tr><td>mitmproxy</td><td>Proxy interceptador scriptable para HTTP(S).</td><td><code>mitmproxy --mode regular</code></td><td><a href="https://mitmproxy.org/" target="_blank" rel="noopener noreferrer">Oficial</a></td></tr>
+                    <tr><td>WPScan</td><td>AuditorÃ­a especÃ­fica de WordPress.</td><td><code>wpscan --url https://blog.lab --enumerate vp</code></td><td><a href="https://wpscan.com/" target="_blank" rel="noopener noreferrer">Oficial</a></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="section-title"><i class="bi bi-robot"></i> IA en hacking Ã©tico (red teaming y defensa)</h2>
+        <div class="card-custom">
+            <div class="card-body">
+                <p>La IA acelera tanto a atacantes como a defensores. En un equipo Ã©tico se usa para <strong>mejorar detecciÃ³n, priorizaciÃ³n y simulaciones</strong>, nunca para acciones fuera de alcance.</p>
+                <ul>
+                    <li>GeneraciÃ³n de hipÃ³tesis de ataque y casos de prueba.</li>
+                    <li>AnÃ¡lisis de grandes volÃºmenes de logs con clasificaciÃ³n automÃ¡tica.</li>
+                    <li>Red teaming de aplicaciones LLM (prompt injection, data exfiltration, jailbreaks).</li>
+                    <li>Asistencia en hardening y validaciÃ³n continua en CI/CD.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="table-responsive card-custom">
+            <table class="table table-dark table-hover tool-table mb-0">
+                <thead>
+                    <tr>
+                        <th>Herramienta / marco</th>
+                        <th>QuÃ© cubre</th>
+                        <th>CÃ³mo usarlo en auditorÃ­a</th>
+                        <th>Enlace</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>OWASP Top 10 for LLM Apps</td><td>Riesgos comunes en apps con IA.</td><td>Checklist base para diseÃ±o de pruebas y reporte.</td><td><a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener noreferrer">OWASP</a></td></tr>
+                    <tr><td>MITRE ATLAS</td><td>TÃ¡cticas/tÃ©cnicas adversarias en sistemas de IA.</td><td>Modelado de amenazas IA y mapeo de hallazgos.</td><td><a href="https://atlas.mitre.org/" target="_blank" rel="noopener noreferrer">MITRE</a></td></tr>
+                    <tr><td>Garak</td><td>Scanner de seguridad para LLM.</td><td>Ejecuta baterÃ­as de prompts ofensivos controlados.</td><td><a href="https://github.com/NVIDIA/garak" target="_blank" rel="noopener noreferrer">GitHub</a></td></tr>
+                    <tr><td>promptfoo</td><td>EvaluaciÃ³n/red-team de prompts y apps LLM.</td><td>Pruebas automÃ¡ticas en pipelines con mÃ©tricas.</td><td><a href="https://github.com/promptfoo/promptfoo" target="_blank" rel="noopener noreferrer">GitHub</a></td></tr>
+                    <tr><td>PyRIT</td><td>Framework de red teaming para IA generativa.</td><td>EvalÃºa robustez de guardrails y polÃ­ticas.</td><td><a href="https://github.com/Azure/PyRIT" target="_blank" rel="noopener noreferrer">GitHub</a></td></tr>
+                    <tr><td>Counterfit</td><td>Testing adversarial en modelos ML.</td><td>Valida resistencia a ataques de evasiÃ³n/manipulaciÃ³n.</td><td><a href="https://github.com/Azure/counterfit" target="_blank" rel="noopener noreferrer">GitHub</a></td></tr>
+                    <tr><td>Llama Guard</td><td>ModeraciÃ³n/safety en entradas y salidas.</td><td>Filtro adicional en front/back de apps LLM.</td><td><a href="https://ai.meta.com/llama/" target="_blank" rel="noopener noreferrer">Meta AI</a></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="section-title"><i class="bi bi-journal-code"></i> Ejemplos prÃ¡cticos de auditorÃ­a</h2>
+        <div class="accordion" id="heAccordion">
+            <div class="accordion-item">
+                <button class="accordion-header">1) Nmap + Vulscan para priorizar CVE</button>
+                <div class="accordion-content">
+                    <div class="code-block">nmap -sV --script=vulscan/vulscan.nse 192.168.56.10
+# Resultado esperado:
+# - servicios/versiones expuestos
+# - CVE asociados para plan de parcheo</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header">2) Nessus/OpenVAS para baseline de vulnerabilidades</button>
+                <div class="accordion-content">
+                    <p>Usa perfiles de escaneo autenticado y no autenticado. Compara resultados tras aplicar parches para medir reducciÃ³n de riesgo.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header">3) Burp/ZAP para validaciÃ³n web</button>
+                <div class="accordion-content">
+                    <div class="code-block">Flujo:
+1. Configurar navegador con proxy local (127.0.0.1:8080)
+2. Interceptar login y parÃ¡metros de entrada
+3. Repetir peticiones con cambios controlados
+4. Validar autenticaciÃ³n, sesiÃ³n, encabezados y filtrado</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header">4) Wi-Fi: monitorizaciÃ³n y hardening</button>
+                <div class="accordion-content">
+                    <div class="code-block">sudo airmon-ng start wlan0
+sudo airodump-ng wlan0mon
+# Revisar:
+# - cifrado (WPA2/WPA3)
+# - WPS desactivado
+# - potencia/cobertura no excesiva
+# - clientes desconocidos</div>
+                    <p class="small-note">Complementa con Kismet y captura en Wireshark para analizar tramas de gestiÃ³n y detectar comportamientos anÃ³malos.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header">5) Ejemplo IA: red teaming de un chatbot interno</button>
+                <div class="accordion-content">
+                    <p><strong>Objetivo:</strong> medir si el bot filtra datos sensibles o ejecuta acciones no permitidas por prompt injection.</p>
+                    <div class="code-block"># Ejemplo con garak (modelo local/API configurado)
+garak --model_type openai --model_name gpt-4o-mini
+
+# Ejemplo con promptfoo (suite de pruebas YAML)
+promptfoo eval
+promptfoo redteam run</div>
+                    <p class="small-note">Buenas prÃ¡cticas: dataset de pruebas versionado, criterios de aceptaciÃ³n, y bloqueo de despliegue si falla seguridad.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header">6) Ejemplo SOC + IA: priorizaciÃ³n de alertas</button>
+                <div class="accordion-content">
+                    <p>Pipeline tÃ­pico: SIEM - enriquecimiento de IOC - clasificaciÃ³n asistida por LLM - validaciÃ³n humana final.</p>
+                    <div class="code-block">Resultado esperado:
+- Menos falsos positivos
+- Triage mÃ¡s rÃ¡pido
+- Reglas Sigma/EDR mejoradas con feedback continuo</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-success-custom alert-custom mt-4">
+            <strong>Ruta de estudio recomendada:</strong> 1) Linux + redes, 2) web/API, 3) AD, 4) Wi-Fi, 5) IA security y LLM red teaming.
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <p class="mb-0">Made by Jemarin Source-IT</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) item.classList.add('active');
+            });
+        });
+    </script>
+    <script src="assets/js/site-sfx.js"></script>
+    <script src="assets/js/site-theme.js"></script>
+</body>
+</html>
+
+
+
+
+

@@ -59,6 +59,15 @@
             position: relative;
             z-index: 1;
         }
+        .navbar-neon .container {
+            max-width: 100% !important;
+            width: 100%;
+            padding-left: 0.2rem;
+            padding-right: 0.2rem;
+        }
+        .navbar-neon .navbar-collapse {
+            flex: 1 1 auto;
+        }
         .neon-text {
             font-family: 'Orbitron', sans-serif;
             font-weight: 900;
@@ -85,14 +94,26 @@
             }
         }
         .nav-link-neon {
+            font-family: 'JetBrains Mono', monospace;
             font-weight: 700;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s ease;
-            margin: 0 12px;
-            animation: rainbow-neon 4s ease-in-out infinite;
-            font-size: 1.05rem;
-            letter-spacing: 0.05em;
+            transition: all 0.22s ease;
+            margin: 0 4px;
+            animation: none;
+            font-size: 1rem;
+            letter-spacing: 0.03em;
+            color: #dfffee !important;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 0.55rem 0.85rem;
+            border-radius: 12px;
+            border: 1px solid transparent;
+            line-height: 1.2;
+            text-align: center;
+            text-shadow: 0 0 8px rgba(0, 255, 136, 0.25);
         }
         .nav-link-neon::before {
             content: '';
@@ -105,14 +126,67 @@
             animation: wave-hover 0.5s ease-in-out;
         }
         .nav-link-neon:hover {
-            color: #00ccff !important;
-            text-shadow: 0 0 20px #00ccff, 0 0 40px #00ff88, 0 0 60px #ff00ff;
-            transform: scale(1.15) skewX(-5deg);
+            color: #ffffff !important;
+            text-shadow: 0 0 12px #00ccff, 0 0 24px #00ff88;
+            background: rgba(0, 255, 136, 0.12);
+            border-color: rgba(0, 255, 136, 0.45);
+            transform: translateY(-1px);
         }
         .nav-link-neon.active {
-            color: #ff00ff !important;
-            text-shadow: 0 0 25px #ff00ff, 0 0 50px #00ff88;
-            border-bottom: 3px solid #ff00ff;
+            color: #ffffff !important;
+            text-shadow: 0 0 14px #00ff88, 0 0 22px #00ccff;
+            background: rgba(0, 204, 255, 0.18);
+            border: 1px solid rgba(0, 204, 255, 0.7);
+        }
+        .nav-link-neon:focus-visible {
+            outline: 2px solid #00ff88;
+            outline-offset: 2px;
+            box-shadow: 0 0 0 4px rgba(0, 255, 136, 0.18);
+        }
+        .navbar-neon .navbar-nav {
+            gap: 0.1rem;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: stretch;
+        }
+        .navbar-neon .navbar-nav .nav-item:not(.ms-3) {
+            flex: 1 1 0;
+            min-width: 0;
+            display: flex;
+        }
+        .navbar-neon .navbar-nav .nav-item:not(.ms-3) .nav-link-neon {
+            width: 100%;
+        }
+        .navbar-neon .navbar-toggler {
+            border-width: 2px;
+            min-width: 44px;
+            min-height: 44px;
+        }
+        @media (max-width: 991.98px) {
+            .navbar-neon .navbar-collapse {
+                margin-top: 0.65rem;
+                border: 1px solid rgba(0, 255, 136, 0.4);
+                border-radius: 14px;
+                background: rgba(3, 12, 24, 0.94);
+                padding: 0.7rem;
+                box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+            }
+            .navbar-neon .navbar-nav {
+                gap: 0.35rem;
+                width: 100%;
+                justify-content: flex-start;
+            }
+            .navbar-neon .navbar-nav .nav-item:not(.ms-3) {
+                flex: 0 0 auto;
+                width: 100%;
+            }
+            .nav-link-neon {
+                width: 100%;
+                justify-content: flex-start;
+                padding: 0.7rem 0.95rem;
+                min-height: 46px;
+            }
         }
         @keyframes wave-text-mega {
             0%, 100% {

@@ -1,0 +1,422 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lanzadera IA - Source-IT</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <style>
+        .ai-card {
+            background: #0b1220;
+            border: 1px solid rgba(0, 255, 136, 0.35);
+            border-radius: 14px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.28);
+            color: #d8ffef;
+            height: 100%;
+        }
+        .ai-card .logo-wrap {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            background: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-bottom: 0.6rem;
+        }
+        .ai-card .logo-wrap img {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+        }
+        .ai-pill {
+            display: inline-block;
+            font-size: 0.78rem;
+            border: 1px solid rgba(0, 204, 255, 0.5);
+            color: #9fe8ff;
+            border-radius: 999px;
+            padding: 0.18rem 0.58rem;
+            margin-right: 0.35rem;
+        }
+        .video-embed {
+            border: 2px solid rgba(0, 255, 136, 0.4);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+        }
+        .hero-ai-note {
+            font-size: 0.95rem;
+            color: #cbffe8;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar-neon navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="neon-text" href="index.html" target="_blank" rel="noopener noreferrer"><i class="bi bi-house-door"></i> SOURCE-IT</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border-color: #00ff88;">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">                    <li class="nav-item"><a class="nav-link-neon" href="guia_redes.html" target="_blank" rel="noopener noreferrer">Redes</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="linux_cheatsheet.html" target="_blank" rel="noopener noreferrer">Linux</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="virtualbox.html" target="_blank" rel="noopener noreferrer">VirtualBox</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="conversor_binario_hexadecimal.html" target="_blank" rel="noopener noreferrer">Conversor</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="MySQL.html" target="_blank" rel="noopener noreferrer">MySQL</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="dhcp_dns.html" target="_blank" rel="noopener noreferrer">DHCP/DNS</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="lenguajes_de_marcas.html" target="_blank" rel="noopener noreferrer">Lenguajes</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="Css_basico.html" target="_blank" rel="noopener noreferrer">CSS BÃ¡sico</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="Js_basico.html" target="_blank" rel="noopener noreferrer">JavaScript</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="freeplane.html" target="_blank" rel="noopener noreferrer">Freeplane</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="hacking_etico.html" target="_blank" rel="noopener noreferrer">Hacking Ã‰tico</a></li>
+                    <li class="nav-item"><a class="nav-link-neon active" href="ia_lanzadera.html" target="_blank" rel="noopener noreferrer">IA</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="git_github.html" target="_blank" rel="noopener noreferrer">Git/GitHub</a></li>
+                    <li class="nav-item ms-3"><button id="themeToggle" class="theme-btn btn" title="Cambiar tema"><i class="bi bi-palette-fill"></i></button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero text-center">
+        <h1 class="display-5 fw-bold"><i class="bi bi-stars"></i> Lanzadera de IA</h1>
+        <p class="lead">Acceso rÃ¡pido a asistentes y plataformas de IA actuales para estudiar, crear y automatizar.</p>
+        <p class="hero-ai-note mb-0">Hecha como panel central: chat IA, vÃ­deo IA, OpenClaw y recursos clave.</p>
+    </div>
+
+    <div class="container py-4">
+        <div class="alert alert-info-custom alert-custom">
+            <strong>Nota de uso:</strong> revisa polÃ­ticas de privacidad y tÃ©rminos de cada plataforma antes de subir datos sensibles.
+        </div>
+
+        <h2 class="section-title"><i class="bi bi-grid-3x3-gap"></i> Chatbots y asistentes IA</h2>
+        <div class="row g-3">
+            <div class="col-md-6 col-lg-4">
+                <div class="ai-card p-3">
+                    <div class="logo-wrap"><img src="https://logo.clearbit.com/openai.com" alt="OpenAI"></div>
+                    <h4>ChatGPT</h4>
+                    <p><span class="ai-pill">Empresa: OpenAI</span><span class="ai-pill">PaÃ­s: EE. UU.</span></p>
+                    <p>Asistente multimodal para texto, cÃ³digo, anÃ¡lisis y automatizaciÃ³n.</p>
+                    <a class="btn btn-outline-primary" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">Abrir</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="ai-card p-3">
+                    <div class="logo-wrap"><img src="https://logo.clearbit.com/google.com" alt="Google"></div>
+                    <h4>Gemini</h4>
+                    <p><span class="ai-pill">Empresa: Google</span><span class="ai-pill">PaÃ­s: EE. UU.</span></p>
+                    <p>Asistente de Google con integraciÃ³n en ecosistema Workspace y bÃºsqueda.</p>
+                    <a class="btn btn-outline-primary" href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer">Abrir</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="ai-card p-3">
+                    <div class="logo-wrap"><img src="https://logo.clearbit.com/anthropic.com" alt="Anthropic"></div>
+                    <h4>Claude</h4>
+                    <p><span class="ai-pill">Empresa: Anthropic</span><span class="ai-pill">PaÃ­s: EE. UU.</span></p>
+                    <p>Fuerte en razonamiento, redacciÃ³n tÃ©cnica y uso empresarial con foco en seguridad.</p>
+                    <a class="btn btn-outline-primary" href="https://claude.ai/" target="_blank" rel="noopener noreferrer">Abrir</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="ai-card p-3">
+                    <div class="logo-wrap"><img src="https://logo.clearbit.com/deepseek.com" alt="DeepSeek"></div>
+                    <h4>DeepSeek</h4>
+                    <p><span class="ai-pill">Empresa: DeepSeek</span><span class="ai-pill">PaÃ­s: China</span></p>
+                    <p>Modelos de IA orientados a eficiencia y uso en programaciÃ³n y razonamiento.</p>
+                    <a class="btn btn-outline-primary" href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer">Abrir</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="ai-card p-3">
+                    <div class="logo-wrap"><img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft"></div>
+                    <h4>Copilot</h4>
+                    <p><span class="ai-pill">Empresa: Microsoft</span><span class="ai-pill">PaÃ­s: EE. UU.</span></p>
+                    <p>Asistente integrado en Microsoft 365, Edge y Windows para productividad.</p>
+                    <a class="btn btn-outline-primary" href="https://copilot.microsoft.com/" target="_blank" rel="noopener noreferrer">Abrir</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="ai-card p-3">
+                    <div class="logo-wrap"><img src="https://logo.clearbit.com/perplexity.ai" alt="Perplexity"></div>
+                    <h4>Perplexity</h4>
+                    <p><span class="ai-pill">Empresa: Perplexity AI</span><span class="ai-pill">PaÃ­s: EE. UU.</span></p>
+                    <p>Buscador conversacional con citas de fuentes y navegaciÃ³n orientada a investigaciÃ³n.</p>
+                    <a class="btn btn-outline-primary" href="https://www.perplexity.ai/" target="_blank" rel="noopener noreferrer">Abrir</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="ai-card p-3">
+                    <div class="logo-wrap"><img src="https://logo.clearbit.com/mistral.ai" alt="Mistral"></div>
+                    <h4>Le Chat</h4>
+                    <p><span class="ai-pill">Empresa: Mistral AI</span><span class="ai-pill">PaÃ­s: Francia</span></p>
+                    <p>Asistente europeo con enfoque en despliegues empresariales y modelos abiertos.</p>
+                    <a class="btn btn-outline-primary" href="https://chat.mistral.ai/" target="_blank" rel="noopener noreferrer">Abrir</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="ai-card p-3">
+                    <div class="logo-wrap"><img src="https://logo.clearbit.com/meta.com" alt="Meta"></div>
+                    <h4>Meta AI</h4>
+                    <p><span class="ai-pill">Empresa: Meta</span><span class="ai-pill">PaÃ­s: EE. UU.</span></p>
+                    <p>Asistente de Meta para chat, bÃºsqueda y generaciÃ³n de contenido en su ecosistema.</p>
+                    <a class="btn btn-outline-primary" href="https://www.meta.ai/" target="_blank" rel="noopener noreferrer">Abrir</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="ai-card p-3">
+                    <div class="logo-wrap"><img src="https://logo.clearbit.com/x.ai" alt="xAI"></div>
+                    <h4>Grok</h4>
+                    <p><span class="ai-pill">Empresa: xAI</span><span class="ai-pill">PaÃ­s: EE. UU.</span></p>
+                    <p>Asistente de xAI orientado a conversaciÃ³n y anÃ¡lisis en tiempo real.</p>
+                    <a class="btn btn-outline-primary" href="https://grok.com/" target="_blank" rel="noopener noreferrer">Abrir</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title mt-4"><i class="bi bi-hdd-network"></i> Ollama + Chatbox AI (local y privado)</h2>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="ai-card p-3">
+                    <div class="logo-wrap"><img src="https://logo.clearbit.com/ollama.com" alt="Ollama"></div>
+                    <h4>Ollama</h4>
+                    <p><span class="ai-pill">Empresa: Ollama</span><span class="ai-pill">Tipo: Local AI Runtime</span></p>
+                    <p>Motor para ejecutar modelos en tu propio equipo (CPU/GPU), sin depender siempre de la nube.</p>
+                    <p class="mb-2"><strong>Descarga:</strong> <a href="https://ollama.com/download" target="_blank" rel="noopener noreferrer">ollama.com/download</a></p>
+                    <div class="code-block mb-2"># Instalar modelo y probar
+ollama pull llama3.1
+ollama run llama3.1
+
+# API local compatible HTTP
+curl http://localhost:11434/api/generate -d "{\"model\":\"llama3.1\",\"prompt\":\"Hola\"}"</div>
+                    <a class="btn btn-outline-primary" href="https://ollama.com/" target="_blank" rel="noopener noreferrer">Web oficial</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="ai-card p-3">
+                    <div class="logo-wrap"><img src="https://logo.clearbit.com/chatboxai.app" alt="Chatbox AI"></div>
+                    <h4>Chatbox AI</h4>
+                    <p><span class="ai-pill">Empresa: Chatbox Team</span><span class="ai-pill">Tipo: Cliente Desktop/Web</span></p>
+                    <p>Interfaz tipo chat para conectar modelos de OpenAI, Claude, Gemini, DeepSeek y Ollama local.</p>
+                    <p class="mb-2"><strong>Descarga:</strong> <a href="https://chatboxai.app/" target="_blank" rel="noopener noreferrer">chatboxai.app</a></p>
+                    <div class="code-block mb-2">IntegraciÃ³n con Ollama:
+1) Inicia Ollama (puerto local 11434)
+2) En Chatbox: Settings - Model Provider - Ollama
+3) Base URL: http://127.0.0.1:11434
+4) Elige modelo (ej. llama3.1, qwen3, deepseek-r1)</div>
+                    <a class="btn btn-outline-primary" href="https://chatboxai.app/" target="_blank" rel="noopener noreferrer">Abrir Chatbox</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title mt-4"><i class="bi bi-diagram-3"></i> Modelos IA actuales (catÃ¡logos vivos)</h2>
+        <div class="card-custom">
+            <div class="card-body">
+                <p>Estos catÃ¡logos cambian con frecuencia. Ãšsalos como referencia de modelos vigentes y nuevas versiones.</p>
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>Proveedor</th>
+                                <th>Modelos/familias actuales (ejemplos)</th>
+                                <th>Enlace oficial</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>OpenAI</td><td>GPT-5.x, GPT-4.1, GPT-4o, gpt-oss.</td><td><a href="https://platform.openai.com/docs/models" target="_blank" rel="noopener noreferrer">Model docs</a></td></tr>
+                            <tr><td>Google</td><td>Gemini 2.5 Pro, 2.5 Flash, 2.5 Flash-Lite, 2.0 Flash.</td><td><a href="https://ai.google.dev/gemini-api/docs/models" target="_blank" rel="noopener noreferrer">Gemini models</a></td></tr>
+                            <tr><td>Anthropic</td><td>Claude Sonnet 4.5, Opus 4.1, Sonnet 4, Haiku 3.5.</td><td><a href="https://docs.anthropic.com/en/docs/about-claude/models/overview" target="_blank" rel="noopener noreferrer">Claude models</a></td></tr>
+                            <tr><td>Mistral AI</td><td>Mistral Large, Magistral, Devstral, Codestral, Pixtral.</td><td><a href="https://docs.mistral.ai/getting-started/models/" target="_blank" rel="noopener noreferrer">Mistral models</a></td></tr>
+                            <tr><td>Meta (Llama)</td><td>Llama 3.x / Llama 4 (segÃºn disponibilidad regional/proveedor).</td><td><a href="https://www.llama.com/" target="_blank" rel="noopener noreferrer">Llama</a></td></tr>
+                            <tr><td>Ollama Library</td><td>Qwen3, DeepSeek-R1, Gemma 3, Llama, GPT-OSS y mÃ¡s.</td><td><a href="https://ollama.com/library" target="_blank" rel="noopener noreferrer">Ollama library</a></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title mt-4"><i class="bi bi-code-slash"></i> Plataformas IA para aprender y construir</h2>
+        <div class="row g-3">
+            <div class="col-md-6 col-lg-3">
+                <div class="ai-card p-3">
+                    <h5>Stack Overflow</h5>
+                    <p>Comunidad tÃ©cnica para dudas reales de desarrollo e integraciÃ³n de IA.</p>
+                    <a class="btn btn-outline-primary" href="https://stackoverflow.com/questions/tagged/artificial-intelligence" target="_blank" rel="noopener noreferrer">Ir</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="ai-card p-3">
+                    <h5>Kaggle</h5>
+                    <p>Datasets, notebooks, competiciones y cursos de ML/IA.</p>
+                    <a class="btn btn-outline-primary" href="https://www.kaggle.com/" target="_blank" rel="noopener noreferrer">Ir</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="ai-card p-3">
+                    <h5>Hugging Face</h5>
+                    <p>Model hub, Spaces y librerÃ­as para modelos abiertos.</p>
+                    <a class="btn btn-outline-primary" href="https://huggingface.co/models" target="_blank" rel="noopener noreferrer">Ir</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="ai-card p-3">
+                    <h5>Replicate</h5>
+                    <p>EjecuciÃ³n de modelos IA vÃ­a API con pago por uso.</p>
+                    <a class="btn btn-outline-primary" href="https://replicate.com/explore" target="_blank" rel="noopener noreferrer">Ir</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="ai-card p-3">
+                    <h5>Fal</h5>
+                    <p>Inferencia serverless de modelos generativos (imagen/vÃ­deo/audio).</p>
+                    <a class="btn btn-outline-primary" href="https://fal.ai/models" target="_blank" rel="noopener noreferrer">Ir</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="ai-card p-3">
+                    <h5>Together AI</h5>
+                    <p>Plataforma de inferencia y fine-tuning para modelos abiertos.</p>
+                    <a class="btn btn-outline-primary" href="https://www.together.ai/" target="_blank" rel="noopener noreferrer">Ir</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="ai-card p-3">
+                    <h5>Papers with Code</h5>
+                    <p>Papers de IA con implementaciones y benchmarks enlazados.</p>
+                    <a class="btn btn-outline-primary" href="https://paperswithcode.com/" target="_blank" rel="noopener noreferrer">Ir</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="ai-card p-3">
+                    <h5>GitHub Trending AI</h5>
+                    <p>Repositorios en tendencia para stack IA y agentes.</p>
+                    <a class="btn btn-outline-primary" href="https://github.com/trending?since=daily" target="_blank" rel="noopener noreferrer">Ir</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title mt-4"><i class="bi bi-film"></i> GeneraciÃ³n de vÃ­deo con IA</h2>
+        <div class="row g-3">
+            <div class="col-md-6 col-lg-3">
+                <div class="ai-card p-3">
+                    <div class="logo-wrap"><img src="https://logo.clearbit.com/openai.com" alt="Sora"></div>
+                    <h5>Sora</h5>
+                    <p><span class="ai-pill">OpenAI Â· EE. UU.</span></p>
+                    <a class="btn btn-outline-primary" href="https://openai.com/sora" target="_blank" rel="noopener noreferrer">Ver</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="ai-card p-3">
+                    <div class="logo-wrap"><img src="https://logo.clearbit.com/runwayml.com" alt="Runway"></div>
+                    <h5>Runway</h5>
+                    <p><span class="ai-pill">Runway Â· EE. UU.</span></p>
+                    <a class="btn btn-outline-primary" href="https://runwayml.com/" target="_blank" rel="noopener noreferrer">Ver</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="ai-card p-3">
+                    <div class="logo-wrap"><img src="https://logo.clearbit.com/pika.art" alt="Pika"></div>
+                    <h5>Pika</h5>
+                    <p><span class="ai-pill">Pika Labs Â· EE. UU.</span></p>
+                    <a class="btn btn-outline-primary" href="https://pika.art/" target="_blank" rel="noopener noreferrer">Ver</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="ai-card p-3">
+                    <div class="logo-wrap"><img src="https://logo.clearbit.com/lumalabs.ai" alt="Luma"></div>
+                    <h5>Dream Machine</h5>
+                    <p><span class="ai-pill">Luma AI Â· EE. UU.</span></p>
+                    <a class="btn btn-outline-primary" href="https://lumalabs.ai/dream-machine" target="_blank" rel="noopener noreferrer">Ver</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="ai-card p-3">
+                    <div class="logo-wrap"><img src="https://logo.clearbit.com/klingai.com" alt="Kling"></div>
+                    <h5>Kling AI</h5>
+                    <p><span class="ai-pill">Kuaishou Â· China</span></p>
+                    <a class="btn btn-outline-primary" href="https://klingai.com/" target="_blank" rel="noopener noreferrer">Ver</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="ai-card p-3">
+                    <div class="logo-wrap"><img src="https://logo.clearbit.com/synthesia.io" alt="Synthesia"></div>
+                    <h5>Synthesia</h5>
+                    <p><span class="ai-pill">Synthesia Â· Reino Unido</span></p>
+                    <a class="btn btn-outline-primary" href="https://www.synthesia.io/" target="_blank" rel="noopener noreferrer">Ver</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="ai-card p-3">
+                    <div class="logo-wrap"><img src="https://logo.clearbit.com/heygen.com" alt="HeyGen"></div>
+                    <h5>HeyGen</h5>
+                    <p><span class="ai-pill">HeyGen Â· EE. UU.</span></p>
+                    <a class="btn btn-outline-primary" href="https://www.heygen.com/" target="_blank" rel="noopener noreferrer">Ver</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="ai-card p-3">
+                    <div class="logo-wrap"><img src="https://logo.clearbit.com/google.com" alt="Veo"></div>
+                    <h5>Veo</h5>
+                    <p><span class="ai-pill">Google DeepMind Â· EE. UU./Reino Unido</span></p>
+                    <a class="btn btn-outline-primary" href="https://deepmind.google/technologies/veo/" target="_blank" rel="noopener noreferrer">Ver</a>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title mt-4"><i class="bi bi-joystick"></i> OpenClaw: vÃ­deos, descarga e instalaciÃ³n</h2>
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="video-embed ratio ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/ikXQNV_aw68" title="OpenClaw video" allowfullscreen></iframe>
+                </div>
+                <p class="mt-2 mb-0 small">VÃ­deo de referencia: OpenClaw (Captain Claw reimplementation).</p>
+            </div>
+            <div class="col-lg-4">
+                <div class="card-custom h-100">
+                    <div class="card-header-custom"><i class="bi bi-download"></i> Descarga</div>
+                    <div class="card-body">
+                        <p><a href="https://docs.openclaw.ai/install/index" target="_blank" rel="noopener noreferrer">InstalaciÃ³n OpenClaw (docs)</a></p>
+                        <p><a href="https://github.com/pjasicek/OpenClaw" target="_blank" rel="noopener noreferrer">Repositorio OpenClaw (GitHub)</a></p>
+                        <p><a href="https://www.youtube.com/results?search_query=OpenClaw+tutorial" target="_blank" rel="noopener noreferrer">MÃ¡s vÃ­deos OpenClaw (YouTube)</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-custom mt-4">
+            <div class="card-header-custom"><i class="bi bi-terminal"></i> Tutorial rÃ¡pido de instalaciÃ³n OpenClaw</div>
+            <div class="card-body">
+                <p>InstalaciÃ³n orientada a CLI (segÃºn documentaciÃ³n pÃºblica):</p>
+                <div class="code-block"># 1) Instalar (macOS/Linux/WSL2)
+curl -fsSL https://openclaw.ai/install.sh | bash
+
+# En Windows PowerShell (alternativa)
+iwr -useb https://openclaw.ai/install.ps1 | iex
+
+# 2) Asistente de configuraciÃ³n
+openclaw onboard --install-daemon
+
+# 3) Comprobar estado del gateway
+openclaw gateway status
+
+# 4) Abrir panel local
+openclaw dashboard</div>
+                <p class="mb-0">Tip: en Windows normalmente se recomienda WSL2 para una instalaciÃ³n mÃ¡s estable.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <p class="mb-0">Made by Jemarin Source-IT</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/site-sfx.js"></script>
+    <script src="assets/js/site-theme.js"></script>
+</body>
+</html>
+
+
