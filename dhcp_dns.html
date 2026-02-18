@@ -11,32 +11,6 @@
 </head>
 <body>
     <!-- Navbar Neón -->
-    <nav class="navbar-neon navbar navbar-expand-lg sticky-top">
-        <div class="container">
-            <a class="neon-text" href="index.html" target="_blank" rel="noopener noreferrer"><i class="bi bi-house-door"></i> SOURCE-IT</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border-color: #00ff88;">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">                    <li class="nav-item"><a class="nav-link-neon" href="guia_redes.html" target="_blank" rel="noopener noreferrer">Redes</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="linux_cheatsheet.html" target="_blank" rel="noopener noreferrer">Linux</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="virtualbox.html" target="_blank" rel="noopener noreferrer">VirtualBox</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="conversor_binario_hexadecimal.html" target="_blank" rel="noopener noreferrer">Conversor</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="MySQL.html" target="_blank" rel="noopener noreferrer">MySQL</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="dhcp_dns.html" target="_blank" rel="noopener noreferrer">DHCP/DNS</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="lenguajes_de_marcas.html" target="_blank" rel="noopener noreferrer">Lenguajes</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="Css_basico.html" target="_blank" rel="noopener noreferrer">CSS Básico</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="Js_basico.html" target="_blank" rel="noopener noreferrer">JavaScript</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="freeplane.html" target="_blank" rel="noopener noreferrer">Freeplane</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="hacking_etico.html" target="_blank" rel="noopener noreferrer">Hacking Ético</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="ia_lanzadera.html" target="_blank" rel="noopener noreferrer">IA</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="git_github.html" target="_blank" rel="noopener noreferrer">Git/GitHub</a></li>
-                    <li class="nav-item ms-3"><button id="themeToggle" class="theme-btn btn" title="Cambiar tema"><i class="bi bi-palette-fill"></i></button></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
     <!-- Hero Section -->
     <div class="hero text-center mb-5" style="background: linear-gradient(135deg, #0a4d68, #088395); color: white; padding: 4rem 2rem; border-radius: 0 0 20px 20px;">
         <h1 class="display-4 fw-bold"><i class="bi bi-router"></i> DHCP y DNS en VirtualBox</h1>
@@ -45,7 +19,7 @@
 
     <div class="container py-5">
         <div class="note">
-            <strong>📌 Objetivo:</strong> Aprender a desplegar un servidor DHCP y DNS en una máquina virtual Debian, que asigne direcciones IP automáticas a clientes Windows y Linux en una red interna de VirtualBox. Se incluyen reservas de IP, opciones de gateway y DNS, y verificación de logs y concesiones.
+            <strong>🎯 Objetivo:</strong> Aprender a desplegar un servidor DHCP y DNS en una máquina virtual Debian, que asigne direcciones IP automáticas a clientes Windows y Linux en una red interna de VirtualBox. Se incluyen reservas de IP, opciones de gateway y DNS, y verificación de logs y concesiones.
         </div>
 
     <h2>1. Escenario de red</h2>
@@ -60,12 +34,12 @@
     <p><strong>Red:</strong> 192.168.25.0/24, gateway: 192.168.25.1 (no existe físicamente, se usará como referencia).</p>
 
     <div class="diagram">
-        <div>🌍 <span>Debian Server</span> 192.168.25.100</div>
-        <div class="arrow">⬇️⬇️⬇️</div>
+        <div>🖥️ <span>Debian Server</span> 192.168.25.100</div>
+        <div class="arrow">↔️</div>
         <div>🪟 <span>Windows</span> 192.168.25.28 (fija por reserva)</div>
         <div>🐧 <span>Linux Mint</span> 192.168.25.104 (automática)</div>
         <div>💻 <span>PC5</span> 192.168.25.10x (automática)</div>
-        <div style="margin-top:15px;">🔌 <strong>Red interna VirtualBox:</strong> "red25" o similar</div>
+        <div style="margin-top:15px;">🌐 <strong>Red interna VirtualBox:</strong> "red25" o similar</div>
     </div>
 
     <h2>2. Requisitos previos</h2>
@@ -208,10 +182,7 @@ ipconfig /all</code></pre>
     <p>Hemos montado un escenario completo con servidor DHCP en Debian y clientes heterogéneos. Este conocimiento es base para administrar redes en entornos reales, donde la automatización de direccionamiento IP y la resolución de nombres son fundamentales. La práctica también introduce la reserva de IP por MAC, opciones de gateway y DNS, y la monitorización mediante logs.</p>
     <p>Como mejora, se puede integrar el servidor DNS para que los clientes resuelvan nombres locales, y así tener un dominio interno funcional.</p>
 
-    <footer class="bg-dark text-white text-center py-4 mt-5">
-        <p>Created by Jemarin Birt LH ASIR 2025 ^^</p>
-    </footer>
-</div>
+    </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>    <script>
     </script>
     <script src="assets/js/site-sfx.js"></script>

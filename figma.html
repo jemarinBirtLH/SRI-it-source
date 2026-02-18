@@ -1,0 +1,304 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figma - Guía Completa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <style>
+        .figma-hero {
+            background: linear-gradient(135deg, #2b1b53 0%, #0a4d68 60%, #088395 100%);
+            color: #fff;
+            border-radius: 0 0 22px 22px;
+            padding: 4.25rem 1.5rem;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+        }
+        .figma-hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 0.04em;
+            font-weight: 900;
+            margin-bottom: 0.8rem;
+        }
+        .figma-hero p {
+            max-width: 920px;
+            color: #deebff;
+            font-size: 1.08rem;
+        }
+        .figma-kicker {
+            display: inline-block;
+            margin-bottom: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            border-radius: 999px;
+            padding: 0.28rem 0.7rem;
+            font-size: 0.82rem;
+            color: #f8fafc;
+            background: rgba(255, 255, 255, 0.12);
+        }
+        .figma-section-title {
+            margin: 2.5rem 0 1rem;
+        }
+        .figma-panel {
+            border: 1px solid #dbe4ee;
+            border-radius: 1rem;
+            padding: 1.3rem;
+            background: #fff;
+            box-shadow: 0 10px 20px rgba(5, 18, 32, 0.06);
+        }
+        .figma-course-box {
+            background: linear-gradient(160deg, #ffffff 0%, #eef4ff 100%);
+        }
+        .figma-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+            margin: 0.9rem 0 1.1rem;
+        }
+        .figma-meta span {
+            background: #e2ecff;
+            color: #123361;
+            font-weight: 700;
+            border-radius: 999px;
+            padding: 0.25rem 0.6rem;
+            font-size: 0.82rem;
+        }
+        .figma-btn {
+            display: inline-block;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 0.65rem 1.1rem;
+            border-radius: 999px;
+            background: #f97316;
+            color: #fff;
+            border: 1px solid #f97316;
+            transition: all .2s ease;
+        }
+        .figma-btn:hover {
+            transform: translateY(-1px);
+            background: #ea580c;
+            border-color: #ea580c;
+            color: #fff;
+        }
+        .figma-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        }
+        .figma-card {
+            border: 1px solid #dce5f2;
+            border-radius: 1rem;
+            padding: 1rem;
+            background: #fff;
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .figma-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 24px -14px rgba(0, 20, 60, .5);
+        }
+        .figma-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.55rem;
+            color: #10243f;
+        }
+        .figma-card p {
+            margin-bottom: 0.7rem;
+            color: #334155;
+            font-size: 0.94rem;
+        }
+        .figma-list {
+            margin: 0;
+            padding-left: 1.1rem;
+        }
+        .figma-list li {
+            margin-bottom: 0.35rem;
+            color: #253244;
+        }
+        .figma-list a {
+            color: #0b5ed7;
+            text-decoration: none;
+        }
+        .figma-list a:hover {
+            text-decoration: underline;
+        }
+        .figma-time {
+            color: #0b5ed7;
+            background: #eaf2ff;
+            border-radius: 999px;
+            padding: 0.08rem 0.45rem;
+            margin-left: 0.2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+        }
+        .figma-table-wrap {
+            overflow-x: auto;
+        }
+        .figma-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+        }
+        .figma-table th, .figma-table td {
+            text-align: left;
+            padding: 0.75rem 0.8rem;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.93rem;
+        }
+        .figma-table th {
+            color: #0f172a;
+            background: #f8fafc;
+        }
+        .figma-table kbd {
+            background: #1e293b;
+            color: #fff;
+            padding: 0.16rem 0.45rem;
+            border-radius: 0.35rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            border: 1px solid #0f172a;
+        }
+        .figma-platform a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 0.45rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: #0a4d68;
+        }
+        .figma-platform a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <section class="figma-hero">
+        <div class="container">
+            <span class="figma-kicker">Diseno de interfaces · Prototipado · Hand-off</span>
+            <h1><i class="bi bi-palette2"></i> Figma desde cero hasta flujo profesional</h1>
+            <p>Esta guia resume un recorrido completo para que puedas pasar de abrir Figma por primera vez a construir interfaces reutilizables con componentes, variables y auto layout. Tambien incluye trabajo colaborativo con comentarios, modo desarrollador y recursos para seguir practicando.</p>
+        </div>
+    </section>
+
+    <main class="container py-4">
+        <section class="figma-panel figma-course-box">
+            <h2 class="h3 mb-2"><i class="bi bi-play-circle"></i> Curso recomendado y ruta de estudio</h2>
+            <p class="mb-0">Si estudias por bloques cortos, avanza por la ruta en este orden: interfaz, herramientas basicas, auto layout, sistemas de diseno, componentes y entrega a desarrollo. Cada tema se conecta con el siguiente, por eso conviene practicar mini ejercicios entre capitulos.</p>
+            <div class="figma-meta">
+                <span>Video: 2h aprox</span>
+                <span>Formato: teoria + practica</span>
+                <span>Nivel: inicial a intermedio</span>
+            </div>
+            <a class="figma-btn" href="https://www.youtube.com/watch?v=VdS9ZGHHXWQ&t=120s">Ver curso completo en YouTube</a>
+        </section>
+
+        <h2 class="section-title figma-section-title"><i class="bi bi-journal-richtext"></i> Temario por bloques con enlaces directos</h2>
+        <section class="figma-grid">
+            <article class="figma-card">
+                <h3>Introduccion y setup</h3>
+                <p>Comprende que es Figma, que plan elegir segun tu objetivo y como organizar archivos y paginas desde el inicio.</p>
+                <ul class="figma-list">
+                    <li><a href="https://www.youtube.com/watch?v=VdS9ZGHHXWQ&t=0s">Que es Figma</a><span class="figma-time">0:00</span></li>
+                    <li><a href="https://www.youtube.com/watch?v=VdS9ZGHHXWQ&t=120s">Planes y precios</a><span class="figma-time">2:00</span></li>
+                    <li><a href="https://www.youtube.com/watch?v=VdS9ZGHHXWQ&t=270s">Figma para desarrollo</a><span class="figma-time">4:30</span></li>
+                </ul>
+            </article>
+            <article class="figma-card">
+                <h3>Interfaz y herramientas</h3>
+                <p>Domina paneles, capas, frames, formas, pluma y escala. Este bloque define tu velocidad real dentro de la herramienta.</p>
+                <ul class="figma-list">
+                    <li><a href="https://www.youtube.com/watch?v=VdS9ZGHHXWQ&t=533s">Paneles y atajos base</a><span class="figma-time">8:53</span></li>
+                    <li><a href="https://www.youtube.com/watch?v=VdS9ZGHHXWQ&t=855s">Frame, Section y Slice</a><span class="figma-time">14:15</span></li>
+                    <li><a href="https://www.youtube.com/watch?v=VdS9ZGHHXWQ&t=1272s">Vector, Pen y Pencil</a><span class="figma-time">21:12</span></li>
+                </ul>
+            </article>
+            <article class="figma-card">
+                <h3>Auto layout y estructura responsive</h3>
+                <p>Aprende a construir interfaces flexibles que no se rompan al cambiar textos, iconos o tamano de pantalla.</p>
+                <ul class="figma-list">
+                    <li><a href="https://www.youtube.com/watch?v=VdS9ZGHHXWQ&t=1722s">Alineacion y distribucion</a><span class="figma-time">28:42</span></li>
+                    <li><a href="https://www.youtube.com/watch?v=VdS9ZGHHXWQ&t=1965s">Auto layout inicial</a><span class="figma-time">32:45</span></li>
+                    <li><a href="https://www.youtube.com/watch?v=VdS9ZGHHXWQ&t=2040s">Auto layout aplicado</a><span class="figma-time">34:00</span></li>
+                </ul>
+            </article>
+            <article class="figma-card">
+                <h3>Sistema de diseno y componentes</h3>
+                <p>Da el salto a trabajo escalable con variables, estilos, componentes, variantes y reglas de nomenclatura.</p>
+                <ul class="figma-list">
+                    <li><a href="https://www.youtube.com/watch?v=VdS9ZGHHXWQ&t=4360s">Variables y estilos</a><span class="figma-time">1:12:40</span></li>
+                    <li><a href="https://www.youtube.com/watch?v=VdS9ZGHHXWQ&t=4969s">Color, sombras y grids</a><span class="figma-time">1:22:49</span></li>
+                    <li><a href="https://www.youtube.com/watch?v=VdS9ZGHHXWQ&t=5680s">Componentes y variantes</a><span class="figma-time">1:34:40</span></li>
+                </ul>
+            </article>
+        </section>
+
+        <h2 class="section-title figma-section-title"><i class="bi bi-keyboard"></i> Atajos esenciales de productividad</h2>
+        <section class="figma-panel figma-table-wrap">
+            <table class="figma-table">
+                <thead>
+                    <tr><th>Accion</th><th>Windows/Linux</th><th>Mac</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Mover</td><td><kbd>V</kbd></td><td><kbd>V</kbd></td></tr>
+                    <tr><td>Frame</td><td><kbd>F</kbd></td><td><kbd>F</kbd></td></tr>
+                    <tr><td>Texto</td><td><kbd>T</kbd></td><td><kbd>T</kbd></td></tr>
+                    <tr><td>Agrupar</td><td><kbd>Ctrl</kbd> + <kbd>G</kbd></td><td><kbd>Cmd</kbd> + <kbd>G</kbd></td></tr>
+                    <tr><td>Auto Layout</td><td><kbd>Shift</kbd> + <kbd>A</kbd></td><td><kbd>Shift</kbd> + <kbd>A</kbd></td></tr>
+                    <tr><td>Crear componente</td><td><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>K</kbd></td><td><kbd>Cmd</kbd> + <kbd>Opt</kbd> + <kbd>K</kbd></td></tr>
+                    <tr><td>Quick actions</td><td><kbd>Ctrl</kbd> + <kbd>/</kbd></td><td><kbd>Cmd</kbd> + <kbd>/</kbd></td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <h2 class="section-title figma-section-title"><i class="bi bi-compass"></i> Plataformas similares y complementarias</h2>
+        <section class="figma-grid">
+            <article class="figma-card figma-platform">
+                <h3>Figma</h3>
+                <p>Ecosistema completo para diseno UI, prototipado y hand-off. Muy fuerte en colaboracion en tiempo real y comunidad.</p>
+                <a href="https://www.figma.com/"><i class="bi bi-box-arrow-up-right"></i> Sitio oficial</a>
+            </article>
+            <article class="figma-card figma-platform">
+                <h3>Penpot</h3>
+                <p>Alternativa open source para equipos que priorizan software libre y control de infraestructura.</p>
+                <a href="https://penpot.app/"><i class="bi bi-box-arrow-up-right"></i> Ir a Penpot</a>
+            </article>
+            <article class="figma-card figma-platform">
+                <h3>Sketch</h3>
+                <p>Herramienta consolidada en entorno Mac, utilizada en muchos flujos historicos de producto digital.</p>
+                <a href="https://www.sketch.com/"><i class="bi bi-box-arrow-up-right"></i> Ir a Sketch</a>
+            </article>
+            <article class="figma-card figma-platform">
+                <h3>Adobe XD</h3>
+                <p>Opcion de Adobe para diseno de interfaces y prototipos, integrada en ecosistema Creative Cloud.</p>
+                <a href="https://www.adobe.com/products/xd.html"><i class="bi bi-box-arrow-up-right"></i> Ver Adobe XD</a>
+            </article>
+            <article class="figma-card figma-platform">
+                <h3>Framer</h3>
+                <p>Combina diseno y publicacion web con foco en sitios interactivos y prototipos con movimiento.</p>
+                <a href="https://www.framer.com/"><i class="bi bi-box-arrow-up-right"></i> Ir a Framer</a>
+            </article>
+            <article class="figma-card figma-platform">
+                <h3>Lunacy</h3>
+                <p>Editor UI con enfoque en rendimiento local, util para trabajo offline y bibliotecas de recursos incluidas.</p>
+                <a href="https://icons8.com/lunacy"><i class="bi bi-box-arrow-up-right"></i> Ir a Lunacy</a>
+            </article>
+        </section>
+
+        <h2 class="section-title figma-section-title"><i class="bi bi-link-45deg"></i> Recursos oficiales y comunidad</h2>
+        <section class="figma-panel">
+            <p>Para seguir mejorando, combina documentacion oficial, comunidad y practica guiada. La combinacion que mejor funciona es: replicar una interfaz real, convertirla en componentes y despues pasarla a HTML/CSS.</p>
+            <ul class="figma-list mb-0">
+                <li><a href="https://www.figma.com/community">Figma Community (archivos, UI kits, plugins)</a></li>
+                <li><a href="https://help.figma.com/">Centro de ayuda de Figma</a></li>
+                <li><a href="https://www.figma.com/blog/">Blog oficial de novedades</a></li>
+                <li><a href="https://www.figma.com/plugin-docs/">Documentacion de plugins</a></li>
+                <li><a href="https://www.youtube.com/results?search_query=figma+tutorial+espanol">Tutoriales adicionales en YouTube</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/site-theme.js"></script>
+</body>
+</html>

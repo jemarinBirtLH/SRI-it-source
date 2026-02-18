@@ -14,32 +14,6 @@
 </head>
 <body>
     <!-- Navbar Neón -->
-    <nav class="navbar-neon navbar navbar-expand-lg sticky-top">
-        <div class="container">
-            <a class="neon-text" href="index.html" target="_blank" rel="noopener noreferrer"><i class="bi bi-house-door"></i> SOURCE-IT</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border-color: #00ff88;">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">                    <li class="nav-item"><a class="nav-link-neon" href="guia_redes.html" target="_blank" rel="noopener noreferrer">Redes</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="linux_cheatsheet.html" target="_blank" rel="noopener noreferrer">Linux</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="virtualbox.html" target="_blank" rel="noopener noreferrer">VirtualBox</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="conversor_binario_hexadecimal.html" target="_blank" rel="noopener noreferrer">Conversor</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="MySQL.html" target="_blank" rel="noopener noreferrer">MySQL</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="dhcp_dns.html" target="_blank" rel="noopener noreferrer">DHCP/DNS</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="lenguajes_de_marcas.html" target="_blank" rel="noopener noreferrer">Lenguajes</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="Css_basico.html" target="_blank" rel="noopener noreferrer">CSS Básico</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="Js_basico.html" target="_blank" rel="noopener noreferrer">JavaScript</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="freeplane.html" target="_blank" rel="noopener noreferrer">Freeplane</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="hacking_etico.html" target="_blank" rel="noopener noreferrer">Hacking Ético</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="ia_lanzadera.html" target="_blank" rel="noopener noreferrer">IA</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="git_github.html" target="_blank" rel="noopener noreferrer">Git/GitHub</a></li>
-                    <li class="nav-item ms-3"><button id="themeToggle" class="theme-btn btn" title="Cambiar tema"><i class="bi bi-palette-fill"></i></button></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
     <div class="hero text-center">
         <h1 class="display-4 fw-bold"><i class="bi bi-hdd-stack"></i> VirtualBox con Debian 13 (Trixie)</h1>
         <p class="lead">Aprende a crear y configurar máquinas virtuales paso a paso.</p>
@@ -55,7 +29,7 @@
         <h2 class="section-title"><i class="bi bi-download"></i> 1. Instalación de VirtualBox</h2>
         <div class="step-card">
             <h4><span class="badge bg-primary me-2">1</span> Descargar e instalar</h4>
-            <p>Descarga desde <a href="https://www.virtualbox.org/" target="_blank">virtualbox.org</a> el paquete para tu sistema operativo (Windows, Linux, macOS).</p>
+            <p>Descarga desde <a href="https://www.virtualbox.org/">virtualbox.org</a> el paquete para tu sistema operativo (Windows, Linux, macOS).</p>
             <p>En Linux (Debian/Ubuntu):</p>
             <div class="code-block">
 # Añadir repositorio de VirtualBox
@@ -81,7 +55,7 @@ sudo VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-7.0.18.vbox-
                 <li><strong>Tipo:</strong> Linux</li>
                 <li><strong>Versión:</strong> Debian (64-bit)</li>
                 <li><strong>Memoria RAM:</strong> 2048 MB (mínimo 1024)</li>
-                <li><strong>Disco duro:</strong> Crear disco virtual ahora → VDI → Tamaño 20 GB (dinámico)</li>
+                <li><strong>Disco duro:</strong> Crear disco virtual ahora ? VDI ? Tamaño 20 GB (dinámico)</li>
             </ul>
         </div>
 
@@ -89,8 +63,8 @@ sudo VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-7.0.18.vbox-
         <h2 class="section-title"><i class="bi bi-cd"></i> 3. Instalación de Debian 13</h2>
         <div class="step-card">
             <h4><span class="badge bg-primary me-2">3</span> Insertar ISO y arrancar</h4>
-            <p>Descarga la ISO de Debian 13 desde <a href="https://cdimage.debian.org/cdimage/trixie_di_alpha/" target="_blank">cdimage.debian.org</a> (versión alpha).</p>
-            <p>En la VM, ve a <strong>Configuración → Almacenamiento</strong>, añade la ISO como controlador IDE.</p>
+            <p>Descarga la ISO de Debian 13 desde <a href="https://cdimage.debian.org/cdimage/trixie_di_alpha/">cdimage.debian.org</a> (versión alpha).</p>
+            <p>En la VM, ve a <strong>Configuración ? Almacenamiento</strong>, añade la ISO como controlador IDE.</p>
             <p>Arranca la VM y sigue el instalador (modo texto o gráfico).</p>
             <h5 class="mt-3">Particionado recomendado:</h5>
             <ul>
@@ -112,58 +86,58 @@ sudo VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-7.0.18.vbox-
                     <thead>
                         <tr>
                             <th>Modo</th>
-                            <th>MV → Anfitrión</th>
-                            <th>Anfitrión → MV</th>
-                            <th>MV ↔ MV</th>
-                            <th>MV → Exterior</th>
-                            <th>Exterior → MV</th>
+                            <th>MV ? Anfitrión</th>
+                            <th>Anfitrión ? MV</th>
+                            <th>MV ? MV</th>
+                            <th>MV ? Exterior</th>
+                            <th>Exterior ? MV</th>
                             <th>Uso típico</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><strong>NAT</strong></td>
-                            <td>✅ Sí</td>
-                            <td>❌ No (por defecto)</td>
-                            <td>❌ No</td>
-                            <td>✅ Sí</td>
-                            <td>❌ No</td>
+                            <td>? Sí</td>
+                            <td>? No (por defecto)</td>
+                            <td>? No</td>
+                            <td>? Sí</td>
+                            <td>? No</td>
                             <td>Por defecto. Solo salida a Internet.</td>
                         </tr>
                         <tr>
                             <td><strong>Red NAT</strong></td>
-                            <td>✅ Sí</td>
-                            <td>❌ No (por defecto)</td>
-                            <td>✅ Sí</td>
-                            <td>✅ Sí</td>
-                            <td>❌ No</td>
+                            <td>? Sí</td>
+                            <td>? No (por defecto)</td>
+                            <td>? Sí</td>
+                            <td>? Sí</td>
+                            <td>? No</td>
                             <td>Varias MVs comparten red y salida a Internet.</td>
                         </tr>
                         <tr>
                             <td><strong>Adaptador puente</strong></td>
-                            <td>✅ Sí</td>
-                            <td>✅ Sí</td>
-                            <td>✅ Sí</td>
-                            <td>✅ Sí</td>
-                            <td>✅ Sí</td>
+                            <td>? Sí</td>
+                            <td>? Sí</td>
+                            <td>? Sí</td>
+                            <td>? Sí</td>
+                            <td>? Sí</td>
                             <td>La MV es un equipo más en la LAN.</td>
                         </tr>
                         <tr>
                             <td><strong>Solo anfitrión</strong></td>
-                            <td>✅ Sí</td>
-                            <td>✅ Sí</td>
-                            <td>✅ Sí</td>
-                            <td>❌ No</td>
-                            <td>❌ No</td>
+                            <td>? Sí</td>
+                            <td>? Sí</td>
+                            <td>? Sí</td>
+                            <td>? No</td>
+                            <td>? No</td>
                             <td>Red privada solo con el anfitrión.</td>
                         </tr>
                         <tr>
                             <td><strong>Red interna</strong></td>
-                            <td>❌ No</td>
-                            <td>❌ No</td>
-                            <td>✅ Sí</td>
-                            <td>❌ No</td>
-                            <td>❌ No</td>
+                            <td>? No</td>
+                            <td>? No</td>
+                            <td>? Sí</td>
+                            <td>? No</td>
+                            <td>? No</td>
                             <td>Aislamiento total entre MVs.</td>
                         </tr>
                     </tbody>
@@ -177,7 +151,7 @@ sudo VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-7.0.18.vbox-
                         <div class="card-body">
                             <h5><i class="bi bi-globe text-primary"></i> NAT (Predeterminado)</h5>
                             <p>La MV comparte la IP del anfitrión para salir a Internet. No es accesible desde la red local. Útil para navegación y actualizaciones.</p>
-                            <p><strong>Redirección de puertos:</strong> Para acceder a servicios de la MV (SSH, web) desde el anfitrión, configura reenvío de puertos en <em>Red → Avanzadas → Reenvío de puertos</em>.</p>
+                            <p><strong>Redirección de puertos:</strong> Para acceder a servicios de la MV (SSH, web) desde el anfitrión, configura reenvío de puertos en <em>Red ? Avanzadas ? Reenvío de puertos</em>.</p>
                         </div>
                     </div>
                 </div>
@@ -185,7 +159,7 @@ sudo VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-7.0.18.vbox-
                     <div class="card mb-3">
                         <div class="card-body">
                             <h5><i class="bi bi-shuffle text-primary"></i> Red NAT</h5>
-                            <p>Crea una red privada entre MVs que también tiene salida a Internet mediante NAT. Configurable en <em>Archivo → Preferencias → Red → Redes NAT</em>. Ideal para laboratorios con varias MVs.</p>
+                            <p>Crea una red privada entre MVs que también tiene salida a Internet mediante NAT. Configurable en <em>Archivo ? Preferencias ? Red ? Redes NAT</em>. Ideal para laboratorios con varias MVs.</p>
                         </div>
                     </div>
                 </div>
@@ -348,10 +322,6 @@ Address=192.168.100.2/24
             <p>Opciones: <code>--mode all</code> (clona discos), <code>--mode machine</code> (solo configuración).</p>
         </div>
     </div>
-
-    <footer>
-        <p>Created by Jemarin Birt LH ASIR 2025 ^^</p>
-    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>

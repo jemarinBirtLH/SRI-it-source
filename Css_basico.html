@@ -8,38 +8,131 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="assets/css/site.css">
+    <style>
+        .alfab-zone {
+            margin-top: 3rem;
+            padding: 2rem 1.2rem;
+            border-radius: 1.25rem;
+            background: linear-gradient(180deg, #f8fafc 0%, #eef3fb 100%);
+            border: 1px solid #dce6f7;
+        }
+        .alfab-title {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.5rem, 2vw, 2.4rem);
+            letter-spacing: 0.04em;
+            color: #0f172a;
+            margin-bottom: 0.75rem;
+            text-transform: none;
+        }
+        .alfab-subtitle {
+            color: #334155;
+            max-width: 860px;
+            margin-bottom: 1.3rem;
+        }
+        .alfab-section-title {
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.45rem;
+            border-bottom: 3px solid #f97316;
+            font-size: 1.2rem;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: none;
+            letter-spacing: 0.03em;
+        }
+        .alfab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+            gap: 1rem;
+        }
+        .alfab-card {
+            background: #fff;
+            border: 1px solid #dbe4ee;
+            border-radius: 1rem;
+            padding: 1rem;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+        .alfab-card:hover {
+            transform: translateY(-4px);
+            border-color: #94a3b8;
+            box-shadow: 0 16px 22px -12px rgba(15, 23, 42, 0.24);
+        }
+        .alfab-head {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            margin-bottom: 0.5rem;
+        }
+        .alfab-emoji {
+            width: 2.45rem;
+            height: 2.45rem;
+            border-radius: 0.7rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #f1f5f9;
+            font-size: 1.25rem;
+        }
+        .alfab-card h4 {
+            margin: 0;
+            color: #0f172a;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: 700;
+        }
+        .alfab-card p {
+            margin: 0.35rem 0 0;
+            color: #334155;
+            font-size: 0.95rem;
+        }
+        .alfab-code {
+            margin-top: 0.65rem;
+            background: #f8fafc;
+            border-left: 3px solid #f97316;
+            border-radius: 0.6rem;
+            padding: 0.55rem 0.7rem;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            color: #0f172a;
+        }
+        .alfab-interactive {
+            margin-top: 1.2rem;
+            background: #e8eef8;
+            border-radius: 0.9rem;
+            padding: 1rem;
+            border: 1px solid #ccd8ef;
+        }
+        .alfab-btn {
+            background: #f97316;
+            color: #fff;
+            border: none;
+            border-radius: 999px;
+            padding: 0.6rem 1.2rem;
+            font-weight: 700;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        .alfab-btn:hover {
+            background: #ea580c;
+            transform: scale(1.03);
+        }
+        #alfab-demo-output {
+            margin-top: 0.8rem;
+            padding: 0.75rem;
+            border-radius: 0.55rem;
+            background: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            border: 1px solid #d6deec;
+        }
+    </style>
 </head>
 <body class="css-course-page">
     <div class="css-lion-intro" aria-hidden="true">
-        <div class="css-lion-char">🦁</div>
+        <div class="css-lion-char">&#129409;</div>
         <div class="css-lion-bubble">arrrrrr CSS rico!</div>
     </div>
-
-    <nav class="navbar-neon navbar navbar-expand-lg sticky-top">
-        <div class="container">
-            <a class="neon-text" href="index.html" target="_blank" rel="noopener noreferrer"><i class="bi bi-house-door"></i> SOURCE-IT</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border-color: #00ff88;">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">                    <li class="nav-item"><a class="nav-link-neon" href="guia_redes.html" target="_blank" rel="noopener noreferrer">Redes</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="linux_cheatsheet.html" target="_blank" rel="noopener noreferrer">Linux</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="virtualbox.html" target="_blank" rel="noopener noreferrer">VirtualBox</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="conversor_binario_hexadecimal.html" target="_blank" rel="noopener noreferrer">Conversor</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="MySQL.html" target="_blank" rel="noopener noreferrer">MySQL</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="dhcp_dns.html" target="_blank" rel="noopener noreferrer">DHCP/DNS</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="lenguajes_de_marcas.html" target="_blank" rel="noopener noreferrer">Lenguajes</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="Css_basico.html" target="_blank" rel="noopener noreferrer">CSS Básico</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="Js_basico.html" target="_blank" rel="noopener noreferrer">JavaScript</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="freeplane.html" target="_blank" rel="noopener noreferrer">Freeplane</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="hacking_etico.html" target="_blank" rel="noopener noreferrer">Hacking Ético</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="ia_lanzadera.html" target="_blank" rel="noopener noreferrer">IA</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="git_github.html" target="_blank" rel="noopener noreferrer">Git/GitHub</a></li>
-                    <li class="nav-item ms-3"><button id="themeToggle" class="theme-btn btn" title="Cambiar tema"><i class="bi bi-palette-fill"></i></button></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
     <div class="hero text-center">
         <h1 class="display-5 fw-bold"><i class="bi bi-filetype-css"></i> CSS Básico</h1>
@@ -451,11 +544,58 @@ input:invalid { border-color: #ff6b35; }</div>
 +- Buen contraste y accesibilidad</div>
             </div>
         </div>
-    </div>
 
-    <footer>
-        <p>Created by Jemarin Birt LH ASIR 2025 ^^</p>
-    </footer>
+        <section class="alfab-zone" aria-labelledby="alfab-title">
+            <h2 class="alfab-title" id="alfab-title">Alfabetización en diseño y frontend</h2>
+            <p class="alfab-subtitle">Glosario visual ampliado con conceptos de UI, UX, HTML, CSS y JavaScript. Basado en tu contenido para reforzar la parte práctica de la unidad.</p>
+
+            <h3 class="alfab-section-title">1) Fundamentos de diseño</h3>
+            <div class="alfab-grid">
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">💡</span><h4>UI</h4></div><p>La parte visual: botones, colores, tipografías, iconos y componentes.</p></article>
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>UX</h4></div><p>Experiencia real de uso: claridad, velocidad, satisfacción y accesibilidad.</p></article>
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Wireframe</h4></div><p>Esqueleto sin estilos para planificar estructura y jerarquía.</p></article>
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Mockup</h4></div><p>Diseño visual de alta fidelidad con colores, tipografías e imágenes.</p></article>
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Prototipo</h4></div><p>Versión clickeable para simular comportamiento real antes de desarrollo.</p></article>
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Layout</h4></div><p>Distribución de bloques usando Grid y Flexbox.</p><pre class="alfab-code">display: flex; justify-content: space-between;</pre></article>
+            </div>
+
+            <h3 class="alfab-section-title">2) Elementos visuales</h3>
+            <div class="alfab-grid">
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Margin</h4></div><p>Espacio exterior entre elementos.</p><pre class="alfab-code">margin: 20px;</pre></article>
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Padding</h4></div><p>Espacio interior entre contenido y borde.</p><pre class="alfab-code">padding: 15px;</pre></article>
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Border</h4></div><p>Contorno del elemento con estilo y color.</p><pre class="alfab-code">border: 1px solid #28ADD2;</pre></article>
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Box-shadow</h4></div><p>Profundidad y relieve para separar niveles visuales.</p><pre class="alfab-code">box-shadow: 0 4px 6px rgba(0,0,0,0.1);</pre></article>
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Gradient</h4></div><p>Transición suave entre dos o más colores.</p><pre class="alfab-code">background: linear-gradient(red, blue);</pre></article>
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">💡</span><h4>Opacity</h4></div><p>Nivel de transparencia de un elemento.</p><pre class="alfab-code">opacity: 0.5;</pre></article>
+            </div>
+
+            <h3 class="alfab-section-title">3) Tipografía y color</h3>
+            <div class="alfab-grid">
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>font-family</h4></div><p>Define la familia tipográfica principal y de respaldo.</p><pre class="alfab-code">font-family: 'Roboto', sans-serif;</pre></article>
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>font-size</h4></div><p>Controla tamaño del texto según jerarquía.</p><pre class="alfab-code">font-size: 16px;</pre></article>
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>font-weight</h4></div><p>Regula grosor del texto (400, 600, 700, etc.).</p><pre class="alfab-code">font-weight: 700;</pre></article>
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>line-height</h4></div><p>Da aire al texto y mejora legibilidad.</p><pre class="alfab-code">line-height: 1.5;</pre></article>
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>HEX / RGB / HSL</h4></div><p>Tres formatos de color comunes en CSS.</p><pre class="alfab-code">#FF0000 | rgb(255,0,0) | hsl(0,100%,50%)</pre></article>
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">?</span><h4>Contraste</h4></div><p>Diferencia visual clave para accesibilidad.</p></article>
+            </div>
+
+            <h3 class="alfab-section-title">4) HTML + JavaScript + CSS</h3>
+            <div class="alfab-grid">
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">💡</span><h4>Etiqueta HTML</h4></div><p>Unidad base de marcado.</p><pre class="alfab-code">&lt;div&gt;...&lt;/div&gt;</pre></article>
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Atributo</h4></div><p>Información extra como <code>class</code>, <code>id</code>, <code>src</code>.</p><pre class="alfab-code">&lt;img src="foto.jpg" alt="descripción"&gt;</pre></article>
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">💡</span><h4>Evento JS</h4></div><p>Respuesta a acciones del usuario (clic, submit, teclado).</p><pre class="alfab-code">elemento.addEventListener("click", funcion);</pre></article>
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>DOM</h4></div><p>Representación del documento para manipulación dinámica.</p><pre class="alfab-code">document.getElementById("id").textContent = "nuevo texto";</pre></article>
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Selector CSS</h4></div><p>Define el objetivo al que se aplica una regla.</p><pre class="alfab-code">.clase {} #id {} div {}</pre></article>
+                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Animación</h4></div><p>Transiciones y keyframes para feedback visual.</p><pre class="alfab-code">transition: all 0.3s;</pre></article>
+            </div>
+
+            <div class="alfab-interactive">
+                <p class="mb-2">Mini demo: clic para modificar texto y estilo con JavaScript.</p>
+                <button class="alfab-btn" id="alfabDemoBtn" type="button">Probar demo</button>
+                <div id="alfab-demo-output">Este texto cambiará con JavaScript.</div>
+            </div>
+        </section>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -469,6 +609,18 @@ input:invalid { border-color: #ff6b35; }</div>
                 if (!isActive) item.classList.add('active');
             });
         });
+
+        const alfabBtn = document.getElementById('alfabDemoBtn');
+        const alfabOutput = document.getElementById('alfab-demo-output');
+        if (alfabBtn && alfabOutput) {
+            alfabBtn.addEventListener('click', () => {
+                alfabOutput.textContent = 'Hecho: acabas de disparar un evento click y cambiar el DOM.';
+                alfabOutput.style.backgroundColor = '#f97316';
+                alfabOutput.style.color = '#ffffff';
+                alfabOutput.style.borderColor = '#ea580c';
+                alfabOutput.style.transition = 'all 0.25s ease';
+            });
+        }
     </script>
     <script src="assets/js/site-sfx.js"></script>
     <script src="assets/js/site-theme.js"></script>

@@ -16,32 +16,6 @@
 </head>
 <body>
     <!-- Navbar Neón -->
-    <nav class="navbar-neon navbar navbar-expand-lg sticky-top">
-        <div class="container">
-            <a class="neon-text" href="index.html" target="_blank" rel="noopener noreferrer"><i class="bi bi-house-door"></i> SOURCE-IT</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border-color: #00ff88;">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">                    <li class="nav-item"><a class="nav-link-neon" href="guia_redes.html" target="_blank" rel="noopener noreferrer">Redes</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="linux_cheatsheet.html" target="_blank" rel="noopener noreferrer">Linux</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="virtualbox.html" target="_blank" rel="noopener noreferrer">VirtualBox</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="conversor_binario_hexadecimal.html" target="_blank" rel="noopener noreferrer">Conversor</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="MySQL.html" target="_blank" rel="noopener noreferrer">MySQL</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="dhcp_dns.html" target="_blank" rel="noopener noreferrer">DHCP/DNS</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="lenguajes_de_marcas.html" target="_blank" rel="noopener noreferrer">Lenguajes</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="Css_basico.html" target="_blank" rel="noopener noreferrer">CSS Básico</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="Js_basico.html" target="_blank" rel="noopener noreferrer">JavaScript</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="freeplane.html" target="_blank" rel="noopener noreferrer">Freeplane</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="hacking_etico.html" target="_blank" rel="noopener noreferrer">Hacking Ético</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="ia_lanzadera.html" target="_blank" rel="noopener noreferrer">IA</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="git_github.html" target="_blank" rel="noopener noreferrer">Git/GitHub</a></li>
-                    <li class="nav-item ms-3"><button id="themeToggle" class="theme-btn btn" title="Cambiar tema"><i class="bi bi-palette-fill"></i></button></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
     <!-- Hero -->
     <div class="hero text-center">
         <h1 class="display-4 fw-bold"><i class="bi bi-diagram-3"></i> Guía Completa de Redes</h1>
@@ -52,7 +26,7 @@
         <!-- Aviso de VirtualBox -->
         <div class="alert alert-info d-flex align-items-center" role="alert">
             <i class="bi bi-info-circle-fill me-2 fs-4"></i>
-            <div>¿Quieres practicar en máquinas virtuales? Visita nuestra sección de <a href="virtualbox.html" class="alert-link" target="_blank" rel="noopener noreferrer">VirtualBox con Debian 13</a>.</div>
+            <div>¿Quieres practicar en máquinas virtuales? Visita nuestra sección de <a href="virtualbox.html" class="alert-link">VirtualBox con Debian 13</a>.</div>
         </div>
 
         <!-- PARTE I: SUBNETTING -->
@@ -85,7 +59,7 @@
             <div class="card-body p-4">
                 <p>Una dirección IPv4 está compuesta por 4 octetos (32 bits). La máscara de subred determina qué parte identifica la red y qué parte el host.</p>
                 <div class="alert alert-info-custom alert-custom">
-                    <strong>Ejemplo:</strong> <code>192.168.1.10 /24</code> → primeros 24 bits (3 octetos) red, últimos 8 bits host.
+                    <strong>Ejemplo:</strong> <code>192.168.1.10 /24</code> ? primeros 24 bits (3 octetos) red, últimos 8 bits host.
                 </div>
                 <div class="row">
                     <div class="col-md-6">
@@ -162,21 +136,21 @@ Red:      192.168.1.0   = 11000000.10101000.00000001.00000000
                     <div class="col-md-4">
                         <div class="card bg-light p-3">
                             <h5>Administración</h5>
-                            <p>50 hosts → /26 (62 hosts)</p>
+                            <p>50 hosts ? /26 (62 hosts)</p>
                             <code>192.168.1.0/26</code>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card bg-light p-3">
                             <h5>Ventas</h5>
-                            <p>20 hosts → /27 (30 hosts)</p>
+                            <p>20 hosts ? /27 (30 hosts)</p>
                             <code>192.168.1.64/27</code>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card bg-light p-3">
                             <h5>IT</h5>
-                            <p>10 hosts → /28 (14 hosts)</p>
+                            <p>10 hosts ? /28 (14 hosts)</p>
                             <code>192.168.1.96/28</code>
                         </div>
                     </div>
@@ -313,7 +287,7 @@ iface enp0s3 inet dhcp
                     </div>
                 </div>
                 <div class="alert alert-info-custom alert-custom mt-3">
-                    <strong>Tiempos de concesión:</strong> T1 (50%) renovación con mismo servidor; T2 (87.5%) con cualquier servidor; expiración → nuevo DISCOVER.
+                    <strong>Tiempos de concesión:</strong> T1 (50%) renovación con mismo servidor; T2 (87.5%) con cualquier servidor; expiración ? nuevo DISCOVER.
                 </div>
             </div>
         </div>
@@ -327,14 +301,14 @@ iface enp0s3 inet dhcp
                 <table class="table table-bordered">
                     <thead><tr><th>Mensaje</th><th>Dirección</th><th>Función</th></tr></thead>
                     <tbody>
-                        <tr><td>DISCOVER</td><td>Cliente → Broadcast</td><td>Buscar servidores</td></tr>
-                        <tr><td>OFFER</td><td>Servidor → Cliente</td><td>Ofrecer configuración</td></tr>
-                        <tr><td>REQUEST</td><td>Cliente → Broadcast</td><td>Aceptar oferta</td></tr>
-                        <tr><td>ACK</td><td>Servidor → Cliente</td><td>Confirmar</td></tr>
-                        <tr><td>NAK</td><td>Servidor → Cliente</td><td>Rechazar</td></tr>
-                        <tr><td>DECLINE</td><td>Cliente → Servidor</td><td>IP en uso</td></tr>
-                        <tr><td>RELEASE</td><td>Cliente → Servidor</td><td>Liberar IP</td></tr>
-                        <tr><td>INFORM</td><td>Cliente → Servidor</td><td>Parámetros adicionales</td></tr>
+                        <tr><td>DISCOVER</td><td>Cliente ? Broadcast</td><td>Buscar servidores</td></tr>
+                        <tr><td>OFFER</td><td>Servidor ? Cliente</td><td>Ofrecer configuración</td></tr>
+                        <tr><td>REQUEST</td><td>Cliente ? Broadcast</td><td>Aceptar oferta</td></tr>
+                        <tr><td>ACK</td><td>Servidor ? Cliente</td><td>Confirmar</td></tr>
+                        <tr><td>NAK</td><td>Servidor ? Cliente</td><td>Rechazar</td></tr>
+                        <tr><td>DECLINE</td><td>Cliente ? Servidor</td><td>IP en uso</td></tr>
+                        <tr><td>RELEASE</td><td>Cliente ? Servidor</td><td>Liberar IP</td></tr>
+                        <tr><td>INFORM</td><td>Cliente ? Servidor</td><td>Parámetros adicionales</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -431,12 +405,12 @@ sudo tail -f /var/log/syslog
                 <table class="table table-bordered">
                     <thead><tr><th>Tipo</th><th>Descripción</th><th>Ejemplo</th></tr></thead>
                     <tbody>
-                        <tr><td>A</td><td>IPv4</td><td>ejemplo.com → 93.184.216.34</td></tr>
-                        <tr><td>AAAA</td><td>IPv6</td><td>ejemplo.com → 2001:db8::1</td></tr>
-                        <tr><td>CNAME</td><td>Alias</td><td>www → ejemplo.com</td></tr>
-                        <tr><td>MX</td><td>Correo</td><td>@ → mail.ejemplo.com (10)</td></tr>
-                        <tr><td>NS</td><td>Name Server</td><td>@ → ns1.ejemplo.com</td></tr>
-                        <tr><td>PTR</td><td>Inversa</td><td>IP → nombre</td></tr>
+                        <tr><td>A</td><td>IPv4</td><td>ejemplo.com ? 93.184.216.34</td></tr>
+                        <tr><td>AAAA</td><td>IPv6</td><td>ejemplo.com ? 2001:db8::1</td></tr>
+                        <tr><td>CNAME</td><td>Alias</td><td>www ? ejemplo.com</td></tr>
+                        <tr><td>MX</td><td>Correo</td><td>@ ? mail.ejemplo.com (10)</td></tr>
+                        <tr><td>NS</td><td>Name Server</td><td>@ ? ns1.ejemplo.com</td></tr>
+                        <tr><td>PTR</td><td>Inversa</td><td>IP ? nombre</td></tr>
                         <tr><td>TXT</td><td>Texto</td><td>SPF, DKIM</td></tr>
                         <tr><td>SOA</td><td>Start of Authority</td><td>Información de zona</td></tr>
                     </tbody>
@@ -573,10 +547,6 @@ Salto = 256 - último octeto de máscara
             </div>
         </div>
     </div>
-
-    <footer>
-        <p>Created by Jemarin Birt LH ASIR 2025 ^^</p>
-    </footer>
 
     <script>
         class SubnetCalculator {

@@ -356,14 +356,51 @@
             border: 2px solid #00ff88;
             border-radius: 16px;
             box-shadow: 0 0 24px rgba(0, 255, 136, 0.35);
+            position: relative;
+        }
+        .music-player.is-pinned {
+            position: fixed;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            width: min(270px, calc(100vw - 20px));
+            max-height: calc(100vh - 32px);
+            overflow-y: auto;
+            z-index: 1025;
         }
         .music-player h2 {
-            font-size: 1.2rem;
+            font-size: 1rem;
             margin-bottom: 0.3rem;
         }
+        .music-top {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.6rem;
+            margin-bottom: 0.35rem;
+        }
+        .music-top-actions {
+            display: flex;
+            gap: 0.45rem;
+        }
+        .music-top-btn {
+            border: 1px solid #00ccff;
+            background: rgba(0, 204, 255, 0.12);
+            color: #dfffee;
+            border-radius: 999px;
+            padding: 0.24rem 0.58rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+        .music-top-btn.active {
+            border-color: #00ff88;
+            background: rgba(0, 255, 136, 0.2);
+            color: #fff;
+        }
         .music-meta {
-            font-size: 0.95rem;
-            margin-bottom: 0.8rem;
+            font-size: 0.84rem;
+            margin-bottom: 0.55rem;
             color: #b2ffd9;
         }
         .music-controls {
@@ -371,35 +408,53 @@
             flex-wrap: wrap;
             align-items: center;
             gap: 0.6rem;
+            margin-bottom: 0.75rem;
         }
         .music-genre {
             display: flex;
             align-items: center;
             gap: 0.6rem;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.55rem;
         }
         .music-genre select {
             border: 1px solid #00ccff;
             background: rgba(0, 204, 255, 0.12);
             color: #dfffee;
             border-radius: 10px;
-            padding: 0.45rem 0.65rem;
-            min-width: 180px;
+            padding: 0.3rem 0.5rem;
+            min-width: 150px;
+            font-size: 0.82rem;
+        }
+        .music-pill {
+            border: 1px solid #00ccff;
+            background: rgba(0, 204, 255, 0.12);
+            color: #dfffee;
+            border-radius: 999px;
+            padding: 0.35rem 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 700;
         }
         .music-control-btn {
-            min-width: 56px;
-            padding: 8px 12px !important;
+            min-width: 44px;
+            padding: 6px 9px !important;
             margin: 0 !important;
             border-radius: 10px;
             border: 1px solid #00ccff;
             background: rgba(0, 204, 255, 0.12);
             color: #c6f7ff;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
+            font-size: 0.84rem;
         }
         .music-control-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 0 14px rgba(0, 204, 255, 0.55);
             color: #fff;
+        }
+        .music-control-btn.active {
+            background: rgba(0, 255, 136, 0.28);
+            border-color: #00ff88;
+            color: #fff;
+            box-shadow: 0 0 14px rgba(0, 255, 136, 0.55);
         }
         .music-volume {
             display: flex;
@@ -408,8 +463,33 @@
             margin-left: auto;
         }
         .music-volume input[type="range"] {
-            width: 140px;
+            width: 110px;
             accent-color: #00ff88;
+        }
+        .music-progress {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.82rem;
+            color: #9ae3ff;
+        }
+        .music-progress input[type="range"] {
+            width: 100%;
+            accent-color: #00ccff;
+        }
+        .music-extra {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            align-items: center;
+            margin-bottom: 0.6rem;
+        }
+        .music-extra button {
+            min-width: auto;
+            padding: 4px 9px !important;
+            font-size: 0.76rem;
         }
         .music-credit {
             font-size: 0.82rem;
@@ -418,6 +498,59 @@
         }
         .music-credit a {
             color: #9ae3ff;
+        }
+        .music-player.is-compact .music-progress,
+        .music-player.is-compact .music-extra,
+        .music-player.is-compact .music-credit,
+        .music-player.is-compact .music-genre {
+            display: none;
+        }
+        .music-player.is-compact .music-meta {
+            margin-bottom: 0.5rem;
+        }
+        .music-player.is-compact {
+            padding-top: 0.55rem !important;
+            padding-bottom: 0.55rem !important;
+        }
+        .app-shell {
+            width: 100%;
+            max-width: 1700px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        #spaContent {
+            min-height: 45vh;
+        }
+        body.music-pinned-left .app-shell {
+            padding-left: 300px !important;
+            padding-right: 1.2rem !important;
+        }
+        #spaContent .container {
+            max-width: 100%;
+            padding-left: 0;
+            padding-right: 0;
+        }
+        @media (max-width: 991.98px) {
+            .music-player.is-pinned {
+                position: relative;
+                top: auto;
+                left: auto;
+                width: 100%;
+                max-height: none;
+                overflow-y: visible;
+            }
+            .music-player {
+                position: relative !important;
+            }
+            body.music-pinned-left .app-shell {
+                padding-left: 0 !important;
+            }
+            .app-shell {
+                padding-left: 0.65rem;
+                padding-right: 0.65rem;
+            }
         }
         .card {
             border: none;
@@ -656,70 +789,92 @@
     <!-- Navbar Neón -->
     <nav class="navbar-neon navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a class="neon-text" href="index.html" target="_blank" rel="noopener noreferrer"><i class="bi bi-house-door"></i> SOURCE-IT</a>
+            <a class="neon-text" href="index.html"><i class="bi bi-house-door"></i> SOURCE-IT</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border-color: #00ff88;">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">                    <li class="nav-item"><a class="nav-link-neon" href="guia_redes.html" target="_blank" rel="noopener noreferrer">Redes</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="linux_cheatsheet.html" target="_blank" rel="noopener noreferrer">Linux</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="virtualbox.html" target="_blank" rel="noopener noreferrer">VirtualBox</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="conversor_binario_hexadecimal.html" target="_blank" rel="noopener noreferrer">Conversor</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="MySQL.html" target="_blank" rel="noopener noreferrer">MySQL</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="dhcp_dns.html" target="_blank" rel="noopener noreferrer">DHCP/DNS</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="lenguajes_de_marcas.html" target="_blank" rel="noopener noreferrer">Lenguajes</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="Css_basico.html" target="_blank" rel="noopener noreferrer">CSS Básico</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="Js_basico.html" target="_blank" rel="noopener noreferrer">JavaScript</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="hacking_etico.html" target="_blank" rel="noopener noreferrer">Hacking Ético</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="ia_lanzadera.html" target="_blank" rel="noopener noreferrer">IA</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="git_github.html" target="_blank" rel="noopener noreferrer">Git/GitHub</a></li>
-                    <li class="nav-item ms-3"><button id="themeToggle" class="theme-btn btn" title="Cambiar tema"><span class="penguin" aria-hidden="true">🐧</span><span class="visually-hidden">Cambiar tema</span></button></li>
+                <ul class="navbar-nav ms-auto align-items-center"><li class="nav-item"><a class="nav-link-neon" href="guia_redes.html">Redes</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="linux_cheatsheet.html">Linux</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="virtualbox.html">VirtualBox</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="conversor_binario_hexadecimal.html">Conversor</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="MySQL.html">MySQL</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="dhcp_dns.html">DHCP/DNS</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="lenguajes_de_marcas.html">Lenguajes</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="Css_basico.html">CSS Básico</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="Js_basico.html">JavaScript</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="figma.html">Figma</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="hacking_etico.html">Hacking Ético</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="ia_lanzadera.html">IA</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="git_github.html">Git/GitHub</a></li>
+                    <li class="nav-item ms-3"><button id="themeToggle" class="theme-btn btn" title="Cambiar tema"><span class="penguin" aria-hidden="true">&#128039;</span><span class="visually-hidden">Cambiar tema</span></button></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container py-5">
-        <div class="hero text-center mb-5">
+    <div class="container-fluid app-shell py-4">
+        <div id="homeHero" class="hero text-center mb-5">
             <h1 class="display-4 fw-bold"><i class="bi bi-book"></i> SOURCE-IT My path by Jemarin</h1>
-            <p class="lead">Recursos para aprender redes, Linux, VirtualBox, MySQL y más.</p>
+            <p class="lead">Recursos para aprender algo de informática a nivel STI+ASIR+DAM</p>
         </div>
-        <section class="music-player p-4 mb-5">
-            <p class="mb-3 fw-bold text-info">Dale al play, deja la ventana sonando y elige un enlace :-)</p>
-            <h2><i class="bi bi-controller"></i> Reproductor Retro (música gratis)</h2>
+        <section class="music-player p-3 mb-4">
+            <div class="music-top">
+                <div>
+                    <p class="mb-1 fw-bold text-info">Dale al play que te meto un midi rapido, y sigue leyendo en el SPA, la estructura de este sitio web.</p>
+                    <h2 class="mb-0"><i class="bi bi-controller"></i> Reproductor MIDI choricero</h2>
+                </div>
+                <div class="music-top-actions">
+                    <button id="musicCompactToggle" class="music-top-btn active" type="button">Compacto</button>
+                    <button id="musicPinToggle" class="music-top-btn" type="button">Fijar</button>
+                </div>
+            </div>
             <label class="music-genre" for="musicGenre">
                 <span><i class="bi bi-music-note-beamed"></i> Estilo</span>
                 <select id="musicGenre">
-                    <option value="tdah">TDAH / Focus</option>
+                    <option value="mix_libre">Mix libre</option>
                     <option value="techno">Techno</option>
-                    <option value="clasica">Clásica</option>
-                    <option value="retro">Retro 8-bit</option>
+                    <option value="dnb">Drum and Bass</option>
+                    <option value="clasica">Clasica</option>
+                    <option value="house">House</option>
+                    <option value="ambient">Ambient</option>
                 </select>
+                <span id="musicBpm" class="music-pill">-- BPM</span>
             </label>
             <p id="nowPlaying" class="music-meta mb-2">Pista: cargando...</p>
+            <div class="music-progress">
+                <span id="musicCurrentTime">00:00</span>
+                <input id="musicProgress" type="range" min="0" max="100" step="0.1" value="0">
+                <span id="musicTotalTime">00:00</span>
+            </div>
             <div class="music-controls">
                 <button id="musicPrev" class="btn music-control-btn" type="button" title="Canción anterior"><i class="bi bi-skip-start-fill"></i></button>
                 <button id="musicPlay" class="btn music-control-btn" type="button" title="Reproducir"><i class="bi bi-play-fill"></i></button>
                 <button id="musicStop" class="btn music-control-btn" type="button" title="Detener"><i class="bi bi-stop-fill"></i></button>
                 <button id="musicNext" class="btn music-control-btn" type="button" title="Siguiente canción"><i class="bi bi-skip-end-fill"></i></button>
+                <button id="musicMute" class="btn music-control-btn" type="button" title="Silenciar"><i class="bi bi-volume-up-fill"></i></button>
                 <label class="music-volume" for="musicVolume">
                     <span><i class="bi bi-volume-up-fill"></i> Volumen</span>
                     <input id="musicVolume" type="range" min="0" max="1" step="0.01" value="0.6">
                 </label>
             </div>
+            <div class="music-extra">
+                <button id="musicShuffle" class="btn music-control-btn" type="button" title="Mezcla aleatoria">Shuffle</button>
+                <button id="musicRepeat" class="btn music-control-btn active" type="button" title="Modo repetición">Repeat: All</button>
+            </div>
             <p class="music-credit mb-0">
-                Pistas originales estilo retro generadas en tiempo real (uso libre en tu web).
-                <a id="trackSource" href="#" target="_self" rel="noopener noreferrer">Detalle de pista</a>
+                Pistas originales MIDI/sintetizadas sin copyright, encadenadas automaticamente para taladrarte bien.
+                <a id="trackSource" href="#">Detalle de pista</a>
             </p>
         </section>
 
-        <div class="row g-4">
+        <div id="homeGrid" class="row g-4">
             <div class="col-md-6 col-lg-3">
                 <div class="card h-100 p-4 text-center">
                     <i class="bi bi-diagram-3 fs-1"></i>
                     <h3 class="mt-3">Redes</h3>
                     <p>Subnetting, VLSM, DHCP, DNS y calculadora IP.</p>
-                    <a href="guia_redes.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
+                    <a href="guia_redes.html" class="btn btn-outline-primary mt-3">Acceder</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -727,7 +882,7 @@
                     <i class="bi bi-terminal fs-1"></i>
                     <h3 class="mt-3">Linux</h3>
                     <p>Comandos esenciales, shell, permisos, y cheatsheets.</p>
-                    <a href="linux_cheatsheet.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
+                    <a href="linux_cheatsheet.html" class="btn btn-outline-primary mt-3">Acceder</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -735,7 +890,7 @@
                     <i class="bi bi-hdd-stack fs-1"></i>
                     <h3 class="mt-3">VirtualBox</h3>
                     <p>Crea máquinas virtuales con Debian 13 y configura redes.</p>
-                    <a href="virtualbox.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
+                    <a href="virtualbox.html" class="btn btn-outline-primary mt-3">Acceder</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -743,7 +898,7 @@
                     <i class="bi bi-arrow-left-right fs-1"></i>
                     <h3 class="mt-3">Conversor</h3>
                     <p>Binario a hexadecimal con explicación paso a paso.</p>
-                    <a href="conversor_binario_hexadecimal.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
+                    <a href="conversor_binario_hexadecimal.html" class="btn btn-outline-primary mt-3">Acceder</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -751,7 +906,7 @@
                     <i class="bi bi-database-gear fs-1"></i>
                     <h3 class="mt-3">MySQL</h3>
                     <p>Gestión de usuarios, permisos y vistas en MySQL.</p>
-                    <a href="MySQL.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
+                    <a href="MySQL.html" class="btn btn-outline-primary mt-3">Acceder</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -759,7 +914,7 @@
                     <i class="bi bi-router fs-1"></i>
                     <h3 class="mt-3">DHCP/DNS</h3>
                     <p>Servidores DHCP y DNS en VirtualBox con múltiples SO.</p>
-                    <a href="dhcp_dns.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
+                    <a href="dhcp_dns.html" class="btn btn-outline-primary mt-3">Acceder</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -767,7 +922,7 @@
                     <i class="bi bi-code-square fs-1"></i>
                     <h3 class="mt-3">Lenguajes</h3>
                     <p>XML, HTML, XSD, XPath, XQuery y más.</p>
-                    <a href="lenguajes_de_marcas.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
+                    <a href="lenguajes_de_marcas.html" class="btn btn-outline-primary mt-3">Acceder</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -775,7 +930,7 @@
                     <i class="bi bi-filetype-css fs-1"></i>
                     <h3 class="mt-3">CSS Básico</h3>
                     <p>Cascada, especificidad, Grid/Flex y arquitectura de estilos.</p>
-                    <a href="Css_basico.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
+                    <a href="Css_basico.html" class="btn btn-outline-primary mt-3">Acceder</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -783,7 +938,15 @@
                     <i class="bi bi-filetype-js fs-1"></i>
                     <h3 class="mt-3">JavaScript</h3>
                     <p>Event loop, asincronía, modularidad y laboratorio práctico.</p>
-                    <a href="Js_basico.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
+                    <a href="Js_basico.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 p-4 text-center">
+                    <i class="bi bi-palette2 fs-1"></i>
+                    <h3 class="mt-3">Figma</h3>
+                    <p>Diseño UI, prototipado, auto layout y trabajo colaborativo con hand-off para desarrollo.</p>
+                    <a href="figma.html" class="btn btn-outline-primary mt-3">Acceder</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -791,7 +954,7 @@
                     <i class="bi bi-shield-lock fs-1"></i>
                     <h3 class="mt-3">Hacking Ético</h3>
                     <p>Conceptos, Wi-Fi, herramientas y comandos para auditoría autorizada.</p>
-                    <a href="hacking_etico.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
+                    <a href="hacking_etico.html" class="btn btn-outline-primary mt-3">Acceder</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -799,7 +962,7 @@
                     <i class="bi bi-stars fs-1"></i>
                     <h3 class="mt-3">IA Lanzadera</h3>
                     <p>Chatbots, vídeo IA, OpenClaw y plataformas creativas en un solo panel.</p>
-                    <a href="ia_lanzadera.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
+                    <a href="ia_lanzadera.html" class="btn btn-outline-primary mt-3">Acceder</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -807,14 +970,15 @@
                     <i class="bi bi-git fs-1"></i>
                     <h3 class="mt-3">Git/GitHub</h3>
                     <p>Instalación, comandos, repos útiles y flujo de trabajo para colaborar.</p>
-                    <a href="git_github.html" class="btn btn-outline-primary mt-3" target="_blank" rel="noopener noreferrer">Acceder</a>
+                    <a href="git_github.html" class="btn btn-outline-primary mt-3">Acceder</a>
                 </div>
             </div>
         </div>
+        <main id="spaContent" class="d-none mt-4"></main>
     </div>
 
     <footer class="bg-dark text-white text-center py-4 mt-5">
-        <p>Created by Jemarin Birt LH ASIR 2025 ^^</p>
+        <p>Created by Jemarin, si tocas el pingüino cambio de color ^^</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -834,52 +998,182 @@
         const stopBtn = document.getElementById('musicStop');
         const nextBtn = document.getElementById('musicNext');
         const prevBtn = document.getElementById('musicPrev');
+        const muteBtn = document.getElementById('musicMute');
+        const shuffleBtn = document.getElementById('musicShuffle');
+        const repeatBtn = document.getElementById('musicRepeat');
         const volumeControl = document.getElementById('musicVolume');
+        const progressControl = document.getElementById('musicProgress');
+        const currentTimeLabel = document.getElementById('musicCurrentTime');
+        const totalTimeLabel = document.getElementById('musicTotalTime');
+        const bpmLabel = document.getElementById('musicBpm');
         const genreSelect = document.getElementById('musicGenre');
+        const musicPlayer = document.querySelector('.music-player');
+        const compactToggleBtn = document.getElementById('musicCompactToggle');
+        const pinToggleBtn = document.getElementById('musicPinToggle');
+
+        const technoTracks = [
+            { title: 'Neon Circuit', tempo: 132, wave: 'sawtooth', notes: [48, null, 48, null, 55, null, 55, null, 50, null, 50, null, 57, null, 57, null] },
+            { title: 'Warehouse Pulse', tempo: 136, wave: 'square', notes: [52, 55, 59, 55, 52, 55, 59, 62, 52, 55, 59, 55, 50, 53, 57, 60] },
+            { title: 'Steel Corridor', tempo: 140, wave: 'sawtooth', notes: [57, null, 60, null, 64, null, 60, null, 55, null, 59, null, 62, null, 59, null] },
+            { title: 'Acid Orbit', tempo: 138, wave: 'sawtooth', notes: [45, 45, null, 45, 50, 50, null, 50, 48, 48, null, 48, 52, 52, null, 52] },
+            { title: 'Night Grid', tempo: 128, wave: 'triangle', notes: [50, 53, 57, 53, 50, 53, 57, 60, 57, 53, 50, 53, 48, 52, 55, 52] },
+            { title: 'Signal Run', tempo: 134, wave: 'square', notes: [57, 60, 64, 67, 64, 60, 57, 60, 59, 62, 66, 69, 66, 62, 59, 62] }
+        ];
+
+        const dnbTracks = [
+            { title: 'Bassline Velocity', tempo: 172, wave: 'square', notes: [45, 50, 52, 57, 52, 50, 45, 50, 47, 52, 54, 59, 54, 52, 47, 52] },
+            { title: 'Subway Rush', tempo: 176, wave: 'sawtooth', notes: [48, null, 55, 57, 55, null, 52, 50, 48, null, 55, 57, 55, null, 52, 50] },
+            { title: 'Breakbeat Phantom', tempo: 174, wave: 'triangle', notes: [52, 59, 64, 59, 52, 59, 64, 67, 64, 59, 52, 59, 50, 57, 62, 57] },
+            { title: 'Dark Amen', tempo: 178, wave: 'sawtooth', notes: [40, 47, 52, 55, 52, 47, 40, 47, 43, 50, 55, 59, 55, 50, 43, 50] },
+            { title: 'Binary Chase', tempo: 170, wave: 'square', notes: [57, null, 62, 64, 62, null, 60, 59, 57, null, 64, 65, 64, null, 62, 60] },
+            { title: 'Storm Driver', tempo: 180, wave: 'sawtooth', notes: [50, 57, 62, 57, 50, 57, 62, 65, 62, 57, 50, 57, 48, 55, 60, 55] }
+        ];
+
+        const clasicaTracks = [
+            { title: 'Mini Sonata', tempo: 108, wave: 'triangle', notes: [60, 64, 67, 72, 71, 67, 64, 60, 62, 65, 69, 74, 72, 69, 65, 62] },
+            { title: 'Nocturno Claro', tempo: 82, wave: 'sine', notes: [57, 60, 64, 69, 67, 64, 60, 57, 55, 59, 62, 67, 65, 62, 59, 55] },
+            { title: 'Valse Breve', tempo: 124, wave: 'triangle', notes: [60, 64, 67, 64, 62, 65, 69, 65, 59, 62, 67, 62, 57, 60, 64, 60] },
+            { title: 'Estudio en Do', tempo: 98, wave: 'sine', notes: [60, 62, 64, 65, 67, 69, 71, 72, 71, 69, 67, 65, 64, 62, 60, null] },
+            { title: 'Cuerda de Otono', tempo: 92, wave: 'triangle', notes: [64, null, 67, null, 71, null, 69, null, 67, null, 64, null, 62, null, 64, null] },
+            { title: 'Canon Pixel', tempo: 106, wave: 'sine', notes: [55, 59, 62, 67, 64, 62, 59, 55, 57, 60, 64, 69, 67, 64, 60, 57] }
+        ];
+
+        const houseTracks = [
+            { title: 'Deep Room', tempo: 122, wave: 'sine', notes: [45, 52, 57, 52, 45, 52, 57, 60, 47, 54, 59, 54, 47, 54, 59, 62] },
+            { title: 'Sunset House', tempo: 124, wave: 'triangle', notes: [48, 55, null, 55, 50, 57, null, 57, 52, 59, null, 59, 50, 57, null, 57] },
+            { title: 'Cloud Terrace', tempo: 120, wave: 'sawtooth', notes: [50, null, 57, 59, 57, null, 55, 54, 52, null, 59, 60, 59, null, 57, 55] },
+            { title: 'Poolline', tempo: 126, wave: 'triangle', notes: [52, 59, 64, 59, 52, 59, 64, 67, 64, 59, 52, 59, 50, 57, 62, 57] }
+        ];
+
+        const ambientTracks = [
+            { title: 'Polar Atmos', tempo: 72, wave: 'sine', notes: [48, null, 55, null, 60, null, 67, null, 64, null, 60, null, 55, null, 52, null] },
+            { title: 'Ocean Drift', tempo: 76, wave: 'triangle', notes: [52, null, null, 59, null, null, 64, null, null, 67, null, null, 64, null, null, 59] },
+            { title: 'Nebula Sleep', tempo: 68, wave: 'sine', notes: [45, null, 52, null, 57, null, 64, null, 62, null, 57, null, 52, null, 50, null] },
+            { title: 'Dawn Echoes', tempo: 74, wave: 'triangle', notes: [57, null, 60, null, 64, null, 69, null, 67, null, 64, null, 60, null, 57, null] }
+        ];
+
+        function makeLongNotes(pattern, repeats = 10) {
+            const result = [];
+            for (let i = 0; i < repeats; i += 1) result.push(...pattern);
+            return result;
+        }
+
+        function buildLongCatalog(baseTracks, repeats = 10) {
+            return baseTracks.map((track, index) => ({
+                ...track,
+                notes: makeLongNotes(track.notes, repeats + (index % 3 === 0 ? 2 : 0))
+            }));
+        }
+
+        const technoOriginals = [
+            { title: 'Chrome Voltage II', tempo: 142, wave: 'sawtooth', notes: makeLongNotes([50, null, 57, 59, 57, null, 55, 54, 52, null, 59, 60, 59, null, 57, 55], 12) },
+            { title: 'Pulse Mechanic', tempo: 134, wave: 'square', notes: makeLongNotes([48, 52, 55, 59, 55, 52, 48, 52, 50, 53, 57, 60, 57, 53, 50, 53], 11) },
+            { title: 'Factory Mirage', tempo: 130, wave: 'triangle', notes: makeLongNotes([45, 48, null, 52, 50, 48, null, 45, 47, 50, null, 53, 52, 50, null, 47], 12) },
+            { title: 'Metro Coil', tempo: 136, wave: 'sawtooth', notes: makeLongNotes([57, 60, 64, 60, 57, 60, 64, 67, 64, 60, 57, 60, 55, 59, 62, 59], 11) }
+        ];
+
+        const dnbOriginals = [
+            { title: 'Night Transit', tempo: 174, wave: 'sawtooth', notes: makeLongNotes([43, 50, 55, 50, 43, 50, 55, 59, 55, 50, 43, 50, 45, 52, 57, 52], 12) },
+            { title: 'Hyperlane', tempo: 178, wave: 'square', notes: makeLongNotes([48, null, 55, 57, 55, null, 52, 50, 48, null, 57, 59, 57, null, 54, 52], 12) },
+            { title: 'Amen Blueprint', tempo: 176, wave: 'triangle', notes: makeLongNotes([52, 59, 64, 59, 52, 59, 64, 67, 62, 59, 55, 59, 50, 57, 62, 57], 11) },
+            { title: 'Parallel Drop', tempo: 172, wave: 'sawtooth', notes: makeLongNotes([40, 47, 52, 55, 52, 47, 40, 47, 45, 50, 54, 59, 54, 50, 45, 50], 12) }
+        ];
+
+        const clasicaOriginals = [
+            { title: 'Adagio Lumina', tempo: 88, wave: 'sine', notes: makeLongNotes([60, null, 64, null, 67, null, 71, null, 69, null, 67, null, 64, null, 60, null], 10) },
+            { title: 'Preludio Bronce', tempo: 102, wave: 'triangle', notes: makeLongNotes([55, 59, 62, 67, 64, 62, 59, 55, 57, 60, 64, 69, 67, 64, 60, 57], 9) },
+            { title: 'Suite Aurora', tempo: 96, wave: 'sine', notes: makeLongNotes([62, 65, 69, 74, 72, 69, 65, 62, 60, 64, 67, 72, 71, 67, 64, 60], 9) }
+        ];
+
+        const houseOriginals = [
+            { title: 'Glass Dance', tempo: 124, wave: 'triangle', notes: makeLongNotes([50, 57, 62, 57, 50, 57, 62, 65, 62, 57, 50, 57, 48, 55, 60, 55], 11) },
+            { title: 'Rooftop Motion', tempo: 122, wave: 'sawtooth', notes: makeLongNotes([48, 55, null, 55, 52, 59, null, 59, 50, 57, null, 57, 48, 55, null, 55], 11) },
+            { title: 'City Mirage', tempo: 126, wave: 'sine', notes: makeLongNotes([45, 52, 57, 52, 45, 52, 57, 60, 47, 54, 59, 54, 47, 54, 59, 62], 10) }
+        ];
+
+        const ambientOriginals = [
+            { title: 'Quiet Satellites', tempo: 70, wave: 'sine', notes: makeLongNotes([52, null, 57, null, 60, null, 64, null, 62, null, 60, null, 57, null, 52, null], 12) },
+            { title: 'Blue Horizon', tempo: 74, wave: 'triangle', notes: makeLongNotes([48, null, 55, null, 59, null, 64, null, 60, null, 55, null, 52, null, 48, null], 12) },
+            { title: 'Slow Nebula', tempo: 68, wave: 'sine', notes: makeLongNotes([45, null, null, 52, null, null, 57, null, null, 60, null, null, 57, null, null, 52], 13) }
+        ];
+
+        const technoCatalog = [...buildLongCatalog(technoTracks, 10), ...technoOriginals];
+        const dnbCatalog = [...buildLongCatalog(dnbTracks, 10), ...dnbOriginals];
+        const clasicaCatalog = [...buildLongCatalog(clasicaTracks, 8), ...clasicaOriginals];
+        const houseCatalog = [...buildLongCatalog(houseTracks, 10), ...houseOriginals];
+        const ambientCatalog = [...buildLongCatalog(ambientTracks, 11), ...ambientOriginals];
+
         const playlistsByGenre = {
-            tdah: [
-                { title: 'Focus Loop Alpha', tempo: 92, wave: 'triangle', notes: [60, 62, 64, null, 64, 62, 60, null, 67, 65, 64, null, 64, 62, 60, null] },
-                { title: 'Deep Focus Beta', tempo: 96, wave: 'sine', notes: [57, 60, 62, null, 62, 60, 57, null, 55, 57, 60, null, 60, 57, 55, null] },
-                { title: 'Calm Flow Gamma', tempo: 104, wave: 'triangle', notes: [64, null, 67, null, 69, null, 67, null, 65, null, 64, null, 62, null, 60, null] },
-                { title: 'Study Grid Delta', tempo: 100, wave: 'sine', notes: [60, 64, 67, 64, 60, 64, 67, 64, 59, 62, 65, 62, 59, 62, 65, 62] }
+            mix_libre: [
+                ...technoCatalog.slice(0, 4),
+                ...dnbCatalog.slice(0, 4),
+                ...clasicaCatalog.slice(0, 4),
+                ...houseCatalog.slice(0, 3),
+                ...ambientCatalog.slice(0, 3)
             ],
-            techno: [
-                { title: 'Night Pulse', tempo: 132, wave: 'sawtooth', notes: [48, null, 48, null, 55, null, 55, null, 50, null, 50, null, 57, null, 57, null] },
-                { title: 'Neon Drive', tempo: 138, wave: 'square', notes: [52, 55, 59, 55, 52, 55, 59, 62, 52, 55, 59, 55, 50, 53, 57, 60] },
-                { title: 'Circuit Rave', tempo: 142, wave: 'sawtooth', notes: [57, null, 60, null, 64, null, 60, null, 55, null, 59, null, 62, null, 59, null] },
-                { title: 'Bass Reactor', tempo: 128, wave: 'square', notes: [45, 45, null, 45, 50, 50, null, 50, 48, 48, null, 48, 52, 52, null, 52] }
-            ],
-            clasica: [
-                { title: 'Mini Sonata I', tempo: 108, wave: 'triangle', notes: [60, 64, 67, 72, 71, 67, 64, 60, 62, 65, 69, 74, 72, 69, 65, 62] },
-                { title: 'Nocturno Pixel', tempo: 82, wave: 'sine', notes: [57, 60, 64, 69, 67, 64, 60, 57, 55, 59, 62, 67, 65, 62, 59, 55] },
-                { title: 'Valse Corta', tempo: 124, wave: 'triangle', notes: [60, 64, 67, 64, 62, 65, 69, 65, 59, 62, 67, 62, 57, 60, 64, 60] },
-                { title: 'Estudio en Do', tempo: 98, wave: 'sine', notes: [60, 62, 64, 65, 67, 69, 71, 72, 71, 69, 67, 65, 64, 62, 60, null] }
-            ],
-            retro: [
-                { title: 'Bloques Invasores', tempo: 144, wave: 'square', notes: [76, 71, 72, 74, 72, 71, 69, 69, 72, 76, 74, 72, 71, 72, 74, 76] },
-                { title: 'Mazmorra de Pixel', tempo: 126, wave: 'triangle', notes: [64, 67, 71, 72, 71, 67, 64, 67, 69, 71, 69, 67, 64, 62, 64, 67] },
-                { title: 'Plataforma Turbo', tempo: 168, wave: 'square', notes: [72, 76, 79, 76, 72, 74, 76, 77, 79, 81, 79, 77, 76, 74, 72, 71] },
-                { title: 'Boss de 8 Bits', tempo: 112, wave: 'sawtooth', notes: [52, 55, 59, 57, 55, 52, 55, 59, 62, 59, 55, 52, 50, 52, 55, 57] }
-            ]
+            techno: technoCatalog,
+            dnb: dnbCatalog,
+            clasica: clasicaCatalog,
+            house: houseCatalog,
+            ambient: ambientCatalog
         };
+
         const genreLabelMap = {
-            tdah: 'TDAH / Focus',
+            mix_libre: 'Mix libre',
             techno: 'Techno',
-            clasica: 'Clásica',
-            retro: 'Retro 8-bit'
+            dnb: 'Drum and Bass',
+            clasica: 'Clasica',
+            house: 'House',
+            ambient: 'Ambient'
         };
+
         let currentGenre = genreSelect.value;
         let playlist = playlistsByGenre[currentGenre];
-
         let audioCtx = null;
         let masterGain = null;
         let isPlaying = false;
         let stepIndex = 0;
         let currentTrack = 0;
         let nextStepTimer = null;
+        let shuffleMode = false;
+        let repeatMode = 'all';
+        let isMuted = false;
+        let lastVolume = Number(volumeControl.value);
+        let isCompact = true;
+        let isPinned = false;
+
+        function setCompact(value) {
+            isCompact = Boolean(value);
+            musicPlayer.classList.toggle('is-compact', isCompact);
+            compactToggleBtn.classList.toggle('active', isCompact);
+            compactToggleBtn.textContent = isCompact ? 'Expandir' : 'Compacto';
+        }
+
+        function setPinned(value) {
+            isPinned = Boolean(value);
+            musicPlayer.classList.toggle('is-pinned', isPinned);
+            document.body.classList.toggle('music-pinned-left', isPinned);
+            pinToggleBtn.classList.toggle('active', isPinned);
+            pinToggleBtn.textContent = isPinned ? 'Desfijar' : 'Fijar';
+        }
 
         function midiToFreq(midi) {
             return 440 * Math.pow(2, (midi - 69) / 12);
+        }
+
+        function getStepSeconds(track) {
+            return (60 / track.tempo) / 2;
+        }
+
+        function getTrackDuration(track) {
+            return track.notes.length * getStepSeconds(track);
+        }
+
+        function formatTime(sec) {
+            const total = Math.max(0, Math.floor(sec));
+            const m = String(Math.floor(total / 60)).padStart(2, '0');
+            const s = String(total % 60).padStart(2, '0');
+            return `${m}:${s}`;
         }
 
         function ensureAudio() {
@@ -891,9 +1185,7 @@
                 masterGain.gain.value = Number(volumeControl.value);
                 masterGain.connect(audioCtx.destination);
             }
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
+            if (audioCtx.state === 'suspended') audioCtx.resume();
             return true;
         }
 
@@ -902,27 +1194,35 @@
             const now = audioCtx.currentTime;
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
-
             osc.type = wave;
             osc.frequency.setValueAtTime(midiToFreq(midi), now);
-
             gain.gain.setValueAtTime(0.0001, now);
-            gain.gain.exponentialRampToValueAtTime(0.15, now + 0.01);
+            gain.gain.exponentialRampToValueAtTime(0.16, now + 0.01);
             gain.gain.exponentialRampToValueAtTime(0.0001, now + Math.max(0.04, stepSeconds * 0.9));
-
             osc.connect(gain);
             gain.connect(masterGain);
-
             osc.start(now);
             osc.stop(now + stepSeconds);
         }
 
+        function updateProgress() {
+            const track = playlist[currentTrack];
+            const duration = getTrackDuration(track);
+            const current = stepIndex * getStepSeconds(track);
+            const percent = duration > 0 ? (current / duration) * 100 : 0;
+            progressControl.value = String(Math.min(100, Math.max(0, percent)));
+            currentTimeLabel.textContent = formatTime(current);
+            totalTimeLabel.textContent = formatTime(duration);
+        }
+
         function updateNowPlaying(extraText = '') {
             const track = playlist[currentTrack];
-            const status = isPlaying ? 'Reproduciendo' : 'Lista';
+            const status = isPlaying ? 'Reproduciendo' : 'Pausa';
             nowPlaying.textContent = `Pista ${currentTrack + 1}/${playlist.length}: ${track.title} | ${status}${extraText}`;
-            trackSource.textContent = `Género: ${genreLabelMap[currentGenre]} | Tempo ${track.tempo} BPM | Onda ${track.wave}`;
+            trackSource.textContent = `Genero: ${genreLabelMap[currentGenre]} | Tempo ${track.tempo} BPM | Onda ${track.wave}`;
             trackSource.href = '#';
+            bpmLabel.textContent = `${track.tempo} BPM`;
+            updateProgress();
         }
 
         function clearPlaybackTimer() {
@@ -932,27 +1232,62 @@
             }
         }
 
+        function selectTrack(index, autoplay = false) {
+            currentTrack = (index + playlist.length) % playlist.length;
+            stepIndex = 0;
+            updateNowPlaying();
+            if (autoplay) {
+                if (isPlaying) {
+                    clearPlaybackTimer();
+                    tickSequencer();
+                } else {
+                    startPlayback();
+                }
+            }
+        }
+
+        function nextTrackIndex() {
+            if (shuffleMode && playlist.length > 1) {
+                let randomIndex = currentTrack;
+                while (randomIndex === currentTrack) randomIndex = Math.floor(Math.random() * playlist.length);
+                return randomIndex;
+            }
+            return currentTrack + 1;
+        }
+
+        function onTrackEnd() {
+            if (repeatMode === 'one') {
+                selectTrack(currentTrack, true);
+                return;
+            }
+            selectTrack(nextTrackIndex(), true);
+        }
+
         function tickSequencer() {
             if (!isPlaying) return;
             const track = playlist[currentTrack];
-            const beatSeconds = 60 / track.tempo;
-            const stepSeconds = beatSeconds / 2;
-            const midi = track.notes[stepIndex % track.notes.length];
-
+            const stepSeconds = getStepSeconds(track);
+            if (stepIndex >= track.notes.length) {
+                onTrackEnd();
+                return;
+            }
+            const midi = track.notes[stepIndex];
             playNote(midi, stepSeconds, track.wave);
-            stepIndex = (stepIndex + 1) % track.notes.length;
+            stepIndex += 1;
+            updateProgress();
             nextStepTimer = setTimeout(tickSequencer, stepSeconds * 1000);
         }
 
         function startPlayback() {
             if (!ensureAudio()) {
-                updateNowPlaying(' | Audio no soportado en este navegador');
+                updateNowPlaying(' | Audio no soportado');
                 return;
             }
             if (isPlaying) return;
             isPlaying = true;
             playBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
             playBtn.title = 'Pausar';
+            if (stepIndex >= playlist[currentTrack].notes.length) stepIndex = 0;
             updateNowPlaying();
             tickSequencer();
         }
@@ -971,60 +1306,265 @@
             updateNowPlaying();
         }
 
-        function selectTrack(index, autoplay = false) {
-            currentTrack = (index + playlist.length) % playlist.length;
-            stepIndex = 0;
-            updateNowPlaying();
-            if (autoplay) {
-                startPlayback();
+        function applyVolume(value) {
+            const vol = Math.min(1, Math.max(0, Number(value)));
+            if (masterGain) masterGain.gain.value = vol;
+        }
+
+        function toggleMute() {
+            isMuted = !isMuted;
+            if (isMuted) {
+                lastVolume = Number(volumeControl.value);
+                volumeControl.value = '0';
+                applyVolume(0);
+                muteBtn.innerHTML = '<i class="bi bi-volume-mute-fill"></i>';
+                muteBtn.classList.add('active');
+            } else {
+                volumeControl.value = String(lastVolume || 0.6);
+                applyVolume(volumeControl.value);
+                muteBtn.innerHTML = '<i class="bi bi-volume-up-fill"></i>';
+                muteBtn.classList.remove('active');
             }
         }
 
-        playBtn.addEventListener('click', () => {
-            if (isPlaying) {
-                pausePlayback();
-            } else {
-                startPlayback();
-            }
-        });
+        function cycleRepeatMode() {
+            repeatMode = repeatMode === 'all' ? 'one' : 'all';
+            repeatBtn.textContent = `Repeat: ${repeatMode === 'one' ? 'One' : 'All'}`;
+            repeatBtn.classList.add('active');
+        }
 
-        stopBtn.addEventListener('click', () => {
-            stopPlayback();
-        });
+        playBtn.addEventListener('click', () => isPlaying ? pausePlayback() : startPlayback());
+        stopBtn.addEventListener('click', stopPlayback);
 
         nextBtn.addEventListener('click', () => {
             const wasPlaying = isPlaying;
-            stopPlayback();
-            selectTrack(currentTrack + 1, wasPlaying);
+            pausePlayback();
+            selectTrack(nextTrackIndex(), wasPlaying);
         });
 
         prevBtn.addEventListener('click', () => {
             const wasPlaying = isPlaying;
-            stopPlayback();
+            pausePlayback();
             selectTrack(currentTrack - 1, wasPlaying);
         });
 
-        volumeControl.addEventListener('input', (event) => {
-            if (masterGain) {
-                masterGain.gain.value = Number(event.target.value);
-            }
+        muteBtn.addEventListener('click', toggleMute);
+        shuffleBtn.addEventListener('click', () => {
+            shuffleMode = !shuffleMode;
+            shuffleBtn.classList.toggle('active', shuffleMode);
         });
+        repeatBtn.addEventListener('click', cycleRepeatMode);
+        compactToggleBtn.addEventListener('click', () => setCompact(!isCompact));
+        pinToggleBtn.addEventListener('click', () => setPinned(!isPinned));
+
+        volumeControl.addEventListener('input', (event) => {
+            const value = Number(event.target.value);
+            lastVolume = value > 0 ? value : lastVolume;
+            isMuted = value === 0;
+            muteBtn.innerHTML = isMuted ? '<i class="bi bi-volume-mute-fill"></i>' : '<i class="bi bi-volume-up-fill"></i>';
+            muteBtn.classList.toggle('active', isMuted);
+            applyVolume(value);
+        });
+
+        progressControl.addEventListener('input', (event) => {
+            const track = playlist[currentTrack];
+            const ratio = Number(event.target.value) / 100;
+            const targetStep = Math.floor(ratio * track.notes.length);
+            stepIndex = Math.max(0, Math.min(track.notes.length - 1, targetStep));
+            updateProgress();
+        });
+
         genreSelect.addEventListener('change', (event) => {
             const wasPlaying = isPlaying;
-            stopPlayback();
+            pausePlayback();
             currentGenre = event.target.value;
             playlist = playlistsByGenre[currentGenre];
             selectTrack(0, wasPlaying);
         });
 
         selectTrack(0);
+        setCompact(true);
+        setPinned(true);
+
+        const homeHero = document.getElementById('homeHero');
+        const homeGrid = document.getElementById('homeGrid');
+        const spaContent = document.getElementById('spaContent');
+        const useIframeSpa = location.protocol === 'file:';
+        const spaRoutes = new Set([
+            'guia_redes.html',
+            'linux_cheatsheet.html',
+            'virtualbox.html',
+            'conversor_binario_hexadecimal.html',
+            'MySQL.html',
+            'dhcp_dns.html',
+            'lenguajes_de_marcas.html',
+            'Css_basico.html',
+            'Js_basico.html',
+            'figma.html',
+            'hacking_etico.html',
+            'ia_lanzadera.html',
+            'git_github.html',
+            'freeplane.html'
+        ]);
+        let injectedStyleNodes = [];
+        let injectedScriptNodes = [];
+        let spaFrame = null;
+
+        function normalizeRoute(route) {
+            if (!route) return 'home';
+            const clean = route.replace(/^#/, '').trim();
+            if (!clean || clean === 'home' || clean === 'index.html') return 'home';
+            return clean.split('/').pop();
+        }
+
+        function showHomeView() {
+            homeHero.classList.remove('d-none');
+            homeGrid.classList.remove('d-none');
+            spaContent.classList.add('d-none');
+            spaContent.innerHTML = '';
+            document.title = 'Inicio - Source-IT';
+            setCompact(true);
+            window.scrollTo({ top: 0, behavior: 'auto' });
+        }
+
+        function clearSpaAssets() {
+            injectedStyleNodes.forEach((node) => node.remove());
+            injectedScriptNodes.forEach((node) => node.remove());
+            injectedStyleNodes = [];
+            injectedScriptNodes = [];
+        }
+
+        function ensureSpaFrame() {
+            if (spaFrame) return spaFrame;
+            spaFrame = document.createElement('iframe');
+            spaFrame.id = 'spaFrame';
+            spaFrame.setAttribute('title', 'Contenido de seccion');
+            spaFrame.style.width = '100%';
+            spaFrame.style.minHeight = '78vh';
+            spaFrame.style.border = '1px solid #dbe4ee';
+            spaFrame.style.borderRadius = '14px';
+            spaFrame.style.background = '#ffffff';
+            return spaFrame;
+        }
+
+        function loadRouteInIframe(normalized, pushState = true) {
+            clearSpaAssets();
+            homeHero.classList.add('d-none');
+            homeGrid.classList.add('d-none');
+            spaContent.classList.remove('d-none');
+            spaContent.innerHTML = '';
+            setCompact(true);
+            const frame = ensureSpaFrame();
+            frame.src = normalized;
+            spaContent.appendChild(frame);
+            document.title = `Source-IT · ${normalized}`;
+            if (pushState) history.pushState({ route: normalized }, '', `index.html#${normalized}`);
+            window.scrollTo({ top: 0, behavior: 'auto' });
+        }
+
+        function injectPageStyles(doc, route) {
+            const styleTags = Array.from(doc.querySelectorAll('head style'));
+            styleTags.forEach((styleTag, idx) => {
+                const styleNode = document.createElement('style');
+                styleNode.dataset.spaStyle = `${route}-${idx}`;
+                styleNode.textContent = styleTag.textContent || '';
+                document.head.appendChild(styleNode);
+                injectedStyleNodes.push(styleNode);
+            });
+        }
+
+        function runPageScripts(doc, route) {
+            const scripts = Array.from(doc.querySelectorAll('body script'));
+            scripts.forEach((script, idx) => {
+                const src = script.getAttribute('src');
+                if (src && (src.includes('bootstrap') || src.includes('site-theme.js'))) return;
+                const node = document.createElement('script');
+                node.dataset.spaScript = `${route}-${idx}`;
+                if (src) {
+                    node.src = src;
+                } else {
+                    node.textContent = script.textContent || '';
+                }
+                document.body.appendChild(node);
+                injectedScriptNodes.push(node);
+            });
+        }
+
+        async function loadRoute(route, pushState = true) {
+            const normalized = normalizeRoute(route);
+            if (normalized === 'home' || !spaRoutes.has(normalized)) {
+                showHomeView();
+                if (pushState && location.hash) history.pushState({ route: 'home' }, '', 'index.html');
+                return;
+            }
+
+            if (useIframeSpa) {
+                loadRouteInIframe(normalized, pushState);
+                return;
+            }
+
+            try {
+                const response = await fetch(normalized, { cache: 'no-cache' });
+                if (!response.ok) throw new Error(`No se pudo cargar ${normalized}`);
+                const html = await response.text();
+                const parsed = new DOMParser().parseFromString(html, 'text/html');
+
+                clearSpaAssets();
+                injectPageStyles(parsed, normalized);
+
+                const fragment = document.createDocumentFragment();
+                Array.from(parsed.body.children).forEach((child) => {
+                    const tag = child.tagName;
+                    if (tag === 'NAV' || tag === 'FOOTER' || tag === 'SCRIPT') return;
+                    if (child.classList && child.classList.contains('navbar-neon')) return;
+                    if (child.id === 'mr-robot-glitch') return;
+                    fragment.appendChild(child.cloneNode(true));
+                });
+
+                homeHero.classList.add('d-none');
+                homeGrid.classList.add('d-none');
+                spaContent.classList.remove('d-none');
+                spaContent.innerHTML = '';
+                setCompact(true);
+                spaContent.appendChild(fragment);
+                document.title = parsed.title || `Source-IT · ${normalized}`;
+
+                runPageScripts(parsed, normalized);
+
+                if (pushState) {
+                    history.pushState({ route: normalized }, '', `index.html#${normalized}`);
+                }
+                window.scrollTo({ top: 0, behavior: 'auto' });
+            } catch (err) {
+                console.error(err);
+                loadRouteInIframe(normalized, pushState);
+            }
+        }
+
+        document.addEventListener('click', (event) => {
+            const anchor = event.target.closest('a[href]');
+            if (!anchor) return;
+            const href = anchor.getAttribute('href') || '';
+            if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+            if (href === '#') return;
+            const route = normalizeRoute(href);
+            if (route === 'home') {
+                event.preventDefault();
+                loadRoute('home', true);
+                return;
+            }
+            if (spaRoutes.has(route)) {
+                event.preventDefault();
+                loadRoute(route, true);
+            }
+        });
+
+        window.addEventListener('popstate', () => {
+            loadRoute(normalizeRoute(location.hash), false);
+        });
+
+        loadRoute(normalizeRoute(location.hash), false);
     </script>
     <script src="assets/js/site-theme.js"></script>
 </body>
 </html>
-
-
-
-
-
-

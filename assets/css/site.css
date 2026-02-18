@@ -312,6 +312,17 @@
             box-shadow: 0 0 15px rgba(0, 255, 136, 0.5), inset 0 0 10px rgba(0, 255, 136, 0.3);
             overflow: hidden;
         }
+        .theme-btn .penguin {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            font-size: 2.35rem;
+            line-height: 1;
+            animation: penguin-spin 2.8s ease-in-out infinite;
+            transform-origin: center;
+        }
         .theme-btn::before {
             content: '';
             position: absolute;
@@ -339,6 +350,13 @@
         @keyframes theme-btn-rotate {
             from { transform: rotateZ(0deg); }
             to { transform: rotateZ(360deg); }
+        }
+        @keyframes penguin-spin {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(180deg); }
+            50% { transform: rotate(0deg); }
+            75% { transform: rotate(-180deg); }
+            100% { transform: rotate(0deg); }
         }
         @keyframes theme-gradient-rotate {
             from { transform: rotate(0deg); }
