@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Replanteos de Red - Source-IT</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <style>
+        .rr-card {
+            background: #0c1528;
+            border: 1px solid rgba(0, 255, 136, 0.35);
+            border-radius: 14px;
+            color: #dcfff2;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+            height: 100%;
+        }
+
+        .rr-meta {
+            font-size: 0.88rem;
+            color: #9af7d1;
+            margin-bottom: 0.35rem;
+        }
+
+        .rr-report {
+            border-left: 3px solid #00ff88;
+            padding-left: 0.8rem;
+            margin-bottom: 1.1rem;
+        }
+
+        .rr-report:last-child {
+            margin-bottom: 0;
+        }
+
+        .rr-file {
+            display: inline-block;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.82rem;
+            color: #9af7d1;
+            background: rgba(0, 255, 136, 0.08);
+            border: 1px solid rgba(0, 255, 136, 0.28);
+            border-radius: 8px;
+            padding: 0.32rem 0.55rem;
+            margin-top: 0.55rem;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero text-center">
+        <h1 class="display-5 fw-bold"><i class="bi bi-diagram-2"></i> Replanteos de Red</h1>
+        <p class="lead">Casos reales de replanteo en infraestructuras grandes, publicados en formato anonimo para portfolio tecnico.</p>
+    </div>
+
+    <div class="container py-4">
+        <div class="alert alert-success-custom alert-custom">
+            <strong>Nota legal:</strong> esta seccion muestra versiones anonimizadas. Se reemplazaron nombres de centros medicos, nombres y apellidos, y referencias internas de cliente.
+        </div>
+
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="rr-card p-3">
+                    <h4><i class="bi bi-activity"></i> Alcance tecnico</h4>
+                    <p class="rr-meta">Replanteo y rediseno de red</p>
+                    <p>Levantamiento de campo, validacion de canalizaciones, rediseno de trazados y ajuste de nodos para evitar zonas con baja cobertura o saturacion.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="rr-card p-3">
+                    <h4><i class="bi bi-building-gear"></i> Entorno</h4>
+                    <p class="rr-meta">Infraestructuras sanitarias</p>
+                    <p>Proyectos ejecutados en complejos con varias plantas, cuartos tecnicos, zonas criticas y necesidades de continuidad operativa.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="rr-card p-3">
+                    <h4><i class="bi bi-file-earmark-check"></i> Entregables</h4>
+                    <p class="rr-meta">Documentacion final validada</p>
+                    <p>Planos de replanteo, criterios de implantacion, resumen de incidencias y propuesta tecnica final para ejecucion.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title mt-4"><i class="bi bi-journal-text"></i> Informes anonimizados para mostrar trabajo</h2>
+        <div class="card-custom">
+            <div class="card-body">
+                <div class="rr-report">
+                    <strong>RR-089 | Centro Medico Horizonte Norte</strong>
+                    <p class="rr-meta">Estado: Informe final validado</p>
+                    <p>Ajuste de backbone interno, revision de pasos verticales y redistribucion de puntos de acceso para aumentar cobertura estable en zonas de alta densidad.</p>
+                    <span class="rr-file">RR_089_HorizonteNorte_InformeFinal_Anon.pdf</span>
+                </div>
+
+                <div class="rr-report">
+                    <strong>RR-117 | Centro Clinico Delta Este</strong>
+                    <p class="rr-meta">Estado: Informe final validado</p>
+                    <p>Replanteo de trazado principal y secundario, normalizacion de distancias de cableado y mejora de redundancia en armarios de comunicaciones.</p>
+                    <span class="rr-file">RR_117_DeltaEste_InformeFinal_Anon.pdf</span>
+                </div>
+
+                <div class="rr-report">
+                    <strong>RR-123 | Complejo Sanitario Arce</strong>
+                    <p class="rr-meta">Estado: Informe final</p>
+                    <p>Rediseno de distribucion por sectores, separacion de trafico por servicios y propuesta de crecimiento para fases futuras del edificio.</p>
+                    <span class="rr-file">RR_123_Arce_InformeFinal_Anon.pdf</span>
+                </div>
+
+                <div class="rr-report">
+                    <strong>RR-125 | Campus Medico Valnera</strong>
+                    <p class="rr-meta">Estado: Informe final</p>
+                    <p>Optimizacion de puntos de concentracion, balanceo de carga por zona y mejora de accesibilidad en canalizaciones existentes.</p>
+                    <span class="rr-file">RR_125_Valnera_InformeFinal_Anon.pdf</span>
+                </div>
+
+                <div class="rr-report">
+                    <strong>RR-139 | Nodo Hospitalario Altiplano</strong>
+                    <p class="rr-meta">Estado: Informe final</p>
+                    <p>Reorganizacion de topologia por plantas, propuesta de contingencia y definicion de ruta tecnica para despliegue sin parada de servicio.</p>
+                    <span class="rr-file">RR_139_Altiplano_InformeFinal_Anon.pdf</span>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title mt-4"><i class="bi bi-shield-check"></i> Criterios de anonimización aplicados</h2>
+        <div class="card-custom">
+            <div class="card-body">
+                <ul class="mb-0">
+                    <li>Sustitucion de nombres de centros por nombres neutrales de portfolio.</li>
+                    <li>Eliminacion de datos personales: nombres, apellidos y firmas identificables.</li>
+                    <li>Ocultacion de referencias internas de cliente y codigos de orden de trabajo.</li>
+                    <li>Mantenimiento de contenido tecnico para demostrar metodologia y nivel de ejecucion.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="alert alert-success-custom alert-custom mt-4">
+            <strong>Contáctame:</strong> <a href="mailto:jemarin@birt.eus">jemarin@birt.eus</a> |
+            <strong>Discord:</strong> <a href="https://discord.gg/byCRavuB7e" target="_blank" rel="noopener noreferrer">discord.gg/byCRavuB7e</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/site-sfx.js"></script>
+    <script src="assets/js/site-theme.js"></script>
+</body>
+</html>

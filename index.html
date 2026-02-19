@@ -28,6 +28,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center"><li class="nav-item"><a class="nav-link-neon" href="guia_redes.html">Redes</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="replanteos_red.html">Replanteos</a></li>
                     <li class="nav-item"><a class="nav-link-neon" href="linux_cheatsheet.html">Linux</a></li>
                     <li class="nav-item"><a class="nav-link-neon" href="virtualbox.html">VirtualBox</a></li>
                     <li class="nav-item"><a class="nav-link-neon" href="conversor_binario_hexadecimal.html">Conversor</a></li>
@@ -64,6 +65,14 @@
                     <h3 class="mt-3">Redes</h3>
                     <p>Subnetting, VLSM, DHCP, DNS y calculadora IP.</p>
                     <a href="guia_redes.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 p-4 text-center">
+                    <i class="bi bi-diagram-2 fs-1"></i>
+                    <h3 class="mt-3">Replanteos</h3>
+                    <p>Casos de replanteo de red en infraestructuras grandes, anonimizados para portfolio.</p>
+                    <a href="replanteos_red.html" class="btn btn-outline-primary mt-3">Acceder</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -278,6 +287,7 @@
         const useIframeSpa = location.protocol === 'file:';
         const spaRoutes = new Set([
             'guia_redes.html',
+            'replanteos_red.html',
             'linux_cheatsheet.html',
             'virtualbox.html',
             'conversor_binario_hexadecimal.html',
