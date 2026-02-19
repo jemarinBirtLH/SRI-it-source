@@ -23,7 +23,7 @@
                 <span class="brand-icon"><i class="bi bi-house-door"></i></span>
                 <span class="brand-label">SOURCE-IT</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border-color: #00ff88;">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir navegacion" style="border-color: #00ff88;">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -174,7 +174,8 @@
         <main id="spaContent" class="d-none mt-4"></main>
         </section>
         <div class="alert alert-success-custom alert-custom mt-4 text-center">
-            <strong>Contáctame:</strong> <a href="mailto:jesustelefonico@gmail.com">jesustelefonico@gmail.com</a>
+            <strong>Contáctame:</strong> <a href="mailto:jemarin@birt.eus">jemarin@birt.eus</a> |
+            <strong>Discord:</strong> <a href="https://discord.gg/byCRavuB7e" target="_blank" rel="noopener noreferrer">discord.gg/byCRavuB7e</a>
         </div>
     </div>
 
@@ -196,7 +197,27 @@
             'Deploy de viernes detectado, procedo a rezar.',
             'Tu codigo tiene personalidad, y tambien traumas.',
             'Tengo 99 problemas, y 120 pestañas abiertas.',
-            'Reiniciar no arregla todo, pero anima bastante.'
+            'Reiniciar no arregla todo, pero anima bastante.',
+            'El codigo compila, pero mi autoestima sigue en beta.',
+            'Hoy debuguee tanto que ya pienso en stack traces.',
+            'Mi teclado pidio vacaciones despues de este merge.',
+            'Tu variable se llama x, pero el misterio es XXL.',
+            'La documentacion existe, solo vive en otra dimension.',
+            'Si rompe en produccion, le llamamos feature sorpresa.',
+            'He hecho 1 commit y 47 respiraciones profundas.',
+            'Tu CSS no esta mal, solo practica parkour.',
+            'Acabo de vencer un bug, ahora somos amigos toxicos.',
+            'Mi plan era dormir; npm dijo que no.',
+            'Ese warning no grita, susurra amenazas.',
+            'He usado IA para todo menos para lavar platos.',
+            'Tu regex funciona, pero nadie sabe por que.',
+            'Refactorice tanto que ahora no reconozco mi propio codigo.',
+            'El servidor responde, yo no prometo lo mismo.',
+            'Tu pull request viene con plot twist en cada linea.',
+            'Esto no es deuda tecnica, es hipoteca.',
+            'Si no hay logs, no hay crimen.',
+            'Mi algoritmo corre rapido cuando no lo miro.',
+            'Acabo de comentar una linea y subio el FPS.'
         ];
         const robotTrajectories = [
             { startX: '-120vw', startY: '8vh', midX: '31vw', midY: '20vh', endX: '108vw', endY: '12vh' },
@@ -408,10 +429,16 @@
         }
 
         document.addEventListener('click', (event) => {
+            if (event.defaultPrevented) return;
+            if (event.button !== 0) return;
+            if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
             const anchor = event.target.closest('a[href]');
             if (!anchor) return;
+            const target = (anchor.getAttribute('target') || '').toLowerCase();
+            if (target && target !== '_self') return;
+            if (anchor.hasAttribute('download')) return;
             const href = anchor.getAttribute('href') || '';
-            if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+            if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
             if (href === '#') return;
             const route = normalizeRoute(href);
             if (route === 'home') {

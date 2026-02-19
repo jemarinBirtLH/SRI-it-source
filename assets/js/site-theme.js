@@ -211,19 +211,60 @@
         applyStyle(currentStyle);
     }
 
+    function normalizeNavRoute(route) {
+        var clean = (route || '').replace(/^#/, '').trim();
+        if (!clean) return '';
+        return clean.split('/').pop().split('#')[0].split('?')[0];
+    }
+
     function markActiveNavLink() {
-        var path = window.location.pathname.split('/').pop() || 'index.html';
+        var path = normalizeNavRoute(window.location.pathname.split('/').pop() || 'index.html');
+        var hashRoute = normalizeNavRoute(window.location.hash);
+        var currentRoute = hashRoute || path;
+
+        if (currentRoute === 'index.html' || currentRoute === 'home') {
+            currentRoute = '';
+        }
+
         var links = document.querySelectorAll('.nav-link-neon');
         links.forEach(function (link) {
+            link.classList.remove('active');
+
             var href = (link.getAttribute('href') || '').trim();
-            if (!href || href.startsWith('http')) return;
-            if (href === path) link.classList.add('active');
+            if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+
+            var route = normalizeNavRoute(href);
+            if (!route || route === 'index.html' || route === 'home') return;
+            if (route === currentRoute) link.classList.add('active');
         });
+    }
+
+    function syncActiveNavOnNavigation() {
+        if (window.__siteNavSyncInstalled) return;
+        window.__siteNavSyncInstalled = true;
+
+        var originalPushState = history.pushState;
+        history.pushState = function () {
+            var result = originalPushState.apply(this, arguments);
+            markActiveNavLink();
+            return result;
+        };
+
+        var originalReplaceState = history.replaceState;
+        history.replaceState = function () {
+            var result = originalReplaceState.apply(this, arguments);
+            markActiveNavLink();
+            return result;
+        };
+
+        window.addEventListener('hashchange', markActiveNavLink);
+        window.addEventListener('popstate', markActiveNavLink);
     }
 
     document.addEventListener('DOMContentLoaded', function () {
         injectGlobalStyleSheet();
         initVisualStyleButton();
+        syncActiveNavOnNavigation();
         markActiveNavLink();
     });
 })();
