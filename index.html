@@ -127,6 +127,7 @@
                     <li class="nav-item"><a class="nav-link-neon" href="figma.html">Figma</a></li>
                     <li class="nav-item"><a class="nav-link-neon" href="hacking_etico.html">Hacking Ético</a></li>
                     <li class="nav-item"><a class="nav-link-neon" href="ia_lanzadera.html">IA</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="freeplane.html">Freeplane</a></li>
                     <li class="nav-item"><a class="nav-link-neon" href="git_github.html">Git/GitHub</a></li>
                 </ul>
             </div>
@@ -144,12 +145,30 @@
         </div>
         <section class="sections-board">
         <div id="homeGrid" class="row g-4">
+            <!-- panel de búsqueda integrado -->
+            <div class="col-12">
+                <div id="homeSearchPanel" class="home-search-panel">
+                    <label for="homeSearchInput" class="home-search-title">Buscar en el sitio</label>
+                    <input type="search" id="homeSearchInput" class="form-control home-search-input" placeholder="Escribe para buscar..." aria-label="Buscar en la página de inicio">
+                    <p id="homeSearchMeta" class="home-search-meta">0 resultados</p>
+                    <div id="homeSearchResults" class="home-search-results" aria-label="Resultados de búsqueda"></div>
+                </div>
+            </div>
             <div class="col-md-6 col-lg-3">
                 <div class="card h-100 p-4 text-center">
                     <i class="bi bi-diagram-3 fs-1"></i>
                     <h3 class="mt-3">Redes</h3>
                     <p>Subnetting, VLSM, DHCP, DNS y calculadora IP.</p>
                     <a href="guia_redes.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                </div>
+            </div>
+            <!-- tarjeta independiente para calculadora IP -->
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 p-4 text-center">
+                    <i class="bi bi-calculator fs-1"></i>
+                    <h3 class="mt-3">Calculadora IP</h3>
+                    <p>Calcula subredes, rangos y hosts de manera interactiva.</p>
+                    <a href="guia_redes.html#calculadora" class="btn btn-outline-primary mt-3">Usar</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -254,6 +273,14 @@
                     <h3 class="mt-3">IA Lanzadera</h3>
                     <p>Chatbots, vídeo IA, OpenClaw y plataformas creativas en un solo panel.</p>
                     <a href="ia_lanzadera.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 p-4 text-center">
+                    <i class="bi bi-diagram-3 fs-1"></i>
+                    <h3 class="mt-3">Freeplane</h3>
+                    <p>Mapas mentales, atajos y ejemplos para gestionar ideas gráficamente.</p>
+                    <a href="freeplane.html" class="btn btn-outline-primary mt-3">Acceder</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -399,9 +426,79 @@
         let spaFrame = null;
         let activeSpaRoute = 'home';
 
+        // ---- búsqueda en inicio ------------------------------------------------
+        const searchInput = document.getElementById('homeSearchInput');
+        const searchMeta = document.getElementById('homeSearchMeta');
+        const searchResults = document.getElementById('homeSearchResults');
+        let searchItems = [];
+
+        function buildSearchIndex() {
+            searchItems = [];
+            const cards = document.querySelectorAll('#homeGrid .card');
+            cards.forEach((card) => {
+                const title = card.querySelector('h3')?.textContent.trim() || '';
+                const desc = card.querySelector('p')?.textContent.trim() || '';
+                const anchor = card.querySelector('a');
+                const href = anchor ? anchor.getAttribute('href') : '';
+                searchItems.push({ title, desc, href, card });
+            });
+        }
+
+        function renderSearchResults(query) {
+            if (!searchResults || !searchMeta) return;
+            searchResults.innerHTML = '';
+            const clean = query.trim().toLowerCase();
+            if (!clean) {
+                searchMeta.textContent = '0 resultados';
+                searchItems.forEach((item) => {
+                    item.card.classList.remove('home-search-hit', 'home-search-dim');
+                });
+                return;
+            }
+            let count = 0;
+            searchItems.forEach((item) => {
+                const haystack = (item.title + ' ' + item.desc).toLowerCase();
+                const match = haystack.includes(clean);
+                if (match) {
+                    count++;
+                    const a = document.createElement('a');
+                    a.href = '#';
+                    a.className = 'home-search-item';
+                    a.innerHTML = `<strong>${item.title}</strong>` +
+                        `<span class="home-search-where">dónde está: ${item.href}</span>` +
+                        `<span class="home-search-desc">${item.desc}</span>`;
+                    a.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        loadRoute(normalizeRoute(item.href), true);
+                    });
+                    searchResults.appendChild(a);
+                    item.card.classList.add('home-search-hit');
+                    item.card.classList.remove('home-search-dim');
+                } else {
+                    item.card.classList.remove('home-search-hit');
+                    item.card.classList.add('home-search-dim');
+                }
+            });
+            searchMeta.textContent = `${count} resultado${count !== 1 ? 's' : ''}`;
+        }
+
+        searchInput?.addEventListener('input', (e) => {
+            renderSearchResults(e.target.value || '');
+        });
+
+        function resetSearchPanel() {
+            if (searchInput) searchInput.value = '';
+            renderSearchResults('');
+        }
+        // ------------------------------------------------------------------------
+
+
         function normalizeRoute(route) {
             if (!route) return 'home';
-            const clean = route.replace(/^#/, '').trim();
+            // strip leading '#' and any fragment portion
+            let clean = route.replace(/^#/, '').trim();
+            const parts = clean.split('#');
+            clean = parts[0];
             if (!clean || clean === 'home' || clean === 'index.html') return 'home';
             return clean.split('/').pop();
         }
@@ -414,6 +511,9 @@
             spaContent.innerHTML = '';
             document.title = 'Inicio - Source-IT';
             window.scrollTo({ top: 0, behavior: 'auto' });
+            // preparar buscador
+            buildSearchIndex();
+            resetSearchPanel();
             playRobotGlitchIntro();
         }
 
@@ -482,7 +582,15 @@
         }
 
         async function loadRoute(route, pushState = true) {
-            const normalized = normalizeRoute(route);
+            // handle optional fragment (#anchor)
+            let anchor = null;
+            let raw = route;
+            if (typeof raw === 'string' && raw.includes('#')) {
+                const parts = raw.split('#');
+                raw = parts[0];
+                anchor = parts.slice(1).join('#');
+            }
+            const normalized = normalizeRoute(raw);
             if (normalized === 'home' || !spaRoutes.has(normalized)) {
                 showHomeView();
                 if (pushState && location.hash) history.pushState({ route: 'home' }, '', 'index.html');
@@ -490,7 +598,11 @@
             }
 
             if (useIframeSpa) {
-                loadRouteInIframe(normalized, pushState);
+                if (anchor) {
+                    loadRouteInIframe(`${normalized}#${anchor}`, pushState);
+                } else {
+                    loadRouteInIframe(normalized, pushState);
+                }
                 return;
             }
 
@@ -523,9 +635,15 @@
                 runPageScripts(parsed, normalized);
 
                 if (pushState) {
-                    history.pushState({ route: normalized }, '', `index.html#${normalized}`);
+                    history.pushState({ route: normalized }, '', `index.html#${normalized}` + (anchor ? `#${anchor}` : ''));
                 }
                 window.scrollTo({ top: 0, behavior: 'auto' });
+                if (anchor) {
+                    const el = spaContent.querySelector(`#${anchor}`);
+                    if (el) {
+                        setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 50);
+                    }
+                }
                 playRobotGlitchIntro();
             } catch (err) {
                 console.error(err);
@@ -545,15 +663,15 @@
             const href = anchor.getAttribute('href') || '';
             if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
             if (href === '#') return;
-            const route = normalizeRoute(href);
-            if (route === 'home') {
+            const routeBase = normalizeRoute(href);
+            if (routeBase === 'home') {
                 event.preventDefault();
                 loadRoute('home', true);
                 return;
             }
-            if (spaRoutes.has(route)) {
+            if (spaRoutes.has(routeBase)) {
                 event.preventDefault();
-                loadRoute(route, true);
+                loadRoute(href, true); // pass full href so fragment can be handled
             }
         });
 
@@ -561,6 +679,8 @@
             loadRoute(normalizeRoute(location.hash), false);
         });
 
+        // índice de búsqueda disponible desde el principio
+        buildSearchIndex();
         loadRoute(normalizeRoute(location.hash), false);
     </script>
     <script src="assets/js/site-theme.js"></script>
