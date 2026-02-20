@@ -99,17 +99,17 @@
             position: relative;
             overflow: hidden;
             transition: all 0.22s ease;
-            margin: 0 4px;
+            margin: 0 2px; /* tighter spacing */
             animation: none;
-            font-size: 1rem;
-            letter-spacing: 0.03em;
+            font-size: 0.85rem; /* smaller text */
+            letter-spacing: 0.02em;
             color: #dfffee !important;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-height: 44px;
-            padding: 0.55rem 0.85rem;
-            border-radius: 12px;
+            min-height: 36px; /* reduced height */
+            padding: 0.4rem 0.6rem; /* reduced padding */
+            border-radius: 10px;
             border: 1px solid transparent;
             line-height: 1.2;
             text-align: center;
@@ -1820,11 +1820,11 @@
     }
 }
 
-/* toolbar slider for navbar items */
+/* toolbar for navbar items: allow wrap and automatic scrolling if needed */
 .navbar-neon .navbar-nav {
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     overflow-x: auto;
-    overflow-y: visible; /* allow dropdowns to overflow vertically */
+    overflow-y: visible; /* dropdowns */
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
 }
