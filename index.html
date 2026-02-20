@@ -597,6 +597,11 @@
                 return;
             }
 
+            // hide home immediately to avoid flash during network delay
+            homeHero.classList.add('d-none');
+            homeGrid.classList.add('d-none');
+            spaContent.classList.remove('d-none');
+
             if (useIframeSpa) {
                 if (anchor) {
                     loadRouteInIframe(`${normalized}#${anchor}`, pushState);
@@ -681,7 +686,14 @@
 
         // índice de búsqueda disponible desde el principio
         buildSearchIndex();
-        loadRoute(normalizeRoute(location.hash), false);
+        // si al cargar ya venimos con una ruta diferente a home, ocultar el home antes de la petición
+        const initialRoute = normalizeRoute(location.hash);
+        if (initialRoute !== 'home' && spaRoutes.has(initialRoute)) {
+            homeHero.classList.add('d-none');
+            homeGrid.classList.add('d-none');
+            spaContent.classList.remove('d-none');
+        }
+        loadRoute(location.hash, false);
     </script>
     <script src="assets/js/site-theme.js"></script>
 </body>
