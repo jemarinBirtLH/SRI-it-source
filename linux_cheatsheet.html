@@ -11,6 +11,132 @@
     <!-- Google Fonts - Fuentes futuristas -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="assets/css/site.css">
+    <style>
+        .linux-map-shell {
+            border: 1px solid #d6e3f3;
+            border-radius: 1rem;
+            background: linear-gradient(160deg, #ffffff 0%, #f2f7ff 100%);
+            padding: 1rem;
+            box-shadow: 0 14px 24px rgba(15, 32, 58, 0.08);
+        }
+        .linux-map-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            align-items: center;
+            margin-bottom: 0.85rem;
+        }
+        .linux-map-search {
+            flex: 1 1 280px;
+            min-width: 240px;
+            border: 1px solid #bcd2eb;
+            border-radius: 0.75rem;
+            padding: 0.55rem 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: #133353;
+            background: #ffffff;
+        }
+        .linux-map-search:focus-visible {
+            outline: 2px solid #2b6cb0;
+            outline-offset: 2px;
+        }
+        .linux-map-btn {
+            border: 1px solid #2b6cb0;
+            background: #ffffff;
+            color: #1b4f82;
+            border-radius: 0.65rem;
+            padding: 0.45rem 0.72rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+        .linux-map-btn:hover {
+            background: #2b6cb0;
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+        .linux-map-tree {
+            max-height: 560px;
+            overflow: auto;
+            padding-right: 0.25rem;
+        }
+        .linux-map-tree .linux-map-node {
+            margin-left: 0.65rem;
+            margin-bottom: 0.2rem;
+            padding-left: 0.7rem;
+            border-left: 2px solid #cfdeef;
+        }
+        .linux-map-tree summary {
+            list-style: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.34rem 0.5rem;
+            border-radius: 0.55rem;
+        }
+        .linux-map-tree summary::-webkit-details-marker {
+            display: none;
+        }
+        .linux-map-tree summary::before {
+            content: "▸";
+            color: #24548a;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+        }
+        .linux-map-tree details[open] > summary::before {
+            content: "▾";
+        }
+        .linux-map-label {
+            color: #123f6c;
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+        .linux-map-count {
+            margin-left: auto;
+            background: #dcecff;
+            color: #164a7b;
+            border-radius: 999px;
+            padding: 0.1rem 0.45rem;
+            font-size: 0.73rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+        }
+        .linux-map-leaf {
+            margin-left: 1.75rem;
+            margin-bottom: 0.2rem;
+            border-left: 2px solid #dde7f3;
+            border-radius: 0.5rem;
+            padding: 0.26rem 0.5rem;
+            color: #2c4158;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.88rem;
+        }
+        .linux-map-match > summary,
+        .linux-map-leaf.linux-map-match {
+            background: #fff2b7;
+            border: 1px solid #ebd67b;
+        }
+        .linux-map-hidden {
+            display: none !important;
+        }
+        .linux-map-tip {
+            margin-top: 0.65rem;
+            color: #36516e;
+            font-size: 0.85rem;
+        }
+        @media (max-width: 767.98px) {
+            .linux-map-tree {
+                max-height: 440px;
+            }
+            .linux-map-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="linux-penguin-intro" aria-hidden="true">
@@ -29,6 +155,18 @@
         <div class="alert alert-info d-flex align-items-center" role="alert">
             <i class="bi bi-info-circle-fill me-2 fs-4"></i>
             <div>Para temas de <strong>redes (subnetting, DHCP, DNS)</strong> visita la <a href="guia_redes.html" class="alert-link">Guía de Redes</a>.</div>
+        </div>
+
+        <h2 class="section-title" id="linux-mind-map"><i class="bi bi-diagram-3"></i> Mapa mental dinámico</h2>
+        <div class="linux-map-shell mb-4">
+            <div class="linux-map-toolbar">
+                <input type="search" id="linuxMapSearch" class="linux-map-search" placeholder="Buscar comando, tema o fichero..." aria-label="Buscar en el mapa mental de Linux">
+                <button type="button" id="linuxMapExpand" class="linux-map-btn">Expandir todo</button>
+                <button type="button" id="linuxMapCollapse" class="linux-map-btn">Colapsar ramas</button>
+                <button type="button" id="linuxMapReset" class="linux-map-btn">Limpiar filtro</button>
+            </div>
+            <div id="linuxMindMap" class="linux-map-tree" role="tree" aria-label="Mapa mental de Linux"></div>
+            <p class="linux-map-tip mb-0"><i class="bi bi-lightbulb"></i> Tip: escribe en el buscador para filtrar nodos y abrir las ramas relacionadas.</p>
         </div>
 
         <!-- Navegación y archivos -->
@@ -333,6 +471,335 @@ find /ruta -name "*.log" | xargs rm
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        const linuxMapHost = document.getElementById('linuxMindMap');
+        const linuxMapSearch = document.getElementById('linuxMapSearch');
+        const linuxMapExpand = document.getElementById('linuxMapExpand');
+        const linuxMapCollapse = document.getElementById('linuxMapCollapse');
+        const linuxMapReset = document.getElementById('linuxMapReset');
+
+        const leafList = (items) => items.map((label) => ({ label }));
+
+        const linuxMindMapData = {
+            label: 'Linux: Comandos y Configuracion',
+            children: [
+                {
+                    label: 'Comandos comunes de Linux',
+                    children: [
+                        {
+                            label: 'Navegacion y archivos',
+                            children: leafList([
+                                'ls, cd, pwd',
+                                'cp, mv, rm',
+                                'mkdir, rmdir, touch',
+                                'find, locate, which, whereis'
+                            ])
+                        },
+                        {
+                            label: 'Visualizacion de archivos',
+                            children: leafList([
+                                'cat, less, more',
+                                'head, tail',
+                                'nano, vim, vi',
+                                'echo, printf'
+                            ])
+                        },
+                        {
+                            label: 'Procesos',
+                            children: leafList([
+                                'ps, top, htop',
+                                'kill, killall, pkill',
+                                'bg, fg, jobs',
+                                'nice, renice'
+                            ])
+                        },
+                        {
+                            label: 'Sistema e informacion',
+                            children: leafList([
+                                'uname -a, hostname, uptime',
+                                'whoami, id, date, cal',
+                                'df -h, du -sh, free -h',
+                                'mount, umount'
+                            ])
+                        },
+                        {
+                            label: 'Red',
+                            children: leafList([
+                                'ping, ip a, ip route, ss -tulnp',
+                                'traceroute, nslookup, dig',
+                                'curl, wget, ssh, scp, sftp'
+                            ])
+                        },
+                        {
+                            label: 'Permisos y usuarios',
+                            children: leafList([
+                                'chmod, chown, chgrp, umask',
+                                'useradd, usermod, userdel',
+                                'passwd, su, sudo, visudo, groups'
+                            ])
+                        },
+                        {
+                            label: 'Discos y particiones',
+                            children: leafList([
+                                'fdisk, parted, mkfs, fsck',
+                                'lsblk, blkid',
+                                'mount, umount'
+                            ])
+                        },
+                        {
+                            label: 'Paquetes y compresion',
+                            children: leafList([
+                                'apt, dpkg, yum, dnf, rpm, pacman',
+                                'tar, gzip, gunzip',
+                                'zip, unzip, bzip2, bunzip2'
+                            ])
+                        }
+                    ]
+                },
+                {
+                    label: 'Configuracion de red (ficheros)',
+                    children: [
+                        {
+                            label: 'Interfaces',
+                            children: leafList([
+                                '/etc/network/interfaces',
+                                '/etc/netplan/*.yaml',
+                                '/etc/sysconfig/network-scripts/ifcfg-*',
+                                '/etc/NetworkManager/system-connections/*'
+                            ])
+                        },
+                        {
+                            label: 'DNS y hostname',
+                            children: leafList([
+                                '/etc/resolv.conf',
+                                '/etc/hosts',
+                                '/etc/nsswitch.conf',
+                                '/etc/hostname'
+                            ])
+                        },
+                        {
+                            label: 'DHCP, firewall y kernel',
+                            children: leafList([
+                                '/etc/dhcp/dhclient.conf',
+                                '/etc/dhcp/dhcpd.conf',
+                                '/etc/iptables/rules.v4, /etc/firewalld/firewalld.conf',
+                                '/etc/sysctl.conf, /etc/sysctl.d/*.conf'
+                            ])
+                        },
+                        {
+                            label: 'WiFi y wrappers',
+                            children: leafList([
+                                '/etc/wpa_supplicant/wpa_supplicant.conf',
+                                '/etc/hosts.allow',
+                                '/etc/hosts.deny'
+                            ])
+                        }
+                    ]
+                },
+                {
+                    label: 'Permisos de usuario',
+                    children: [
+                        {
+                            label: 'Tipos y notacion octal',
+                            children: leafList([
+                                'r, w, x para usuario, grupo y otros',
+                                '0-7: sin permisos a rwx',
+                                '755, 644, 700 como patrones comunes'
+                            ])
+                        },
+                        {
+                            label: 'Permisos especiales',
+                            children: leafList([
+                                'SUID (4xxx)',
+                                'SGID (2xxx)',
+                                'Sticky bit (1xxx)'
+                            ])
+                        },
+                        {
+                            label: 'Archivos clave',
+                            children: leafList([
+                                '/etc/passwd, /etc/shadow',
+                                '/etc/group, /etc/gshadow',
+                                '/etc/sudoers'
+                            ])
+                        },
+                        {
+                            label: 'ACL y grupos secundarios',
+                            children: leafList([
+                                'getfacl, setfacl',
+                                'id, groups, newgrp',
+                                'mount -o acl'
+                            ])
+                        }
+                    ]
+                },
+                {
+                    label: 'Apps de shell y regex',
+                    children: [
+                        {
+                            label: 'grep y variantes',
+                            children: leafList([
+                                'grep, grep -E (egrep), grep -F (fgrep)',
+                                '-i, -v, -r, -n, -c, -A/-B/-C'
+                            ])
+                        },
+                        {
+                            label: 'Procesamiento de texto',
+                            children: leafList([
+                                "awk '{print $1}' y awk -F:",
+                                "sed 's/old/new/g' y sed -n",
+                                'cut, tr'
+                            ])
+                        },
+                        {
+                            label: 'Ordenar y contar',
+                            children: leafList([
+                                'sort, sort -n, sort -k',
+                                'uniq, uniq -c',
+                                'wc -l, wc -w, wc -c'
+                            ])
+                        },
+                        {
+                            label: 'Busqueda y pipelines',
+                            children: leafList([
+                                'find ... -exec ...',
+                                'xargs y xargs -I {}',
+                                '> , >> , 2> , &> , < , | , tee'
+                            ])
+                        },
+                        {
+                            label: 'Expresiones regulares',
+                            children: leafList([
+                                'Basicas: . * ^ $ [] [^]',
+                                'Extendidas: + ? | () {}'
+                            ])
+                        }
+                    ]
+                }
+            ]
+        };
+
+        function buildLinuxMapNode(node, depth = 0) {
+            const hasChildren = Array.isArray(node.children) && node.children.length > 0;
+
+            if (hasChildren) {
+                const details = document.createElement('details');
+                details.className = 'linux-map-node';
+                details.dataset.label = node.label.toLowerCase();
+                details.dataset.depth = String(depth);
+                details.open = depth < 2;
+
+                const summary = document.createElement('summary');
+                const label = document.createElement('span');
+                label.className = 'linux-map-label';
+                label.textContent = node.label;
+
+                const count = document.createElement('span');
+                count.className = 'linux-map-count';
+                count.textContent = String(node.children.length);
+
+                summary.appendChild(label);
+                summary.appendChild(count);
+                details.appendChild(summary);
+
+                const childWrap = document.createElement('div');
+                childWrap.className = 'linux-map-children';
+                node.children.forEach((child) => childWrap.appendChild(buildLinuxMapNode(child, depth + 1)));
+                details.appendChild(childWrap);
+                return details;
+            }
+
+            const leaf = document.createElement('div');
+            leaf.className = 'linux-map-leaf';
+            leaf.dataset.label = node.label.toLowerCase();
+            leaf.dataset.depth = String(depth);
+            leaf.textContent = node.label;
+            return leaf;
+        }
+
+        function forEachMapNode(callback) {
+            if (!linuxMapHost) return;
+            linuxMapHost.querySelectorAll('.linux-map-node, .linux-map-leaf').forEach(callback);
+        }
+
+        function resetLinuxMapView() {
+            forEachMapNode((node) => {
+                node.classList.remove('linux-map-hidden', 'linux-map-match');
+                if (node.classList.contains('linux-map-node')) {
+                    const depth = Number(node.dataset.depth || '0');
+                    node.open = depth < 2;
+                }
+            });
+        }
+
+        function filterLinuxMapNode(node, query) {
+            const label = node.dataset.label || '';
+            const selfMatch = label.includes(query);
+            let descendantMatch = false;
+
+            if (node.classList.contains('linux-map-node')) {
+                const childWrap = node.querySelector('.linux-map-children');
+                if (childWrap) {
+                    Array.from(childWrap.children).forEach((child) => {
+                        if (filterLinuxMapNode(child, query)) {
+                            descendantMatch = true;
+                        }
+                    });
+                }
+                if (query && descendantMatch) {
+                    node.open = true;
+                }
+            }
+
+            const visible = selfMatch || descendantMatch;
+            node.classList.toggle('linux-map-hidden', !visible);
+            node.classList.toggle('linux-map-match', Boolean(query) && selfMatch);
+            return visible;
+        }
+
+        function applyLinuxMapFilter(query) {
+            if (!linuxMapHost) return;
+            if (!query) {
+                resetLinuxMapView();
+                return;
+            }
+            Array.from(linuxMapHost.children).forEach((rootNode) => {
+                filterLinuxMapNode(rootNode, query);
+            });
+        }
+
+        function initLinuxMindMap() {
+            if (!linuxMapHost) return;
+
+            linuxMapHost.innerHTML = '';
+            linuxMapHost.appendChild(buildLinuxMapNode(linuxMindMapData));
+
+            linuxMapSearch?.addEventListener('input', (event) => {
+                const query = event.target.value.trim().toLowerCase();
+                applyLinuxMapFilter(query);
+            });
+
+            linuxMapExpand?.addEventListener('click', () => {
+                linuxMapHost.querySelectorAll('.linux-map-node').forEach((node) => {
+                    node.open = true;
+                });
+            });
+
+            linuxMapCollapse?.addEventListener('click', () => {
+                linuxMapHost.querySelectorAll('.linux-map-node').forEach((node) => {
+                    const depth = Number(node.dataset.depth || '0');
+                    node.open = depth === 0;
+                });
+            });
+
+            linuxMapReset?.addEventListener('click', () => {
+                if (linuxMapSearch) {
+                    linuxMapSearch.value = '';
+                }
+                resetLinuxMapView();
+            });
+        }
+
+        initLinuxMindMap();
     </script>
     <script src="assets/js/site-sfx.js"></script>
     <script src="assets/js/site-theme.js"></script>

@@ -11,6 +11,92 @@
     <!-- Google Fonts - Fuentes futuristas -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/site.css">
+    <style>
+        .home-search-panel {
+            border: 1px solid #d7e4f2;
+            border-radius: 14px;
+            background: linear-gradient(165deg, #ffffff 0%, #eef5ff 100%);
+            box-shadow: 0 10px 20px rgba(8, 22, 40, 0.08);
+            padding: 0.95rem;
+        }
+        .home-search-title {
+            display: block;
+            margin-bottom: 0.45rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #17385c;
+        }
+        .home-search-input {
+            border: 1px solid #b7d0eb;
+            font-family: 'JetBrains Mono', monospace;
+            color: #122b4b;
+        }
+        .home-search-input:focus {
+            border-color: #0b66d1;
+            box-shadow: 0 0 0 0.2rem rgba(11, 102, 209, 0.16);
+        }
+        .home-search-meta {
+            margin-top: 0.55rem;
+            margin-bottom: 0;
+            color: #355372;
+            font-size: 0.82rem;
+        }
+        .home-search-results {
+            margin-top: 0.7rem;
+            max-height: 280px;
+            overflow: auto;
+            border: 1px solid #cfdeef;
+            border-radius: 10px;
+            background: #ffffff;
+        }
+        .home-search-item {
+            display: block;
+            text-decoration: none;
+            border-bottom: 1px solid #e4ecf6;
+            padding: 0.65rem 0.75rem;
+            color: #15385f;
+            transition: background-color 0.2s ease;
+        }
+        .home-search-item:last-child {
+            border-bottom: 0;
+        }
+        .home-search-item:hover {
+            background: #f0f6ff;
+        }
+        .home-search-item:focus-visible {
+            outline: 2px solid #0b66d1;
+            outline-offset: -2px;
+        }
+        .home-search-item strong {
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 0.03em;
+            text-transform: none;
+            margin-bottom: 0.2rem;
+            color: #102c49;
+        }
+        .home-search-where {
+            display: block;
+            font-size: 0.8rem;
+            color: #335a80;
+            margin-bottom: 0.2rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .home-search-desc {
+            display: block;
+            font-size: 0.84rem;
+            color: #2b4663;
+        }
+        #homeGrid .card.home-search-hit {
+            border-top: 3px solid #0b66d1;
+            box-shadow: 0 16px 30px rgba(11, 102, 209, 0.2);
+        }
+        #homeGrid .card.home-search-dim {
+            opacity: 0.38;
+            filter: saturate(0.65);
+        }
+    </style>
 </head>
 <body>
     <!-- Animacion Mr. Robot (frase aleatoria + baile 4s) -->
