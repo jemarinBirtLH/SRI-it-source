@@ -3,204 +3,467 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guía de MySQL - Permisos, Vistas y Cheatsheet</title>
-    <!-- Bootstrap 5 CSS -->
+    <title>Guia de MySQL - Permisos, Busquedas y Cheatsheet</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <style>
+        .mysql-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.28rem 0.68rem;
+            border: 1px solid #b8cee9;
+            border-radius: 999px;
+            background: #eef5ff;
+            color: #1d3f6a;
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin: 0 0.3rem 0.35rem 0;
+        }
+        .mysql-quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            margin-top: 0.9rem;
+        }
+        .mysql-grid {
+            display: grid;
+            gap: 0.9rem;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        }
+        .mysql-mini-card {
+            border: 1px solid #d7e4f3;
+            border-radius: 1rem;
+            background: #ffffff;
+            padding: 1rem;
+            box-shadow: 0 10px 20px rgba(7, 31, 56, 0.06);
+        }
+        .mysql-mini-card h3 {
+            margin-bottom: 0.45rem;
+            font-size: 1.02rem;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+        .mysql-mini-card p {
+            margin-bottom: 0;
+            color: #334155;
+            font-size: 0.92rem;
+        }
+        .mysql-glossary {
+            border: 1px solid #d7e4f3;
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+        .mysql-glossary dt {
+            background: #f2f7ff;
+            color: #11365d;
+            padding: 0.72rem 0.9rem;
+            border-bottom: 1px solid #d7e4f3;
+            font-weight: 700;
+        }
+        .mysql-glossary dd {
+            margin: 0;
+            padding: 0.72rem 0.9rem;
+            border-bottom: 1px solid #e8eef6;
+            color: #2f4258;
+        }
+        .mysql-glossary dd:last-of-type {
+            border-bottom: 0;
+        }
+        .mysql-example-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.02rem;
+            text-transform: none;
+            letter-spacing: 0;
+            color: #123f6e;
+            margin-bottom: 0.45rem;
+        }
+        .mysql-check {
+            margin: 0;
+            padding-left: 1rem;
+        }
+        .mysql-check li {
+            margin-bottom: 0.3rem;
+            color: #2d3d4e;
+        }
+    </style>
 </head>
 <body>
-    <!-- Navbar Neón -->
-    <!-- Hero -->
+    <nav class="navbar-neon navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="neon-text" href="index.html">
+                <span class="brand-icon"><i class="bi bi-house-door"></i></span>
+                <span class="brand-label">SOURCE-IT</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir navegacion" style="border-color: #00ff88;">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link-neon" href="guia_redes.html">Redes</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="replanteos_red.html">Replanteos</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="linux_cheatsheet.html">Linux</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="virtualbox.html">VirtualBox</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="conversor_binario_hexadecimal.html">Conversor</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="MySQL.html">MySQL</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="dhcp_dns.html">DHCP/DNS</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="lenguajes_de_marcas.html">Lenguajes</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="Css_basico.html">CSS Basico</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="Js_basico.html">JavaScript</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="python.html">Python</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="figma.html">Figma</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="hacking_etico.html">Hacking Etico</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="ia_lanzadera.html">IA</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="git_github.html">Git/GitHub</a></li>
+                    <li class="nav-item ms-3"><button id="themeToggle" class="theme-btn btn" title="Cambiar tema"><span class="penguin" aria-hidden="true">&#128039;</span><span class="visually-hidden">Cambiar tema</span></button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <div class="hero text-center">
-        <h1 class="display-4 fw-bold"><i class="bi bi-database-gear"></i> Guía de MySQL</h1>
-        <p class="lead">Gestión de usuarios, permisos, vistas y buenas prácticas.</p>
+        <h1 class="display-4 fw-bold"><i class="bi bi-database-gear"></i> Guia de MySQL</h1>
+        <p class="lead">Usuarios, permisos, vistas, busquedas SQL y ejemplos reales.</p>
     </div>
 
     <div class="container py-4">
-        
-        <p class="lead">Este documento recopila los comandos, ejemplos y buenas prácticas utilizadas durante la administración de usuarios, privilegios y vistas en MySQL.</p>
+        <div class="card-custom mb-4">
+            <div class="card-header-custom"><i class="bi bi-mortarboard"></i> Ruta rapida</div>
+            <div class="card-body p-4">
+                <p class="mb-3">Esta pagina ahora incluye botones con enlaces internos correctos, glosario tecnico, cheatsheets por bloque y guias de consulta para buscar datos de forma eficiente.</p>
+                <span class="mysql-pill"><i class="bi bi-1-circle"></i> Conexion</span>
+                <span class="mysql-pill"><i class="bi bi-2-circle"></i> Seguridad</span>
+                <span class="mysql-pill"><i class="bi bi-3-circle"></i> Busquedas</span>
+                <span class="mysql-pill"><i class="bi bi-4-circle"></i> Casos reales</span>
+                <div class="mysql-quick-actions">
+                    <a href="#busquedas" class="btn btn-outline-primary">Ir a Busquedas SQL</a>
+                    <a href="#cheatsheet" class="btn btn-outline-primary">Ir a Cheatsheet</a>
+                    <a href="#glosario" class="btn btn-outline-primary">Ir a Glosario</a>
+                    <a href="index.html" class="btn btn-outline-primary">Volver a Inicio</a>
+                </div>
+            </div>
+        </div>
 
-        <!-- Índice rápido -->
         <div class="card-custom mb-5">
-            <div class="card-header-custom"><i class="bi bi-list-stars"></i> Índice de Contenidos</div>
+            <div class="card-header-custom"><i class="bi bi-list-stars"></i> Indice de contenidos</div>
             <div class="card-body p-4">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="#usuarios" class="text-decoration-none">1. Creación de Usuarios</a></li>
-                    <li class="list-group-item"><a href="#vistas" class="text-decoration-none">2. Vistas sobre Bases de Datos</a></li>
-                    <li class="list-group-item"><a href="#permisos" class="text-decoration-none">3. Permisos de Modificación</a></li>
-                    <li class="list-group-item"><a href="#columnas" class="text-decoration-none">4. Privilegios a Nivel de Columna</a></li>
-                    <li class="list-group-item"><a href="#cheatsheet" class="text-decoration-none">5. Cheatsheet de Comandos</a></li>
-                    <li class="list-group-item"><a href="#buenas-practicas" class="text-decoration-none">6. Buenas Prácticas</a></li>
-                    <li class="list-group-item"><a href="#bibliografia" class="text-decoration-none">7. Bibliografía</a></li>
+                    <li class="list-group-item"><a href="#conexion" class="text-decoration-none">1. Conexion y entorno base</a></li>
+                    <li class="list-group-item"><a href="#usuarios" class="text-decoration-none">2. Creacion de usuarios</a></li>
+                    <li class="list-group-item"><a href="#vistas" class="text-decoration-none">3. Vistas sobre la base de datos</a></li>
+                    <li class="list-group-item"><a href="#permisos" class="text-decoration-none">4. Permisos de modificacion</a></li>
+                    <li class="list-group-item"><a href="#columnas" class="text-decoration-none">5. Privilegios por columna</a></li>
+                    <li class="list-group-item"><a href="#busquedas" class="text-decoration-none">6. Como hacer busquedas SQL</a></li>
+                    <li class="list-group-item"><a href="#ejemplos" class="text-decoration-none">7. Ejemplos de uso real</a></li>
+                    <li class="list-group-item"><a href="#cheatsheet" class="text-decoration-none">8. Cheatsheets rapidos</a></li>
+                    <li class="list-group-item"><a href="#glosario" class="text-decoration-none">9. Glosario MySQL</a></li>
+                    <li class="list-group-item"><a href="#buenas-practicas" class="text-decoration-none">10. Buenas practicas</a></li>
+                    <li class="list-group-item"><a href="#bibliografia" class="text-decoration-none">11. Bibliografia oficial</a></li>
                 </ul>
             </div>
         </div>
 
-        <!-- 1. Creación de usuarios -->
-        <h2 class="section-title" id="usuarios">🔐 1. Creación de usuarios</h2>
+        <h2 class="section-title" id="conexion"><i class="bi bi-plug"></i> 1. Conexion y entorno base</h2>
         <div class="card-custom">
-            <div class="card-header-custom"><i class="bi bi-person-fill-gear"></i> Usuario administrador (solo servidor)</div>
+            <div class="card-header-custom"><i class="bi bi-terminal"></i> Primeros comandos al entrar</div>
             <div class="card-body p-4">
-                <div class="code-block">CREATE USER 'jemarin_adm'@'localhost' IDENTIFIED BY 'contraseña_segura_adm';
+                <div class="code-block">mysql -u root -p
+SHOW DATABASES;
+SELECT VERSION();
+STATUS;
+SHOW VARIABLES LIKE 'character_set_server';</div>
+                <p class="mt-3 mb-0">Antes de tocar permisos, comprueba version, codificacion y base activa para evitar errores de contexto.</p>
+            </div>
+        </div>
+
+        <h2 class="section-title" id="usuarios"><i class="bi bi-person-fill-gear"></i> 2. Creacion de usuarios</h2>
+        <div class="card-custom">
+            <div class="card-header-custom"><i class="bi bi-shield-lock"></i> Usuario administrador local</div>
+            <div class="card-body p-4">
+                <div class="code-block">CREATE USER 'jemarin_adm'@'localhost' IDENTIFIED BY 'Adm_2026_Fuerte!';
 GRANT ALL PRIVILEGES ON *.* TO 'jemarin_adm'@'localhost' WITH GRANT OPTION;
 FLUSH PRIVILEGES;</div>
-                <p><strong>Características:</strong> Acceso total desde la propia máquina del servidor. Ideal para tareas de administración.</p>
+                <p class="mb-0">Este usuario debe quedar limitado al propio servidor para tareas de administracion.</p>
             </div>
         </div>
         <div class="card-custom">
-            <div class="card-header-custom"><i class="bi bi-person"></i> Usuario normal (solo desde cliente)</div>
+            <div class="card-header-custom"><i class="bi bi-person"></i> Usuario de aplicacion (host restringido)</div>
             <div class="card-body p-4">
-                <div class="code-block">CREATE USER 'jemarin_usu'@'192.168.10.20' IDENTIFIED BY 'contraseña_usu';</div>
-                <div class="alert alert-info-custom alert-custom mt-3">
-                    <strong>Verificación:</strong> <code>SELECT user, host FROM mysql.user WHERE user = 'jemarin_usu';</code>
+                <div class="code-block">CREATE USER 'jemarin_app'@'192.168.10.20' IDENTIFIED BY 'App_2026_Robusta!';
+GRANT SELECT ON Jardineria.* TO 'jemarin_app'@'192.168.10.20';
+FLUSH PRIVILEGES;
+
+SELECT user, host FROM mysql.user WHERE user = 'jemarin_app';</div>
+                <div class="alert alert-info-custom alert-custom mt-3 mb-0">
+                    <strong>Tip:</strong> evita <code>'%'</code> salvo casos controlados y auditados.
                 </div>
             </div>
         </div>
 
-        <!-- 2. Vistas -->
-        <h2 class="section-title" id="vistas">🧾 2. Vistas sobre la base de datos Jardineria</h2>
+        <h2 class="section-title" id="vistas"><i class="bi bi-file-earmark-spreadsheet"></i> 3. Vistas sobre la base de datos</h2>
         <div class="card-custom">
-            <div class="card-header-custom"><i class="bi bi-file-earmark-spreadsheet"></i> Crear vista combinando Pedidos y Clientes</div>
+            <div class="card-header-custom"><i class="bi bi-layout-text-window-reverse"></i> Crear vista para ocultar tablas crudas</div>
             <div class="card-body p-4">
                 <div class="code-block">USE Jardineria;
-CREATE VIEW vista_pedidos_clientes AS
-SELECT p.CodigoPedido, p.FechaPedido, p.Estado, c.NombreCliente, c.Telefono
-FROM Pedidos p JOIN Clientes c ON p.CodigoCliente = c.CodigoCliente;</div>
-                <p>Esta vista muestra información útil sin exponer datos internos de ambas tablas por separado.</p>
+CREATE OR REPLACE VIEW vista_pedidos_clientes AS
+SELECT
+    p.CodigoPedido,
+    p.FechaPedido,
+    p.Estado,
+    c.NombreCliente,
+    c.Telefono
+FROM Pedidos p
+JOIN Clientes c ON p.CodigoCliente = c.CodigoCliente;</div>
+                <p class="mb-0">La vista entrega datos listos para consumo sin exponer todas las columnas internas.</p>
             </div>
         </div>
         <div class="card-custom">
-            <div class="card-header-custom"><i class="bi bi-key"></i> Otorgar SELECT solo sobre la vista</div>
+            <div class="card-header-custom"><i class="bi bi-key"></i> Conceder acceso solo a la vista</div>
             <div class="card-body p-4">
-                <div class="code-block">GRANT SELECT ON Jardineria.vista_pedidos_clientes TO 'jemarin_usu'@'192.168.10.20';
-FLUSH PRIVILEGES;</div>
-                <div class="alert alert-info-custom alert-custom mt-3">
-                    <strong>Comprobación desde el cliente:</strong><br>
-                    <code>SELECT * FROM vista_pedidos_clientes LIMIT 5;</code> ? ? funciona.<br>
-                    <code>SELECT * FROM Clientes;</code> ? ? error 1142 (comando denegado).
+                <div class="code-block">GRANT SELECT ON Jardineria.vista_pedidos_clientes TO 'jemarin_app'@'192.168.10.20';
+FLUSH PRIVILEGES;
+
+SHOW GRANTS FOR 'jemarin_app'@'192.168.10.20';</div>
+                <div class="alert alert-success-custom alert-custom mt-3 mb-0">
+                    <strong>Esperado:</strong> <code>SELECT * FROM vista_pedidos_clientes;</code> funciona y <code>SELECT * FROM Clientes;</code> devuelve error de permisos.
                 </div>
             </div>
         </div>
-        <div class="card-custom">
-            <div class="card-header-custom"><i class="bi bi-search"></i> Consultar definición de vistas</div>
-            <div class="card-body p-4">
-                <div class="code-block">SELECT TABLE_NAME, VIEW_DEFINITION FROM information_schema.VIEWS WHERE TABLE_SCHEMA = 'Jardineria';</div>
-                <p>Esta consulta muestra el código SQL con el que fue creada cada vista, útil para auditoría y documentación.</p>
-            </div>
-        </div>
 
-        <!-- 3. Permisos de modificación -->
-        <h2 class="section-title" id="permisos">✏️ 3. Permisos de modificación sobre tablas</h2>
+        <h2 class="section-title" id="permisos"><i class="bi bi-pencil-square"></i> 4. Permisos de modificacion</h2>
         <div class="card-custom">
-            <div class="card-header-custom"><i class="bi bi-pencil-square"></i> Permitir INSERT, UPDATE, DELETE</div>
+            <div class="card-header-custom"><i class="bi bi-sliders"></i> Conceder y revocar por tabla</div>
             <div class="card-body p-4">
-                <div class="code-block">GRANT SELECT, INSERT, UPDATE, DELETE ON Jardineria.Clientes TO 'jemarin_usu'@'192.168.10.20';
+                <div class="code-block">GRANT SELECT, INSERT, UPDATE, DELETE ON Jardineria.Clientes TO 'jemarin_app'@'192.168.10.20';
+FLUSH PRIVILEGES;
+
+REVOKE INSERT, UPDATE, DELETE ON Jardineria.Clientes FROM 'jemarin_app'@'192.168.10.20';
 FLUSH PRIVILEGES;</div>
-                <p>Con estos permisos el usuario puede consultar y modificar registros de <code>Clientes</code>.</p>
-            </div>
-        </div>
-        <div class="card-custom">
-            <div class="card-header-custom"><i class="bi bi-shield-slash"></i> Revocar permisos de modificación</div>
-            <div class="card-body p-4">
-                <div class="code-block">REVOKE INSERT, UPDATE, DELETE ON Jardineria.Clientes FROM 'jemarin_usu'@'192.168.10.20';
-FLUSH PRIVILEGES;</div>
-                <p>Tras esta operación, el usuario conserva el permiso <code>SELECT</code> pero ya no puede alterar datos.</p>
+                <p class="mb-0">Aplica permisos minimos y revisalos periodicamente con <code>SHOW GRANTS</code>.</p>
             </div>
         </div>
 
-        <!-- 4. Privilegios a nivel de columna -->
-        <h2 class="section-title" id="columnas">📊 4. Privilegios a nivel de columna</h2>
+        <h2 class="section-title" id="columnas"><i class="bi bi-grip-vertical"></i> 5. Privilegios por columna</h2>
         <div class="card-custom">
-            <div class="card-header-custom"><i class="bi bi-grip-vertical"></i> Uso de columns_priv</div>
+            <div class="card-header-custom"><i class="bi bi-columns-gap"></i> Limitar UPDATE a un campo concreto</div>
             <div class="card-body p-4">
-                <p>Permite conceder permisos sobre columnas específicas. Por ejemplo, permitir modificar solo el teléfono:</p>
-                <div class="code-block">GRANT UPDATE (Telefono) ON Jardineria.Clientes TO 'jemarin_usu'@'192.168.10.20';</div>
-                <p>Para ver el registro generado en las tablas del sistema:</p>
-                <div class="code-block">SELECT * FROM mysql.columns_priv WHERE User = 'jemarin_usu'\G</div>
-                <p>Esta granularidad es clave para aplicar el principio de mínimo privilegio.</p>
+                <div class="code-block">GRANT UPDATE (Telefono) ON Jardineria.Clientes TO 'jemarin_app'@'192.168.10.20';
+
+SELECT Host, Db, User, Table_name, Column_name, Column_priv
+FROM mysql.columns_priv
+WHERE User = 'jemarin_app';</div>
+                <p class="mb-0">Con esto el usuario puede editar solo telefono sin tocar nombre, direccion ni credito.</p>
             </div>
         </div>
 
-        <!-- 5. Cheatsheet -->
-        <h2 class="section-title" id="cheatsheet">⚡ 5. Cheatsheet de Comandos</h2>
+        <h2 class="section-title" id="busquedas"><i class="bi bi-search"></i> 6. Como hacer busquedas en MySQL</h2>
+        <div class="mysql-grid mb-3">
+            <article class="mysql-mini-card">
+                <h3>Busqueda exacta</h3>
+                <div class="code-block">SELECT * FROM Clientes
+WHERE NombreCliente = 'Euro+ Shopping Channel';</div>
+                <p>Rapida y precisa cuando conoces el valor exacto.</p>
+            </article>
+            <article class="mysql-mini-card">
+                <h3>Busqueda parcial con LIKE</h3>
+                <div class="code-block">SELECT NombreCliente, Telefono
+FROM Clientes
+WHERE NombreCliente LIKE '%Garden%';</div>
+                <p>Util para filtros tipo "contiene" en cuadros de busqueda.</p>
+            </article>
+            <article class="mysql-mini-card">
+                <h3>Busqueda por rango de fechas</h3>
+                <div class="code-block">SELECT CodigoPedido, FechaPedido, Estado
+FROM Pedidos
+WHERE FechaPedido BETWEEN '2008-01-01' AND '2008-12-31';</div>
+                <p>Comun para informes mensuales o anuales.</p>
+            </article>
+            <article class="mysql-mini-card">
+                <h3>Busqueda con orden y limite</h3>
+                <div class="code-block">SELECT NombreCliente, LimiteCredito
+FROM Clientes
+ORDER BY LimiteCredito DESC
+LIMIT 10;</div>
+                <p>Muestra top resultados sin cargar toda la tabla.</p>
+            </article>
+        </div>
         <div class="card-custom">
-            <div class="card-header-custom"><i class="bi bi-lightning-charge"></i> Comandos Esenciales de MySQL</div>
+            <div class="card-header-custom"><i class="bi bi-lightning-charge"></i> Busquedas avanzadas</div>
             <div class="card-body p-4">
-                <ul class="list-group command-list">
-                    <li class="list-group-item"><code>SHOW DATABASES;</code> - Lista todas las bases de datos.</li>
-                    <li class="list-group-item"><code>USE [database];</code> - Selecciona una base de datos para trabajar.</li>
-                    <li class="list-group-item"><code>SHOW TABLES;</code> - Muestra las tablas de la base de datos actual.</li>
-                    <li class="list-group-item"><code>DESCRIBE [table];</code> - Muestra la estructura de una tabla.</li>
-                    <li class="list-group-item"><code>SELECT * FROM [table] LIMIT 10;</code> - Muestra las 10 primeras filas de una tabla.</li>
-                    <li class="list-group-item"><code>SHOW GRANTS FOR 'user'@'host';</code> - Muestra los privilegios de un usuario.</li>
-                    <li class="list-group-item"><code>SELECT user, host FROM mysql.user;</code> - Lista todos los usuarios y sus hosts.</li>
-                    <li class="list-group-item"><code>FLUSH PRIVILEGES;</code> - Recarga los privilegios desde las tablas de sistema.</li>
+                <div class="code-block">-- Texto libre con FULLTEXT (si la tabla/columna lo permite)
+SELECT NombreCliente
+FROM Clientes
+WHERE MATCH(NombreCliente) AGAINST ('flores jardin' IN NATURAL LANGUAGE MODE);
+
+-- Patron por expresion regular
+SELECT NombreCliente
+FROM Clientes
+WHERE NombreCliente REGEXP '^[A-Z].*Shop';
+
+-- Ver plan de ejecucion para optimizar
+EXPLAIN SELECT * FROM Pedidos WHERE Estado = 'Entregado';</div>
+                <div class="alert alert-info-custom alert-custom mt-3 mb-0">
+                    <strong>Clave de rendimiento:</strong> crea indices para columnas de filtro frecuente, por ejemplo <code>Estado</code>, <code>FechaPedido</code> o claves de relacion.
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title" id="ejemplos"><i class="bi bi-diagram-3"></i> 7. Ejemplos de uso real</h2>
+        <div class="card-custom">
+            <div class="card-header-custom"><i class="bi bi-kanban"></i> Casos practicos de trabajo</div>
+            <div class="card-body p-4">
+                <div class="mysql-example-title">A) Panel comercial: pedidos por estado</div>
+                <div class="code-block">SELECT Estado, COUNT(*) AS total
+FROM Pedidos
+GROUP BY Estado
+ORDER BY total DESC;</div>
+                <ul class="mysql-check mt-2 mb-3">
+                    <li>Se usa para KPI diario de ventas y logistica.</li>
+                    <li>Permite detectar cuellos de botella en "Pendiente".</li>
+                </ul>
+
+                <div class="mysql-example-title">B) Alertas de clientes con credito alto</div>
+                <div class="code-block">SELECT NombreCliente, LimiteCredito
+FROM Clientes
+WHERE LimiteCredito > 100000
+ORDER BY LimiteCredito DESC;</div>
+                <ul class="mysql-check mt-2 mb-3">
+                    <li>Ayuda a priorizar seguimiento comercial.</li>
+                    <li>Puede usarse para scoring de riesgo.</li>
+                </ul>
+
+                <div class="mysql-example-title">C) Auditoria de permisos de usuarios</div>
+                <div class="code-block">SELECT user, host, account_locked, password_expired
+FROM mysql.user
+ORDER BY user, host;
+
+SHOW GRANTS FOR 'jemarin_app'@'192.168.10.20';</div>
+                <ul class="mysql-check mt-2 mb-0">
+                    <li>Permite revisar cuentas inactivas o demasiado abiertas.</li>
+                    <li>Es parte de un checklist de seguridad mensual.</li>
                 </ul>
             </div>
         </div>
 
-        <!-- 6. Buenas prácticas -->
-        <h2 class="section-title" id="buenas-practicas">✅ 6. Buenas prácticas en gestión de permisos</h2>
+        <h2 class="section-title" id="cheatsheet"><i class="bi bi-journal-code"></i> 8. Cheatsheets rapidos</h2>
+        <div class="mysql-grid">
+            <article class="mysql-mini-card">
+                <h3>DDL (estructura)</h3>
+                <div class="code-block">CREATE DATABASE proyecto;
+CREATE TABLE tareas (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  titulo VARCHAR(120) NOT NULL,
+  creada_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+ALTER TABLE tareas ADD COLUMN estado VARCHAR(20);
+DROP TABLE tareas;</div>
+            </article>
+            <article class="mysql-mini-card">
+                <h3>DML (datos)</h3>
+                <div class="code-block">INSERT INTO tareas (titulo, estado)
+VALUES ('Montar servidor', 'pendiente');
+
+UPDATE tareas SET estado = 'hecha'
+WHERE id = 1;
+
+DELETE FROM tareas WHERE id = 1;
+SELECT * FROM tareas;</div>
+            </article>
+            <article class="mysql-mini-card">
+                <h3>DCL/TCL (seguridad y transacciones)</h3>
+                <div class="code-block">GRANT SELECT ON proyecto.* TO 'app'@'10.0.0.15';
+REVOKE INSERT ON proyecto.* FROM 'app'@'10.0.0.15';
+
+START TRANSACTION;
+UPDATE cuentas SET saldo = saldo - 100 WHERE id = 1;
+UPDATE cuentas SET saldo = saldo + 100 WHERE id = 2;
+COMMIT; -- o ROLLBACK</div>
+            </article>
+            <article class="mysql-mini-card">
+                <h3>Diagnostico rapido</h3>
+                <div class="code-block">SHOW PROCESSLIST;
+SHOW ENGINE INNODB STATUS\G
+SHOW INDEX FROM Clientes;
+EXPLAIN SELECT * FROM Pedidos WHERE Estado = 'Entregado';
+ANALYZE TABLE Pedidos;</div>
+            </article>
+        </div>
+
+        <h2 class="section-title" id="glosario"><i class="bi bi-book"></i> 9. Glosario MySQL</h2>
         <div class="card-custom">
-            <div class="card-header-custom"><i class="bi bi-check-circle"></i> Resumen de Seguridad</div>
+            <div class="card-header-custom"><i class="bi bi-journal-text"></i> Terminos clave</div>
             <div class="card-body p-4">
-                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><strong>Mínimo privilegio:</strong> conceder únicamente los permisos necesarios.</li>
-                    <li class="list-group-item"><strong>Restringir hosts:</strong> especificar la IP o rango de IPs del usuario.</li>
-                    <li class="list-group-item"><strong>Usar vistas:</strong> para limitar el acceso a datos sensibles (columnas o filas).</li>
-                    <li class="list-group-item"><strong>Revocar permisos:</strong> eliminar privilegios que ya no se necesiten.</li>
-                    <li class="list-group-item"><strong>Auditar regularmente:</strong> consultar las tablas `mysql.user`, `mysql.db`, `tables_priv`, etc.</li>
-                    <li class="list-group-item"><strong>Contraseñas seguras:</strong> usar contraseñas largas y complejas.</li>
-                </ul>
+                <dl class="mysql-glossary mb-0">
+                    <dt>Schema / Base de datos</dt>
+                    <dd>Contenedor logico que agrupa tablas, vistas, triggers y rutinas.</dd>
+
+                    <dt>Tabla</dt>
+                    <dd>Estructura principal de filas y columnas donde se guardan datos.</dd>
+
+                    <dt>Vista</dt>
+                    <dd>Consulta guardada que se comporta como tabla virtual para simplificar acceso o restringir datos.</dd>
+
+                    <dt>Indice</dt>
+                    <dd>Estructura auxiliar que acelera busquedas y joins sobre columnas seleccionadas.</dd>
+
+                    <dt>JOIN</dt>
+                    <dd>Operacion para combinar filas de dos o mas tablas usando una relacion comun.</dd>
+
+                    <dt>Primary Key (PK)</dt>
+                    <dd>Columna (o conjunto) que identifica cada fila de forma unica.</dd>
+
+                    <dt>Foreign Key (FK)</dt>
+                    <dd>Columna que referencia una PK de otra tabla para mantener integridad referencial.</dd>
+
+                    <dt>Transaction</dt>
+                    <dd>Grupo de operaciones que se confirman juntas (<code>COMMIT</code>) o se deshacen (<code>ROLLBACK</code>).</dd>
+
+                    <dt>Privilegio</dt>
+                    <dd>Permiso de seguridad como <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code> o <code>EXECUTE</code>.</dd>
+
+                    <dt>EXPLAIN</dt>
+                    <dd>Comando para inspeccionar el plan de ejecucion y optimizar consultas lentas.</dd>
+                </dl>
             </div>
         </div>
 
-        <!-- 7. Bibliografía -->
-        <h2 class="section-title" id="bibliografia">📚 7. Bibliografía / Webgrafía</h2>
+        <h2 class="section-title" id="buenas-practicas"><i class="bi bi-check-circle"></i> 10. Buenas practicas</h2>
         <div class="card-custom">
-            <div class="card-header-custom"><i class="bi bi-book-half"></i> Fuentes Oficiales</div>
-             <div class="card-body p-4">
+            <div class="card-header-custom"><i class="bi bi-shield-check"></i> Checklist recomendado</div>
+            <div class="card-body p-4">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="https://dev.mysql.com/doc/refman/8.0/en/grant.html">MySQL 8.0 Manual: GRANT Statement</a></li>
-                    <li class="list-group-item"><a href="https://dev.mysql.com/doc/refman/8.0/en/revoke.html">MySQL 8.0 Manual: REVOKE Statement</a></li>
-                    <li class="list-group-item"><a href="https://dev.mysql.com/doc/refman/8.0/en/create-view.html">MySQL 8.0 Manual: CREATE VIEW Statement</a></li>
-                    <li class="list-group-item"><a href="https://dev.mysql.com/doc/refman/8.0/en/privileges-provided.html">MySQL 8.0 Manual: Privileges Provided by MySQL</a></li>
+                    <li class="list-group-item"><strong>Minimo privilegio:</strong> otorga solo lo necesario para cada rol.</li>
+                    <li class="list-group-item"><strong>Host restringido:</strong> evita cuentas abiertas con <code>'%'</code> salvo necesidad justificada.</li>
+                    <li class="list-group-item"><strong>Versionado SQL:</strong> guarda scripts de schema y permisos en Git.</li>
+                    <li class="list-group-item"><strong>Indices medidos:</strong> crea indices en columnas de filtro frecuente y revisa con <code>EXPLAIN</code>.</li>
+                    <li class="list-group-item"><strong>Backups:</strong> define estrategia de copias y pruebas de restauracion periodicas.</li>
+                    <li class="list-group-item"><strong>Auditoria:</strong> revisa <code>SHOW GRANTS</code> y cuentas obsoletas en cada revision mensual.</li>
                 </ul>
-                <div class="alert alert-warning-custom alert-custom mt-3">
-                    📝 <strong>Nota:</strong> Todos los enlaces apuntan a la documentación oficial de MySQL y fueron verificados en Feb 2026.
-                </div>
             </div>
         </div>
 
+        <h2 class="section-title" id="bibliografia"><i class="bi bi-book-half"></i> 11. Bibliografia oficial</h2>
+        <div class="card-custom">
+            <div class="card-header-custom"><i class="bi bi-link-45deg"></i> Enlaces recomendados</div>
+            <div class="card-body p-4">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a href="https://dev.mysql.com/doc/refman/en/create-user.html" target="_blank" rel="noopener noreferrer">MySQL Manual: CREATE USER</a></li>
+                    <li class="list-group-item"><a href="https://dev.mysql.com/doc/refman/en/grant.html" target="_blank" rel="noopener noreferrer">MySQL Manual: GRANT</a></li>
+                    <li class="list-group-item"><a href="https://dev.mysql.com/doc/refman/en/revoke.html" target="_blank" rel="noopener noreferrer">MySQL Manual: REVOKE</a></li>
+                    <li class="list-group-item"><a href="https://dev.mysql.com/doc/refman/en/create-view.html" target="_blank" rel="noopener noreferrer">MySQL Manual: CREATE VIEW</a></li>
+                    <li class="list-group-item"><a href="https://dev.mysql.com/doc/refman/en/explain.html" target="_blank" rel="noopener noreferrer">MySQL Manual: EXPLAIN</a></li>
+                </ul>
+                <div class="alert alert-warning-custom alert-custom mt-3 mb-0">
+                    Nota: enlaces validados como referencia general para uso academico y practico.
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-    </script>
     <script src="assets/js/site-sfx.js"></script>
     <script src="assets/js/site-theme.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
