@@ -1,4 +1,4 @@
-﻿/* Estilos globales compartidos (extraidos de index.html) */
+/* Estilos globales compartidos (extraidos de index.html) */
 :root {
             --primary-color: #0a4d68;
             --secondary-color: #088395;
@@ -13,7 +13,7 @@
             letter-spacing: 0.05em;
             text-transform: uppercase;
         }
-        /* Estilos del Navbar Neón MEJORADO */
+        /* Estilos del Navbar Ne�n MEJORADO */
         .navbar-neon {
             background: #0a0e27;
             border-bottom: 3px solid #00ff88;
@@ -451,7 +451,7 @@
                         0 0 40px rgba(0, 200, 255, 0.4);
             transform: scale(1.08);
         }
-        /* Temas de botones según el navbar */
+        /* Temas de botones seg�n el navbar */
         .navbar-neon.rainbow .btn-outline-primary {
             color: #00ff88;
             border-color: #00ff88;
@@ -618,7 +618,7 @@
             }
         }
 
-        /* Intro exclusiva para CSS Básico */
+        /* Intro exclusiva para CSS B�sico */
         .css-course-page .css-lion-intro {
             position: fixed;
             right: -42vw;
@@ -887,7 +887,7 @@
             letter-spacing: 0.05em;
             text-transform: uppercase;
         }
-        /* Estilos del Navbar Neón MEJORADO */
+        /* Estilos del Navbar Ne�n MEJORADO */
         .navbar-neon {
             background: #0a0e27;
             border-bottom: 3px solid #00ff88;
@@ -1375,7 +1375,7 @@
                         0 0 40px rgba(0, 200, 255, 0.4);
             transform: scale(1.08);
         }
-        /* Temas de botones según el navbar */
+        /* Temas de botones seg�n el navbar */
         .navbar-neon.rainbow .btn-outline-primary {
             color: #00ff88;
             border-color: #00ff88;
@@ -1820,3 +1820,15 @@
     }
 }
 
+/* toolbar slider for navbar items */
+.navbar-neon .navbar-nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+.navbar-neon .navbar-nav::-webkit-scrollbar { display: none; }
+.navbar-neon .navbar-nav .nav-item:not(.ms-3) {
+    flex: 0 0 auto;
+    min-width: max-content; /* ensure items don't shrink below content width */
+}
