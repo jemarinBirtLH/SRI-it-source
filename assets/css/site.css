@@ -22,21 +22,52 @@
             transition: all 0.5s ease;
             backdrop-filter: blur(10px);
             position: relative;
+            /* allow dropdown menus to escape the navbar container */
+            overflow: visible;
+        }
+        .navbar-neon .dropdown-menu {
+            z-index: 2000;
+        }
+        /* aplicable a cualquier dropdown del sitio */
+        .dropdown-menu {
+            z-index: 2000;
+        }
+        /* matrix effect on hero background */
+        .hero {
+            position: relative;
             overflow: hidden;
         }
-        .navbar-neon::before {
-            content: '1010011010110010101100101011001010101010110010101100101010010110\A0101101001011010010101100101010110010101011001010110010101010011\A1010101100101010110010101100101010100101011001010110010101100101\A0101010110010101011001010110010101010010101100101011001010110010';
+        .hero::before {
+            content: '1010011010110010101100101011001010101010110010101100101010010110\A0101101001011010010101100101010110010101011001010110010101010011\A1010101100101010110010101100101010100101011001010110010101100101\A0101010110010101011001010110010101010010101100101011001010110010\A1010011010110010101100101011001010101010110010101100101010010110\A0101101001011010010101100101010110010101011001010110010101010011\A1010101100101010110010101100101010100101011001010110010101100101\A0101010110010101011001010110010101010010101100101011001010110010\A1010011010110010101100101011001010101010110010101100101010010110\A0101101001011010010101100101010110010101011001010110010101010011\A1010101100101010110010101100101010100101011001010110010101100101\A0101010110010101011001010110010101010010101100101011001010110010\A1010011010110010101100101011001010101010110010101100101010010110\A0101101001011010010101100101010110010101011001010110010101010011\A1010101100101010110010101100101010100101011001010110010101100101\A0101010110010101011001010110010101010010101100101011001010110010';
             position: absolute;
             inset: 0;
             z-index: 0;
             white-space: pre;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.72rem;
-            line-height: 1.2;
-            letter-spacing: 0.15em;
+            font-size: 0.5rem; /* mucho mas pequeño para más densidad */
+            line-height: 0.9; /* más apretado */
+            letter-spacing: 0.08em;
+            color: rgba(101, 255, 148, 0.1);
+            transform: translateY(-100%);
+            animation: matrix-rain-full 3s linear infinite; /* más rápido */
+            pointer-events: none;
+        }
+        /* ensure hero text sits above effect */
+        .hero .container { position: relative; z-index: 1; }
+        .navbar-neon::before {
+            /* repeated binary string to create more vertical lines */
+            content: '1010011010110010101100101011001010101010110010101100101010010110\A0101101001011010010101100101010110010101011001010110010101010011\A1010101100101010110010101100101010100101011001010110010101100101\A0101010110010101011001010110010101010010101100101011001010110010\A1010011010110010101100101011001010101010110010101100101010010110\A0101101001011010010101100101010110010101011001010110010101010011\A1010101100101010110010101100101010100101011001010110010101100101\A0101010110010101011001010110010101010010101100101011001010110010';
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            white-space: pre;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem; /* smaller so more lines visible */
+            line-height: 1.1;
+            letter-spacing: 0.12em;
             color: rgba(101, 255, 148, 0.18);
             transform: translateY(-35%);
-            animation: matrix-rain 12s linear infinite;
+            animation: matrix-rain 8s linear infinite; /* faster fall */
             pointer-events: none;
         }
         .navbar-neon::after {
@@ -85,12 +116,12 @@
             0%, 100% { background-position: 0% center; }
             50% { background-position: 100% center; }
         }
-        @keyframes matrix-rain {
+        @keyframes matrix-rain-full {
             0% {
-                transform: translateY(-45%);
+                transform: translateY(-100%);
             }
             100% {
-                transform: translateY(40%);
+                transform: translateY(100vh);
             }
         }
         .nav-link-neon {

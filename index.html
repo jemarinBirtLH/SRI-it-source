@@ -120,11 +120,9 @@
                     <li class="nav-item"><a class="nav-link-neon" href="virtualbox.html">VirtualBox</a></li>
                     <li class="nav-item"><a class="nav-link-neon" href="conversor_binario_hexadecimal.html">Conversor</a></li>
                     <li class="nav-item"><a class="nav-link-neon" href="MySQL.html">MySQL</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="dhcp_dns.html">DHCP/DNS</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="lenguajes_de_marcas.html">Lenguajes</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="Css_basico.html">CSS Básico</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="Js_basico.html">JavaScript</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="python.html">Python</a></li>
+                                        <li class="nav-item">
+                        <a class="nav-link-neon" href="index.html#fullstack-card">FullStack</a>
+                    </li>
                     <li class="nav-item"><a class="nav-link-neon" href="figma.html">Figma</a></li>
                     <li class="nav-item"><a class="nav-link-neon" href="hacking_etico.html">Hacking Ético</a></li>
                     <li class="nav-item"><a class="nav-link-neon" href="ia_lanzadera.html">IA</a></li>
@@ -222,44 +220,23 @@
                     <a href="MySQL.html" class="btn btn-outline-primary mt-3">Acceder</a>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3">
+            <!-- tarjeta FullStack agrupando lenguajes, CSS, JavaScript y Python -->
+            <div class="col-md-6 col-lg-3" id="fullstack-card">
                 <div class="card h-100 p-4 text-center">
-                    <i class="bi bi-router fs-1"></i>
-                    <h3 class="mt-3">DHCP/DNS</h3>
-                    <p>Servidores DHCP y DNS en VirtualBox con múltiples SO.</p>
-                    <a href="dhcp_dns.html" class="btn btn-outline-primary mt-3">Acceder</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100 p-4 text-center">
-                    <i class="bi bi-code-square fs-1"></i>
-                    <h3 class="mt-3">Lenguajes</h3>
-                    <p>XML, HTML, XSD, XPath, XQuery y más.</p>
-                    <a href="lenguajes_de_marcas.html" class="btn btn-outline-primary mt-3">Acceder</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100 p-4 text-center">
-                    <i class="bi bi-filetype-css fs-1"></i>
-                    <h3 class="mt-3">CSS Básico</h3>
-                    <p>Cascada, especificidad, Grid/Flex y arquitectura de estilos.</p>
-                    <a href="Css_basico.html" class="btn btn-outline-primary mt-3">Acceder</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100 p-4 text-center">
-                    <i class="bi bi-filetype-js fs-1"></i>
-                    <h3 class="mt-3">JavaScript</h3>
-                    <p>Event loop, asincronía, modularidad y laboratorio práctico.</p>
-                    <a href="Js_basico.html" class="btn btn-outline-primary mt-3">Acceder</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100 p-4 text-center">
-                    <i class="bi bi-filetype-py fs-1"></i>
-                    <h3 class="mt-3">Python</h3>
-                    <p>Anaconda, Jupyter Desktop, scripts y Flask para construir APIs.</p>
-                    <a href="python.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                    <i class="bi bi-layers fs-1"></i>
+                    <h3 class="mt-3">FullStack</h3>
+                    <p>Agrupa recursos para desarrollo web completo.</p>
+                    <div class="dropdown mt-3">
+                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="fullStackDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            Seleccionar
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="fullStackDropdown">
+                            <li><a class="dropdown-item" href="lenguajes_de_marcas.html">Lenguajes</a></li>
+                            <li><a class="dropdown-item" href="Css_basico.html">CSS Básico</a></li>
+                            <li><a class="dropdown-item" href="Js_basico.html">JavaScript</a></li>
+                            <li><a class="dropdown-item" href="python.html">Python</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -515,6 +492,14 @@
             return clean.split('/').pop();
         }
 
+        function focusFullStackCard() {
+            const card = document.getElementById('fullstack-card');
+            if (card) {
+                card.setAttribute('tabindex', '-1');
+                card.focus({preventScroll: true});
+            }
+        }
+
         function showHomeView() {
             activeSpaRoute = 'home';
             homeHero.classList.remove('d-none');
@@ -527,6 +512,10 @@
             buildSearchIndex();
             resetSearchPanel();
             playRobotGlitchIntro();
+            // if hash points to fullstack card, focus it
+            if (location.hash === '#fullstack-card') {
+                focusFullStackCard();
+            }
         }
 
         function clearSpaAssets() {
@@ -708,5 +697,36 @@
         loadRoute(location.hash, false);
     </script>
     <script src="assets/js/site-theme.js"></script>
+    <script>
+        // focus the FullStack card when its nav link is used or hash changes
+        (function() {
+            const cardId = 'fullstack-card';
+            const link = document.querySelector('a[href$="#fullstack-card"]');
+            function focusCard() {
+                const card = document.getElementById(cardId);
+                if (card) {
+                    card.setAttribute('tabindex', '-1');
+                    card.focus({preventScroll: true});
+                }
+            }
+            if (link) {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const card = document.getElementById(cardId);
+                    if (card) {
+                        card.scrollIntoView({behavior: 'smooth'});
+                        focusCard();
+                        history.pushState(null, '', '#'+cardId);
+                    }
+                });
+            }
+            window.addEventListener('hashchange', () => {
+                if (location.hash === '#'+cardId) {
+                    // scroll may already be done by browser
+                    focusCard();
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
