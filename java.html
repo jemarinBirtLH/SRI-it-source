@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Academy - 50 Niveles</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/pages/java.css">
+</head>
+<body class="java-academy-page">
+    <div id="mr-robot-glitch">Modo Java activado. Si falla, revisa el classpath.</div>
+
+    <nav class="navbar-neon navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="neon-text" href="index.html">
+                <span class="brand-icon"><i class="bi bi-house-door"></i></span>
+                <span class="brand-label">SOURCE-IT</span>
+            </a>
+            <button class="navbar-toggler navbar-toggler-neon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarJavaAcademy" aria-controls="navbarJavaAcademy" aria-expanded="false" aria-label="Abrir navegacion">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarJavaAcademy">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link-neon" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="dummies.html">Dummies Web</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="lenguajes_de_marcas.html">HTML</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="Css_basico.html">CSS</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="javascript.html">JavaScript</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="python.html">Python</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="java-hero text-center">
+        <div class="container">
+            <p class="hero-kicker"><i class="bi bi-cup-hot-fill"></i> Java Academy con Eclipse</p>
+            <h1>Curso Java completo: Eclipse, POO, backend y proyecto final</h1>
+            <p class="hero-subtitle">
+                Ruta de 50 niveles orientada a Java en entorno Eclipse: instalacion del stack,
+                fundamentos, orientacion a objetos, buenas practicas y servicios backend.
+            </p>
+            <div class="hero-badges">
+                <span><i class="bi bi-clock-history"></i> Historia + evolucion</span>
+                <span><i class="bi bi-tools"></i> JDK + Eclipse</span>
+                <span><i class="bi bi-flag-fill"></i> 50 niveles Java</span>
+                <span><i class="bi bi-lightning-charge-fill"></i> Progreso guardado</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-4">
+        <section class="java-card">
+            <h2><i class="bi bi-hourglass-split"></i> Historia y evolucion de Java</h2>
+            <p class="section-subtitle">
+                Java nacio con foco en portabilidad y hoy es base en backend empresarial, Android clasico y sistemas criticos.
+            </p>
+            <div class="history-grid">
+                <article>
+                    <span class="history-year">1991</span>
+                    <h3>Proyecto Green</h3>
+                    <p>James Gosling y equipo inician el lenguaje (Oak), pensando en dispositivos electronicos.</p>
+                </article>
+                <article>
+                    <span class="history-year">Mayo 1995</span>
+                    <h3>Nace Java</h3>
+                    <p>Sun Microsystems anuncia Java oficialmente para la web y aplicaciones multiplataforma.</p>
+                </article>
+                <article>
+                    <span class="history-year">Enero 1996</span>
+                    <h3>JDK 1.0</h3>
+                    <p>Primera version publica del kit de desarrollo con compilador y librerias base.</p>
+                </article>
+                <article>
+                    <span class="history-year">1998</span>
+                    <h3>Java 2</h3>
+                    <p>Se organiza en ediciones (J2SE/J2EE/J2ME) y crece fuerte en entorno empresarial.</p>
+                </article>
+                <article>
+                    <span class="history-year">2004</span>
+                    <h3>Java 5</h3>
+                    <p>Gran salto: generics, annotations, enums y mejoras de productividad.</p>
+                </article>
+                <article>
+                    <span class="history-year">2006</span>
+                    <h3>OpenJDK</h3>
+                    <p>Se libera la implementacion abierta de Java, clave para el ecosistema moderno.</p>
+                </article>
+                <article>
+                    <span class="history-year">2010</span>
+                    <h3>Oracle adquiere Sun</h3>
+                    <p>Java pasa a Oracle y mantiene su peso en aplicaciones de gran escala.</p>
+                </article>
+                <article>
+                    <span class="history-year">2014</span>
+                    <h3>Java 8</h3>
+                    <p>Llegan lambdas y Stream API, cambiando el estilo de programacion diario.</p>
+                </article>
+                <article>
+                    <span class="history-year">2017+</span>
+                    <h3>Ciclo semestral</h3>
+                    <p>Versiones mas frecuentes y linea LTS para entornos de larga duracion.</p>
+                </article>
+                <article>
+                    <span class="history-year">Actualidad</span>
+                    <h3>Java moderno</h3>
+                    <p>Record classes, mejoras de JVM y fuerte presencia en backend cloud-native.</p>
+                </article>
+            </div>
+            <div class="evolution-notes">
+                <span>Java 8 marco una base muy extendida en empresas.</span>
+                <span>Java 11, 17 y 21 son referencias LTS habituales.</span>
+                <span>Eclipse sigue siendo IDE solido para aprender y producir.</span>
+                <span>Maven/Gradle + JUnit son parte del stack profesional.</span>
+            </div>
+        </section>
+
+        <section class="java-card install-card">
+            <h2><i class="bi bi-download"></i> Instalacion de entorno Java con Eclipse</h2>
+            <p class="section-subtitle">Checklist rapido para empezar sin friccion.</p>
+            <div class="install-grid">
+                <article>
+                    <h3>Paso 1: Instala JDK</h3>
+                    <p>Instala una version LTS de JDK y verifica en terminal.</p>
+                    <pre class="code-block"><code>java -version
+javac -version</code></pre>
+                </article>
+                <article>
+                    <h3>Paso 2: Instala Eclipse IDE</h3>
+                    <p>Descarga Eclipse IDE for Java Developers y crea un workspace limpio.</p>
+                    <pre class="code-block"><code>Workspace sugerido:
+C:\\dev\\java-workspace</code></pre>
+                </article>
+                <article>
+                    <h3>Paso 3: Crea primer proyecto</h3>
+                    <p>File - New - Java Project, crea clase Main y ejecuta con Run As.</p>
+                    <pre class="code-block"><code>public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hola Java");
+    }
+}</code></pre>
+                </article>
+            </div>
+        </section>
+
+        <section class="java-card">
+            <h2><i class="bi bi-signpost-split"></i> Ruta del curso Java</h2>
+            <p class="section-subtitle">Cinco bloques, diez niveles por bloque, dificultad progresiva real.</p>
+            <div class="track-grid">
+                <article class="track-item track-setup">
+                    <h3>Bloque 1 (1-10): Setup Eclipse + base</h3>
+                    <p>JDK, Eclipse, workspace, sintaxis inicial y ejecucion controlada.</p>
+                </article>
+                <article class="track-item track-core">
+                    <h3>Bloque 2 (11-20): Core Java</h3>
+                    <p>Tipos, control de flujo, arrays, metodos y manejo de errores.</p>
+                </article>
+                <article class="track-item track-oop">
+                    <h3>Bloque 3 (21-30): POO y colecciones</h3>
+                    <p>Clases, interfaces, herencia, generics, listas, mapas y streams.</p>
+                </article>
+                <article class="track-item track-advanced">
+                    <h3>Bloque 4 (31-40): Java avanzado</h3>
+                    <p>Concurrencia, NIO, testing, build tools y calidad de codigo.</p>
+                </article>
+                <article class="track-item track-backend">
+                    <h3>Bloque 5 (41-50): Backend profesional</h3>
+                    <p>Spring Boot, APIs REST, persistencia, seguridad y despliegue.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="java-card controls-card">
+            <div class="controls-header">
+                <h2><i class="bi bi-speedometer2"></i> Panel del curso</h2>
+                <button id="resetProgressBtn" class="ghost-btn" type="button">
+                    <i class="bi bi-arrow-counterclockwise"></i> Reiniciar progreso
+                </button>
+            </div>
+            <div class="progress-panel">
+                <div class="progress-meta">
+                    <span id="progressText">0/50 niveles completados</span>
+                    <span id="progressPercent">0%</span>
+                </div>
+                <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="50" aria-valuenow="0">
+                    <span id="progressFill"></span>
+                </div>
+                <p id="nextMission" class="next-mission">Siguiente nivel: 1</p>
+            </div>
+            <div class="controls-row">
+                <label class="search-box" for="levelSearch">
+                    <i class="bi bi-search"></i>
+                    <input id="levelSearch" type="search" placeholder="Buscar por nivel, carpeta, concepto o tema...">
+                </label>
+                <div class="filter-group" aria-label="Filtros de modulo">
+                    <button class="filter-btn is-active" data-filter="all" type="button">Todos</button>
+                    <button class="filter-btn" data-filter="setup" type="button">Setup</button>
+                    <button class="filter-btn" data-filter="core" type="button">Core</button>
+                    <button class="filter-btn" data-filter="oop" type="button">POO</button>
+                    <button class="filter-btn" data-filter="advanced" type="button">Avanzado</button>
+                    <button class="filter-btn" data-filter="backend" type="button">Backend</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="java-card">
+            <h2><i class="bi bi-list-check"></i> Niveles Java (50 carpetas)</h2>
+            <p class="section-subtitle">Crea cada carpeta con el nombre exacto para mantener orden y trazabilidad.</p>
+            <div id="levelsGrid" class="levels-grid"></div>
+            <p id="emptyState" class="empty-state d-none">No hay niveles con ese filtro o busqueda.</p>
+        </section>
+
+        <section class="java-card">
+            <h2><i class="bi bi-controller"></i> Laboratorio interactivo Java</h2>
+            <div class="lab-grid">
+                <article class="lab-block">
+                    <h3>Prueba 1: Arrastra y clasifica</h3>
+                    <p>Separa snippets en Setup, POO o Backend.</p>
+                    <div id="dragBank" class="drag-bank"></div>
+                    <div class="drop-grid">
+                        <div class="drop-zone" data-group="setup">
+                            <h4>Setup</h4>
+                            <div class="drop-slot"></div>
+                        </div>
+                        <div class="drop-zone" data-group="oop">
+                            <h4>POO</h4>
+                            <div class="drop-slot"></div>
+                        </div>
+                        <div class="drop-zone" data-group="backend">
+                            <h4>Backend</h4>
+                            <div class="drop-slot"></div>
+                        </div>
+                    </div>
+                    <div class="lab-actions">
+                        <button id="resetDragBtn" class="ghost-btn" type="button">Resetear</button>
+                        <p id="dragFeedback" class="lab-feedback"></p>
+                    </div>
+                </article>
+
+                <article class="lab-block">
+                    <h3>Prueba 2: Simulador compilacion Java</h3>
+                    <p>Visualiza flujo: compilacion, bytecode, JVM y ejecucion.</p>
+                    <button id="flowBtn" class="ghost-btn" type="button">Ejecutar simulacion</button>
+                    <pre id="flowOut" class="code-block">Pulsa "Ejecutar simulacion".</pre>
+                    <p class="loop-note">Regla: fuente .java -> bytecode .class -> ejecucion JVM.</p>
+                </article>
+
+                <article class="lab-block">
+                    <h3>Prueba 3: Mini quiz</h3>
+                    <p>Repaso de historia, Eclipse y conceptos base de Java.</p>
+                    <div class="quiz-card">
+                        <h4 id="quizQuestion"></h4>
+                        <div id="quizOptions" class="quiz-options"></div>
+                        <p id="quizFeedback" class="lab-feedback"></p>
+                        <button id="nextQuizBtn" class="ghost-btn" type="button">Siguiente pregunta</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center py-4">
+        <p class="mb-1">Java Academy by Jemarin. Menos magia, mas arquitectura y pruebas.</p>
+        <small>Aprender Java es pensar en mantenibilidad desde el primer dia.</small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const levelRowsSetup = [
+            ["Instalar JDK LTS", "java-01-jdk", "Instalas JDK y validas compilador en terminal.", "Confirmar java y javac en PATH.", `java -version\njavac -version`],
+            ["Instalar Eclipse IDE", "java-02-eclipse", "Instalas Eclipse IDE for Java Developers.", "Configurar workspace dedicado Java.", `Workspace sugerido:\nC:\\dev\\java-workspace`],
+            ["Crear proyecto Java", "java-03-project", "Creas Java Project en Eclipse y estructura src/bin.", "Nuevo proyecto con nombre coherente.", `File -> New -> Java Project`],
+            ["Clase Main inicial", "java-04-main", "Creas clase con metodo main y ejecutas.", "Run As Java Application.", `public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hola Java");\n    }\n}`],
+            ["Run y Debug", "java-05-debug", "Usas breakpoints y modo debug en Eclipse.", "Inspeccionar variables paso a paso.", `// Breakpoint en linea critica\nint total = precio * cantidad;`],
+            ["Formato y estilo", "java-06-format", "Aplicas formato automatico y reglas basicas.", "Organizar imports y formatear codigo.", `Ctrl + Shift + F\nCtrl + Shift + O`],
+            ["Packages", "java-07-packages", "Organizas clases por paquetes coherentes.", "Crear paquete com.academia.app.", `package com.academia.app;`],
+            ["Build Path y librerias", "java-08-buildpath", "Gestionas dependencias en Build Path.", "Anadir JAR externo manualmente.", `Project -> Properties -> Java Build Path`],
+            ["Git en Eclipse", "java-09-egit", "Versionas proyecto con EGit o Git externo.", "Primer commit del proyecto base.", `git init\ngit add .\ngit commit -m "base java"`],
+            ["Checklist de entorno", "java-10-check", "Valida que entorno compila y ejecuta sin errores.", "Revisar JDK, workspace e imports.", `Checklist: JDK OK\nEclipse OK\nRun OK`]
+        ];
+
+        const levelRowsCore = [
+            ["Variables y tipos", "java-11-types", "Usas tipos primitivos y referencias correctamente.", "Declarar y operar con int, double, boolean, String.", `int edad = 27;\ndouble nota = 8.5;\nString nombre = "Ana";`],
+            ["Condicionales", "java-12-if", "Controlas flujo con if/else y switch.", "Clasificar estado de nota.", `if (nota >= 5) {\n    System.out.println("Aprobado");\n}`],
+            ["Bucles", "java-13-loops", "Iteras con for, while y enhanced for.", "Recorrer array de modulos.", `for (String m : modulos) {\n    System.out.println(m);\n}`],
+            ["Metodos", "java-14-methods", "Extraes logica en metodos reutilizables.", "Metodo calcularIVA.", `static double calcularIVA(double p) {\n    return p * 1.21;\n}`],
+            ["Arrays", "java-15-arrays", "Manipulas arrays de tipo fijo.", "Calcular promedio de notas.", `int[] notas = {7, 8, 9};`],
+            ["String API", "java-16-strings", "Usas operaciones comunes de String.", "Normalizar nombre y validar longitud.", `String user = nombre.trim().toLowerCase();`],
+            ["Try/catch base", "java-17-exceptions", "Capturas errores esperables sin romper flujo.", "Manejar NumberFormatException.", `try {\n    int n = Integer.parseInt("x");\n} catch (NumberFormatException e) {\n    System.out.println("Dato invalido");\n}`],
+            ["static y final", "java-18-static-final", "Comprendes constantes y miembros de clase.", "Definir constante IVA.", `public static final double IVA = 0.21;`],
+            ["Enums", "java-19-enum", "Representas estados cerrados de forma segura.", "Enum EstadoPedido.", `enum EstadoPedido { NUEVO, ENVIADO, ENTREGADO }`],
+            ["Scanner y entrada", "java-20-scanner", "Lees datos por consola con validacion minima.", "Pedir edad y mostrar resultado.", `Scanner sc = new Scanner(System.in);\nint edad = sc.nextInt();`]
+        ];
+        const levelRowsOop = [
+            ["Clase y objeto", "java-21-class-object", "Modelas entidades en clases y creas instancias.", "Clase Alumno con atributos.", `class Alumno {\n    String nombre;\n}`],
+            ["Encapsulacion", "java-22-encapsulation", "Proteges estado con private y getters/setters.", "Validar edad en setter.", `private int edad;\npublic void setEdad(int edad) {\n    if (edad >= 0) this.edad = edad;\n}`],
+            ["Constructores", "java-23-constructors", "Inicializas objetos con constructores claros.", "Constructor con parametros obligatorios.", `public Alumno(String nombre) {\n    this.nombre = nombre;\n}`],
+            ["Herencia", "java-24-inheritance", "Reutilizas comportamiento con extends.", "Clase Admin hereda de Usuario.", `class Admin extends Usuario { }`],
+            ["Polimorfismo", "java-25-polymorphism", "Trabajas con referencias de tipo base.", "Metodo imprimir con lista de figuras.", `Figura f = new Circulo();\nSystem.out.println(f.area());`],
+            ["Interfaces", "java-26-interfaces", "Defines contratos desacoplados.", "Implementar interface Repositorio.", `interface Repositorio {\n    void guardar();\n}`],
+            ["Abstract classes", "java-27-abstract", "Combinas logica comun y metodos abstractos.", "Clase abstracta Empleado.", `abstract class Empleado {\n    abstract double salario();\n}`],
+            ["Collections", "java-28-collections", "Usas List, Set y Map con criterio.", "Guardar usuarios por id.", `Map<Integer, String> usuarios = new HashMap<>();`],
+            ["Generics", "java-29-generics", "Tipas colecciones y metodos para evitar casts.", "Metodo utilitario generico.", `static <T> void imprimir(T valor) {\n    System.out.println(valor);\n}`],
+            ["Stream API", "java-30-streams", "Procesas colecciones de forma declarativa.", "Filtrar activos y mapear nombres.", `List<String> nombres = usuarios.stream()\n    .filter(u -> u.isActivo())\n    .map(Usuario::getNombre)\n    .toList();`]
+        ];
+
+        const levelRowsAdvanced = [
+            ["Lambdas", "java-31-lambdas", "Creas funciones cortas para interfaces funcionales.", "Ordenar lista con comparator lambda.", `items.sort((a, b) -> a.getNombre().compareTo(b.getNombre()));`],
+            ["Optional", "java-32-optional", "Evitas null checks desordenados.", "Buscar usuario por id con Optional.", `Optional<Usuario> u = repo.findById(1);`],
+            ["Java Time", "java-33-time", "Usas API moderna de fechas y horas.", "Calcular fecha + 30 dias.", `LocalDate hoy = LocalDate.now();\nLocalDate entrega = hoy.plusDays(30);`],
+            ["NIO Files", "java-34-nio", "Lees y escribes archivos con java.nio.file.", "Crear archivo de log simple.", `Path p = Path.of("log.txt");\nFiles.writeString(p, "ok");`],
+            ["Threads base", "java-35-threads", "Comprendes ejecucion concurrente basica.", "Lanzar hilo con Runnable.", `new Thread(() -> System.out.println("run")).start();`],
+            ["ExecutorService", "java-36-executor", "Gestionas pool de hilos de forma segura.", "Ejecutar tareas en fixed thread pool.", `ExecutorService ex = Executors.newFixedThreadPool(2);`],
+            ["Maven en Eclipse", "java-37-maven", "Conviertes proyecto a Maven para dependencias.", "Agregar junit en pom.xml.", `<dependency>\n  <groupId>org.junit.jupiter</groupId>\n</dependency>`],
+            ["JUnit 5", "java-38-junit", "Escribes pruebas unitarias repetibles.", "Test de servicio calculadora.", `@Test\nvoid suma_ok() {\n    assertEquals(4, calc.suma(2,2));\n}`],
+            ["Logging", "java-39-logging", "Registra eventos con niveles y contexto.", "Usar logger info/error.", `private static final Logger log = LoggerFactory.getLogger(App.class);`],
+            ["Refactor y calidad", "java-40-refactor", "Reduces deuda tecnica y duplicacion.", "Extraer metodo y mejorar nombres.", `// Antes: metodo enorme\n// Despues: metodos pequenos`]
+        ];
+
+        const levelRowsBackend = [
+            ["Spring Boot base", "java-41-spring-init", "Creas proyecto Spring Boot en Eclipse.", "Iniciar app con Spring Initializr.", `@SpringBootApplication\npublic class App {\n    public static void main(String[] args) {\n        SpringApplication.run(App.class, args);\n    }\n}`],
+            ["Controlador REST", "java-42-rest", "Publicas endpoint GET simple.", "Ruta /api/health.", `@RestController\nclass HealthController {\n    @GetMapping("/api/health")\n    String ok() { return "ok"; }\n}`],
+            ["DTO y validacion", "java-43-dto", "Validas payloads con Bean Validation.", "DTO con @NotBlank.", `record UsuarioDTO(@NotBlank String nombre) {}`],
+            ["JPA entidad", "java-44-jpa", "Mapeas entidad a tabla relacional.", "Crear entidad Producto.", `@Entity\nclass Producto {\n    @Id @GeneratedValue Long id;\n}`],
+            ["Repositorio", "java-45-repository", "Abstraes persistencia con JpaRepository.", "Consultar por nombre.", `interface ProductoRepo extends JpaRepository<Producto, Long> {}`],
+            ["Capa servicio", "java-46-service", "Separas logica de negocio del controlador.", "Servicio con metodo crear.", `@Service\nclass ProductoService { }`],
+            ["Manejo global de errores", "java-47-errors", "Centralizas errores HTTP en un punto.", "@ControllerAdvice con respuesta estandar.", `@RestControllerAdvice\nclass ApiErrorHandler {}`],
+            ["Documentacion API", "java-48-openapi", "Generas docs para endpoints.", "Agregar OpenAPI/Swagger UI.", `http://localhost:8080/swagger-ui/index.html`],
+            ["Seguridad base", "java-49-security", "Proteges rutas con autenticacion basica.", "Configurar endpoint privado.", `@PreAuthorize("hasRole('ADMIN')")`],
+            ["Proyecto final Java", "java-50-final", "Entregas API completa con tests y despliegue.", "CRUD + auth + logs + README tecnico.", `Checklist:\n1) API funcional\n2) tests\n3) documentacion\n4) despliegue`]
+        ];
+
+        function createLevels(rows, module, startId, baseXp) {
+            return rows.map((row, index) => ({
+                id: startId + index,
+                module,
+                title: row[0],
+                folder: row[1],
+                objective: row[2],
+                practice: row[3],
+                example: row[4],
+                xp: baseXp + Math.floor(index / 2) * 5
+            }));
+        }
+
+        const LEVELS = [
+            ...createLevels(levelRowsSetup, "setup", 1, 25),
+            ...createLevels(levelRowsCore, "core", 11, 35),
+            ...createLevels(levelRowsOop, "oop", 21, 45),
+            ...createLevels(levelRowsAdvanced, "advanced", 31, 55),
+            ...createLevels(levelRowsBackend, "backend", 41, 70)
+        ];
+
+        const MODULE_LABELS = {
+            setup: "Setup",
+            core: "Core",
+            oop: "POO",
+            advanced: "Avanzado",
+            backend: "Backend"
+        };
+
+        const STORAGE_KEY = "java_academy_progress_v1";
+
+        const levelsGrid = document.getElementById("levelsGrid");
+        const emptyState = document.getElementById("emptyState");
+        const levelSearch = document.getElementById("levelSearch");
+        const filterButtons = Array.from(document.querySelectorAll(".filter-btn"));
+        const progressFill = document.getElementById("progressFill");
+        const progressText = document.getElementById("progressText");
+        const progressPercent = document.getElementById("progressPercent");
+        const nextMission = document.getElementById("nextMission");
+        const resetProgressBtn = document.getElementById("resetProgressBtn");
+        const progressTrack = document.querySelector(".progress-track");
+
+        let activeFilter = "all";
+        let completedLevels = new Set(loadProgress());
+
+        function loadProgress() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) return [];
+                const parsed = JSON.parse(raw);
+                return Array.isArray(parsed) ? parsed : [];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function saveProgress() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify([...completedLevels]));
+        }
+
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#39;");
+        }
+
+        function getDifficulty(levelId) {
+            if (levelId <= 12) return "Base";
+            if (levelId <= 26) return "Intermedio";
+            if (levelId <= 40) return "Avanzado";
+            return "Pro";
+        }
+
+        function getVisibleLevels() {
+            const term = levelSearch.value.trim().toLowerCase();
+            return LEVELS.filter((level) => {
+                const moduleOk = activeFilter === "all" || level.module === activeFilter;
+                if (!moduleOk) return false;
+                if (!term) return true;
+                const haystack = `${level.id} ${level.title} ${level.folder} ${level.objective} ${level.practice} ${MODULE_LABELS[level.module]}`.toLowerCase();
+                return haystack.includes(term);
+            });
+        }
+        function renderLevelCard(level) {
+            const completed = completedLevels.has(level.id);
+            const difficulty = getDifficulty(level.id);
+            return `
+                <article class="level-card level-${level.module} ${completed ? "is-done" : ""}">
+                    <header class="level-head">
+                        <span class="level-chip">Nivel ${String(level.id).padStart(2, "0")}</span>
+                        <span class="module-chip">${MODULE_LABELS[level.module]}</span>
+                        <span class="difficulty-chip">${difficulty}</span>
+                    </header>
+                    <h3>${level.title}</h3>
+                    <p class="level-objective">${level.objective}</p>
+                    <ul class="level-list">
+                        <li><strong>Carpeta:</strong> <code>${level.folder}</code></li>
+                        <li><strong>Practica:</strong> ${level.practice}</li>
+                    </ul>
+                    <pre class="code-block"><code>${escapeHtml(level.example)}</code></pre>
+                    <footer class="level-footer">
+                        <span class="xp-chip"><i class="bi bi-lightning-charge-fill"></i> ${level.xp} XP</span>
+                        <button class="mark-btn" type="button" data-level="${level.id}">
+                            ${completed ? "Completado" : "Marcar hecho"}
+                        </button>
+                    </footer>
+                </article>
+            `;
+        }
+
+        function renderLevels() {
+            const visible = getVisibleLevels();
+            if (!visible.length) {
+                levelsGrid.innerHTML = "";
+                emptyState.classList.remove("d-none");
+                return;
+            }
+            emptyState.classList.add("d-none");
+            levelsGrid.innerHTML = visible.map(renderLevelCard).join("");
+            document.querySelectorAll(".mark-btn").forEach((button) => {
+                button.addEventListener("click", () => {
+                    const levelId = Number(button.dataset.level);
+                    if (completedLevels.has(levelId)) {
+                        completedLevels.delete(levelId);
+                    } else {
+                        completedLevels.add(levelId);
+                    }
+                    saveProgress();
+                    updateProgress();
+                    renderLevels();
+                });
+            });
+        }
+
+        function updateProgress() {
+            const done = completedLevels.size;
+            const total = LEVELS.length;
+            const percent = Math.round((done / total) * 100);
+            progressText.textContent = `${done}/${total} niveles completados`;
+            progressPercent.textContent = `${percent}%`;
+            progressFill.style.width = `${percent}%`;
+            progressTrack.setAttribute("aria-valuenow", String(done));
+
+            const next = LEVELS.find((level) => !completedLevels.has(level.id));
+            nextMission.textContent = next
+                ? `Siguiente nivel: ${next.id} - ${next.title}`
+                : "Ruta completada. Ya estas en modo Java Pro.";
+        }
+
+        filterButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                filterButtons.forEach((item) => item.classList.remove("is-active"));
+                button.classList.add("is-active");
+                activeFilter = button.dataset.filter;
+                renderLevels();
+            });
+        });
+
+        levelSearch.addEventListener("input", renderLevels);
+
+        resetProgressBtn.addEventListener("click", () => {
+            completedLevels = new Set();
+            saveProgress();
+            updateProgress();
+            renderLevels();
+        });
+
+        updateProgress();
+        renderLevels();
+
+        const dragItemsData = [
+            { id: "j1", label: "java -version", group: "setup" },
+            { id: "j2", label: "public static void main(String[] args)", group: "setup" },
+            { id: "j3", label: "class Usuario extends Persona", group: "oop" },
+            { id: "j4", label: "interface Repositorio", group: "oop" },
+            { id: "j5", label: "@RestController", group: "backend" },
+            { id: "j6", label: "@GetMapping('/api/items')", group: "backend" }
+        ];
+
+        const dragBank = document.getElementById("dragBank");
+        const dropZones = Array.from(document.querySelectorAll(".drop-zone"));
+        const dragFeedback = document.getElementById("dragFeedback");
+        const resetDragBtn = document.getElementById("resetDragBtn");
+
+        function createDragItem(item) {
+            const node = document.createElement("button");
+            node.type = "button";
+            node.className = "drag-item";
+            node.draggable = true;
+            node.dataset.group = item.group;
+            node.dataset.id = item.id;
+            node.textContent = item.label;
+            node.addEventListener("dragstart", (event) => {
+                event.dataTransfer.setData("text/plain", item.id);
+                node.classList.add("is-dragging");
+            });
+            node.addEventListener("dragend", () => {
+                node.classList.remove("is-dragging");
+            });
+            return node;
+        }
+
+        function resetDragExercise() {
+            dragBank.innerHTML = "";
+            dragFeedback.textContent = "";
+            dropZones.forEach((zone) => {
+                zone.classList.remove("is-correct", "is-wrong");
+                const slot = zone.querySelector(".drop-slot");
+                if (slot) slot.innerHTML = "";
+            });
+            dragItemsData.forEach((item) => dragBank.appendChild(createDragItem(item)));
+        }
+
+        dropZones.forEach((zone) => {
+            zone.addEventListener("dragover", (event) => {
+                event.preventDefault();
+                zone.classList.add("is-over");
+            });
+            zone.addEventListener("dragleave", () => {
+                zone.classList.remove("is-over");
+            });
+            zone.addEventListener("drop", (event) => {
+                event.preventDefault();
+                zone.classList.remove("is-over");
+                const itemId = event.dataTransfer.getData("text/plain");
+                const itemNode = document.querySelector(`.drag-item[data-id="${itemId}"]`);
+                if (!itemNode) return;
+                if (itemNode.dataset.group !== zone.dataset.group) {
+                    zone.classList.add("is-wrong");
+                    dragFeedback.textContent = "Ese snippet no va en ese bloque.";
+                    setTimeout(() => zone.classList.remove("is-wrong"), 700);
+                    return;
+                }
+                const slot = zone.querySelector(".drop-slot");
+                if (!slot) return;
+                itemNode.draggable = false;
+                itemNode.classList.add("is-locked");
+                slot.appendChild(itemNode);
+                zone.classList.add("is-correct");
+                const pending = document.querySelectorAll(".drag-item:not(.is-locked)").length;
+                dragFeedback.textContent = pending
+                    ? "Correcto. Sigue clasificando."
+                    : "Perfecto. Clasificacion completada.";
+            });
+        });
+
+        resetDragBtn.addEventListener("click", resetDragExercise);
+        resetDragExercise();
+
+        const flowBtn = document.getElementById("flowBtn");
+        const flowOut = document.getElementById("flowOut");
+
+        flowBtn.addEventListener("click", () => {
+            const lines = [];
+            const print = () => {
+                flowOut.textContent = lines.join("\n");
+            };
+
+            lines.push("1) Eclipse compila Main.java");
+            print();
+            setTimeout(() => {
+                lines.push("2) Se genera Main.class (bytecode)");
+                print();
+                setTimeout(() => {
+                    lines.push("3) JVM carga clases y ejecuta main()");
+                    print();
+                    setTimeout(() => {
+                        lines.push("4) Salida por consola y fin de proceso");
+                        print();
+                    }, 320);
+                }, 320);
+            }, 320);
+        });
+
+        const quizQuestions = [
+            {
+                question: "En que ano se anuncio Java publicamente?",
+                options: ["1995", "1999", "1991"],
+                answer: 0,
+                feedback: "Correcto. Java se anuncio en 1995."
+            },
+            {
+                question: "Que version introdujo lambdas y Stream API?",
+                options: ["Java 6", "Java 8", "Java 11"],
+                answer: 1,
+                feedback: "Exacto. Java 8 fue un cambio enorme."
+            },
+            {
+                question: "Que IDE se usa como base en este curso?",
+                options: ["Eclipse", "Photoshop", "Blender"],
+                answer: 0,
+                feedback: "Bien. El entorno principal es Eclipse IDE."
+            },
+            {
+                question: "Que anotacion crea un endpoint GET en Spring?",
+                options: ["@GetMapping", "@Entity", "@Test"],
+                answer: 0,
+                feedback: "Correcto. @GetMapping mapea rutas GET."
+            }
+        ];
+
+        let quizIndex = 0;
+        const quizQuestion = document.getElementById("quizQuestion");
+        const quizOptions = document.getElementById("quizOptions");
+        const quizFeedback = document.getElementById("quizFeedback");
+        const nextQuizBtn = document.getElementById("nextQuizBtn");
+
+        function renderQuiz() {
+            const item = quizQuestions[quizIndex];
+            quizQuestion.textContent = `Pregunta ${quizIndex + 1}/${quizQuestions.length}: ${item.question}`;
+            quizOptions.innerHTML = "";
+            quizFeedback.textContent = "";
+
+            item.options.forEach((option, idx) => {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.className = "quiz-btn";
+                button.textContent = option;
+                button.addEventListener("click", () => {
+                    const allButtons = Array.from(quizOptions.querySelectorAll(".quiz-btn"));
+                    allButtons.forEach((btn) => (btn.disabled = true));
+                    if (idx === item.answer) {
+                        button.classList.add("is-right");
+                        quizFeedback.textContent = item.feedback;
+                    } else {
+                        button.classList.add("is-wrong");
+                        allButtons[item.answer].classList.add("is-right");
+                        quizFeedback.textContent = "Casi. Mira la opcion resaltada en verde.";
+                    }
+                });
+                quizOptions.appendChild(button);
+            });
+        }
+
+        nextQuizBtn.addEventListener("click", () => {
+            quizIndex = (quizIndex + 1) % quizQuestions.length;
+            renderQuiz();
+        });
+
+        renderQuiz();
+
+        const robot = document.getElementById("mr-robot-glitch");
+        if (robot) {
+            robot.classList.add("robot-glitch-run");
+            robot.addEventListener("animationend", () => {
+                robot.style.display = "none";
+            });
+        }
+    </script>
+    <script src="assets/js/site-sfx.js"></script>
+    <script src="assets/js/site-theme.js"></script>
+</body>
+</html>

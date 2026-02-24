@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dummies Web - 50 Niveles</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/pages/dummies.css">
+</head>
+<body class="dummies-page">
+    <div id="mr-robot-glitch">Modo dummie activado. No tocar el boton rojo.</div>
+
+    <nav class="navbar-neon navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="neon-text" href="index.html">
+                <span class="brand-icon"><i class="bi bi-house-door"></i></span>
+                <span class="brand-label">SOURCE-IT</span>
+            </a>
+            <button class="navbar-toggler navbar-toggler-neon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDummies" aria-controls="navbarDummies" aria-expanded="false" aria-label="Abrir navegacion">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarDummies">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link-neon" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="lenguajes_de_marcas.html">HTML</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="Css_basico.html">CSS</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="javascript.html">JavaScript</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="python.html">Python</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="java.html">Java</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="dummies-hero text-center">
+        <div class="container">
+            <p class="hero-kicker"><i class="bi bi-emoji-sunglasses"></i> Curso supervivencia web</p>
+            <h1>Dummies Web: 50 niveles para pasar de "ni idea" a "ya compilo"</h1>
+            <p class="hero-subtitle">
+                Empiezas instalando Visual Studio Code y terminas con una mini web interactiva.
+                Humor, color, retos por carpetas y progreso guardado para que no te pierdas en el multiverso del div.
+            </p>
+            <div class="hero-stats">
+                <span><i class="bi bi-flag-fill"></i> 50 niveles</span>
+                <span><i class="bi bi-folder2-open"></i> 50 carpetas de practica</span>
+                <span><i class="bi bi-controller"></i> Drag and drop + quiz</span>
+                <span><i class="bi bi-trophy-fill"></i> Proyecto final guiado</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-4">
+        <section class="d-card overview-card">
+            <h2><i class="bi bi-signpost-split"></i> Ruta de aprendizaje</h2>
+            <p class="overview-subtitle">
+                Cada modulo sube dificultad poco a poco. Si un nivel te rompe, respira, toma agua y vuelve al anterior.
+            </p>
+            <div class="route-grid">
+                <article class="route-item route-setup">
+                    <h3>Modulo 1: Setup (1-5)</h3>
+                    <p>Instalacion de VS Code, carpetas, orden de proyecto y primeros archivos.</p>
+                </article>
+                <article class="route-item route-html">
+                    <h3>Modulo 2: HTML (6-20)</h3>
+                    <p>Estructura, semantica, tablas, formularios y mini landing sin CSS.</p>
+                </article>
+                <article class="route-item route-css">
+                    <h3>Modulo 3: CSS (21-35)</h3>
+                    <p>Color, tipografia, flex, grid, responsive y estilo limpio sin sufrimiento.</p>
+                </article>
+                <article class="route-item route-js">
+                    <h3>Modulo 4: JavaScript (36-50)</h3>
+                    <p>DOM, eventos, validacion, localStorage, fetch y proyecto final interactivo.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="d-card controls-card">
+            <div class="controls-head">
+                <h2><i class="bi bi-joystick"></i> Panel del aprendiz</h2>
+                <button id="resetProgressBtn" class="ghost-btn" type="button">
+                    <i class="bi bi-arrow-counterclockwise"></i> Reiniciar progreso
+                </button>
+            </div>
+            <div class="progress-panel">
+                <div class="progress-meta">
+                    <span id="progressText">0/50 niveles completados</span>
+                    <span id="progressPercent">0%</span>
+                </div>
+                <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="50" aria-valuenow="0">
+                    <span id="progressFill"></span>
+                </div>
+                <p id="nextMission" class="next-mission">Siguiente mision: Nivel 1</p>
+            </div>
+            <div class="tool-row">
+                <label class="search-field" for="levelSearch">
+                    <i class="bi bi-search"></i>
+                    <input id="levelSearch" type="search" placeholder="Buscar por nivel, tema o carpeta...">
+                </label>
+                <div class="filter-group" aria-label="Filtros de modulo">
+                    <button class="filter-btn is-active" type="button" data-filter="all">Todos</button>
+                    <button class="filter-btn" type="button" data-filter="setup">Setup</button>
+                    <button class="filter-btn" type="button" data-filter="html">HTML</button>
+                    <button class="filter-btn" type="button" data-filter="css">CSS</button>
+                    <button class="filter-btn" type="button" data-filter="js">JS</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="d-card">
+            <h2><i class="bi bi-stack"></i> Niveles (carpetas de practica)</h2>
+            <p class="overview-subtitle">
+                Cada nivel corresponde a una carpeta independiente. Crea exactamente ese nombre para llevar orden profesional.
+            </p>
+            <div id="levelsGrid" class="levels-grid"></div>
+            <p id="emptyState" class="empty-state d-none">No hay niveles para ese filtro. Cambia busqueda o modulo.</p>
+        </section>
+
+        <section class="d-card mini-lab-card">
+            <h2><i class="bi bi-puzzle-fill"></i> Mini laboratorio dummie</h2>
+            <div class="mini-lab-grid">
+                <article class="mini-lab-block">
+                    <h3>Prueba 1: Arrastra y suelta</h3>
+                    <p>Coloca cada etiqueta en su zona correcta (HTML, CSS o JS).</p>
+                    <div id="tagBank" class="drag-bank"></div>
+                    <div class="drop-grid">
+                        <div class="drop-zone" data-group="html">
+                            <h4>HTML</h4>
+                            <div class="drop-slot"></div>
+                        </div>
+                        <div class="drop-zone" data-group="css">
+                            <h4>CSS</h4>
+                            <div class="drop-slot"></div>
+                        </div>
+                        <div class="drop-zone" data-group="js">
+                            <h4>JavaScript</h4>
+                            <div class="drop-slot"></div>
+                        </div>
+                    </div>
+                    <div class="lab-controls">
+                        <button id="resetDragBtn" class="ghost-btn" type="button">Resetear ejercicio</button>
+                        <p id="dragFeedback" class="lab-feedback"></p>
+                    </div>
+                </article>
+
+                <article class="mini-lab-block">
+                    <h3>Prueba 2: Seleccion inteligente</h3>
+                    <p>Responde el mini quiz para comprobar que ya distingues cada tecnologia.</p>
+                    <div id="quizCard" class="quiz-card">
+                        <h4 id="quizQuestion"></h4>
+                        <div id="quizOptions" class="quiz-options"></div>
+                        <p id="quizFeedback" class="lab-feedback"></p>
+                        <button id="nextQuizBtn" class="ghost-btn" type="button">Siguiente pregunta</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center py-4">
+        <p class="mb-1">Created by Jemarin. Si te peleas con un <code>div</code>, el curso no te juzga.</p>
+        <small>Practica diaria + calma = mejoras reales.</small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const levelRowsSetup = [
+            ["Instala VS Code sin drama", "nivel-01-vscode", "Instala VS Code y deja interfaz en espanol.", "Activa extensiones: Spanish Language Pack y Live Server.", `Ctrl + Shift + P\n> Configure Display Language`],
+            ["Crea tu carpeta raiz", "nivel-02-estructura", "Creas carpeta principal y subcarpetas con orden.", "Crea: assets, ejercicios y notas.", `mkdir dummie-web\ncd dummie-web\nmkdir assets ejercicios notas`],
+            ["Abre proyecto desde VS Code", "nivel-03-abrir-proyecto", "Abres la carpeta correcta y usas terminal integrada.", "Abre la terminal con Ctrl + ntilde y verifica ruta.", `code .\n# Terminal integrada\npwd`],
+            ["Primer index y estilo", "nivel-04-archivo-base", "Creas index.html y style.css en el lugar correcto.", "Vincula CSS externo desde HTML.", `<link rel="stylesheet" href="style.css">`],
+            ["Rutina anti caos", "nivel-05-rutina", "Aprendes guardado, formato y revision basica.", "Activa auto guardado y ejecuta formato con Shift + Alt + F.", `// Check rapido\n1) Guardar\n2) Formatear\n3) Probar en navegador`]
+        ];
+
+        const levelRowsHtml = [
+            ["Plantilla HTML5 limpia", "nivel-06-html5-base", "Construyes la estructura minima bien formada.", "Incluye doctype, html, head y body.", `<!doctype html>\n<html lang="es">\n<head><meta charset="UTF-8"><title>Nivel 6</title></head>\n<body></body>\n</html>`],
+            ["Titulos y parrafos", "nivel-07-texto", "Organizas contenido con h1-h3 y parrafos legibles.", "No saltes de h1 a h4 sin razon.", `<h1>Mi web</h1>\n<h2>Seccion</h2>\n<p>Texto claro y corto.</p>`],
+            ["Listas y enlaces", "nivel-08-listas-enlaces", "Creas menues sencillos con ul, li y a.", "Usa href real o anclas internas.", `<ul><li><a href="#contacto">Contacto</a></li></ul>`],
+            ["Imagenes con sentido", "nivel-09-imagenes", "Insertas imagenes con atributo alt util.", "Prueba tamano con width en HTML solo para test.", `<img src="img/red.jpg" alt="Topologia de red en estrella" width="320">`],
+            ["Tablas ordenadas", "nivel-10-tablas", "Presentas datos con table, thead y tbody.", "Evita usar tablas para maquetar.", `<table><thead><tr><th>Servicio</th><th>Puerto</th></tr></thead><tbody><tr><td>HTTPS</td><td>443</td></tr></tbody></table>`],
+            ["Semantica base", "nivel-11-semantica", "Usas header, main, section y footer.", "Piensa en bloques con significado real.", `<header>Cabecera</header>\n<main><section>Contenido</section></main>\n<footer>Pie</footer>`],
+            ["Navegacion interna", "nivel-12-anclas", "Creas enlaces que bajan a secciones de la misma pagina.", "Combina nav con ids unicos.", `<nav><a href="#faq">FAQ</a></nav>\n<section id="faq">...</section>`],
+            ["Formulario inicial", "nivel-13-form-basico", "Montas form con label e input tipo email.", "Todos los inputs deben tener label.", `<label for="mail">Correo</label>\n<input id="mail" type="email" required>`],
+            ["Select, radio y checkbox", "nivel-14-form-opciones", "Anades controles de eleccion multiples.", "Agrupa radios con el mismo name.", `<select><option>Basico</option></select>\n<input type="radio" name="plan">`],
+            ["Validacion HTML", "nivel-15-validacion", "Usas required, minlength y pattern.", "Evita enviar basura al servidor.", `<input type="text" minlength="3" pattern="[A-Za-z ]+" required>`],
+            ["Audio y video", "nivel-16-media", "Insertas multimedia con controles nativos.", "Siempre ofrece texto alternativo.", `<video controls width="320"><source src="demo.mp4" type="video/mp4"></video>`],
+            ["Bloques desplegables", "nivel-17-details", "Usas details y summary para FAQs.", "Ideal para preguntas frecuentes.", `<details><summary>Que es HTML?</summary><p>Es lenguaje de marcado.</p></details>`],
+            ["Atributos data-*", "nivel-18-data-attrs", "Guardas datos custom en elementos HTML.", "Lo usaras mucho con JavaScript.", `<button data-level="18">Nivel 18</button>`],
+            ["Integrar iframe", "nivel-19-iframe", "Insertas contenido externo con iframe.", "Incluye title para accesibilidad.", `<iframe title="Mapa" src="https://example.com" loading="lazy"></iframe>`],
+            ["Mini landing solo HTML", "nivel-20-landing-html", "Creas pagina completa sin CSS para validar estructura.", "Secciones: hero, servicios, contacto.", `<main>\n<section><h1>Landing</h1></section>\n<section><form>...</form></section>\n</main>`]
+        ];
+        const levelRowsCss = [
+            ["Conectar hoja de estilos", "nivel-21-css-link", "Separas estructura y diseno con CSS externo.", "Crea style.css y vincula en head.", `body {\n  margin: 0;\n}`],
+            ["Colores y variables", "nivel-22-variables", "Defines paleta con custom properties.", "Usa :root para colores globales.", `:root {\n  --fondo: #fff4d9;\n  --acento: #ff6b35;\n}`],
+            ["Modelo de caja", "nivel-23-box-model", "Controlas padding, border y margin sin romper layout.", "Activa box-sizing border-box.", `* {\n  box-sizing: border-box;\n}`],
+            ["Tipografia legible", "nivel-24-typo", "Ajustas familias, tamanos y alturas de linea.", "Evita fuentes minusculas.", `body {\n  font-family: 'Nunito', sans-serif;\n  line-height: 1.6;\n}`],
+            ["Fondos con personalidad", "nivel-25-background", "Creas fondos con gradientes y capas.", "No abuses de colores chillones sin contraste.", `body {\n  background: linear-gradient(120deg, #ffe29f, #ffa99f);\n}`],
+            ["Flex en fila", "nivel-26-flex-fila", "Alineas elementos horizontalmente con flexbox.", "Practica justify-content y gap.", `.menu {\n  display: flex;\n  gap: 1rem;\n}`],
+            ["Flex responsive", "nivel-27-flex-wrap", "Permites salto de tarjetas en pantallas pequenas.", "Usa flex-wrap wrap.", `.cards {\n  display: flex;\n  flex-wrap: wrap;\n}`],
+            ["Grid basico", "nivel-28-grid", "Montas cuadrilla de 2 o 3 columnas.", "Perfecto para galerias.", `.grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n}`],
+            ["Espaciado coherente", "nivel-29-spacing", "Creas escala de espaciado reutilizable.", "Define clases utilitarias simples.", `.mt-2 { margin-top: .5rem; }\n.mt-4 { margin-top: 1rem; }`],
+            ["Pseudo clases", "nivel-30-hover", "Anades :hover y :focus-visible con criterio.", "Mejora feedback del usuario.", `button:hover {\n  transform: translateY(-2px);\n}`],
+            ["Sombras y bordes", "nivel-31-cards", "Disenas tarjetas con sombra suave y radio.", "Busca claridad antes que exageracion.", `.card {\n  border-radius: 14px;\n  box-shadow: 0 12px 28px rgba(0,0,0,.12);\n}`],
+            ["Media queries", "nivel-32-responsive", "Adaptas layout a movil y tablet.", "Empieza por mobile first.", `@media (min-width: 768px) {\n  .grid { grid-template-columns: repeat(2, 1fr); }\n}`],
+            ["Navbar pegajosa", "nivel-33-sticky", "Usas position sticky para cabecera util.", "Controla z-index para evitar solapes.", `header {\n  position: sticky;\n  top: 0;\n}`],
+            ["Formularios bonitos", "nivel-34-form-style", "Das estilo profesional a inputs y botones.", "Resalta focus para accesibilidad.", `input:focus {\n  outline: 2px solid #ff6b35;\n}`],
+            ["Mini portfolio responsive", "nivel-35-portfolio", "Construyes una pagina completa con HTML + CSS.", "Incluye hero, proyectos y contacto.", `.portfolio {\n  max-width: 980px;\n  margin: 0 auto;\n}`]
+        ];
+
+        const levelRowsJs = [
+            ["Primer script sin miedo", "nivel-36-js-base", "Conectas archivo app.js y pruebas consola.", "Verifica que el script carga al final del body.", `console.log('Nivel 36 listo');`],
+            ["Variables y templates", "nivel-37-variables", "Usas const, let y template literals.", "Evita var para codigo nuevo.", `const nombre = 'Dummie';\nconsole.log(` + "`Hola ${nombre}`" + `);`],
+            ["Funciones utiles", "nivel-38-funciones", "Creas funciones reutilizables con parametros.", "Haz funciones pequenas y claras.", `function saludar(nombre) {\n  return 'Hola ' + nombre;\n}`],
+            ["Condicionales", "nivel-39-if", "Aplicas if/else para decisiones simples.", "Piensa en entradas validas e invalidas.", `if (edad >= 18) {\n  console.log('Puede pasar');\n}`],
+            ["Bucles y arrays", "nivel-40-loops", "Recorres listas para pintar contenido.", "forEach es tu aliado.", `const temas = ['HTML','CSS','JS'];\ntemas.forEach(t => console.log(t));`],
+            ["Objetos", "nivel-41-objetos", "Modelas datos con claves y valores.", "Accede a propiedades con punto.", `const alumno = { nombre: 'Ana', nivel: 41 };\nconsole.log(alumno.nombre);`],
+            ["Seleccionar DOM", "nivel-42-dom", "Capturas elementos con querySelector.", "Guarda referencias en constantes.", `const titulo = document.querySelector('h1');\ntitulo.textContent = 'Nivel 42';`],
+            ["Eventos de click", "nivel-43-eventos", "Reaccionas a clicks de botones.", "Separa logica en funciones.", `boton.addEventListener('click', () => {\n  alert('Has clicado');\n});`],
+            ["ClassList y modo tema", "nivel-44-classlist", "Cambias clases para activar estados visuales.", "Ideal para menu movil o modo claro.", `document.body.classList.toggle('modo-fiesta');`],
+            ["Validar formularios", "nivel-45-validacion-js", "Compruebas datos antes de enviar.", "Muestra mensajes claros al usuario.", `if (!email.includes('@')) {\n  error.textContent = 'Correo no valido';\n}`],
+            ["Crear nodos dinamicos", "nivel-46-create-node", "Generas elementos nuevos con JS.", "appendChild para listas dinamicas.", `const li = document.createElement('li');\nli.textContent = 'Nueva tarea';\nlista.appendChild(li);`],
+            ["Guardar con localStorage", "nivel-47-localstorage", "Persistes datos entre recargas.", "Convierte a JSON al guardar.", `localStorage.setItem('nivel', '47');\nconst nivel = localStorage.getItem('nivel');`],
+            ["Consumir API simple", "nivel-48-fetch", "Llamas una API y pintas resultado.", "Usa async/await con try/catch.", `const res = await fetch('https://api.github.com/zen');\nconst texto = await res.text();`],
+            ["Drag and drop propio", "nivel-49-dragdrop", "Montas una mini interaccion de arrastre.", "Practica dragstart, dragover y drop.", `item.draggable = true;\nzona.addEventListener('drop', manejarDrop);`],
+            ["Proyecto final completo", "nivel-50-proyecto-final", "Entregas web final con HTML, CSS y JS integrados.", "Incluye README, estructura y demo funcional.", `// Checklist final\n// 1) Semantica\n// 2) Responsive\n// 3) Interactividad`]
+        ];
+
+        function createLevels(rows, module, startId) {
+            return rows.map((row, index) => {
+                const id = startId + index;
+                const xpBase = module === "setup" ? 20 : module === "html" ? 30 : module === "css" ? 40 : 50;
+                return {
+                    id,
+                    module,
+                    title: row[0],
+                    folder: row[1],
+                    objective: row[2],
+                    exercise: row[3],
+                    example: row[4],
+                    xp: xpBase + Math.floor(index / 3) * 5
+                };
+            });
+        }
+
+        const LEVELS = [
+            ...createLevels(levelRowsSetup, "setup", 1),
+            ...createLevels(levelRowsHtml, "html", 6),
+            ...createLevels(levelRowsCss, "css", 21),
+            ...createLevels(levelRowsJs, "js", 36)
+        ];
+
+        const MODULE_LABELS = {
+            setup: "Setup",
+            html: "HTML",
+            css: "CSS",
+            js: "JavaScript"
+        };
+
+        const STORAGE_KEY = "dummies_levels_progress_v2";
+
+        const levelsGrid = document.getElementById("levelsGrid");
+        const emptyState = document.getElementById("emptyState");
+        const levelSearch = document.getElementById("levelSearch");
+        const filterButtons = Array.from(document.querySelectorAll(".filter-btn"));
+        const progressFill = document.getElementById("progressFill");
+        const progressText = document.getElementById("progressText");
+        const progressPercent = document.getElementById("progressPercent");
+        const nextMission = document.getElementById("nextMission");
+        const resetProgressBtn = document.getElementById("resetProgressBtn");
+        const progressTrack = document.querySelector(".progress-track");
+
+        let activeFilter = "all";
+        let completedLevels = new Set(loadProgress());
+
+        function loadProgress() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) {
+                    return [];
+                }
+                const parsed = JSON.parse(raw);
+                return Array.isArray(parsed) ? parsed : [];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function saveProgress() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify([...completedLevels]));
+        }
+
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/\"/g, "&quot;")
+                .replace(/'/g, "&#39;");
+        }
+
+        function getVisibleLevels() {
+            const term = levelSearch.value.trim().toLowerCase();
+            return LEVELS.filter((level) => {
+                const moduleMatch = activeFilter === "all" || level.module === activeFilter;
+                if (!moduleMatch) {
+                    return false;
+                }
+                if (!term) {
+                    return true;
+                }
+                const haystack = `${level.id} ${level.title} ${level.folder} ${level.objective} ${level.exercise} ${MODULE_LABELS[level.module]}`.toLowerCase();
+                return haystack.includes(term);
+            });
+        }
+        function getDifficultyTag(levelId) {
+            if (levelId <= 12) {
+                return "Facil";
+            }
+            if (levelId <= 30) {
+                return "Media";
+            }
+            if (levelId <= 44) {
+                return "Alta";
+            }
+            return "Boss";
+        }
+
+        function renderLevelCard(level) {
+            const completed = completedLevels.has(level.id);
+            const difficulty = getDifficultyTag(level.id);
+            return `
+                <article class="level-card level-${level.module} ${completed ? "is-done" : ""}">
+                    <header class="level-head">
+                        <span class="level-index">Nivel ${String(level.id).padStart(2, "0")}</span>
+                        <span class="module-pill">${MODULE_LABELS[level.module]}</span>
+                        <span class="difficulty-pill">${difficulty}</span>
+                    </header>
+                    <h3>${level.title}</h3>
+                    <p class="level-objective">${level.objective}</p>
+                    <ul class="level-checklist">
+                        <li><strong>Carpeta:</strong> <code>${level.folder}</code></li>
+                        <li><strong>Ejercicio:</strong> ${level.exercise}</li>
+                    </ul>
+                    <pre class="code-block"><code>${escapeHtml(level.example)}</code></pre>
+                    <footer class="level-foot">
+                        <span class="xp-pill"><i class="bi bi-lightning-charge-fill"></i> ${level.xp} XP</span>
+                        <button class="mark-btn" type="button" data-level="${level.id}">
+                            ${completed ? "Completado" : "Marcar como hecho"}
+                        </button>
+                    </footer>
+                </article>
+            `;
+        }
+
+        function renderLevels() {
+            const visibleLevels = getVisibleLevels();
+            if (!visibleLevels.length) {
+                levelsGrid.innerHTML = "";
+                emptyState.classList.remove("d-none");
+                return;
+            }
+            emptyState.classList.add("d-none");
+            levelsGrid.innerHTML = visibleLevels.map(renderLevelCard).join("");
+            document.querySelectorAll(".mark-btn").forEach((button) => {
+                button.addEventListener("click", () => {
+                    const levelId = Number(button.dataset.level);
+                    if (completedLevels.has(levelId)) {
+                        completedLevels.delete(levelId);
+                    } else {
+                        completedLevels.add(levelId);
+                    }
+                    saveProgress();
+                    updateProgress();
+                    renderLevels();
+                });
+            });
+        }
+
+        function updateProgress() {
+            const done = completedLevels.size;
+            const total = LEVELS.length;
+            const percent = Math.round((done / total) * 100);
+            progressText.textContent = `${done}/${total} niveles completados`;
+            progressPercent.textContent = `${percent}%`;
+            progressFill.style.width = `${percent}%`;
+            progressTrack.setAttribute("aria-valuenow", String(done));
+
+            const nextLevel = LEVELS.find((level) => !completedLevels.has(level.id));
+            if (nextLevel) {
+                nextMission.textContent = `Siguiente mision: Nivel ${nextLevel.id} - ${nextLevel.title}`;
+            } else {
+                nextMission.textContent = "Mision completada: ya dominas la ruta dummie.";
+            }
+        }
+
+        filterButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                filterButtons.forEach((item) => item.classList.remove("is-active"));
+                button.classList.add("is-active");
+                activeFilter = button.dataset.filter;
+                renderLevels();
+            });
+        });
+
+        levelSearch.addEventListener("input", renderLevels);
+
+        resetProgressBtn.addEventListener("click", () => {
+            completedLevels = new Set();
+            saveProgress();
+            updateProgress();
+            renderLevels();
+        });
+
+        updateProgress();
+        renderLevels();
+
+        const dragItemsData = [
+            { id: "tag-header", label: "<header>", group: "html" },
+            { id: "tag-nav", label: "<nav>", group: "html" },
+            { id: "tag-color", label: "color:", group: "css" },
+            { id: "tag-display", label: "display: flex", group: "css" },
+            { id: "tag-query", label: "document.querySelector()", group: "js" },
+            { id: "tag-event", label: "addEventListener()", group: "js" }
+        ];
+
+        const tagBank = document.getElementById("tagBank");
+        const dropZones = Array.from(document.querySelectorAll(".drop-zone"));
+        const dragFeedback = document.getElementById("dragFeedback");
+        const resetDragBtn = document.getElementById("resetDragBtn");
+
+        function createDragItem(item) {
+            const element = document.createElement("button");
+            element.type = "button";
+            element.className = "drag-item";
+            element.draggable = true;
+            element.dataset.group = item.group;
+            element.dataset.id = item.id;
+            element.textContent = item.label;
+            element.addEventListener("dragstart", (event) => {
+                event.dataTransfer.setData("text/plain", item.id);
+                element.classList.add("is-dragging");
+            });
+            element.addEventListener("dragend", () => {
+                element.classList.remove("is-dragging");
+            });
+            return element;
+        }
+
+        function resetDragExercise() {
+            dragFeedback.textContent = "";
+            tagBank.innerHTML = "";
+            dropZones.forEach((zone) => {
+                zone.classList.remove("is-correct", "is-wrong");
+                const slot = zone.querySelector(".drop-slot");
+                if (slot) {
+                    slot.innerHTML = "";
+                }
+            });
+            dragItemsData.forEach((item) => {
+                tagBank.appendChild(createDragItem(item));
+            });
+        }
+
+        dropZones.forEach((zone) => {
+            zone.addEventListener("dragover", (event) => {
+                event.preventDefault();
+                zone.classList.add("is-over");
+            });
+            zone.addEventListener("dragleave", () => {
+                zone.classList.remove("is-over");
+            });
+            zone.addEventListener("drop", (event) => {
+                event.preventDefault();
+                zone.classList.remove("is-over");
+                const itemId = event.dataTransfer.getData("text/plain");
+                const itemNode = document.querySelector(`.drag-item[data-id="${itemId}"]`);
+                if (!itemNode) {
+                    return;
+                }
+                const expectedGroup = zone.dataset.group;
+                const itemGroup = itemNode.dataset.group;
+                if (itemGroup !== expectedGroup) {
+                    zone.classList.add("is-wrong");
+                    dragFeedback.textContent = "Esa pieza no va ahi. Respira, vuelve a intentarlo.";
+                    setTimeout(() => zone.classList.remove("is-wrong"), 700);
+                    return;
+                }
+                const slot = zone.querySelector(".drop-slot");
+                if (!slot) {
+                    return;
+                }
+                itemNode.draggable = false;
+                itemNode.classList.add("is-locked");
+                slot.appendChild(itemNode);
+                zone.classList.add("is-correct");
+
+                const remaining = document.querySelectorAll(".drag-item:not(.is-locked)").length;
+                if (!remaining) {
+                    dragFeedback.textContent = "Perfecto. Ya separas HTML, CSS y JS como una leyenda.";
+                } else {
+                    dragFeedback.textContent = "Correcto. Sigue asi, quedan piezas.";
+                }
+            });
+        });
+
+        resetDragBtn.addEventListener("click", resetDragExercise);
+        resetDragExercise();
+
+        const quizQuestions = [
+            {
+                question: "Que etiqueta define el contenido principal de una pagina?",
+                options: ["<main>", "<blink>", "<table>"],
+                answer: 0,
+                feedback: "Correcto. <main> marca el contenido principal."
+            },
+            {
+                question: "Que propiedad de CSS centra elementos flex en horizontal?",
+                options: ["align-items", "justify-content", "float"],
+                answer: 1,
+                feedback: "Exacto. justify-content controla eje principal."
+            },
+            {
+                question: "Con que metodo escuchas un click en JavaScript?",
+                options: ["setTimeout()", "addEventListener()", "appendChild()"],
+                answer: 1,
+                feedback: "Bien. addEventListener es la via correcta."
+            },
+            {
+                question: "Donde guardas datos simples para no perderlos al recargar?",
+                options: ["localStorage", "console.log", "alt"],
+                answer: 0,
+                feedback: "Perfecto. localStorage persiste datos en el navegador."
+            }
+        ];
+
+        let quizIndex = 0;
+        const quizQuestion = document.getElementById("quizQuestion");
+        const quizOptions = document.getElementById("quizOptions");
+        const quizFeedback = document.getElementById("quizFeedback");
+        const nextQuizBtn = document.getElementById("nextQuizBtn");
+
+        function renderQuiz() {
+            const item = quizQuestions[quizIndex];
+            quizQuestion.textContent = `Pregunta ${quizIndex + 1}/${quizQuestions.length}: ${item.question}`;
+            quizFeedback.textContent = "";
+            quizOptions.innerHTML = "";
+
+            item.options.forEach((option, idx) => {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.className = "quiz-btn";
+                button.textContent = option;
+                button.addEventListener("click", () => {
+                    const buttons = Array.from(quizOptions.querySelectorAll(".quiz-btn"));
+                    buttons.forEach((btn) => {
+                        btn.disabled = true;
+                    });
+                    if (idx === item.answer) {
+                        button.classList.add("is-right");
+                        quizFeedback.textContent = item.feedback;
+                    } else {
+                        button.classList.add("is-wrong");
+                        buttons[item.answer].classList.add("is-right");
+                        quizFeedback.textContent = "Casi. Revisa la opcion marcada en verde.";
+                    }
+                });
+                quizOptions.appendChild(button);
+            });
+        }
+
+        nextQuizBtn.addEventListener("click", () => {
+            quizIndex = (quizIndex + 1) % quizQuestions.length;
+            renderQuiz();
+        });
+
+        renderQuiz();
+
+        const robot = document.getElementById("mr-robot-glitch");
+        if (robot) {
+            robot.classList.add("robot-glitch-run");
+            robot.addEventListener("animationend", () => {
+                robot.style.display = "none";
+            });
+        }
+    </script>
+    <script src="assets/js/site-sfx.js"></script>
+    <script src="assets/js/site-theme.js"></script>
+</body>
+</html>

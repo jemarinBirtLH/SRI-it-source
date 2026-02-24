@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Academy - 50 Niveles</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/pages/javascript.css">
+</head>
+<body class="js-academy-page">
+    <div id="mr-robot-glitch">Modo JavaScript activado. Cuidado con los parentesis.</div>
+
+    <nav class="navbar-neon navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="neon-text" href="index.html">
+                <span class="brand-icon"><i class="bi bi-house-door"></i></span>
+                <span class="brand-label">SOURCE-IT</span>
+            </a>
+            <button class="navbar-toggler navbar-toggler-neon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarJSAcademy" aria-controls="navbarJSAcademy" aria-expanded="false" aria-label="Abrir navegacion">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarJSAcademy">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link-neon" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="dummies.html">Dummies Web</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="lenguajes_de_marcas.html">HTML</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="Css_basico.html">CSS</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="python.html">Python</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="js-hero text-center">
+        <div class="container">
+            <p class="hero-kicker"><i class="bi bi-filetype-js"></i> JavaScript Academy</p>
+            <h1>Curso JavaScript para aprender en serio y reirte por el camino</h1>
+            <p class="hero-subtitle">
+                Una ruta completa con 50 niveles: desde variables y funciones hasta asincronia,
+                APIs y proyecto final. Todo orientado a JavaScript puro.
+            </p>
+            <div class="hero-badges">
+                <span><i class="bi bi-clock-history"></i> Historia + evolucion</span>
+                <span><i class="bi bi-flag-fill"></i> 50 niveles JS</span>
+                <span><i class="bi bi-joystick"></i> Practica interactiva</span>
+                <span><i class="bi bi-lightning-charge-fill"></i> Progreso guardado</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-4">
+        <section class="js-card">
+            <h2><i class="bi bi-hourglass-split"></i> Historia y evolucion de JavaScript</h2>
+            <p class="section-subtitle">
+                JavaScript nacio como lenguaje para el navegador y hoy se usa en frontend, backend, apps moviles y tooling.
+            </p>
+            <div class="history-grid">
+                <article>
+                    <span class="history-year">1995</span>
+                    <h3>Nace en Netscape</h3>
+                    <p>Brendan Eich crea el lenguaje en Netscape en pocas semanas para dar interactividad al navegador.</p>
+                </article>
+                <article>
+                    <span class="history-year">Diciembre 1995</span>
+                    <h3>Primera publicacion</h3>
+                    <p>Se anuncia con Netscape Navigator 2.0 beta, primero llamado LiveScript y luego JavaScript.</p>
+                </article>
+                <article>
+                    <span class="history-year">1996</span>
+                    <h3>JScript en Internet Explorer</h3>
+                    <p>Microsoft lanza JScript, se acelera la guerra de navegadores y aparecen diferencias de compatibilidad.</p>
+                </article>
+                <article>
+                    <span class="history-year">Junio 1997</span>
+                    <h3>ECMAScript 1</h3>
+                    <p>ECMA estandariza el lenguaje con la especificacion ECMA-262 para unificar reglas base.</p>
+                </article>
+                <article>
+                    <span class="history-year">1999</span>
+                    <h3>ES3</h3>
+                    <p>Version clave durante anos: regex, manejo de cadenas y base del JavaScript clasico.</p>
+                </article>
+                <article>
+                    <span class="history-year">2005</span>
+                    <h3>Era AJAX</h3>
+                    <p>Webs mas dinamicas sin recargar pagina completa. JavaScript se vuelve central en productos web.</p>
+                </article>
+                <article>
+                    <span class="history-year">2009</span>
+                    <h3>ES5 y Node.js</h3>
+                    <p>ES5 mejora el lenguaje y Node.js lo lleva al servidor. JavaScript deja de ser solo frontend.</p>
+                </article>
+                <article>
+                    <span class="history-year">Junio 2015</span>
+                    <h3>ES2015 (ES6)</h3>
+                    <p>Gran salto: let/const, clases, modulos, arrow functions, promises y mucho mas.</p>
+                </article>
+                <article>
+                    <span class="history-year">2016+</span>
+                    <h3>Actualizaciones anuales</h3>
+                    <p>El lenguaje evoluciona cada ano con mejoras incrementales y menor ruptura.</p>
+                </article>
+                <article>
+                    <span class="history-year">Hoy</span>
+                    <h3>Ecosistema maduro</h3>
+                    <p>Frontend, backend, automatizacion y tooling. JavaScript y TypeScript dominan gran parte del desarrollo web.</p>
+                </article>
+            </div>
+            <div class="evolution-notes">
+                <span>ES5: strict mode, JSON nativo, metodos de arrays.</span>
+                <span>ES2015: modulos, clases, promises, destructuring.</span>
+                <span>ES2017: async/await para asincronia limpia.</span>
+                <span>ES2020+: optional chaining, nullish coalescing, top-level await, mas ergonomia.</span>
+            </div>
+        </section>
+
+        <section class="js-card">
+            <h2><i class="bi bi-signpost-split"></i> Ruta del curso JavaScript</h2>
+            <p class="section-subtitle">
+                Cinco bloques, diez niveles por bloque. Dificultad progresiva y enfoque practico.
+            </p>
+            <div class="track-grid">
+                <article class="track-item track-foundation">
+                    <h3>Bloque 1 (1-10): Fundamentos</h3>
+                    <p>Variables, tipos, operadores, control de flujo y debugging basico.</p>
+                </article>
+                <article class="track-item track-functions">
+                    <h3>Bloque 2 (11-20): Funciones y estructura</h3>
+                    <p>Scope, closures, arrays avanzados, modulos y manejo de errores.</p>
+                </article>
+                <article class="track-item track-dom">
+                    <h3>Bloque 3 (21-30): DOM y navegador</h3>
+                    <p>Eventos, formularios, nodos dinamicos, storage y mini app de interfaz.</p>
+                </article>
+                <article class="track-item track-async">
+                    <h3>Bloque 4 (31-40): Asincronia y red</h3>
+                    <p>Promises, async/await, fetch, event loop y tecnicas de control temporal.</p>
+                </article>
+                <article class="track-item track-app">
+                    <h3>Bloque 5 (41-50): Proyecto profesional</h3>
+                    <p>Arquitectura, testing, rendimiento, seguridad y despliegue final.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="js-card controls-card">
+            <div class="controls-header">
+                <h2><i class="bi bi-speedometer2"></i> Panel del curso</h2>
+                <button id="resetProgressBtn" class="ghost-btn" type="button">
+                    <i class="bi bi-arrow-counterclockwise"></i> Reiniciar progreso
+                </button>
+            </div>
+            <div class="progress-panel">
+                <div class="progress-meta">
+                    <span id="progressText">0/50 niveles completados</span>
+                    <span id="progressPercent">0%</span>
+                </div>
+                <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="50" aria-valuenow="0">
+                    <span id="progressFill"></span>
+                </div>
+                <p id="nextMission" class="next-mission">Siguiente nivel: 1</p>
+            </div>
+            <div class="controls-row">
+                <label class="search-box" for="levelSearch">
+                    <i class="bi bi-search"></i>
+                    <input id="levelSearch" type="search" placeholder="Buscar por nivel, carpeta, concepto o tema...">
+                </label>
+                <div class="filter-group" aria-label="Filtros de modulo">
+                    <button class="filter-btn is-active" data-filter="all" type="button">Todos</button>
+                    <button class="filter-btn" data-filter="foundation" type="button">Fundamentos</button>
+                    <button class="filter-btn" data-filter="functions" type="button">Funciones</button>
+                    <button class="filter-btn" data-filter="dom" type="button">DOM</button>
+                    <button class="filter-btn" data-filter="async" type="button">Async</button>
+                    <button class="filter-btn" data-filter="app" type="button">Proyecto</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="js-card">
+            <h2><i class="bi bi-list-check"></i> Niveles JavaScript (50 carpetas)</h2>
+            <p class="section-subtitle">
+                Crea cada carpeta con el nombre indicado. Te facilita revisar, versionar y presentar avance.
+            </p>
+            <div id="levelsGrid" class="levels-grid"></div>
+            <p id="emptyState" class="empty-state d-none">No hay niveles con ese filtro o busqueda.</p>
+        </section>
+
+        <section class="js-card">
+            <h2><i class="bi bi-controller"></i> Laboratorio interactivo JavaScript</h2>
+            <div class="lab-grid">
+                <article class="lab-block">
+                    <h3>Prueba 1: Arrastra y clasifica</h3>
+                    <p>Separa snippets en su grupo correcto: Fundamentos, DOM o Async.</p>
+                    <div id="dragBank" class="drag-bank"></div>
+                    <div class="drop-grid">
+                        <div class="drop-zone" data-group="foundation">
+                            <h4>Fundamentos</h4>
+                            <div class="drop-slot"></div>
+                        </div>
+                        <div class="drop-zone" data-group="dom">
+                            <h4>DOM</h4>
+                            <div class="drop-slot"></div>
+                        </div>
+                        <div class="drop-zone" data-group="async">
+                            <h4>Async</h4>
+                            <div class="drop-slot"></div>
+                        </div>
+                    </div>
+                    <div class="lab-actions">
+                        <button id="resetDragBtn" class="ghost-btn" type="button">Resetear</button>
+                        <p id="dragFeedback" class="lab-feedback"></p>
+                    </div>
+                </article>
+
+                <article class="lab-block">
+                    <h3>Prueba 2: Simulador Event Loop</h3>
+                    <p>Ejecuta y observa el orden de sincronas, microtareas y macrotareas.</p>
+                    <button id="loopBtn" class="ghost-btn" type="button">Ejecutar simulacion</button>
+                    <pre id="loopOut" class="code-block">Pulsa "Ejecutar simulacion".</pre>
+                    <p class="loop-note">Regla rapida: sincrono primero, luego microtareas, al final macrotareas.</p>
+                </article>
+
+                <article class="lab-block">
+                    <h3>Prueba 3: Mini quiz</h3>
+                    <p>Repaso de historia y conceptos clave de JavaScript moderno.</p>
+                    <div class="quiz-card">
+                        <h4 id="quizQuestion"></h4>
+                        <div id="quizOptions" class="quiz-options"></div>
+                        <p id="quizFeedback" class="lab-feedback"></p>
+                        <button id="nextQuizBtn" class="ghost-btn" type="button">Siguiente pregunta</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center py-4">
+        <p class="mb-1">JavaScript Academy by Jemarin. Si falla, debugea. Si funciona, documentalo.</p>
+        <small>Practica constante > talento sin practica.</small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const levelRowsFoundation = [
+            ["Nacimiento de JavaScript", "js-01-historia", "Entiendes como y por que nacio JavaScript en 1995.", "Resume en un README los hitos de 1995, 1997 y 2015.", `const hitos = ['1995', '1997', '2015'];\nconsole.log('Hitos JS:', hitos.join(' -> '));`],
+            ["Console y primeras salidas", "js-02-console", "Aprendes a inspeccionar valores con console.", "Usa console.log, console.table y console.warn.", `const alumno = { nombre: 'Dummie', nivel: 2 };\nconsole.table(alumno);`],
+            ["Variables con let y const", "js-03-variables", "Dominas declaracion de variables sin usar var.", "Crea variables mutables e inmutables y explica la diferencia.", `const curso = 'JS';\nlet nivel = 3;\nnivel += 1;`],
+            ["Tipos primitivos", "js-04-tipos", "Reconoces string, number, boolean, null y undefined.", "Detecta tipos con typeof y muestra resultados.", `const valores = ['hola', 7, true, null, undefined];\nvalores.forEach(v => console.log(typeof v));`],
+            ["Operadores y comparacion", "js-05-operadores", "Aplicar operadores aritmeticos y logicos sin confusiones.", "Compara == y === con ejemplos claros.", `console.log(5 == '5');\nconsole.log(5 === '5');`],
+            ["Condiciones if y switch", "js-06-condicionales", "Controlas rutas de ejecucion segun condiciones.", "Crea clasificador de notas con if/else.", `const nota = 8;\nif (nota >= 5) console.log('Aprobado');`],
+            ["Bucles for y while", "js-07-bucles", "Iteras datos y controlas repeticion sin bucles infinitos.", "Muestra del 1 al 10 y suma acumulada.", `let suma = 0;\nfor (let i = 1; i <= 10; i++) suma += i;`],
+            ["Arrays basicos", "js-08-arrays", "Gestionas listas con push, pop y recorrido.", "Crea lista de tareas y agrega una nueva.", `const tareas = ['HTML', 'CSS'];\ntareas.push('JavaScript');`],
+            ["Objetos basicos", "js-09-objetos", "Modelas informacion con pares clave/valor.", "Construye objeto usuario y accede a propiedades.", `const usuario = { nombre: 'Ana', activo: true };\nconsole.log(usuario.nombre);`],
+            ["Debugging en DevTools", "js-10-debug", "Usas breakpoints y inspeccion para localizar errores.", "Introduce bug intencional y corrigelo.", `function dividir(a, b) {\n  debugger;\n  return a / b;\n}`]
+        ];
+
+        const levelRowsFunctions = [
+            ["Funciones declaradas", "js-11-funciones", "Defines funciones reutilizables con parametros.", "Implementa funcion areaRectangulo.", `function areaRectangulo(base, altura) {\n  return base * altura;\n}`],
+            ["Arrow functions", "js-12-arrow", "Usas sintaxis arrow en callbacks y funciones cortas.", "Transforma funcion clasica a arrow.", `const doble = n => n * 2;\nconsole.log(doble(4));`],
+            ["Scope y bloque", "js-13-scope", "Diferencias alcance global, local y de bloque.", "Prueba let fuera y dentro de un bloque.", `let global = 'ok';\nif (true) {\n  let local = 'solo bloque';\n}`],
+            ["Hoisting sin drama", "js-14-hoisting", "Comprendes elevacion de declaraciones y limites.", "Compara comportamiento de function vs const.", `saludar();\nfunction saludar() { console.log('hola'); }`],
+            ["Template literals", "js-15-templates", "Construyes strings dinamicos legibles.", "Monta mensaje personalizado con backticks.", "const nombre = 'Luna';\nconsole.log(`Bienvenida ${nombre}`);"],
+            ["Destructuring", "js-16-destructuring", "Extraes datos de arrays y objetos rapidamente.", "Desestructura usuario y lista de cursos.", `const usuario = { nombre: 'Leo', rol: 'dev' };\nconst { nombre, rol } = usuario;`],
+            ["Rest y spread", "js-17-rest-spread", "Agrupas y expandes datos de forma limpia.", "Combina dos arrays de modulos.", `const base = ['js'];\nconst extra = ['dom', 'async'];\nconst todo = [...base, ...extra];`],
+            ["Map, filter y reduce", "js-18-array-methods", "Procesas colecciones de manera funcional.", "Calcula total de carrito con reduce.", `const precios = [10, 15, 20];\nconst total = precios.reduce((acc, n) => acc + n, 0);`],
+            ["Modulos ESM", "js-19-modulos", "Separas codigo en archivos importables.", "Crea utils.js y app.js con export/import.", `// utils.js\nexport const iva = n => n * 1.21;`],
+            ["Try/catch y errores", "js-20-errores", "Manejas errores sin romper toda la app.", "Valida JSON con manejo de excepcion.", `try {\n  JSON.parse('{mal json}');\n} catch (error) {\n  console.error(error.message);\n}`]
+        ];
+
+        const levelRowsDom = [
+            ["Seleccionar elementos DOM", "js-21-selectores", "Capturas nodos con querySelector y querySelectorAll.", "Selecciona botones por clase y cuenta cuantos hay.", `const botones = document.querySelectorAll('.btn');\nconsole.log(botones.length);`],
+            ["TextContent e innerHTML", "js-22-contenido", "Actualizas texto y HTML con seguridad.", "Cambia el titulo de una tarjeta.", `const h2 = document.querySelector('h2');\nh2.textContent = 'Titulo actualizado';`],
+            ["Crear y anexar nodos", "js-23-create-node", "Insertas elementos de forma dinamica.", "Anade un li nuevo a una lista.", `const li = document.createElement('li');\nli.textContent = 'Nueva tarea';\nlista.appendChild(li);`],
+            ["Eventos click e input", "js-24-eventos", "Escuchas acciones del usuario en tiempo real.", "Muestra en pantalla lo que se escribe en un input.", `input.addEventListener('input', e => {\n  salida.textContent = e.target.value;\n});`],
+            ["Delegacion de eventos", "js-25-delegacion", "Gestionas eventos en listas dinamicas.", "Usa un solo listener para muchos botones.", `lista.addEventListener('click', (e) => {\n  if (e.target.matches('button')) console.log('Click item');\n});`],
+            ["Formularios y validacion", "js-26-form", "Valida campos antes de enviar datos.", "Bloquea envio si email no contiene @.", `form.addEventListener('submit', (e) => {\n  if (!email.value.includes('@')) e.preventDefault();\n});`],
+            ["ClassList y estados visuales", "js-27-classlist", "Alternas clases para UI interactiva.", "Implementa boton modo noche.", `document.body.classList.toggle('dark-mode');`],
+            ["Storage local", "js-28-storage", "Persistes preferencias en navegador.", "Guarda tema seleccionado y recuperalo al cargar.", `localStorage.setItem('tema', 'oscuro');\nconst tema = localStorage.getItem('tema');`],
+            ["Dataset y atributos", "js-29-dataset", "Lees metadatos de componentes con data-*.", "Usa data-id para identificar tarjetas.", `const id = card.dataset.id;\nconsole.log('Tarjeta', id);`],
+            ["Mini app DOM", "js-30-mini-app", "Construyes una mini app de tareas completa.", "Crear, marcar y eliminar tareas en interfaz.", `const tareas = [];\nfunction render() { /* pintar lista */ }`]
+        ];
+        const levelRowsAsync = [
+            ["Callbacks basicos", "js-31-callbacks", "Comprendes callbacks y orden de ejecucion.", "Encadena dos funciones usando callback.", `function procesar(dato, cb) {\n  cb(dato);\n}`],
+            ["Promises desde cero", "js-32-promises", "Creas y consumes promesas correctamente.", "Resuelve o rechaza segun condicion.", `const p = new Promise((resolve, reject) => {\n  Math.random() > 0.5 ? resolve('ok') : reject('error');\n});`],
+            ["Async y await", "js-33-async-await", "Escribes asincronia legible con try/catch.", "Convierte cadena de then a async/await.", `async function cargar() {\n  try { const data = await Promise.resolve('ok'); }\n  catch (e) {}\n}`],
+            ["Fetch GET", "js-34-fetch-get", "Consumes API publica con peticion GET.", "Pinta lista de usuarios en pantalla.", `const res = await fetch('https://jsonplaceholder.typicode.com/users');\nconst users = await res.json();`],
+            ["Fetch POST", "js-35-fetch-post", "Envias datos a endpoint con metodo POST.", "Simula creacion de registro.", `await fetch('/api/items', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json' },\n  body: JSON.stringify({ nombre: 'Item' })\n});`],
+            ["JSON robusto", "js-36-json", "Parseas y serializas JSON sin perder estructura.", "Guardar objeto complejo como string y recuperarlo.", `const txt = JSON.stringify({ modulos: ['js', 'dom'] });\nconst obj = JSON.parse(txt);`],
+            ["Event loop real", "js-37-event-loop", "Entiendes microtareas y macrotareas.", "Simula orden con Promise.then y setTimeout.", `console.log('A');\nPromise.resolve().then(() => console.log('B'));\nsetTimeout(() => console.log('C'), 0);`],
+            ["Timers y limpieza", "js-38-timers", "Controlas setInterval y clearInterval.", "Cronometro que se detiene en 10 segundos.", `const id = setInterval(() => console.log('tick'), 1000);\nsetTimeout(() => clearInterval(id), 10000);`],
+            ["Debounce y throttle", "js-39-control-flujo", "Evitas sobrecarga en eventos rapidos.", "Aplica debounce a buscador.", `function debounce(fn, ms) {\n  let t;\n  return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };\n}`],
+            ["Reintentos y fallback", "js-40-retry", "Construyes logica de reintento para red inestable.", "Reintenta fetch hasta 3 veces.", `for (let i = 0; i < 3; i++) {\n  try { return await fetch('/api'); } catch (e) {}\n}`]
+        ];
+
+        const levelRowsApp = [
+            ["Estructura de proyecto", "js-41-estructura", "Organizas carpetas por dominio y responsabilidades.", "Separa ui, services y state.", `src/\n  ui/\n  services/\n  state/`],
+            ["NPM y scripts", "js-42-npm", "Gestionas dependencias y scripts utiles.", "Crea package con script dev.", `{\n  "scripts": { "dev": "vite" }\n}`],
+            ["Build tool (Vite)", "js-43-vite", "Levantas entorno moderno para desarrollo JS.", "Inicia proyecto y prueba hot reload.", `npm create vite@latest mi-app -- --template vanilla`],
+            ["Testing basico", "js-44-testing", "Escribes tests unitarios simples.", "Testea una funcion suma.", `import { expect, test } from 'vitest';\ntest('suma', () => expect(2 + 2).toBe(4));`],
+            ["Lint y formato", "js-45-lint", "Aseguras estilo y calidad consistentes.", "Configura ESLint y Prettier.", `npx eslint .\nnpx prettier . --write`],
+            ["Accesibilidad JS", "js-46-a11y", "Mejoras UX con focus y mensajes accesibles.", "Gestiona foco en modal al abrir y cerrar.", `modal.focus();\ntrigger.focus();`],
+            ["Rendimiento", "js-47-performance", "Evitas trabajo innecesario en render y eventos.", "Mide con Performance panel y optimiza listeners.", `console.time('render');\nrender();\nconsole.timeEnd('render');`],
+            ["Seguridad frontend", "js-48-seguridad", "Reducir riesgo XSS y errores de entrada.", "Usa textContent en lugar de innerHTML con datos externos.", `salida.textContent = datoUsuario;`],
+            ["Integracion API real", "js-49-integracion", "Conectas frontend con API paginada.", "Crea vista con carga incremental.", "const page = 1;\nawait fetch(`/api/items?page=${page}`);"],
+            ["Proyecto final", "js-50-proyecto-final", "Entregas app JS completa con documentacion.", "Dashboard con filtros, storage y consumo API.", `// Checklist:\n// 1) Arquitectura clara\n// 2) UX estable\n// 3) README tecnico`]
+        ];
+
+        function createLevels(rows, module, startId, baseXp) {
+            return rows.map((row, index) => ({
+                id: startId + index,
+                module,
+                title: row[0],
+                folder: row[1],
+                objective: row[2],
+                practice: row[3],
+                example: row[4],
+                xp: baseXp + Math.floor(index / 2) * 5
+            }));
+        }
+
+        const LEVELS = [
+            ...createLevels(levelRowsFoundation, "foundation", 1, 25),
+            ...createLevels(levelRowsFunctions, "functions", 11, 35),
+            ...createLevels(levelRowsDom, "dom", 21, 45),
+            ...createLevels(levelRowsAsync, "async", 31, 55),
+            ...createLevels(levelRowsApp, "app", 41, 70)
+        ];
+
+        const MODULE_LABELS = {
+            foundation: "Fundamentos",
+            functions: "Funciones",
+            dom: "DOM",
+            async: "Async",
+            app: "Proyecto"
+        };
+
+        const STORAGE_KEY = "javascript_academy_progress_v1";
+
+        const levelsGrid = document.getElementById("levelsGrid");
+        const emptyState = document.getElementById("emptyState");
+        const levelSearch = document.getElementById("levelSearch");
+        const filterButtons = Array.from(document.querySelectorAll(".filter-btn"));
+        const progressFill = document.getElementById("progressFill");
+        const progressText = document.getElementById("progressText");
+        const progressPercent = document.getElementById("progressPercent");
+        const nextMission = document.getElementById("nextMission");
+        const resetProgressBtn = document.getElementById("resetProgressBtn");
+        const progressTrack = document.querySelector(".progress-track");
+
+        let activeFilter = "all";
+        let completedLevels = new Set(loadProgress());
+
+        function loadProgress() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) return [];
+                const parsed = JSON.parse(raw);
+                return Array.isArray(parsed) ? parsed : [];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function saveProgress() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify([...completedLevels]));
+        }
+
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#39;");
+        }
+
+        function getDifficulty(levelId) {
+            if (levelId <= 12) return "Base";
+            if (levelId <= 26) return "Intermedio";
+            if (levelId <= 40) return "Avanzado";
+            return "Pro";
+        }
+
+        function getVisibleLevels() {
+            const term = levelSearch.value.trim().toLowerCase();
+            return LEVELS.filter((level) => {
+                const moduleOk = activeFilter === "all" || level.module === activeFilter;
+                if (!moduleOk) return false;
+                if (!term) return true;
+                const haystack = `${level.id} ${level.title} ${level.folder} ${level.objective} ${level.practice} ${MODULE_LABELS[level.module]}`.toLowerCase();
+                return haystack.includes(term);
+            });
+        }
+        function renderLevelCard(level) {
+            const completed = completedLevels.has(level.id);
+            const difficulty = getDifficulty(level.id);
+            return `
+                <article class="level-card level-${level.module} ${completed ? "is-done" : ""}">
+                    <header class="level-head">
+                        <span class="level-chip">Nivel ${String(level.id).padStart(2, "0")}</span>
+                        <span class="module-chip">${MODULE_LABELS[level.module]}</span>
+                        <span class="difficulty-chip">${difficulty}</span>
+                    </header>
+                    <h3>${level.title}</h3>
+                    <p class="level-objective">${level.objective}</p>
+                    <ul class="level-list">
+                        <li><strong>Carpeta:</strong> <code>${level.folder}</code></li>
+                        <li><strong>Practica:</strong> ${level.practice}</li>
+                    </ul>
+                    <pre class="code-block"><code>${escapeHtml(level.example)}</code></pre>
+                    <footer class="level-footer">
+                        <span class="xp-chip"><i class="bi bi-lightning-charge-fill"></i> ${level.xp} XP</span>
+                        <button class="mark-btn" type="button" data-level="${level.id}">
+                            ${completed ? "Completado" : "Marcar hecho"}
+                        </button>
+                    </footer>
+                </article>
+            `;
+        }
+
+        function renderLevels() {
+            const visible = getVisibleLevels();
+            if (!visible.length) {
+                levelsGrid.innerHTML = "";
+                emptyState.classList.remove("d-none");
+                return;
+            }
+            emptyState.classList.add("d-none");
+            levelsGrid.innerHTML = visible.map(renderLevelCard).join("");
+            document.querySelectorAll(".mark-btn").forEach((button) => {
+                button.addEventListener("click", () => {
+                    const levelId = Number(button.dataset.level);
+                    if (completedLevels.has(levelId)) {
+                        completedLevels.delete(levelId);
+                    } else {
+                        completedLevels.add(levelId);
+                    }
+                    saveProgress();
+                    updateProgress();
+                    renderLevels();
+                });
+            });
+        }
+
+        function updateProgress() {
+            const done = completedLevels.size;
+            const total = LEVELS.length;
+            const percent = Math.round((done / total) * 100);
+            progressText.textContent = `${done}/${total} niveles completados`;
+            progressPercent.textContent = `${percent}%`;
+            progressFill.style.width = `${percent}%`;
+            progressTrack.setAttribute("aria-valuenow", String(done));
+
+            const next = LEVELS.find((level) => !completedLevels.has(level.id));
+            nextMission.textContent = next
+                ? `Siguiente nivel: ${next.id} - ${next.title}`
+                : "Ruta completada. Ya estas en modo JavaScript Pro.";
+        }
+
+        filterButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                filterButtons.forEach((item) => item.classList.remove("is-active"));
+                button.classList.add("is-active");
+                activeFilter = button.dataset.filter;
+                renderLevels();
+            });
+        });
+
+        levelSearch.addEventListener("input", renderLevels);
+
+        resetProgressBtn.addEventListener("click", () => {
+            completedLevels = new Set();
+            saveProgress();
+            updateProgress();
+            renderLevels();
+        });
+
+        updateProgress();
+        renderLevels();
+
+        const dragItemsData = [
+            { id: "d1", label: "const precio = 19.9;", group: "foundation" },
+            { id: "d2", label: "if (edad >= 18) {}", group: "foundation" },
+            { id: "d3", label: "document.querySelector('.card')", group: "dom" },
+            { id: "d4", label: "btn.addEventListener('click', fn)", group: "dom" },
+            { id: "d5", label: "await fetch('/api/users')", group: "async" },
+            { id: "d6", label: "Promise.resolve().then(...)", group: "async" }
+        ];
+
+        const dragBank = document.getElementById("dragBank");
+        const dropZones = Array.from(document.querySelectorAll(".drop-zone"));
+        const dragFeedback = document.getElementById("dragFeedback");
+        const resetDragBtn = document.getElementById("resetDragBtn");
+
+        function createDragItem(item) {
+            const node = document.createElement("button");
+            node.type = "button";
+            node.className = "drag-item";
+            node.draggable = true;
+            node.dataset.group = item.group;
+            node.dataset.id = item.id;
+            node.textContent = item.label;
+            node.addEventListener("dragstart", (event) => {
+                event.dataTransfer.setData("text/plain", item.id);
+                node.classList.add("is-dragging");
+            });
+            node.addEventListener("dragend", () => {
+                node.classList.remove("is-dragging");
+            });
+            return node;
+        }
+
+        function resetDragExercise() {
+            dragBank.innerHTML = "";
+            dragFeedback.textContent = "";
+            dropZones.forEach((zone) => {
+                zone.classList.remove("is-correct", "is-wrong");
+                const slot = zone.querySelector(".drop-slot");
+                if (slot) slot.innerHTML = "";
+            });
+            dragItemsData.forEach((item) => dragBank.appendChild(createDragItem(item)));
+        }
+
+        dropZones.forEach((zone) => {
+            zone.addEventListener("dragover", (event) => {
+                event.preventDefault();
+                zone.classList.add("is-over");
+            });
+            zone.addEventListener("dragleave", () => {
+                zone.classList.remove("is-over");
+            });
+            zone.addEventListener("drop", (event) => {
+                event.preventDefault();
+                zone.classList.remove("is-over");
+                const itemId = event.dataTransfer.getData("text/plain");
+                const itemNode = document.querySelector(`.drag-item[data-id="${itemId}"]`);
+                if (!itemNode) return;
+                if (itemNode.dataset.group !== zone.dataset.group) {
+                    zone.classList.add("is-wrong");
+                    dragFeedback.textContent = "Ese snippet no va en ese bloque.";
+                    setTimeout(() => zone.classList.remove("is-wrong"), 700);
+                    return;
+                }
+                const slot = zone.querySelector(".drop-slot");
+                if (!slot) return;
+                itemNode.draggable = false;
+                itemNode.classList.add("is-locked");
+                slot.appendChild(itemNode);
+                zone.classList.add("is-correct");
+                const pending = document.querySelectorAll(".drag-item:not(.is-locked)").length;
+                dragFeedback.textContent = pending
+                    ? "Correcto. Sigue clasificando."
+                    : "Perfecto. Clasificacion completada.";
+            });
+        });
+
+        resetDragBtn.addEventListener("click", resetDragExercise);
+        resetDragExercise();
+
+        const loopBtn = document.getElementById("loopBtn");
+        const loopOut = document.getElementById("loopOut");
+
+        loopBtn.addEventListener("click", () => {
+            const lines = [];
+            const print = () => {
+                loopOut.textContent = lines.join("\n");
+            };
+
+            lines.push("1) Inicio sincronico");
+            Promise.resolve().then(() => {
+                lines.push("3) Microtarea Promise.then");
+                print();
+            });
+            queueMicrotask(() => {
+                lines.push("4) Microtarea queueMicrotask");
+                print();
+            });
+            setTimeout(() => {
+                lines.push("5) Macrotarea setTimeout");
+                print();
+            }, 0);
+            lines.push("2) Fin del bloque sincronico");
+            print();
+        });
+
+        const quizQuestions = [
+            {
+                question: "En que ano se publico JavaScript por primera vez?",
+                options: ["1995", "2001", "1989"],
+                answer: 0,
+                feedback: "Correcto. JavaScript se publico en 1995."
+            },
+            {
+                question: "Que version introdujo let/const y modulos?",
+                options: ["ES3", "ES2015", "ES5"],
+                answer: 1,
+                feedback: "Exacto. ES2015 fue la gran renovacion."
+            },
+            {
+                question: "Que se ejecuta antes en el event loop?",
+                options: ["setTimeout", "Microtareas (Promise.then)", "Ambos igual"],
+                answer: 1,
+                feedback: "Bien. Microtareas se vacian antes de macrotareas."
+            },
+            {
+                question: "Que API sirve para guardar datos simples en navegador?",
+                options: ["localStorage", "innerHTML", "console.table"],
+                answer: 0,
+                feedback: "Correcto. localStorage persiste en el navegador."
+            }
+        ];
+
+        let quizIndex = 0;
+        const quizQuestion = document.getElementById("quizQuestion");
+        const quizOptions = document.getElementById("quizOptions");
+        const quizFeedback = document.getElementById("quizFeedback");
+        const nextQuizBtn = document.getElementById("nextQuizBtn");
+
+        function renderQuiz() {
+            const item = quizQuestions[quizIndex];
+            quizQuestion.textContent = `Pregunta ${quizIndex + 1}/${quizQuestions.length}: ${item.question}`;
+            quizOptions.innerHTML = "";
+            quizFeedback.textContent = "";
+
+            item.options.forEach((option, idx) => {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.className = "quiz-btn";
+                button.textContent = option;
+                button.addEventListener("click", () => {
+                    const allButtons = Array.from(quizOptions.querySelectorAll(".quiz-btn"));
+                    allButtons.forEach((btn) => (btn.disabled = true));
+                    if (idx === item.answer) {
+                        button.classList.add("is-right");
+                        quizFeedback.textContent = item.feedback;
+                    } else {
+                        button.classList.add("is-wrong");
+                        allButtons[item.answer].classList.add("is-right");
+                        quizFeedback.textContent = "Casi. Mira la opcion resaltada en verde.";
+                    }
+                });
+                quizOptions.appendChild(button);
+            });
+        }
+
+        nextQuizBtn.addEventListener("click", () => {
+            quizIndex = (quizIndex + 1) % quizQuestions.length;
+            renderQuiz();
+        });
+
+        renderQuiz();
+
+        const robot = document.getElementById("mr-robot-glitch");
+        if (robot) {
+            robot.classList.add("robot-glitch-run");
+            robot.addEventListener("animationend", () => {
+                robot.style.display = "none";
+            });
+        }
+    </script>
+    <script src="assets/js/site-sfx.js"></script>
+    <script src="assets/js/site-theme.js"></script>
+</body>
+</html>
