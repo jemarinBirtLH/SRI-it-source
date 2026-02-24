@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -11,92 +11,7 @@
     <!-- Google Fonts - Fuentes futuristas -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/site.css">
-    <style>
-        .home-search-panel {
-            border: 1px solid #d7e4f2;
-            border-radius: 14px;
-            background: linear-gradient(165deg, #ffffff 0%, #eef5ff 100%);
-            box-shadow: 0 10px 20px rgba(8, 22, 40, 0.08);
-            padding: 0.95rem;
-        }
-        .home-search-title {
-            display: block;
-            margin-bottom: 0.45rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #17385c;
-        }
-        .home-search-input {
-            border: 1px solid #b7d0eb;
-            font-family: 'JetBrains Mono', monospace;
-            color: #122b4b;
-        }
-        .home-search-input:focus {
-            border-color: #0b66d1;
-            box-shadow: 0 0 0 0.2rem rgba(11, 102, 209, 0.16);
-        }
-        .home-search-meta {
-            margin-top: 0.55rem;
-            margin-bottom: 0;
-            color: #355372;
-            font-size: 0.82rem;
-        }
-        .home-search-results {
-            margin-top: 0.7rem;
-            max-height: 280px;
-            overflow: auto;
-            border: 1px solid #cfdeef;
-            border-radius: 10px;
-            background: #ffffff;
-        }
-        .home-search-item {
-            display: block;
-            text-decoration: none;
-            border-bottom: 1px solid #e4ecf6;
-            padding: 0.65rem 0.75rem;
-            color: #15385f;
-            transition: background-color 0.2s ease;
-        }
-        .home-search-item:last-child {
-            border-bottom: 0;
-        }
-        .home-search-item:hover {
-            background: #f0f6ff;
-        }
-        .home-search-item:focus-visible {
-            outline: 2px solid #0b66d1;
-            outline-offset: -2px;
-        }
-        .home-search-item strong {
-            display: block;
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 0.03em;
-            text-transform: none;
-            margin-bottom: 0.2rem;
-            color: #102c49;
-        }
-        .home-search-where {
-            display: block;
-            font-size: 0.8rem;
-            color: #335a80;
-            margin-bottom: 0.2rem;
-            font-family: 'JetBrains Mono', monospace;
-        }
-        .home-search-desc {
-            display: block;
-            font-size: 0.84rem;
-            color: #2b4663;
-        }
-        #homeGrid .card.home-search-hit {
-            border-top: 3px solid #0b66d1;
-            box-shadow: 0 16px 30px rgba(11, 102, 209, 0.2);
-        }
-        #homeGrid .card.home-search-dim {
-            opacity: 0.38;
-            filter: saturate(0.65);
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/pages/index.css">
 </head>
 <body>
     <!-- Animacion Mr. Robot (frase aleatoria + baile 4s) -->
@@ -109,7 +24,7 @@
                 <span class="brand-icon"><i class="bi bi-house-door"></i></span>
                 <span class="brand-label">SOURCE-IT</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir navegacion" style="border-color: #00ff88;">
+            <button class="navbar-toggler navbar-toggler-neon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir navegacion" >
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -411,6 +326,7 @@
             'visualstudio_code.html'
         ]);
         let injectedStyleNodes = [];
+        let injectedStylesheetLinks = [];
         let injectedScriptNodes = [];
         let spaFrame = null;
         let activeSpaRoute = 'home';
@@ -492,16 +408,20 @@
             return clean.split('/').pop();
         }
 
-        function focusFullStackCard() {
+        function focusFullStackCard(shouldScroll = false) {
             const card = document.getElementById('fullstack-card');
             if (card) {
+                if (shouldScroll) {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
                 card.setAttribute('tabindex', '-1');
-                card.focus({preventScroll: true});
+                card.focus({preventScroll: !shouldScroll});
             }
         }
 
         function showHomeView() {
             activeSpaRoute = 'home';
+            clearSpaAssets();
             homeHero.classList.remove('d-none');
             homeGrid.classList.remove('d-none');
             spaContent.classList.add('d-none');
@@ -514,14 +434,16 @@
             playRobotGlitchIntro();
             // if hash points to fullstack card, focus it
             if (location.hash === '#fullstack-card') {
-                focusFullStackCard();
+                focusFullStackCard(true);
             }
         }
 
         function clearSpaAssets() {
             injectedStyleNodes.forEach((node) => node.remove());
+            injectedStylesheetLinks.forEach((node) => node.remove());
             injectedScriptNodes.forEach((node) => node.remove());
             injectedStyleNodes = [];
+            injectedStylesheetLinks = [];
             injectedScriptNodes = [];
         }
 
@@ -562,6 +484,35 @@
                 styleNode.textContent = styleTag.textContent || '';
                 document.head.appendChild(styleNode);
                 injectedStyleNodes.push(styleNode);
+            });
+
+            const styleLinks = Array.from(doc.querySelectorAll('head link[rel="stylesheet"]'));
+            styleLinks.forEach((linkTag, idx) => {
+                const href = linkTag.getAttribute('href');
+                if (!href) return;
+
+                const normalizedHref = href.toLowerCase();
+                if (
+                    normalizedHref.includes('bootstrap') ||
+                    normalizedHref.includes('googleapis.com') ||
+                    normalizedHref.includes('gstatic.com') ||
+                    normalizedHref.includes('bootstrap-icons') ||
+                    normalizedHref.includes('assets/css/site.css')
+                ) {
+                    return;
+                }
+
+                const resolvedHref = new URL(href, window.location.href).href;
+                const alreadyLoaded = Array.from(document.head.querySelectorAll('link[rel="stylesheet"]'))
+                    .some((node) => node.href === resolvedHref);
+                if (alreadyLoaded) return;
+
+                const linkNode = document.createElement('link');
+                linkNode.rel = 'stylesheet';
+                linkNode.href = href;
+                linkNode.dataset.spaStyle = `${route}-link-${idx}`;
+                document.head.appendChild(linkNode);
+                injectedStylesheetLinks.push(linkNode);
             });
         }
 
@@ -669,6 +620,13 @@
             const href = anchor.getAttribute('href') || '';
             if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
             if (href === '#') return;
+            const isFullStackLink = href.endsWith('#fullstack-card') && normalizeRoute(href) === 'home';
+            if (isFullStackLink) {
+                event.preventDefault();
+                history.pushState({ route: 'home' }, '', 'index.html#fullstack-card');
+                showHomeView();
+                return;
+            }
             const routeBase = normalizeRoute(href);
             if (routeBase === 'home') {
                 event.preventDefault();
@@ -697,36 +655,5 @@
         loadRoute(location.hash, false);
     </script>
     <script src="assets/js/site-theme.js"></script>
-    <script>
-        // focus the FullStack card when its nav link is used or hash changes
-        (function() {
-            const cardId = 'fullstack-card';
-            const link = document.querySelector('a[href$="#fullstack-card"]');
-            function focusCard() {
-                const card = document.getElementById(cardId);
-                if (card) {
-                    card.setAttribute('tabindex', '-1');
-                    card.focus({preventScroll: true});
-                }
-            }
-            if (link) {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const card = document.getElementById(cardId);
-                    if (card) {
-                        card.scrollIntoView({behavior: 'smooth'});
-                        focusCard();
-                        history.pushState(null, '', '#'+cardId);
-                    }
-                });
-            }
-            window.addEventListener('hashchange', () => {
-                if (location.hash === '#'+cardId) {
-                    // scroll may already be done by browser
-                    focusCard();
-                }
-            });
-        })();
-    </script>
 </body>
 </html>

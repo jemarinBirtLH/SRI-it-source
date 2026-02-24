@@ -1,645 +1,849 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS Básico - Guía Completa</title>
+    <title>Curso CSS Completo - De Cero a Experto</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="assets/css/site.css">
-    <style>
-        .alfab-zone {
-            margin-top: 3rem;
-            padding: 2rem 1.2rem;
-            border-radius: 1.25rem;
-            background: linear-gradient(180deg, #f8fafc 0%, #eef3fb 100%);
-            border: 1px solid #dce6f7;
-        }
-        .alfab-title {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 800;
-            font-size: clamp(1.5rem, 2vw, 2.4rem);
-            letter-spacing: 0.04em;
-            color: #0f172a;
-            margin-bottom: 0.75rem;
-            text-transform: none;
-        }
-        .alfab-subtitle {
-            color: #334155;
-            max-width: 860px;
-            margin-bottom: 1.3rem;
-        }
-        .alfab-section-title {
-            margin: 2rem 0 1rem;
-            padding-bottom: 0.45rem;
-            border-bottom: 3px solid #f97316;
-            font-size: 1.2rem;
-            font-family: 'Orbitron', sans-serif;
-            text-transform: none;
-            letter-spacing: 0.03em;
-        }
-        .alfab-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
-            gap: 1rem;
-        }
-        .alfab-card {
-            background: #fff;
-            border: 1px solid #dbe4ee;
-            border-radius: 1rem;
-            padding: 1rem;
-            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
-            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-        }
-        .alfab-card:hover {
-            transform: translateY(-4px);
-            border-color: #94a3b8;
-            box-shadow: 0 16px 22px -12px rgba(15, 23, 42, 0.24);
-        }
-        .alfab-head {
-            display: flex;
-            align-items: center;
-            gap: 0.65rem;
-            margin-bottom: 0.5rem;
-        }
-        .alfab-emoji {
-            width: 2.45rem;
-            height: 2.45rem;
-            border-radius: 0.7rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: #f1f5f9;
-            font-size: 1.25rem;
-        }
-        .alfab-card h4 {
-            margin: 0;
-            color: #0f172a;
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
-            text-transform: none;
-            letter-spacing: 0;
-            font-weight: 700;
-        }
-        .alfab-card p {
-            margin: 0.35rem 0 0;
-            color: #334155;
-            font-size: 0.95rem;
-        }
-        .alfab-code {
-            margin-top: 0.65rem;
-            background: #f8fafc;
-            border-left: 3px solid #f97316;
-            border-radius: 0.6rem;
-            padding: 0.55rem 0.7rem;
-            overflow-x: auto;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.82rem;
-            color: #0f172a;
-        }
-        .alfab-interactive {
-            margin-top: 1.2rem;
-            background: #e8eef8;
-            border-radius: 0.9rem;
-            padding: 1rem;
-            border: 1px solid #ccd8ef;
-        }
-        .alfab-btn {
-            background: #f97316;
-            color: #fff;
-            border: none;
-            border-radius: 999px;
-            padding: 0.6rem 1.2rem;
-            font-weight: 700;
-            transition: transform 0.2s ease, background-color 0.2s ease;
-        }
-        .alfab-btn:hover {
-            background: #ea580c;
-            transform: scale(1.03);
-        }
-        #alfab-demo-output {
-            margin-top: 0.8rem;
-            padding: 0.75rem;
-            border-radius: 0.55rem;
-            background: #fff;
-            font-family: 'JetBrains Mono', monospace;
-            border: 1px solid #d6deec;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/pages/css_basico.css">
 </head>
-<body class="css-course-page">
-    <div class="css-lion-intro" aria-hidden="true">
-        <div class="css-lion-char">&#129409;</div>
-        <div class="css-lion-bubble">arrrrrr CSS rico!</div>
-    </div>
-
-    <div class="hero text-center">
-        <h1 class="display-5 fw-bold"><i class="bi bi-filetype-css"></i> CSS Básico</h1>
-        <p class="lead">CSS con metodologia, resumido. CSS es un mundo muy grande ^^.</p>
-    </div>
-
-    <div class="container py-4">
-        <div class="card-custom">
-            <div class="card-header-custom"><i class="bi bi-mortarboard"></i> CSS Practicas</div>
-            <div class="card-body">
-                <p>Contenido de CSS: aplicación, selectores, modelo de cajas, posicionamiento, pseudoclases, formularios y buenas prácticas.</p>
-                <div class="alert alert-info-custom alert-custom">
-                    <strong>Meta:</strong> construir hojas de estilo escalables, mantenibles y accesibles, con criterio técnico para proyectos reales.
+<body class="css-advanced-page">
+    <header class="css-course-hero">
+        <div class="container hero-grid">
+            <div class="hero-copy">
+                <p class="hero-kicker">Ruta profesional</p>
+                <h1 class="hero-title"><i class="bi bi-filetype-css"></i> Curso CSS Completo: De Cero a Experto</h1>
+                <p class="hero-subtitle">
+                    Esta seccion esta planteada como una ruta integral: empiezas con sintaxis, selectores y
+                    conexion con HTML/JS, y avanzas hasta arquitectura, performance y sistemas visuales escalables.
+                </p>
+                <div class="hero-badges" aria-label="Datos rapidos del curso">
+                    <span class="hero-badge"><i class="bi bi-clock-history"></i> 11 modulos</span>
+                    <span class="hero-badge"><i class="bi bi-braces-asterisk"></i> 5 laboratorios</span>
+                    <span class="hero-badge"><i class="bi bi-award"></i> Ruta completa</span>
                 </div>
             </div>
+            <aside class="hero-panel" aria-label="Resumen del curso">
+                <h2>Plan de estudio</h2>
+                <ul class="hero-panel-list">
+                    <li>Inicio total: sintaxis, clases, selectores e integracion con HTML</li>
+                    <li>Flujo profesional con JavaScript para estados y clases dinamicas</li>
+                    <li>Layout moderno: Flexbox, Grid, Subgrid y Container Queries</li>
+                    <li>Arquitectura: naming, tokens, temas y escalabilidad</li>
+                    <li>Nivel experto: motion, rendimiento, accesibilidad y capstone final</li>
+                </ul>
+                <p class="hero-tip"><strong>Tip del dia:</strong> <span id="cssTipText">Cargando consejo...</span></p>
+            </aside>
         </div>
+    </header>
 
-        <h2 class="section-title" id="css-especial"><i class="bi bi-stars"></i> CSS Básico - Temario Completo</h2>
-        <div class="accordion" id="cssEspecialAccordion">
-            <div class="accordion-item">
-                <button class="accordion-header">1) Introducción a CSS</button>
-                <div class="accordion-content">
-                    <p>CSS separa presentación de estructura HTML, permitiendo consistencia visual, mantenibilidad y reutilización.</p>
-                    <div class="code-block">selector {
+    <main class="container course-shell py-4">
+        <section class="course-section reveal foundations-track" aria-labelledby="starterTitle">
+            <div class="section-header">
+                <h2 id="starterTitle" class="section-title-advanced"><i class="bi bi-mortarboard"></i> Iniciacion completa: CSS desde cero</h2>
+                <p>
+                    Aqui empiezas sin suponer conocimientos previos. Si dominas este bloque, ya puedes construir interfaces
+                    limpias, conectar estilo con HTML y controlar estados visuales desde JavaScript.
+                </p>
+            </div>
+            <div class="starter-grid">
+                <article class="starter-card">
+                    <h3>1) Sintaxis minima de CSS</h3>
+                    <p>Una regla siempre tiene selector, propiedad y valor.</p>
+                    <pre class="code-block">selector {
   propiedad: valor;
-}</div>
+}</pre>
+                </article>
+                <article class="starter-card">
+                    <h3>2) Clases e IDs en HTML</h3>
+                    <p>La clase se reutiliza; el ID se reserva para un elemento unico.</p>
+                    <pre class="code-block">&lt;div class="card"&gt;...&lt;/div&gt;
+&lt;h2 id="title-main"&gt;...&lt;/h2&gt;</pre>
+                </article>
+                <article class="starter-card">
+                    <h3>3) Selectores esenciales</h3>
+                    <p>Primero domina los selectores base; luego avanza a combinadores y estados.</p>
+                    <pre class="code-block">.card {}
+#title-main {}
+nav a {}
+button:hover {}</pre>
+                </article>
+                <article class="starter-card">
+                    <h3>4) Integracion con HTML</h3>
+                    <p>Se recomienda CSS externo para orden, cache y mantenibilidad.</p>
+                    <pre class="code-block">&lt;link rel="stylesheet" href="styles.css"&gt;</pre>
+                </article>
+                <article class="starter-card">
+                    <h3>5) Integracion con JavaScript</h3>
+                    <p>No cambies estilos sueltos: alterna clases para mantener el sistema coherente.</p>
+                    <pre class="code-block">const box = document.querySelector(".panel");
+box.classList.toggle("is-active");</pre>
+                </article>
+                <article class="starter-card">
+                    <h3>6) Flujo recomendado de aprendizaje</h3>
+                    <p>Selector -> caja -> layout -> componentes -> arquitectura -> performance.</p>
+                    <pre class="code-block">Base  ->  Intermedio  ->  Avanzado
+HTML/CSS   Layout        Sistema UI</pre>
+                </article>
+            </div>
+            <div class="starter-lab">
+                <h3>Laboratorio cero: HTML + CSS + JS en 3 pasos</h3>
+                <div class="starter-columns">
+                    <article>
+                        <h4>Paso A: HTML</h4>
+                        <pre class="code-block">&lt;button id="toggleBtn"&gt;Activar&lt;/button&gt;
+&lt;div class="panel"&gt;Caja&lt;/div&gt;</pre>
+                    </article>
+                    <article>
+                        <h4>Paso B: CSS</h4>
+                        <pre class="code-block">.panel { opacity: .5; }
+.panel.is-active { opacity: 1; }</pre>
+                    </article>
+                    <article>
+                        <h4>Paso C: JavaScript</h4>
+                        <pre class="code-block">toggleBtn.addEventListener("click", () =&gt; {
+  panel.classList.toggle("is-active");
+});</pre>
+                    </article>
                 </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">2) Cómo aplicar CSS (inline, interno, externo)</button>
-                <div class="accordion-content">
-                    <p>En producción se prioriza CSS externo para modularidad y caché eficiente.</p>
-                    <div class="code-block">&lt;link rel="stylesheet" href="styles.css"&gt;</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">3) Selectores (básicos, combinadores y avanzados)</button>
-                <div class="accordion-content">
-                    <div class="code-block">* { box-sizing: border-box; }
-#menu { ... }
-.card > h3 { ... }
-input[type="email"] { ... }</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">4) Unidades de medida (px, em, rem, %, vw/vh)</button>
-                <div class="accordion-content">
-                    <p>Usa <code>rem</code> para tipografía base y <code>%</code>/<code>vw</code> para diseños fluidos.</p>
-                    <div class="code-block">html { font-size: 16px; }
-h1 { font-size: 2rem; }
-.container { width: min(90%, 1100px); }</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">5) Colores y fondo</button>
-                <div class="accordion-content">
-                    <div class="code-block">:root {
-  --brand: #0a4d68;
-  --accent: rgb(5 191 219);
-}
-.hero { background: linear-gradient(135deg, var(--brand), #088395); }</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">6) Propiedades de texto</button>
-                <div class="accordion-content">
-                    <div class="code-block">p {
-  text-align: justify;
-  line-height: 1.6;
-  letter-spacing: 0.02em;
-  text-transform: none;
-}</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">7) Propiedades de fuentes</button>
-                <div class="accordion-content">
-                    <div class="code-block">body { font-family: 'Inter', sans-serif; }
-h1 { font-family: 'Orbitron', sans-serif; font-weight: 900; }</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">8) Propiedades de listas</button>
-                <div class="accordion-content">
-                    <div class="code-block">ul.custom {
-  list-style: square inside;
-  padding-left: 1rem;
-}
-li::marker { color: #088395; }</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">9) Propiedades de tablas</button>
-                <div class="accordion-content">
-                    <div class="code-block">table { border-collapse: collapse; width: 100%; }
-th, td { border: 1px solid #dbe4ee; padding: .75rem; }
-th { background: #0a4d68; color: white; }</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">10) Modelo de cajas (box model)</button>
-                <div class="accordion-content">
-                    <div class="code-block">* { box-sizing: border-box; }
-.card {
-  margin: 1rem;
-  padding: 1rem;
-  border: 1px solid #cfd8e3;
-}</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">11) Tamaño, ancho y alto</button>
-                <div class="accordion-content">
-                    <div class="code-block">.panel {
-  width: clamp(280px, 60vw, 900px);
-  min-height: 200px;
-  max-height: 60vh;
-}</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">12) Posición y comportamiento del navegador</button>
-                <div class="accordion-content">
-                    <div class="code-block">.fixed-help { position: fixed; right: 1rem; bottom: 1rem; }
-.sticky-nav { position: sticky; top: 0; }
-.badge { position: absolute; top: .5rem; right: .5rem; }</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">13) Pseudoclases y pseudoelementos</button>
-                <div class="accordion-content">
-                    <div class="code-block">a:hover { color: #05bfdb; }
-input:focus { outline: 2px solid #088395; }
-.card::before { content: ''; display: block; height: 4px; background: #05bfdb; }</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">14) Overflow</button>
-                <div class="accordion-content">
-                    <div class="code-block">.code-block {
-  overflow-x: auto;
-  overflow-y: hidden;
-}
-.modal-body { max-height: 70vh; overflow: auto; }</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">15) Formularios en CSS</button>
-                <div class="accordion-content">
-                    <div class="code-block">input, select, textarea {
-  width: 100%;
-  padding: .7rem;
-  border: 1px solid #cfd8e3;
-  border-radius: .5rem;
-}
-input:invalid { border-color: #ff6b35; }</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">16) Buenas prácticas</button>
-                <div class="accordion-content">
-                    <ul>
-                        <li>Define variables en <code>:root</code> para colores y espaciado.</li>
-                        <li>Evita selectores demasiado específicos.</li>
-                        <li>Organiza por capas: base, layout, componentes, utilidades.</li>
-                        <li>Prioriza accesibilidad y contraste.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">17) Metodologías de nomenclatura (BEM y similares)</button>
-                <div class="accordion-content">
-                    <p><strong>BEM:</strong> bloque, elemento y modificador para escalabilidad en equipos.</p>
-                    <div class="code-block">.card {}
-.card__title {}
-.card--featured {}</div>
-                </div>
-            </div>
-        </div>
-
-        <h2 class="section-title"><i class="bi bi-code-slash"></i> Seccion CSS3 + Emmet</h2>
-        <div class="card-custom">
-            <div class="card-body">
-                <p>Ruta rápida para practicar sintaxis CSS3 con abreviaturas Emmet y generar estructura HTML/CSS más rápido.</p>
-
-                <h3 class="h5 mt-3">1) Sintaxis CSS3 esencial</h3>
-                <div class="code-block">/* Regla básica */
-selector {
-  propiedad: valor;
-}
-
-/* Agrupación y cascada */
-h1, h2, h3 {
-  color: #0a4d68;
-}
-
-/* Variables */
-:root {
-  --brand: #05bfdb;
-}
-.btn { background: var(--brand); }</div>
-
-                <h3 class="h5 mt-3">2) Selectores útiles</h3>
-                <div class="code-block">/* Clase, ID, atributo, descendiente */
-.card {}
-#menu {}
-input[type="email"] {}
-.layout .item {}
-
-/* Estados */
-a:hover {}
-button:focus-visible {}
-li:nth-child(2n) {}</div>
-
-                <h3 class="h5 mt-3">3) Emmet para maquetar rápido</h3>
-                <p>Escribe la abreviatura en VS Code y presiona <code>Tab</code>.</p>
-                <div class="code-block">nav.navbar>ul.nav-list>li.nav-item*5>a{Sección $}
-section.hero>h1{Curso CSS3}+p{Aprende sintaxis y práctica}
-main.container>section.card*3>h2{Tema $}+p{Contenido}
-form.form>input:text+input:email+button.btn{Enviar}
-div.grid>article.card*6>h3{Card $}+p{Texto}</div>
-
-                <h3 class="h5 mt-3">4) Emmet para CSS</h3>
-                <div class="code-block">m10          -> margin: 10px;
-p20          -> padding: 20px;
-bgc#0a4d68   -> background-color: #0a4d68;
-df           -> display: flex;
-jcc          -> justify-content: center;
-aic          -> align-items: center;
-g20          -> gap: 20px;
-bd1#ccc      -> border: 1px solid #ccc;
-bdr12        -> border-radius: 12px;
-fz1.2rem     -> font-size: 1.2rem;</div>
-
-                <h3 class="h5 mt-3">5) Mini práctica guiada</h3>
-                <div class="code-block">/* Objetivo: tarjeta responsive + hover */
-.card-demo {
-  width: min(100%, 320px);
-  padding: 1rem;
-  border: 1px solid #dbe4ee;
-  border-radius: .8rem;
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-.card-demo:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 24px rgba(0,0,0,.16);
-}</div>
-            </div>
-        </div>
-
-        <h2 class="section-title"><i class="bi bi-journal-code"></i> 10 Ejercicios Prácticos Guiados</h2>
-        <div class="card-custom">
-            <div class="card-body">
-                <p>Bloque de práctica progresiva. Cada ejercicio incluye objetivo técnico y una solución base para comparar.</p>
-            </div>
-        </div>
-        <div class="accordion" id="cssEjerciciosAccordion">
-            <div class="accordion-item">
-                <button class="accordion-header">Selectores básicos y combinados</button>
-                <div class="accordion-content">
-                    <p>Estiliza todos los párrafos dentro de <code>.articulo</code> y solo el primer párrafo de cada artículo.</p>
-                    <div class="code-block">.articulo p { color: #0a4d68; }
-.articulo p:first-of-type {
-  font-weight: 700;
-  border-left: 4px solid #05bfdb;
-  padding-left: .6rem;
-}</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">Especificidad y cascada</button>
-                <div class="accordion-content">
-                    <p>Define un estilo base para botones y crea un modificador para botón crítico sin usar <code>!important</code>.</p>
-                    <div class="code-block">.btn { background: #0a4d68; color: #fff; }
-.btn--danger { background: #d90429; }</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">Unidades relativas</button>
-                <div class="accordion-content">
-                    <p>Crea tipografía escalable usando <code>rem</code> y bloque fluido con <code>clamp()</code>.</p>
-                    <div class="code-block">html { font-size: 16px; }
-h1 { font-size: clamp(1.8rem, 2vw + 1rem, 3rem); }
-.contenedor { width: min(92%, 1100px); }</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">Fondo y color con variables</button>
-                <div class="accordion-content">
-                    <p>Define paleta en <code>:root</code> y aplica gradiente al hero.</p>
-                    <div class="code-block">:root {
-  --bg-1: #0a4d68;
-  --bg-2: #088395;
-}
-.hero {
-  background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
-  color: #fff;
-}</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">Modelo de caja y spacing</button>
-                <div class="accordion-content">
-                    <p>Construye una tarjeta con padding interno, borde y sombra consistente.</p>
-                    <div class="code-block">* { box-sizing: border-box; }
-.card {
-  padding: 1rem;
-  margin: 1rem 0;
-  border: 1px solid #dbe4ee;
-  border-radius: 12px;
-  box-shadow: 0 6px 14px rgba(0,0,0,.08);
-}</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">Flexbox para barra de acciones</button>
-                <div class="accordion-content">
-                    <p>Alinea título a la izquierda y botones a la derecha en una misma fila.</p>
-                    <div class="code-block">.toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: .75rem;
-}</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">Grid responsive de tarjetas</button>
-                <div class="accordion-content">
-                    <p>Construye una rejilla que se adapte automáticamente al ancho disponible.</p>
-                    <div class="code-block">.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1rem;
-}</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">Pseudoclases y foco accesible</button>
-                <div class="accordion-content">
-                    <p>Aplica estados hover/focus-visible para navegación con teclado.</p>
-                    <div class="code-block">a:hover { color: #05bfdb; }
-button:focus-visible, a:focus-visible {
-  outline: 3px solid #05bfdb;
-  outline-offset: 2px;
-}</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">Formularios con validación visual</button>
-                <div class="accordion-content">
-                    <p>Estiliza inputs válidos e inválidos sin JavaScript.</p>
-                    <div class="code-block">input {
-  border: 1px solid #cfd8e3;
-  border-radius: .5rem;
-  padding: .65rem;
-}
-input:valid { border-color: #00c896; }
-input:invalid { border-color: #ff6b35; }</div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">Nomenclatura BEM aplicada</button>
-                <div class="accordion-content">
-                    <p>Refactoriza una card usando bloque, elemento y modificador.</p>
-                    <div class="code-block">.card {}
-.card__title {}
-.card__meta {}
-.card--destacada { border-color: #05bfdb; }</div>
-                </div>
-            </div>
-        </div>
-
-        <h2 class="section-title"><i class="bi bi-bezier2"></i> Práctica Final Integrada</h2>
-        <div class="card-custom">
-            <div class="card-body">
-                <p>Construye una landing completa aplicando todos los temas: tipografía, tablas, formularios, flex/grid, pseudoclases, overflow y nomenclatura BEM.</p>
-                <div class="code-block">Checklist:
-+- Variables globales CSS
-+- Layout responsive (Grid + Flex)
-+- Formulario con estados :focus y :invalid
-+- Tabla con estilo semántico
-+- Clases BEM en componentes
-+- Buen contraste y accesibilidad</div>
-            </div>
-        </div>
-
-        <section class="alfab-zone" aria-labelledby="alfab-title">
-            <h2 class="alfab-title" id="alfab-title">Alfabetización en diseño y frontend</h2>
-            <p class="alfab-subtitle">Glosario visual ampliado con conceptos de UI, UX, HTML, CSS y JavaScript:</p>
-
-            <h3 class="alfab-section-title">1) Fundamentos de diseño</h3>
-            <div class="alfab-grid">
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">💡</span><h4>UI</h4></div><p>La parte visual: botones, colores, tipografías, iconos y componentes.</p></article>
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>UX</h4></div><p>Experiencia real de uso: claridad, velocidad, satisfacción y accesibilidad.</p></article>
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Wireframe</h4></div><p>Esqueleto sin estilos para planificar estructura y jerarquía.</p></article>
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Mockup</h4></div><p>Diseño visual de alta fidelidad con colores, tipografías e imágenes.</p></article>
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Prototipo</h4></div><p>Versión clickeable para simular comportamiento real antes de desarrollo.</p></article>
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Layout</h4></div><p>Distribución de bloques usando Grid y Flexbox.</p><pre class="alfab-code">display: flex; justify-content: space-between;</pre></article>
-            </div>
-
-            <h3 class="alfab-section-title">2) Elementos visuales</h3>
-            <div class="alfab-grid">
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Margin</h4></div><p>Espacio exterior entre elementos.</p><pre class="alfab-code">margin: 20px;</pre></article>
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Padding</h4></div><p>Espacio interior entre contenido y borde.</p><pre class="alfab-code">padding: 15px;</pre></article>
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Border</h4></div><p>Contorno del elemento con estilo y color.</p><pre class="alfab-code">border: 1px solid #28ADD2;</pre></article>
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Box-shadow</h4></div><p>Profundidad y relieve para separar niveles visuales.</p><pre class="alfab-code">box-shadow: 0 4px 6px rgba(0,0,0,0.1);</pre></article>
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Gradient</h4></div><p>Transición suave entre dos o más colores.</p><pre class="alfab-code">background: linear-gradient(red, blue);</pre></article>
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">💡</span><h4>Opacity</h4></div><p>Nivel de transparencia de un elemento.</p><pre class="alfab-code">opacity: 0.5;</pre></article>
-            </div>
-
-            <h3 class="alfab-section-title">3) Tipografía y color</h3>
-            <div class="alfab-grid">
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>font-family</h4></div><p>Define la familia tipográfica principal y de respaldo.</p><pre class="alfab-code">font-family: 'Roboto', sans-serif;</pre></article>
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>font-size</h4></div><p>Controla tamaño del texto según jerarquía.</p><pre class="alfab-code">font-size: 16px;</pre></article>
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>font-weight</h4></div><p>Regula grosor del texto (400, 600, 700, etc.).</p><pre class="alfab-code">font-weight: 700;</pre></article>
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>line-height</h4></div><p>Da aire al texto y mejora legibilidad.</p><pre class="alfab-code">line-height: 1.5;</pre></article>
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>HEX / RGB / HSL</h4></div><p>Tres formatos de color comunes en CSS.</p><pre class="alfab-code">#FF0000 | rgb(255,0,0) | hsl(0,100%,50%)</pre></article>
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">?</span><h4>Contraste</h4></div><p>Diferencia visual clave para accesibilidad.</p></article>
-            </div>
-
-            <h3 class="alfab-section-title">4) HTML + JavaScript + CSS</h3>
-            <div class="alfab-grid">
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">💡</span><h4>Etiqueta HTML</h4></div><p>Unidad base de marcado.</p><pre class="alfab-code">&lt;div&gt;...&lt;/div&gt;</pre></article>
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Atributo</h4></div><p>Información extra como <code>class</code>, <code>id</code>, <code>src</code>.</p><pre class="alfab-code">&lt;img src="foto.jpg" alt="descripción"&gt;</pre></article>
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">💡</span><h4>Evento JS</h4></div><p>Respuesta a acciones del usuario (clic, submit, teclado).</p><pre class="alfab-code">elemento.addEventListener("click", funcion);</pre></article>
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>DOM</h4></div><p>Representación del documento para manipulación dinámica.</p><pre class="alfab-code">document.getElementById("id").textContent = "nuevo texto";</pre></article>
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Selector CSS</h4></div><p>Define el objetivo al que se aplica una regla.</p><pre class="alfab-code">.clase {} #id {} div {}</pre></article>
-                <article class="alfab-card"><div class="alfab-head"><span class="alfab-emoji">•</span><h4>Animación</h4></div><p>Transiciones y keyframes para feedback visual.</p><pre class="alfab-code">transition: all 0.3s;</pre></article>
-            </div>
-
-            <div class="alfab-interactive">
-                <p class="mb-2">Mini demo: clic para modificar texto y estilo con JavaScript.</p>
-                <button class="alfab-btn" id="alfabDemoBtn" type="button">Probar demo</button>
-                <div id="alfab-demo-output">Este texto cambiará con JavaScript.</div>
+                <p class="starter-result">Resultado: separas estructura, estilo y comportamiento desde el primer dia.</p>
             </div>
         </section>
-    </div>
+
+        <section class="course-section reveal origin-story" aria-labelledby="originTitle">
+            <div class="section-header">
+                <h2 id="originTitle" class="section-title-advanced"><i class="bi bi-lightning-charge"></i> Que es CSS, su historia y por que evoluciono tanto</h2>
+                <p>
+                    CSS (Cascading Style Sheets) es el lenguaje que controla la capa visual de la web:
+                    color, layout, tipografia, animacion y adaptacion responsive. Nacio para separar contenido y presentacion.
+                </p>
+            </div>
+            <div class="origin-layout">
+                <article class="origin-card">
+                    <h3>Resumen tecnico rapido</h3>
+                    <p>
+                        Antes de CSS, HTML cargaba tambien decisiones visuales. Eso hacia dificil mantener sitios grandes.
+                        Con CSS, la web gano coherencia visual, rendimiento por cache y escalabilidad para equipos.
+                    </p>
+                    <div class="origin-chips" aria-label="Hitos clave de CSS">
+                        <span>1996: CSS1</span>
+                        <span>1998: CSS2</span>
+                        <span>2011+: CSS3 modular</span>
+                        <span>Hoy: Grid, Variables, Container Queries</span>
+                    </div>
+                </article>
+                <aside class="origin-visual" aria-hidden="true">
+                    <div class="origin-core">CSS</div>
+                    <span class="origin-node node-a">Cascade</span>
+                    <span class="origin-node node-b">Layout</span>
+                    <span class="origin-node node-c">Motion</span>
+                    <span class="origin-node node-d">A11y</span>
+                </aside>
+            </div>
+            <div class="history-timeline" aria-label="Linea temporal de evolucion de CSS">
+                <article class="history-item">
+                    <p class="history-year">1996</p>
+                    <h3>CSS1: Base del estilo web</h3>
+                    <p>Primer standard para fuentes, colores y espaciado. Marca la separacion entre estructura y presentacion.</p>
+                </article>
+                <article class="history-item">
+                    <p class="history-year">1998</p>
+                    <h3>CSS2: posicionamiento y media types</h3>
+                    <p>Llegan conceptos de layout mas avanzados y estilos orientados a distintos medios de salida.</p>
+                </article>
+                <article class="history-item">
+                    <p class="history-year">2009-2017</p>
+                    <h3>Era modular: CSS3 por especificaciones</h3>
+                    <p>Animaciones, transforms, gradients, flexbox y nuevas APIs visuales evolucionan por modulos.</p>
+                </article>
+                <article class="history-item">
+                    <p class="history-year">2017-2026</p>
+                    <h3>CSS moderno de produccion</h3>
+                    <p>Grid, custom properties, clamp(), subgrid, container queries, :has() y mejor tooling de debug.</p>
+                </article>
+            </div>
+            <div class="ecosystem-note">
+                <p>
+                    Hoy existe un ecosistema enorme para aprender y practicar: comunidades de codigo, foros, diseno colaborativo,
+                    validadores y autores que publican patrones avanzados cada semana.
+                    Al final de la pagina tienes un directorio curado con enlaces.
+                </p>
+                <a class="lab-link" href="#css-community-links">Ir al directorio de recursos</a>
+            </div>
+        </section>
+
+        <section class="course-section reveal" aria-labelledby="roadmapTitle">
+            <div class="section-header">
+                <h2 id="roadmapTitle" class="section-title-advanced"><i class="bi bi-signpost-2"></i> Mapa del Curso</h2>
+                <p>La progresion pasa de fundamentos absolutos a nivel de arquitectura y criterio experto.</p>
+            </div>
+            <div class="roadmap-grid">
+                <article class="roadmap-step">
+                    <span class="roadmap-index">Fase 1</span>
+                    <h3>Inicio absoluto</h3>
+                    <p>Sintaxis, clases, IDs, selectores y como conectar CSS con HTML.</p>
+                </article>
+                <article class="roadmap-step">
+                    <span class="roadmap-index">Fase 2</span>
+                    <h3>Base de maquetacion</h3>
+                    <p>Modelo de caja, flujo normal, flexbox y grid para layouts responsivos.</p>
+                </article>
+                <article class="roadmap-step">
+                    <span class="roadmap-index">Fase 3</span>
+                    <h3>Componentes reales</h3>
+                    <p>Estados visuales, formularios, componentes reutilizables y naming consistente.</p>
+                </article>
+                <article class="roadmap-step">
+                    <span class="roadmap-index">Fase 4</span>
+                    <h3>Integracion con JavaScript</h3>
+                    <p>Uso de classList, estados UI dinamicos y animaciones controladas por eventos.</p>
+                </article>
+                <article class="roadmap-step">
+                    <span class="roadmap-index">Fase 5</span>
+                    <h3>Arquitectura avanzada</h3>
+                    <p>Tokens, capas, container queries, subgrid y escalabilidad para equipos.</p>
+                </article>
+                <article class="roadmap-step">
+                    <span class="roadmap-index">Fase 6</span>
+                    <h3>Nivel experto</h3>
+                    <p>Performance, accesibilidad, QA visual y entrega de capstone profesional.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="course-section reveal" aria-labelledby="matrixTitle">
+            <div class="section-header">
+                <h2 id="matrixTitle" class="section-title-advanced"><i class="bi bi-grid-3x3-gap"></i> Matriz de Modulos</h2>
+                <p>Secuencia completa: desde primer contacto con CSS hasta arquitectura de alto nivel.</p>
+            </div>
+            <div class="module-grid">
+                <article class="module-card">
+                    <p class="module-meta">M00 - Inicio</p>
+                    <h3>Sintaxis y reglas basicas</h3>
+                    <p>Entender selectores, propiedades, valores y como leer cualquier hoja de estilos.</p>
+                </article>
+                <article class="module-card">
+                    <p class="module-meta">M01 - Selectores</p>
+                    <h3>Clases, IDs y combinadores</h3>
+                    <p>Dominio de jerarquia, especificidad inicial y estados con pseudoclases.</p>
+                </article>
+                <article class="module-card">
+                    <p class="module-meta">M02 - Integracion</p>
+                    <h3>Conexion con HTML y JS</h3>
+                    <p>Organizar assets, enlazar hojas externas y cambiar clases desde JavaScript.</p>
+                </article>
+                <article class="module-card">
+                    <p class="module-meta">M03 - Layout base</p>
+                    <h3>Box model, Flexbox y Grid</h3>
+                    <p>Construir estructuras robustas antes de entrar a patrones avanzados.</p>
+                </article>
+                <article class="module-card">
+                    <p class="module-meta">M04 - Responsive</p>
+                    <h3>Media queries y fluid design</h3>
+                    <p>Interfaces que se adaptan sin romper legibilidad ni jerarquia visual.</p>
+                </article>
+                <article class="module-card">
+                    <p class="module-meta">M05 - Componentes</p>
+                    <h3>Escalabilidad de UI</h3>
+                    <p>Crear componentes reutilizables con convenciones de nombre mantenibles.</p>
+                </article>
+                <article class="module-card">
+                    <p class="module-meta">M06 - Sistema visual</p>
+                    <h3>Variables, tokens y temas</h3>
+                    <p>Estandarizar color, espaciado y tipografia con contratos de diseno.</p>
+                </article>
+                <article class="module-card">
+                    <p class="module-meta">M07 - Arquitectura</p>
+                    <h3>Cascade layers y especificidad</h3>
+                    <p>Controlar colisiones y deuda tecnica en proyectos medianos y grandes.</p>
+                </article>
+                <article class="module-card">
+                    <p class="module-meta">M08 - CSS moderno</p>
+                    <h3>Subgrid, :has() y container queries</h3>
+                    <p>Patrones de ultima generacion aplicados a interfaces reales.</p>
+                </article>
+                <article class="module-card">
+                    <p class="module-meta">M09 - Motion y UX</p>
+                    <h3>Animaciones con criterio</h3>
+                    <p>Microinteracciones, feedback y reduced-motion para una UX robusta.</p>
+                </article>
+                <article class="module-card">
+                    <p class="module-meta">M10 - Nivel experto</p>
+                    <h3>Performance, QA y capstone</h3>
+                    <p>Auditoria final para publicar un proyecto profesional de frontend.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="course-section reveal" aria-labelledby="starterGuidedTitle">
+            <div class="section-header">
+                <h2 id="starterGuidedTitle" class="section-title-advanced"><i class="bi bi-book-half"></i> Modulos Base Guiados (principiante -> intermedio)</h2>
+                <p>Bloque de consolidacion para aprender CSS con una secuencia clara antes del nivel avanzado.</p>
+            </div>
+            <div class="module-accordion" id="cssStarterAccordion">
+                <article class="module-item is-open">
+                    <button class="module-toggle" type="button" aria-expanded="true">
+                        <span>B01 - Selectores, clases y especificidad inicial</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="module-body">
+                        <ul>
+                            <li>Empieza por selectores de clase para evitar acoplamiento excesivo.</li>
+                            <li>Usa IDs solo en casos puntuales (ancoras o elementos unicos).</li>
+                            <li>Evita depender de cadenas largas de selectores descendientes.</li>
+                        </ul>
+                        <pre class="code-block">.btn {}
+.btn--primary {}
+#hero-title {}
+nav a:hover { text-decoration: underline; }</pre>
+                    </div>
+                </article>
+                <article class="module-item">
+                    <button class="module-toggle" type="button" aria-expanded="false">
+                        <span>B02 - Integracion CSS con HTML</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="module-body">
+                        <ul>
+                            <li>Prioriza hojas externas para cache y mantenimiento.</li>
+                            <li>Organiza por capas: base, layout, componentes, utilidades.</li>
+                            <li>Mantiene una jerarquia limpia de carpetas en el proyecto.</li>
+                        </ul>
+                        <pre class="code-block">&lt;head&gt;
+  &lt;link rel="stylesheet" href="assets/css/base.css"&gt;
+  &lt;link rel="stylesheet" href="assets/css/components.css"&gt;
+&lt;/head&gt;</pre>
+                    </div>
+                </article>
+                <article class="module-item">
+                    <button class="module-toggle" type="button" aria-expanded="false">
+                        <span>B03 - Integracion CSS con JavaScript</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="module-body">
+                        <ul>
+                            <li>No escribas estilos inline desde JS salvo casos puntuales de runtime.</li>
+                            <li>Controla estados con clases para mantener consistencia visual.</li>
+                            <li>Centraliza la logica de interaccion en funciones pequenas.</li>
+                        </ul>
+                        <pre class="code-block">const menu = document.querySelector(".menu");
+const toggle = document.querySelector("#menuBtn");
+
+toggle.addEventListener("click", () => {
+  menu.classList.toggle("is-open");
+});</pre>
+                    </div>
+                </article>
+                <article class="module-item">
+                    <button class="module-toggle" type="button" aria-expanded="false">
+                        <span>B04 - Box model, spacing y primer layout</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="module-body">
+                        <ul>
+                            <li>Aprende margin vs padding antes de meterte en grids complejas.</li>
+                            <li>Activa <code>box-sizing: border-box</code> para predecir tamanos.</li>
+                            <li>Construye primero un layout simple de cabecera, contenido y footer.</li>
+                        </ul>
+                        <pre class="code-block">* { box-sizing: border-box; }
+.layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 1rem;
+}</pre>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="course-section reveal" aria-labelledby="deepDiveTitle">
+            <div class="section-header">
+                <h2 id="deepDiveTitle" class="section-title-advanced"><i class="bi bi-journal-code"></i> Modulos Avanzados Guiados (intermedio -> experto)</h2>
+                <p>Abre cada modulo para escalar desde buenas practicas hasta arquitectura profesional.</p>
+            </div>
+            <div class="module-accordion" id="cssAdvancedAccordion">
+                <article class="module-item is-open">
+                    <button class="module-toggle" type="button" aria-expanded="true">
+                        <span>A01 - Arquitectura de cascada moderna</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="module-body">
+                        <ul>
+                            <li>Separa reglas por capas: reset, base, componentes y utilidades.</li>
+                            <li>Evita <code>!important</code> salvo utilidades puntuales y documentadas.</li>
+                            <li>Define convencion de naming desde el inicio del proyecto.</li>
+                        </ul>
+                        <pre class="code-block">@layer reset, base, components, utilities;
+
+@layer base {
+  :root { --space-3: 1rem; }
+  body { margin: 0; }
+}
+
+@layer components {
+  .card { padding: var(--space-3); }
+}</pre>
+                    </div>
+                </article>
+
+                <article class="module-item">
+                    <button class="module-toggle" type="button" aria-expanded="false">
+                        <span>A02 - Design tokens y temas</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="module-body">
+                        <ul>
+                            <li>Usa tokens semanticos (<code>--surface-primary</code>, <code>--text-muted</code>).</li>
+                            <li>Configura temas por atributo: <code>[data-theme="alt"]</code>.</li>
+                            <li>Evita codificar colores directos en componentes.</li>
+                        </ul>
+                        <pre class="code-block">:root {
+  --surface-primary: #0d1728;
+  --text-primary: #e6eef9;
+}
+
+[data-theme="light"] {
+  --surface-primary: #ffffff;
+  --text-primary: #0f172a;
+}
+
+.panel {
+  background: var(--surface-primary);
+  color: var(--text-primary);
+}</pre>
+                    </div>
+                </article>
+
+                <article class="module-item">
+                    <button class="module-toggle" type="button" aria-expanded="false">
+                        <span>A03 - Grid, Subgrid y container queries</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="module-body">
+                        <ul>
+                            <li>Disena por componentes, no solo por viewport.</li>
+                            <li>Aplica <code>container-type</code> para adaptar tarjetas por ancho real.</li>
+                            <li>Usa subgrid para alinear cabecera, cuerpo y footer en cards.</li>
+                        </ul>
+                        <pre class="code-block">.catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 1rem;
+}
+
+.item {
+  container-type: inline-size;
+}
+
+@container (min-width: 26rem) {
+  .item__meta { display: flex; gap: .5rem; }
+}</pre>
+                    </div>
+                </article>
+
+                <article class="module-item">
+                    <button class="module-toggle" type="button" aria-expanded="false">
+                        <span>A04 - Tipografia fluida y ritmo</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="module-body">
+                        <ul>
+                            <li>Usa escalas fluidas para titulares, no saltos bruscos por media query.</li>
+                            <li>Define line-height por rol semantico (titular, body, metadata).</li>
+                            <li>Conserva una escala de espaciado comun para todo el sistema.</li>
+                        </ul>
+                        <pre class="code-block">:root {
+  --step-0: clamp(0.95rem, 0.9rem + 0.25vw, 1.1rem);
+  --step-4: clamp(2rem, 1.5rem + 2vw, 3.2rem);
+}
+
+h1 { font-size: var(--step-4); line-height: 1.05; }
+p { font-size: var(--step-0); line-height: 1.65; }</pre>
+                    </div>
+                </article>
+
+                <article class="module-item">
+                    <button class="module-toggle" type="button" aria-expanded="false">
+                        <span>A05 - Interaccion avanzada y accesible</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="module-body">
+                        <ul>
+                            <li>Combina <code>:focus-visible</code>, <code>:has()</code> y estados semanticos.</li>
+                            <li>Evita ocultar feedback de foco por estetica.</li>
+                            <li>Controla transiciones solo en propiedades permitidas.</li>
+                        </ul>
+                        <pre class="code-block">.field:has(input:focus-visible) {
+  outline: 2px solid #45d0ff;
+  outline-offset: 3px;
+}
+
+.btn {
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.btn:hover { transform: translateY(-2px); }</pre>
+                    </div>
+                </article>
+
+                <article class="module-item">
+                    <button class="module-toggle" type="button" aria-expanded="false">
+                        <span>A06 - Motion design en produccion</span>
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                    <div class="module-body">
+                        <ul>
+                            <li>Define un lenguaje de motion con tiempos consistentes.</li>
+                            <li>Sincroniza easing segun tipo de accion (entrada, salida, feedback).</li>
+                            <li>Respeta preferencias del usuario con <code>prefers-reduced-motion</code>.</li>
+                        </ul>
+                        <pre class="code-block">@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+  animation: rise .45s cubic-bezier(.16, .84, .44, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card { animation: none; }
+}</pre>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="course-section reveal" aria-labelledby="labTitle">
+            <div class="section-header">
+                <h2 id="labTitle" class="section-title-advanced"><i class="bi bi-sliders"></i> Laboratorio de Tokens en Vivo</h2>
+                <p>Ajusta variables y revisa como cambia un componente sin tocar el HTML.</p>
+            </div>
+            <div class="lab-layout">
+                <div class="lab-controls">
+                    <label for="labHue">
+                        Hue principal
+                        <span id="labHueValue">210</span>
+                    </label>
+                    <input id="labHue" type="range" min="170" max="320" value="210">
+
+                    <label for="labRadius">
+                        Border radius
+                        <span id="labRadiusValue">18px</span>
+                    </label>
+                    <input id="labRadius" type="range" min="6" max="32" value="18">
+
+                    <label for="labDensity">
+                        Espaciado interno
+                        <span id="labDensityValue">16px</span>
+                    </label>
+                    <input id="labDensity" type="range" min="8" max="28" value="16">
+                </div>
+
+                <div class="lab-stage" id="labStage" aria-live="polite">
+                    <article class="lab-card">
+                        <p class="lab-label">Componente preview</p>
+                        <h3>Panel de Integracion</h3>
+                        <p>Este bloque consume variables CSS para color, espaciado y radio.</p>
+                        <a class="lab-link" href="#labTitle">Ver documentacion</a>
+                    </article>
+                    <article class="lab-card alt">
+                        <p class="lab-label">Estado secundario</p>
+                        <h3>Resumen de Build</h3>
+                        <p>Con el mismo HTML puedes generar variantes por tokens.</p>
+                        <a class="lab-link" href="#deepDiveTitle">Abrir modulo</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="course-section reveal" aria-labelledby="motionTitle">
+            <div class="section-header">
+                <h2 id="motionTitle" class="section-title-advanced"><i class="bi bi-bezier2"></i> Galeria de Animaciones Tecnicas</h2>
+                <p>Ejemplos listos para UI real: entrada, atencion, y respuesta a interaccion.</p>
+            </div>
+            <div class="motion-grid">
+                <article class="motion-card motion-rise">
+                    <h3>Enter / Exit</h3>
+                    <p>Usa animaciones cortas para montar componentes sin ruido visual.</p>
+                </article>
+                <article class="motion-card motion-pulse">
+                    <h3>State Pulse</h3>
+                    <p>Ideal para notificaciones o tareas que requieren atencion puntual.</p>
+                </article>
+                <article class="motion-card motion-tilt">
+                    <h3>Interactive Tilt</h3>
+                    <p>Feedback sutil en hover para tarjetas accionables.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="course-section reveal" aria-labelledby="checkTitle">
+            <div class="section-header">
+                <h2 id="checkTitle" class="section-title-advanced"><i class="bi bi-check2-square"></i> Checklist de Dominio</h2>
+                <p>Marca lo que ya controlas. Tu progreso queda guardado en el navegador.</p>
+            </div>
+            <div class="progress-shell" role="status" aria-live="polite">
+                <div class="progress-track">
+                    <span id="cssProgressBar"></span>
+                </div>
+                <p id="cssProgressText">0/12 hitos completados</p>
+            </div>
+            <ul class="check-list" id="cssCheckList">
+                <li><label><input type="checkbox" data-check="syntax"> Entiendo sintaxis CSS y estructura de una regla.</label></li>
+                <li><label><input type="checkbox" data-check="selectors"> Domino clases, IDs y selectores base/combinados.</label></li>
+                <li><label><input type="checkbox" data-check="html"> Se integrar CSS externo correctamente con HTML.</label></li>
+                <li><label><input type="checkbox" data-check="js"> Uso JavaScript para alternar clases y estados visuales.</label></li>
+                <li><label><input type="checkbox" data-check="layout"> Manejo box model, flexbox y grid para layouts limpios.</label></li>
+                <li><label><input type="checkbox" data-check="responsive"> Construyo interfaces responsivas sin hacks.</label></li>
+                <li><label><input type="checkbox" data-check="layers"> Puedo estructurar CSS con <code>@layer</code>.</label></li>
+                <li><label><input type="checkbox" data-check="tokens"> Uso tokens semanticos y no colores hardcodeados.</label></li>
+                <li><label><input type="checkbox" data-check="containers"> Aplico container queries en componentes.</label></li>
+                <li><label><input type="checkbox" data-check="focus"> Mantengo foco visible y estados accesibles.</label></li>
+                <li><label><input type="checkbox" data-check="motion"> Construyo motion con reduced-motion.</label></li>
+                <li><label><input type="checkbox" data-check="review"> Tengo checklist de QA visual antes de publicar.</label></li>
+            </ul>
+        </section>
+
+        <section class="course-section reveal capstone" aria-labelledby="capstoneTitle">
+            <div class="section-header">
+                <h2 id="capstoneTitle" class="section-title-advanced"><i class="bi bi-rocket-takeoff"></i> Capstone: Landing Tecnica Completa</h2>
+                <p>Proyecto final para portfolio: una landing modular, animada, accesible y auditada.</p>
+            </div>
+            <div class="capstone-grid">
+                <article>
+                    <h3>Entregables obligatorios</h3>
+                    <ul>
+                        <li>Sistema de tokens + tema alternativo.</li>
+                        <li>Layout con Grid/Flex y componentes reutilizables.</li>
+                        <li>Animaciones para entrada, hover y feedback.</li>
+                        <li>Checklist de accesibilidad y performance.</li>
+                    </ul>
+                </article>
+                <article>
+                    <h3>Criterios de evaluacion</h3>
+                    <ul>
+                        <li>Claridad de arquitectura y naming.</li>
+                        <li>Consistencia visual en desktop y mobile.</li>
+                        <li>Legibilidad del codigo y separacion por capas.</li>
+                        <li>Uso correcto de estados y foco de teclado.</li>
+                    </ul>
+                </article>
+            </div>
+            <pre class="code-block">project/
+  css/
+    00-tokens.css
+    10-base.css
+    20-layout.css
+    30-components.css
+    40-utilities.css
+  index.html
+  about.html
+  docs/
+    css-architecture.md</pre>
+        </section>
+
+        <section class="course-section reveal resources-section" id="css-community-links" aria-labelledby="resourcesTitle">
+            <div class="section-header">
+                <h2 id="resourcesTitle" class="section-title-advanced"><i class="bi bi-people"></i> Comunidades, referencias y plataformas para crecer en CSS</h2>
+                <p>Directorio recomendado para ejemplos, comunidad, validacion, autores y tendencias reales de frontend.</p>
+            </div>
+            <div class="resource-grid">
+                <article class="resource-card">
+                    <h3><i class="bi bi-journal-text"></i> Referencia oficial y documentacion</h3>
+                    <ul>
+                        <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" rel="noopener noreferrer">MDN CSS</a></li>
+                        <li><a href="https://www.w3.org/TR/CSS/" target="_blank" rel="noopener noreferrer">W3C CSS Specifications</a></li>
+                        <li><a href="https://web.dev/learn/css/" target="_blank" rel="noopener noreferrer">web.dev Learn CSS</a></li>
+                        <li><a href="https://caniuse.com/" target="_blank" rel="noopener noreferrer">Can I use</a></li>
+                    </ul>
+                </article>
+                <article class="resource-card">
+                    <h3><i class="bi bi-palette2"></i> Inspiracion visual y ejemplos</h3>
+                    <ul>
+                        <li><a href="https://codepen.io/" target="_blank" rel="noopener noreferrer">CodePen</a></li>
+                        <li><a href="https://cssbattle.dev/" target="_blank" rel="noopener noreferrer">CSS Battle</a></li>
+                        <li><a href="https://uiverse.io/" target="_blank" rel="noopener noreferrer">uiverse.io</a></li>
+                        <li><a href="https://www.frontendmentor.io/" target="_blank" rel="noopener noreferrer">Frontend Mentor</a></li>
+                        <li><a href="https://www.awwwards.com/" target="_blank" rel="noopener noreferrer">Awwwards</a></li>
+                    </ul>
+                </article>
+                <article class="resource-card">
+                    <h3><i class="bi bi-vector-pen"></i> Diseno y Figma</h3>
+                    <ul>
+                        <li><a href="https://www.figma.com/" target="_blank" rel="noopener noreferrer">Figma</a></li>
+                        <li><a href="https://www.figma.com/community" target="_blank" rel="noopener noreferrer">Figma Community</a></li>
+                        <li><a href="https://dribbble.com/" target="_blank" rel="noopener noreferrer">Dribbble</a></li>
+                        <li><a href="https://www.behance.net/" target="_blank" rel="noopener noreferrer">Behance</a></li>
+                        <li><a href="https://mobbin.com/" target="_blank" rel="noopener noreferrer">Mobbin</a></li>
+                    </ul>
+                </article>
+                <article class="resource-card">
+                    <h3><i class="bi bi-shield-check"></i> Validadores y calidad</h3>
+                    <ul>
+                        <li><a href="https://jigsaw.w3.org/css-validator/" target="_blank" rel="noopener noreferrer">W3C CSS Validator</a></li>
+                        <li><a href="https://validator.w3.org/" target="_blank" rel="noopener noreferrer">W3C HTML Validator</a></li>
+                        <li><a href="https://pagespeed.web.dev/" target="_blank" rel="noopener noreferrer">PageSpeed Insights</a></li>
+                        <li><a href="https://wave.webaim.org/" target="_blank" rel="noopener noreferrer">WAVE Accessibility Checker</a></li>
+                        <li><a href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener noreferrer">WebAIM Contrast Checker</a></li>
+                    </ul>
+                </article>
+                <article class="resource-card">
+                    <h3><i class="bi bi-chat-dots"></i> Foros y comunidad tecnica</h3>
+                    <ul>
+                        <li><a href="https://stackoverflow.com/questions/tagged/css" target="_blank" rel="noopener noreferrer">Stack Overflow (tag css)</a></li>
+                        <li><a href="https://www.reddit.com/r/css/" target="_blank" rel="noopener noreferrer">Reddit r/css</a></li>
+                        <li><a href="https://www.reddit.com/r/webdev/" target="_blank" rel="noopener noreferrer">Reddit r/webdev</a></li>
+                        <li><a href="https://dev.to/t/css" target="_blank" rel="noopener noreferrer">DEV Community (CSS)</a></li>
+                        <li><a href="https://frontend.social/" target="_blank" rel="noopener noreferrer">Frontend Social</a></li>
+                    </ul>
+                </article>
+                <article class="resource-card">
+                    <h3><i class="bi bi-stars"></i> Autores y referentes CSS</h3>
+                    <ul>
+                        <li><a href="https://lea.verou.me/" target="_blank" rel="noopener noreferrer">Lea Verou</a></li>
+                        <li><a href="https://www.sarasoueidan.com/" target="_blank" rel="noopener noreferrer">Sara Soueidan</a></li>
+                        <li><a href="https://ishadeed.com/" target="_blank" rel="noopener noreferrer">Ahmad Shadeed</a></li>
+                        <li><a href="https://chriscoyier.net/" target="_blank" rel="noopener noreferrer">Chris Coyier</a></li>
+                        <li><a href="https://www.kevinpowell.co/" target="_blank" rel="noopener noreferrer">Kevin Powell</a></li>
+                        <li><a href="https://nerdy.dev/" target="_blank" rel="noopener noreferrer">Adam Argyle</a></li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        (() => {
+            const tipNode = document.getElementById("cssTipText");
+            const tips = [
+                "Primero fundamentos, luego arquitectura y despues optimizacion.",
+                "Si un junior no lo entiende, aun no esta suficientemente claro.",
+                "Una buena clase CSS vale mas que cinco hacks rapidos.",
+                "Cambia clases con JS, no pintes estilos sueltos en cada evento.",
+                "Los tokens semanticos ayudan a escalar sin romper el diseno.",
+                "No elimines focus-visible por estetica: rompe accesibilidad.",
+                "Optimiza animaciones: transform y opacity son tus mejores aliados."
+            ];
+            if (tipNode) {
+                const idx = Math.floor(Math.random() * tips.length);
+                tipNode.textContent = tips[idx];
+            }
 
-        const accordionHeaders = document.querySelectorAll('.accordion-header');
-        accordionHeaders.forEach(header => {
-            header.addEventListener('click', () => {
-                const item = header.parentElement;
-                const isActive = item.classList.contains('active');
-                document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
-                if (!isActive) item.classList.add('active');
-            });
-        });
+            const revealNodes = Array.from(document.querySelectorAll(".reveal"));
+            if ("IntersectionObserver" in window) {
+                const observer = new IntersectionObserver((entries, obs) => {
+                    entries.forEach((entry) => {
+                        if (!entry.isIntersecting) return;
+                        entry.target.classList.add("is-visible");
+                        obs.unobserve(entry.target);
+                    });
+                }, { threshold: 0.2 });
+                revealNodes.forEach((node, index) => {
+                    node.style.setProperty("--reveal-delay", `${Math.min(index * 70, 350)}ms`);
+                    observer.observe(node);
+                });
+            } else {
+                revealNodes.forEach((node) => node.classList.add("is-visible"));
+            }
 
-        const alfabBtn = document.getElementById('alfabDemoBtn');
-        const alfabOutput = document.getElementById('alfab-demo-output');
-        if (alfabBtn && alfabOutput) {
-            alfabBtn.addEventListener('click', () => {
-                alfabOutput.textContent = 'Hecho: acabas de disparar un evento click y cambiar el DOM.';
-                alfabOutput.style.backgroundColor = '#f97316';
-                alfabOutput.style.color = '#ffffff';
-                alfabOutput.style.borderColor = '#ea580c';
-                alfabOutput.style.transition = 'all 0.25s ease';
+            const accordions = Array.from(document.querySelectorAll(".module-accordion"));
+            accordions.forEach((accordion) => {
+                const moduleItems = Array.from(accordion.querySelectorAll(".module-item"));
+                moduleItems.forEach((item) => {
+                    const toggle = item.querySelector(".module-toggle");
+                    if (!toggle) return;
+                    toggle.addEventListener("click", () => {
+                        const isOpen = item.classList.contains("is-open");
+                        moduleItems.forEach((row) => {
+                            row.classList.remove("is-open");
+                            const rowToggle = row.querySelector(".module-toggle");
+                            if (rowToggle) rowToggle.setAttribute("aria-expanded", "false");
+                        });
+                        if (!isOpen) {
+                            item.classList.add("is-open");
+                            toggle.setAttribute("aria-expanded", "true");
+                        }
+                    });
+                });
             });
-        }
+
+            const labStage = document.getElementById("labStage");
+            const hueInput = document.getElementById("labHue");
+            const radiusInput = document.getElementById("labRadius");
+            const densityInput = document.getElementById("labDensity");
+            const hueValue = document.getElementById("labHueValue");
+            const radiusValue = document.getElementById("labRadiusValue");
+            const densityValue = document.getElementById("labDensityValue");
+
+            function syncLab() {
+                if (!labStage || !hueInput || !radiusInput || !densityInput) return;
+                const hue = hueInput.value;
+                const radius = radiusInput.value;
+                const density = densityInput.value;
+                labStage.style.setProperty("--lab-hue", hue);
+                labStage.style.setProperty("--lab-radius", `${radius}px`);
+                labStage.style.setProperty("--lab-density", `${density}px`);
+                if (hueValue) hueValue.textContent = hue;
+                if (radiusValue) radiusValue.textContent = `${radius}px`;
+                if (densityValue) densityValue.textContent = `${density}px`;
+            }
+
+            [hueInput, radiusInput, densityInput].forEach((input) => {
+                if (!input) return;
+                input.addEventListener("input", syncLab);
+            });
+            syncLab();
+
+            const storageKey = "cssAdvancedChecklistV1";
+            const checks = Array.from(document.querySelectorAll("#cssCheckList input[type='checkbox']"));
+            const progressBar = document.getElementById("cssProgressBar");
+            const progressText = document.getElementById("cssProgressText");
+
+            function updateChecklistProgress() {
+                const total = checks.length;
+                const done = checks.filter((node) => node.checked).length;
+                const percent = total ? Math.round((done / total) * 100) : 0;
+                if (progressBar) progressBar.style.width = `${percent}%`;
+                if (progressText) progressText.textContent = `${done}/${total} hitos completados`;
+            }
+
+            try {
+                const raw = localStorage.getItem(storageKey);
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    checks.forEach((node) => {
+                        const id = node.dataset.check || "";
+                        node.checked = Boolean(parsed[id]);
+                    });
+                }
+            } catch (err) {
+                console.warn("No se pudo recuperar progreso de CSS avanzado.", err);
+            }
+
+            checks.forEach((node) => {
+                node.addEventListener("change", () => {
+                    const snapshot = {};
+                    checks.forEach((entry) => {
+                        const id = entry.dataset.check || "";
+                        snapshot[id] = entry.checked;
+                    });
+                    try {
+                        localStorage.setItem(storageKey, JSON.stringify(snapshot));
+                    } catch (err) {
+                        console.warn("No se pudo guardar progreso de CSS avanzado.", err);
+                    }
+                    updateChecklistProgress();
+                });
+            });
+            updateChecklistProgress();
+        })();
     </script>
     <script src="assets/js/site-sfx.js"></script>
     <script src="assets/js/site-theme.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,0 +1,11 @@
+/* Styles extracted from dhcp_dns.html */
+.dhcp-hero {
+    background: linear-gradient(135deg, #0a4d68, #088395);
+    color: white;
+    padding: 4rem 2rem;
+    border-radius: 0 0 20px 20px;
+}
+
+.dhcp-network-note {
+    margin-top: 15px;
+}

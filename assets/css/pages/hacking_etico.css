@@ -1,0 +1,16 @@
+/* Styles extracted from hacking_etico.html */
+.he-badge {
+            font-size: 0.75rem;
+            background: rgba(0, 255, 136, 0.14);
+            color: #00ff88;
+            border: 1px solid rgba(0, 255, 136, 0.5);
+            border-radius: 999px;
+            padding: 0.15rem 0.6rem;
+        }
+        .tool-table td, .tool-table th {
+            vertical-align: top;
+        }
+        .small-note {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }

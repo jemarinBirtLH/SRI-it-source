@@ -68,7 +68,7 @@ LOGICA Y FUNCIONES POR PAGINA
 - Funcion: loadRouteInIframe(normalized, pushState)
   - Carga la ruta en iframe y actualiza history/title.
 - Funcion: injectPageStyles(doc, route)
-  - Copia estilos <style> de la pagina cargada al head actual.
+  - Copia estilos <style> y hojas CSS enlazadas de la pagina cargada al head actual.
 - Funcion: runPageScripts(doc, route)
   - Ejecuta scripts de la pagina cargada (filtra bootstrap/site-theme).
 - Funcion async: loadRoute(route, pushState)

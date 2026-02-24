@@ -1864,3 +1864,12 @@
     flex: 0 0 auto;
     min-width: max-content; /* ensure items don't shrink below content width */
 }
+
+/* Inline style replacements */
+.is-hidden {
+    display: none;
+}
+
+.navbar-toggler-neon {
+    border-color: #00ff88;
+}

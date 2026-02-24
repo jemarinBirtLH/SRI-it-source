@@ -1,4 +1,4 @@
-﻿# README_DEV
+# README_DEV
 
 ## 1. Objetivo tecnico
 Documentacion de desarrollo para la web `Source-IT`.
@@ -82,10 +82,10 @@ Conjunto `spaRoutes` con paginas internas permitidas (ej. `guia_redes.html`, `fi
 |---|---|---|
 | `normalizeRoute(route)` | util | Normaliza hash/ruta a `home` o archivo destino. |
 | `showHomeView()` | vista | Muestra hero/grid home y oculta contenedor SPA. |
-| `clearSpaAssets()` | limpieza | Elimina `<style>` y `<script>` inyectados dinamicamente. |
+| `clearSpaAssets()` | limpieza | Elimina `<style>`, `<link rel="stylesheet">` y `<script>` inyectados dinamicamente. |
 | `ensureSpaFrame()` | fabrica | Crea/reutiliza iframe fallback para carga de rutas. |
 | `loadRouteInIframe(normalized, pushState)` | navegacion | Carga ruta en iframe, actualiza title y estado historial. |
-| `injectPageStyles(doc, route)` | inyeccion | Copia estilos inline de pagina destino al documento principal. |
+| `injectPageStyles(doc, route)` | inyeccion | Copia estilos inline y hojas CSS enlazadas (excepto globales/CDN) de pagina destino al documento principal. |
 | `runPageScripts(doc, route)` | ejecucion | Ejecuta scripts del body de la pagina inyectada (con filtros). |
 | `loadRoute(route, pushState)` | orquestacion | Flujo principal de carga de ruta con fetch/parser/fallback. |
 
@@ -139,7 +139,7 @@ Conjunto `spaRoutes` con paginas internas permitidas (ej. `guia_redes.html`, `fi
 - Uso mixto de:
   - contenido estatico por pagina
   - logica dinamica centralizada desde `index.html` cuando se navega como SPA.
-- CSS mayormente centralizado en `site.css`, aunque historicamente hubo estilos inline en algunas paginas.
+- CSS centralizado en `site.css` con complementos por pagina en `assets/css/pages/`.
 
 ## 8. Riesgos/observaciones tecnicas
 - Inyeccion de scripts en modo SPA puede producir efectos duplicados si una pagina no esta pensada para reinicializarse multiples veces.

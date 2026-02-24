@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -500,19 +500,19 @@ sudo systemctl restart bind9
                                     <option value="hosts">Por hosts necesarios</option>
                                 </select>
                             </div>
-                            <div class="mb-3" id="subnetValueContainer" style="display: none;">
+                            <div class="mb-3 is-hidden" id="subnetValueContainer">
                                 <label for="subnetValue" class="form-label">Valor:</label>
                                 <input type="number" class="form-control" id="subnetValue">
                             </div>
                             <button id="calculateBtn" class="btn btn-primary me-2">Calcular</button>
                             <button id="clearBtn" class="btn btn-secondary">Limpiar</button>
                         </div>
-                        <div class="col-md-6" id="resultsSection" style="display: none;">
+                        <div class="col-md-6 is-hidden" id="resultsSection">
                             <h5>Resultados</h5>
                             <div id="networkInfo"></div>
                         </div>
                     </div>
-                    <div id="subnetsCard" class="mt-4" style="display: none;">
+                    <div id="subnetsCard" class="mt-4 is-hidden">
                         <h5>Subredes calculadas</h5>
                         <div id="subnetsInfo"></div>
                     </div>
