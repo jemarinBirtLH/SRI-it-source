@@ -13,92 +13,303 @@
 <body>
     <div class="hero text-center">
         <h1 class="display-5 fw-bold"><i class="bi bi-diagram-2"></i> Replanteos de Red</h1>
-        <p class="lead">Casos reales de replanteo en infraestructuras grandes, publicados en formato anonimo para portfolio tecnico.</p>
+        <p class="lead">Guia tecnica integral para auditoria, diseno, certificacion y mejora de infraestructuras de telecomunicaciones.</p>
     </div>
 
     <div class="container py-4">
         <div class="alert alert-success-custom alert-custom">
-            <strong>Nota legal:</strong> esta seccion muestra versiones anonimizadas. Se reemplazaron nombres de centros medicos, nombres y apellidos, y referencias internas de cliente.
+            <strong>Objetivo de esta seccion:</strong> explicar de forma clara como se ejecuta un replanteo real de red, desde el estudio inicial hasta el mantenimiento posterior.
         </div>
 
-        <div class="row g-3">
-            <div class="col-md-4">
-                <div class="rr-card p-3">
-                    <h4><i class="bi bi-activity"></i> Alcance tecnico</h4>
-                    <p class="rr-meta">Replanteo y rediseno de red</p>
-                    <p>Levantamiento de campo, validacion de canalizaciones, rediseno de trazados y ajuste de nodos para evitar zonas con baja cobertura o saturacion.</p>
-                </div>
+        <section class="rr-section">
+            <h2 class="section-title"><i class="bi bi-compass"></i> Flujo de trabajo de un replanteo profesional</h2>
+            <div class="rr-intro-grid">
+                <article class="rr-intro-card">
+                    <h4><i class="bi bi-search"></i> 1) Auditoria tecnica</h4>
+                    <p>Levantamiento in situ de racks, cableado, fibra, canalizaciones, cobertura WiFi y estado de activos.</p>
+                </article>
+                <article class="rr-intro-card">
+                    <h4><i class="bi bi-diagram-3"></i> 2) Diseno y plan de mejora</h4>
+                    <p>Topologia objetivo, segmentacion, seguridad, capacidad, crecimiento y fases de implantacion.</p>
+                </article>
+                <article class="rr-intro-card">
+                    <h4><i class="bi bi-file-earmark-check"></i> 3) Entregables y soporte</h4>
+                    <p>Informe pormenorizado, planos de infraestructura, propuesta de actualizacion y mantenimiento.</p>
+                </article>
             </div>
-            <div class="col-md-4">
-                <div class="rr-card p-3">
-                    <h4><i class="bi bi-building-gear"></i> Entorno</h4>
-                    <p class="rr-meta">Infraestructuras sanitarias</p>
-                    <p>Proyectos ejecutados en complejos con varias plantas, cuartos tecnicos, zonas criticas y necesidades de continuidad operativa.</p>
-                </div>
+        </section>
+
+        <section class="rr-section" id="ekahau">
+            <h2 class="section-title"><i class="bi bi-wifi"></i> Estudio inalambrico de cobertura con Ekahau</h2>
+            <div class="rr-two-col">
+                <article class="rr-panel">
+                    <h4>Metodologia recomendada</h4>
+                    <ol class="rr-steps">
+                        <li>Importar planos y escalar correctamente en metros.</li>
+                        <li>Definir objetivos: RSSI, SNR, capacidad, roaming y servicios criticos.</li>
+                        <li>Modelar materiales de obra y obstaculos reales.</li>
+                        <li>Ejecutar survey pasivo y activo por zonas y plantas.</li>
+                        <li>Detectar interferencias, canales saturados y zonas de sombra.</li>
+                        <li>Reubicar APs, ajustar canales y potencia.</li>
+                        <li>Validar con post-survey y generar informe final.</li>
+                    </ol>
+                </article>
+                <article class="rr-panel">
+                    <h4>Por que ubicar el AP en alto y centrado</h4>
+                    <ul class="rr-list">
+                        <li>Reduce obstrucciones por mobiliario y personas.</li>
+                        <li>Mejora la distribucion radial de la celda WiFi.</li>
+                        <li>Disminuye variaciones fuertes de potencia en la zona.</li>
+                        <li>Facilita roaming y continuidad de servicio.</li>
+                    </ul>
+                    <p class="rr-note">A igualdad de potencia, una ubicacion centrada y elevada ofrece cobertura mas uniforme y menos zonas muertas.</p>
+                </article>
             </div>
-            <div class="col-md-4">
-                <div class="rr-card p-3">
-                    <h4><i class="bi bi-file-earmark-check"></i> Entregables</h4>
-                    <p class="rr-meta">Documentacion final validada</p>
-                    <p>Planos de replanteo, criterios de implantacion, resumen de incidencias y propuesta tecnica final para ejecucion.</p>
-                </div>
+        </section>
+
+        <section class="rr-section" id="fibra-sfp">
+            <h2 class="section-title"><i class="bi bi-lightning-charge"></i> Enlaces de fibra optica con SFP y SFP+</h2>
+            <div class="rr-two-col">
+                <article class="rr-panel">
+                    <h4>Proceso tecnico</h4>
+                    <ul class="rr-list">
+                        <li>Calculo de presupuesto optico (TX/RX + perdidas + margen).</li>
+                        <li>Eleccion de modulo segun distancia y tipo de fibra (MMF/SMF).</li>
+                        <li>Limpieza e inspeccion de conectores antes de conectar.</li>
+                        <li>Comprobacion DOM/DDM de los transceptores.</li>
+                        <li>Documentacion de puertos, latiguillos y trazados.</li>
+                    </ul>
+                </article>
+                <article class="rr-panel">
+                    <h4>Referencia rapida</h4>
+                    <div class="table-responsive">
+                        <table class="rr-table">
+                            <thead>
+                                <tr>
+                                    <th>Tipo</th>
+                                    <th>Fibra habitual</th>
+                                    <th>Alcance tipico</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1G SX</td><td>MMF</td><td>220-550 m</td></tr>
+                                <tr><td>1G LX</td><td>SMF</td><td>Hasta 10 km</td></tr>
+                                <tr><td>10G SR</td><td>MMF</td><td>Hasta 300-400 m</td></tr>
+                                <tr><td>10G LR</td><td>SMF</td><td>Hasta 10 km</td></tr>
+                                <tr><td>10G ER</td><td>SMF</td><td>Hasta 40 km</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
             </div>
-        </div>
+        </section>
 
-        <h2 class="section-title mt-4"><i class="bi bi-journal-text"></i> Informes anonimizados para mostrar trabajo</h2>
-        <div class="card-custom">
-            <div class="card-body">
-                <div class="rr-report">
-                    <strong>RR-089 | Centro Medico Horizonte Norte</strong>
-                    <p class="rr-meta">Estado: Informe final validado</p>
-                    <p>Ajuste de backbone interno, revision de pasos verticales y redistribucion de puntos de acceso para aumentar cobertura estable en zonas de alta densidad.</p>
-                    <span class="rr-file">RR_089_HorizonteNorte_InformeFinal_Anon.pdf</span>
-                </div>
-
-                <div class="rr-report">
-                    <strong>RR-117 | Centro Clinico Delta Este</strong>
-                    <p class="rr-meta">Estado: Informe final validado</p>
-                    <p>Replanteo de trazado principal y secundario, normalizacion de distancias de cableado y mejora de redundancia en armarios de comunicaciones.</p>
-                    <span class="rr-file">RR_117_DeltaEste_InformeFinal_Anon.pdf</span>
-                </div>
-
-                <div class="rr-report">
-                    <strong>RR-123 | Complejo Sanitario Arce</strong>
-                    <p class="rr-meta">Estado: Informe final</p>
-                    <p>Rediseno de distribucion por sectores, separacion de trafico por servicios y propuesta de crecimiento para fases futuras del edificio.</p>
-                    <span class="rr-file">RR_123_Arce_InformeFinal_Anon.pdf</span>
-                </div>
-
-                <div class="rr-report">
-                    <strong>RR-125 | Campus Medico Valnera</strong>
-                    <p class="rr-meta">Estado: Informe final</p>
-                    <p>Optimizacion de puntos de concentracion, balanceo de carga por zona y mejora de accesibilidad en canalizaciones existentes.</p>
-                    <span class="rr-file">RR_125_Valnera_InformeFinal_Anon.pdf</span>
-                </div>
-
-                <div class="rr-report">
-                    <strong>RR-139 | Nodo Hospitalario Altiplano</strong>
-                    <p class="rr-meta">Estado: Informe final</p>
-                    <p>Reorganizacion de topologia por plantas, propuesta de contingencia y definicion de ruta tecnica para despliegue sin parada de servicio.</p>
-                    <span class="rr-file">RR_139_Altiplano_InformeFinal_Anon.pdf</span>
-                </div>
+        <section class="rr-section" id="utp-certificacion">
+            <h2 class="section-title"><i class="bi bi-check2-square"></i> Certificacion de cableado UTP</h2>
+            <div class="rr-two-col">
+                <article class="rr-panel">
+                    <h4>Parametros que se certifican</h4>
+                    <ul class="rr-list">
+                        <li>Wiremap, longitud, insercion (insertion loss), NEXT y PSNEXT.</li>
+                        <li>Return loss, ACR-F, retardo de propagacion y skew.</li>
+                        <li>Cumplimiento de categoria y clase del enlace.</li>
+                    </ul>
+                </article>
+                <article class="rr-panel">
+                    <h4>Normativas de referencia</h4>
+                    <ul class="rr-list">
+                        <li>ISO/IEC 11801 (cableado generico).</li>
+                        <li>ANSI/TIA-568 (estructurado de cobre).</li>
+                        <li>Etiquetado y trazabilidad de cada roseta/puerto.</li>
+                    </ul>
+                    <p class="rr-note">El informe final debe incluir PASS/FAIL por enlace, identificacion de punto y firma tecnica.</p>
+                </article>
             </div>
-        </div>
+        </section>
 
-        <h2 class="section-title mt-4"><i class="bi bi-shield-check"></i> Criterios de anonimización aplicados</h2>
-        <div class="card-custom">
-            <div class="card-body">
-                <ul class="mb-0">
-                    <li>Sustitucion de nombres de centros por nombres neutrales de portfolio.</li>
-                    <li>Eliminacion de datos personales: nombres, apellidos y firmas identificables.</li>
-                    <li>Ocultacion de referencias internas de cliente y codigos de orden de trabajo.</li>
-                    <li>Mantenimiento de contenido tecnico para demostrar metodologia y nivel de ejecucion.</li>
+        <section class="rr-section" id="ftth">
+            <h2 class="section-title"><i class="bi bi-bezier2"></i> FTTH: fusionadoras, guia de colores y traza OTDR</h2>
+            <div class="rr-two-col">
+                <article class="rr-panel">
+                    <h4>Fusionadoras FTTH</h4>
+                    <ul class="rr-list">
+                        <li>Tipos: alineacion por nucleo (core alignment) y por revestimiento (cladding alignment).</li>
+                        <li>Usos: empalmes de troncal, acometidas, reparacion de averias y cierres de fibra.</li>
+                        <li>Buenas practicas: limpieza, corte correcto, proteccion y control de perdida por fusion.</li>
+                    </ul>
+                    <h4 class="mt-3">Que es una traza OTDR</h4>
+                    <p>La traza OTDR es el grafico de eventos y atenuacion a lo largo de la fibra. Sirve para localizar cortes, macrocurvaturas, empalmes defectuosos y conectores con exceso de perdida.</p>
+                </article>
+                <article class="rr-panel">
+                    <h4>Guia de colores para empalmes FTTH (secuencia 12 fibras)</h4>
+                    <div class="table-responsive">
+                        <table class="rr-table">
+                            <thead>
+                                <tr>
+                                    <th>Fibra</th>
+                                    <th>Color</th>
+                                    <th>Fibra</th>
+                                    <th>Color</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1</td><td>Azul</td><td>7</td><td>Rojo</td></tr>
+                                <tr><td>2</td><td>Naranja</td><td>8</td><td>Negro</td></tr>
+                                <tr><td>3</td><td>Verde</td><td>9</td><td>Amarillo</td></tr>
+                                <tr><td>4</td><td>Marron</td><td>10</td><td>Violeta</td></tr>
+                                <tr><td>5</td><td>Gris</td><td>11</td><td>Rosa</td></tr>
+                                <tr><td>6</td><td>Blanco</td><td>12</td><td>Aqua</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="rr-section" id="conectores-canalizaciones">
+            <h2 class="section-title"><i class="bi bi-hdd-network"></i> Conectores y canalizaciones de red</h2>
+            <div class="rr-two-col">
+                <article class="rr-panel">
+                    <h4>Conectores mas usados</h4>
+                    <ul class="rr-list">
+                        <li><strong>Cobre:</strong> RJ45 (8P8C), keystone, patch panel.</li>
+                        <li><strong>Fibra:</strong> LC, SC, ST, FC, MPO/MTP.</li>
+                        <li><strong>Uplink:</strong> SFP, SFP+, SFP28 y QSFP segun velocidad.</li>
+                    </ul>
+                </article>
+                <article class="rr-panel">
+                    <h4>Canalizaciones</h4>
+                    <ul class="rr-list">
+                        <li>Canaleta, bandeja metalica, rejiband, tubo corrugado y tubo rigido.</li>
+                        <li>Separacion fisica de potencia y datos para reducir interferencias.</li>
+                        <li>Respeto de radios de curvatura y ocupacion para mantenimiento futuro.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="rr-section" id="herramientas">
+            <h2 class="section-title"><i class="bi bi-tools"></i> Herramientas del tecnico en telecomunicaciones e informatica</h2>
+            <div class="rr-tools-grid">
+                <article class="rr-tool-card"><strong>Diagnostico:</strong> certificador UTP, comprobador PoE, OTDR, medidor de potencia, VFL.</article>
+                <article class="rr-tool-card"><strong>Instalacion:</strong> crimpadora, pelacables, punzonadora, etiquetadora, guia pasacables.</article>
+                <article class="rr-tool-card"><strong>Fibra:</strong> fusionadora, cortadora de precision, limpiadores y microscopio de inspeccion.</article>
+                <article class="rr-tool-card"><strong>Software:</strong> Ekahau, AutoCAD, Wireshark, Cisco Packet Tracer y utilidades de fabricante.</article>
+            </div>
+        </section>
+
+        <section class="rr-section" id="racks-equipos">
+            <h2 class="section-title"><i class="bi bi-server"></i> Racks, bastidores, switches, routers y seguridad</h2>
+            <div class="rr-two-col">
+                <article class="rr-panel">
+                    <h4>Tipos y medidas de rack</h4>
+                    <ul class="rr-list">
+                        <li>Bastidor abierto para CPD controlado.</li>
+                        <li>Rack cerrado 19" para proteccion y gestion termica.</li>
+                        <li>Rack mural/colgante para sedes pequenas o armarios de planta.</li>
+                    </ul>
+                    <p class="rr-note">Medidas comunes: 600x600, 600x800, 800x1000 mm y alturas de 12U a 47U.</p>
+                </article>
+                <article class="rr-panel">
+                    <h4>Disposicion y equipos activos</h4>
+                    <ul class="rr-list">
+                        <li>Patch panel y gestion de latiguillos en cabecera.</li>
+                        <li>Switches de acceso/agregacion con uplinks por SFP/SFP+.</li>
+                        <li>Routers y firewalls (por ejemplo Fortinet y Cisco) con segmentacion y politicas.</li>
+                        <li>Plan de energia: SAI, puesta a tierra, reserva de U y etiquetado completo.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="rr-section" id="software-red">
+            <h2 class="section-title"><i class="bi bi-laptop"></i> AutoCAD, Packet Tracer, WiFi Mesh y Wireshark</h2>
+            <div class="rr-two-col">
+                <article class="rr-panel">
+                    <h4>AutoCAD para infraestructura</h4>
+                    <p>Permite generar planos de canalizaciones, racks, puntos de red, rutas de fibra y ubicacion de AP para ejecucion y mantenimiento.</p>
+                    <h4 class="mt-3">Cisco Packet Tracer</h4>
+                    <p>Sirve para validar topologias, VLAN, routing y escenarios de laboratorio antes del despliegue real.</p>
+                </article>
+                <article class="rr-panel">
+                    <h4>WiFi Mesh y Wireshark</h4>
+                    <ul class="rr-list">
+                        <li><strong>WiFi Mesh:</strong> extension de cobertura cuando no hay backhaul cableado inmediato.</li>
+                        <li><strong>Wireshark:</strong> analisis de trafico, latencia, perdida de paquetes y comportamiento de protocolos.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="rr-section" id="precios-maquinas">
+            <h2 class="section-title"><i class="bi bi-cash-coin"></i> Precios de maquinaria a dia de hoy (24 de febrero de 2026)</h2>
+            <p class="rr-note">Importes orientativos en USD, sujetos a kit, licencias, soporte, impuestos y distribuidor.</p>
+            <div class="table-responsive">
+                <table class="rr-table rr-prices-table">
+                    <thead>
+                        <tr>
+                            <th>Equipo</th>
+                            <th>Rango orientativo</th>
+                            <th>Uso principal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ekahau Sidekick 2</td>
+                            <td>4,800 - 5,600</td>
+                            <td>Survey y analisis WiFi profesional</td>
+                        </tr>
+                        <tr>
+                            <td>Fluke DSX2-8000 (kit)</td>
+                            <td>15,000 - 17,000</td>
+                            <td>Certificacion avanzada UTP</td>
+                        </tr>
+                        <tr>
+                            <td>Fujikura 90S+ (segun kit)</td>
+                            <td>5,200 - 12,700</td>
+                            <td>Fusion de fibra FTTH</td>
+                        </tr>
+                        <tr>
+                            <td>EXFO MAX-710B OTDR</td>
+                            <td>2,700 aprox.</td>
+                            <td>Traza y diagnostico de fibra</td>
+                        </tr>
+                        <tr>
+                            <td>FortiGate 100F (hardware/bundle base)</td>
+                            <td>2,300 - 3,800</td>
+                            <td>Seguridad perimetral y segmentacion</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="rr-sources">
+                <h4>Fuentes usadas para precios</h4>
+                <ul class="rr-list">
+                    <li><a href="https://www.acuityrf.com/products/ekahau-sidekick2" target="_blank" rel="noopener noreferrer">Acuity RF - Ekahau Sidekick 2</a></li>
+                    <li><a href="https://www.cdw.com/product/ekahau-sidekick-2-wi-fi-radio-spectrum-analyzer/7096648" target="_blank" rel="noopener noreferrer">CDW - Ekahau Sidekick 2</a></li>
+                    <li><a href="https://www.cdw.com/product/fluke-dsx-cableanalyzer-dsx2-8000-network-tester-kit/4989018" target="_blank" rel="noopener noreferrer">CDW - Fluke DSX2-8000</a></li>
+                    <li><a href="https://www.shi.com/product/33288170/Fluke-Networks-DSX-8000-CableAnalyzer" target="_blank" rel="noopener noreferrer">SHI - Fluke DSX-8000</a></li>
+                    <li><a href="https://gsmserver.com/en/fusion-splicer-fujikura-90splus-no-cleaver/" target="_blank" rel="noopener noreferrer">GSMServer - Fujikura 90S+</a></li>
+                    <li><a href="https://www.primuscable.com/products/fujikura-90s-fusion-splicer-with-bluetooth-and-ct50-cleaver" target="_blank" rel="noopener noreferrer">Primus Cable - Fujikura 90S+</a></li>
+                    <li><a href="https://www.thefo.com/exfo-maxtester-max-710b-sm-fiber-optic-otdr/" target="_blank" rel="noopener noreferrer">TheFO - EXFO MAX-710B</a></li>
+                    <li><a href="https://www.cdw.com/product/fortinet-fortigate-u00ae-100f-1ru-w-1-year-forticare-fortiguard-protection/5590325" target="_blank" rel="noopener noreferrer">CDW - FortiGate 100F</a></li>
                 </ul>
             </div>
-        </div>
+        </section>
+
+        <section class="rr-section rr-cta" id="servicio">
+            <h2 class="section-title"><i class="bi bi-clipboard2-check"></i> Informe pormenorizado, plano y actualizacion de infraestructura</h2>
+            <p>Puedo elaborar un <strong>informe pormenorizado de su red</strong>, preparar un <strong>plano de infraestructura</strong> con AutoCAD, definir una <strong>actualizacion de infraestructura por fases</strong> y ejecutar un <strong>mantenimiento posterior</strong> para asegurar estabilidad y crecimiento.</p>
+            <ul class="rr-list mb-0">
+                <li>Informe tecnico con incidencias, riesgos y prioridades.</li>
+                <li>Plano completo de red: racks, canalizaciones, cobre, fibra y WiFi.</li>
+                <li>Hoja de ruta de actualizacion con presupuesto orientativo.</li>
+                <li>Plan preventivo/correctivo de mantenimiento.</li>
+            </ul>
+        </section>
 
         <div class="alert alert-success-custom alert-custom mt-4">
-            <strong>Contáctame:</strong> <a href="mailto:jemarin@birt.eus">jemarin@birt.eus</a> |
+            <strong>Contactame:</strong> <a href="mailto:jemarin@birt.eus">jemarin@birt.eus</a> |
             <strong>Discord:</strong> <a href="https://discord.gg/byCRavuB7e" target="_blank" rel="noopener noreferrer">discord.gg/byCRavuB7e</a>
         </div>
     </div>

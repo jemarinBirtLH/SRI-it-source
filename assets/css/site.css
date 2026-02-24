@@ -1827,6 +1827,13 @@
     outline-offset: 3px;
     color: #ffffff;
 }
+.support-funds-note {
+    flex-basis: 100%;
+    margin-top: 0.1rem;
+    color: #c8ffe9;
+    font-size: 0.82rem;
+    line-height: 1.35;
+}
 .support-note-tooltip {
     position: absolute;
     left: 50%;

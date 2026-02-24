@@ -1,38 +1,169 @@
-/* Styles extracted from replanteos_red.html */
-.rr-card {
-            background: #0c1528;
-            border: 1px solid rgba(0, 255, 136, 0.35);
-            border-radius: 14px;
-            color: #dcfff2;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
-            height: 100%;
-        }
+/* Styles for replanteos_red.html */
+.rr-section {
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 14px;
+    background: linear-gradient(160deg, rgba(7, 18, 34, 0.9), rgba(10, 24, 44, 0.82));
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+    color: #eafdf5;
+}
 
-        .rr-meta {
-            font-size: 0.88rem;
-            color: #9af7d1;
-            margin-bottom: 0.35rem;
-        }
+.rr-intro-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.72rem;
+}
 
-        .rr-report {
-            border-left: 3px solid #00ff88;
-            padding-left: 0.8rem;
-            margin-bottom: 1.1rem;
-        }
+.rr-intro-card {
+    border: 1px solid rgba(0, 255, 136, 0.26);
+    border-radius: 12px;
+    background: rgba(6, 18, 34, 0.75);
+    padding: 0.8rem;
+}
 
-        .rr-report:last-child {
-            margin-bottom: 0;
-        }
+.rr-intro-card h4 {
+    margin: 0 0 0.45rem;
+    font-size: 1rem;
+    text-transform: none;
+}
 
-        .rr-file {
-            display: inline-block;
-            font-family: "JetBrains Mono", monospace;
-            font-size: 0.82rem;
-            color: #9af7d1;
-            background: rgba(0, 255, 136, 0.08);
-            border: 1px solid rgba(0, 255, 136, 0.28);
-            border-radius: 8px;
-            padding: 0.32rem 0.55rem;
-            margin-top: 0.55rem;
-            word-break: break-all;
-        }
+.rr-intro-card p {
+    margin: 0;
+    color: #cceee1;
+}
+
+.rr-two-col {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+}
+
+.rr-panel {
+    border: 1px solid rgba(0, 255, 136, 0.22);
+    border-radius: 12px;
+    background: rgba(8, 21, 38, 0.72);
+    padding: 0.8rem;
+}
+
+.rr-panel h4 {
+    margin: 0 0 0.48rem;
+    font-size: 1rem;
+    text-transform: none;
+}
+
+.rr-list,
+.rr-steps {
+    margin: 0;
+    padding-left: 1.05rem;
+    color: #d8f6ea;
+}
+
+.rr-list li,
+.rr-steps li {
+    margin-bottom: 0.35rem;
+}
+
+.rr-note {
+    margin: 0.6rem 0 0;
+    padding: 0.55rem 0.65rem;
+    border-left: 3px solid #00ff88;
+    background: rgba(0, 255, 136, 0.08);
+    color: #ceffea;
+}
+
+.rr-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #eafdf5;
+    font-size: 0.9rem;
+}
+
+.rr-table th,
+.rr-table td {
+    border: 1px solid rgba(0, 255, 136, 0.25);
+    padding: 0.5rem 0.55rem;
+    vertical-align: top;
+}
+
+.rr-table th {
+    background: rgba(0, 255, 136, 0.12);
+    color: #d5fff0;
+    font-weight: 700;
+}
+
+.rr-prices-table td:nth-child(2) {
+    white-space: nowrap;
+    font-family: "JetBrains Mono", monospace;
+}
+
+.rr-tools-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.72rem;
+}
+
+.rr-tool-card {
+    border: 1px solid rgba(0, 255, 136, 0.22);
+    border-radius: 12px;
+    background: rgba(7, 19, 35, 0.75);
+    padding: 0.75rem;
+    color: #dcf8ed;
+}
+
+.rr-sources {
+    margin-top: 0.7rem;
+    border: 1px solid rgba(0, 255, 136, 0.18);
+    border-radius: 10px;
+    background: rgba(6, 16, 30, 0.72);
+    padding: 0.7rem;
+}
+
+.rr-sources h4 {
+    margin: 0 0 0.45rem;
+    font-size: 0.98rem;
+    text-transform: none;
+}
+
+.rr-sources a {
+    color: #9fffd9;
+    text-decoration: none;
+}
+
+.rr-sources a:hover {
+    text-decoration: underline;
+}
+
+.rr-cta {
+    border-color: rgba(0, 204, 255, 0.38);
+    background: linear-gradient(150deg, rgba(7, 24, 42, 0.92), rgba(8, 33, 52, 0.86));
+}
+
+@media (max-width: 991.98px) {
+    .rr-intro-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rr-two-col {
+        grid-template-columns: 1fr;
+    }
+
+    .rr-tools-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .rr-section {
+        padding: 0.8rem;
+    }
+
+    .rr-table {
+        font-size: 0.84rem;
+    }
+
+    .rr-table th,
+    .rr-table td {
+        padding: 0.42rem 0.45rem;
+    }
+}
