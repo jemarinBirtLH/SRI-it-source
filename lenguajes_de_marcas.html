@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- Google Fonts - Fuentes futuristas -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/pages/lenguajes_de_marcas.css">
 </head>
 <body>
     <!-- Animacion Mr. Robot (se desvanece tras 15s) -->
@@ -245,206 +246,218 @@ return &lt;libro&gt;{$libro/titulo}&lt;/libro&gt;
             </div>
         </div>
 
-        <!-- HTML Especial - Unidad 5 -->
-        <h2 class="section-title" id="html-especial"><i class="bi bi-filetype-html"></i> HTML Especial (Unidad 5 Completa)</h2>
-        <div class="card-custom">
-            <div class="card-header-custom"><i class="bi bi-mortarboard"></i> Programa Integrado de HTML</div>
-            <div class="card-body">
-                <p>Sección de estudio universitario que integra los contenidos de la Unidad 5: historia de HTML, fundamentos del lenguaje de marcas, estructura del documento, etiquetas esenciales, atributos globales y modelado semántico del contenido.</p>
-                <div class="alert alert-info-custom alert-custom">
-                    <strong>Objetivo académico:</strong> diseñar documentos HTML5 semánticos, accesibles y mantenibles, diferenciando estructura, presentación y comportamiento.
+        <!-- Ruta HTML -->
+        <section class="html-course-shell" id="html-basico" aria-labelledby="htmlCursoTitle">
+            <div class="html-course-hero">
+                <div class="html-hero-grid">
+                    <article class="html-hero-copy">
+                        <p class="html-kicker">Ruta profesional</p>
+                        <h2 class="html-hero-title" id="htmlCursoTitle"><i class="bi bi-filetype-html"></i> Curso HTML: de cero a base profesional</h2>
+                        <p class="html-hero-subtitle">
+                            Este bloque presenta un formato de curso guiado: empiezas con sintaxis y estructura,
+                            avanzas a semántica y terminas con buenas prácticas para proyectos reales.
+                        </p>
+                        <div class="html-badges" aria-label="Resumen rapido del bloque">
+                            <span class="html-badge"><i class="bi bi-diagram-2"></i> 4 fases</span>
+                            <span class="html-badge"><i class="bi bi-journal-code"></i> 5 modulos</span>
+                            <span class="html-badge"><i class="bi bi-laptop"></i> 1 laboratorio</span>
+                        </div>
+                    </article>
+                    <aside class="html-hero-panel" aria-label="Plan de estudio de HTML">
+                        <h3>Plan de estudio</h3>
+                        <ul class="html-hero-list">
+                            <li>Estructura base de un documento HTML5.</li>
+                            <li>Contenido esencial: texto, enlaces, listas e imagenes.</li>
+                            <li>Semantica para SEO, accesibilidad y mantenimiento.</li>
+                            <li>Tablas y formularios para datos reales.</li>
+                            <li>Preparacion limpia para integracion con CSS y JS.</li>
+                        </ul>
+                        <a class="html-hero-link" href="#html-modulos">Ir a modulos guiados</a>
+                    </aside>
                 </div>
             </div>
-        </div>
 
-        <div class="accordion" id="htmlEspecialAccordion">
-            <div class="accordion-item">
-                <button class="accordion-header">1) Historia de HTML y evolución de estándares</button>
-                <div class="accordion-content">
-                    <p>HTML nace para compartir documentos hipertexto y evoluciona desde versiones iniciales hasta HTML5, consolidando semántica, multimedia nativa y APIs de navegador.</p>
-                    <div class="code-block">
-HTML 1.0 -> HTML 2.0 -> HTML 3.2 -> HTML 4.01 -> XHTML -> HTML5
-W3C + WHATWG: evolución del estándar vivo
+            <div class="html-course-content">
+                <section class="html-track" aria-labelledby="htmlTrackTitle">
+                    <div class="html-track-header">
+                        <h3 id="htmlTrackTitle"><i class="bi bi-signpost-2"></i> Iniciacion completa de HTML</h3>
+                        <p>Secuencia base para aprender HTML en orden y con criterio tecnico.</p>
                     </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">2) HTML como lenguaje de marcas</button>
-                <div class="accordion-content">
-                    <p>HTML no programa lógica; describe estructura y significado del contenido mediante etiquetas y atributos.</p>
-                    <div class="code-block">
-&lt;article&gt;
-  &lt;h2&gt;Título del artículo&lt;/h2&gt;
-  &lt;p&gt;Contenido semánticamente estructurado.&lt;/p&gt;
-&lt;/article&gt;
+                    <div class="html-starter-grid">
+                        <article class="html-starter-card">
+                            <h4>1) Sintaxis minima</h4>
+                            <p>Todo documento necesita etiquetas bien anidadas y estructura valida.</p>
+                            <div class="code-block">&lt;tag&gt;contenido&lt;/tag&gt;</div>
+                        </article>
+                        <article class="html-starter-card">
+                            <h4>2) Estructura base</h4>
+                            <p>Domina <code>head</code> y <code>body</code> antes de crecer la pagina.</p>
+                            <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;...&lt;/html&gt;</div>
+                        </article>
+                        <article class="html-starter-card">
+                            <h4>3) Jerarquia de texto</h4>
+                            <p>Usa encabezados y parrafos en orden logico para lectura clara.</p>
+                            <div class="code-block">&lt;h1&gt;Titulo&lt;/h1&gt;
+&lt;p&gt;Introduccion&lt;/p&gt;</div>
+                        </article>
+                        <article class="html-starter-card">
+                            <h4>4) Navegacion y enlaces</h4>
+                            <p>Construye hipertexto con enlaces internos y externos descriptivos.</p>
+                            <div class="code-block">&lt;a href="#html-modulos"&gt;Ver modulos&lt;/a&gt;</div>
+                        </article>
+                        <article class="html-starter-card">
+                            <h4>5) Estructura semantica</h4>
+                            <p>Organiza por bloques funcionales para escalar mejor el sitio.</p>
+                            <div class="code-block">&lt;header&gt;&lt;/header&gt;
+&lt;main&gt;&lt;/main&gt;</div>
+                        </article>
+                        <article class="html-starter-card">
+                            <h4>6) Datos y formularios</h4>
+                            <p>Representa tablas y captura datos sin mezclar responsabilidades.</p>
+                            <div class="code-block">&lt;table&gt;...&lt;/table&gt;
+&lt;form&gt;...&lt;/form&gt;</div>
+                        </article>
                     </div>
-                </div>
-            </div>
+                </section>
 
-            <div class="accordion-item">
-                <button class="accordion-header">3) Estructura base y etiquetas del &lt;head&gt;</button>
-                <div class="accordion-content">
-                    <p>El <code>&lt;head&gt;</code> contiene metadatos, título, enlaces a CSS, scripts diferidos y configuración SEO/social.</p>
-                    <div class="code-block">
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-  &lt;title&gt;Página académica&lt;/title&gt;
-  &lt;meta name="description" content="Resumen del contenido"&gt;
-  &lt;link rel="stylesheet" href="styles.css"&gt;
-&lt;/head&gt;
+                <section class="html-track html-modules" id="html-modulos" aria-labelledby="htmlModulesTitle">
+                    <div class="html-track-header">
+                        <h3 id="htmlModulesTitle"><i class="bi bi-journals"></i> Módulos guiados (principiante -> intermedio)</h3>
+                        <p class="html-modules-subtitle">Cada módulo incluye una idea clave y un ejemplo práctico para aplicar de inmediato.</p>
                     </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">4) Encabezados (h1-h6) y jerarquía documental</button>
-                <div class="accordion-content">
-                    <p>Los encabezados definen la jerarquía lógica del documento. Debe existir coherencia semántica y no saltos arbitrarios.</p>
-                    <div class="code-block">
-&lt;h1&gt;Tema principal&lt;/h1&gt;
-&lt;h2&gt;Unidad 1&lt;/h2&gt;
-&lt;h3&gt;Subapartado&lt;/h3&gt;
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">5) Párrafos, saltos y separación del texto</button>
-                <div class="accordion-content">
-                    <p>El párrafo (<code>&lt;p&gt;</code>) representa una unidad de discurso. Evita usar <code>&lt;br&gt;</code> para maquetación.</p>
-                    <div class="code-block">
-&lt;p&gt;Primer bloque de ideas.&lt;/p&gt;
-&lt;p&gt;Segundo bloque con otra idea principal.&lt;/p&gt;
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">6) Enlaces e hipertexto</button>
-                <div class="accordion-content">
-                    <p>La etiqueta <code>&lt;a&gt;</code> conecta recursos internos y externos. Usa textos de enlace significativos para accesibilidad.</p>
-                    <div class="code-block">
-&lt;a href="https://developer.mozilla.org"&gt;
-  Referencia técnica
-&lt;/a&gt;
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">7) Imágenes y contenido alternativo</button>
-                <div class="accordion-content">
-                    <p><code>&lt;img&gt;</code> debe incluir <code>alt</code> descriptivo. Para imágenes informativas, el texto alternativo es obligatorio.</p>
-                    <div class="code-block">
-&lt;img src="topologia-red.png" alt="Topología en estrella con switch central" width="640"&gt;
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">8) Listas ordenadas y no ordenadas</button>
-                <div class="accordion-content">
-                    <p>Usa <code>&lt;ul&gt;</code> para conjuntos sin prioridad y <code>&lt;ol&gt;</code> cuando existe secuencia lógica.</p>
-                    <div class="code-block">
-&lt;ol&gt;
-  &lt;li&gt;Analizar requisitos&lt;/li&gt;
-  &lt;li&gt;Diseñar estructura&lt;/li&gt;
-  &lt;li&gt;Implementar&lt;/li&gt;
-&lt;/ol&gt;
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">9) Tablas semánticas</button>
-                <div class="accordion-content">
-                    <p>Las tablas representan datos tabulares, no layout visual. Incluye cabeceras con <code>&lt;th&gt;</code> y estructura con <code>&lt;thead&gt;</code>/<code>&lt;tbody&gt;</code>.</p>
-                    <div class="code-block">
+                    <div class="accordion" id="htmlCursoAccordion">
+                        <div class="accordion-item active">
+                            <button class="accordion-header" type="button">
+                                <span class="module-code">H01</span>
+                                <span class="module-title">Estructura inicial y metadatos esenciales</span>
+                            </button>
+                            <div class="accordion-content">
+                                <p>Aprendes la base de cualquier pagina: doctype, idioma, codificacion y viewport.</p>
+                                <div class="code-block">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;title&gt;Mi pagina&lt;/title&gt;
+  &lt;/head&gt;
+&lt;/html&gt;
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header" type="button">
+                                <span class="module-code">H02</span>
+                                <span class="module-title">Contenido base: texto, listas y enlaces</span>
+                            </button>
+                            <div class="accordion-content">
+                                <p>Construyes contenido legible con encabezados, listas y enlaces con proposito.</p>
+                                <div class="code-block">
+&lt;h2&gt;Temario&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Fundamentos HTML&lt;/li&gt;
+  &lt;li&gt;Semantica&lt;/li&gt;
+&lt;/ul&gt;
+&lt;a href="#htmlLabTitle"&gt;Ir al laboratorio&lt;/a&gt;
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header" type="button">
+                                <span class="module-code">H03</span>
+                                <span class="module-title">Semántica para estructura profesional</span>
+                            </button>
+                            <div class="accordion-content">
+                                <p>Usas etiquetas semanticas para separar secciones y mejorar mantenibilidad.</p>
+                                <div class="code-block">
+&lt;header&gt;Cabecera&lt;/header&gt;
+&lt;nav&gt;Menu principal&lt;/nav&gt;
+&lt;main&gt;
+  &lt;section&gt;Modulo 1&lt;/section&gt;
+&lt;/main&gt;
+&lt;footer&gt;Pie&lt;/footer&gt;
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header" type="button">
+                                <span class="module-code">H04</span>
+                                <span class="module-title">Tablas, imágenes y formularios</span>
+                            </button>
+                            <div class="accordion-content">
+                                <p>Representas datos reales y formularios accesibles con etiquetas y atributos correctos.</p>
+                                <div class="code-block">
+&lt;img src="topologia.png" alt="Topologia de red en estrella"&gt;
 &lt;table&gt;
-  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Módulo&lt;/th&gt;&lt;th&gt;Horas&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-  &lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Redes&lt;/td&gt;&lt;td&gt;160&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;
+  &lt;tr&gt;&lt;th&gt;Servicio&lt;/th&gt;&lt;th&gt;Puerto&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;HTTPS&lt;/td&gt;&lt;td&gt;443&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
+&lt;label for="correo"&gt;Correo&lt;/label&gt;
+&lt;input id="correo" type="email" required&gt;
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <button class="accordion-header" type="button">
+                                <span class="module-code">H05</span>
+                                <span class="module-title">Checklist de calidad antes de entregar</span>
+                            </button>
+                            <div class="accordion-content">
+                                <ul>
+                                    <li>Jerarquia de encabezados sin saltos incoherentes.</li>
+                                    <li>Uso correcto de semantica y atributos globales.</li>
+                                    <li>Accesibilidad basica: alt, label y orden de lectura.</li>
+                                    <li>Preparado para CSS y JavaScript sin estilos inline innecesarios.</li>
+                                </ul>
+                                <div class="code-block">
+Revision rapida:
+- Estructura valida
+- Semantica clara
+- Enlaces y formularios funcionales
+- Integracion limpia con CSS/JS
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </section>
 
-            <div class="accordion-item">
-                <button class="accordion-header">10) Formularios y captura de datos</button>
-                <div class="accordion-content">
-                    <p>Un formulario combina <code>&lt;form&gt;</code>, controles y validación. Asociar <code>&lt;label&gt;</code> con <code>for</code> mejora usabilidad y accesibilidad.</p>
-                    <div class="code-block">
-&lt;form action="/registro" method="post"&gt;
-  &lt;label for="email"&gt;Correo&lt;/label&gt;
-  &lt;input id="email" name="email" type="email" required&gt;
-  &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+                <section class="html-track html-lab" aria-labelledby="htmlLabTitle">
+                    <div class="html-track-header">
+                        <h3 id="htmlLabTitle"><i class="bi bi-terminal"></i> Laboratorio inicial de HTML</h3>
+                        <p>Practica guiada en tres pasos para consolidar la base.</p>
+                    </div>
+                    <div class="html-lab-grid">
+                        <article>
+                            <h4>Paso A: Estructura</h4>
+                            <div class="code-block">
+&lt;header&gt;Curso HTML&lt;/header&gt;
+&lt;main&gt;...&lt;/main&gt;
+&lt;footer&gt;Contacto&lt;/footer&gt;
+                            </div>
+                        </article>
+                        <article>
+                            <h4>Paso B: Datos</h4>
+                            <div class="code-block">
+&lt;table&gt;
+  &lt;tr&gt;&lt;th&gt;Modulo&lt;/th&gt;&lt;th&gt;Estado&lt;/th&gt;&lt;/tr&gt;
+&lt;/table&gt;
+                            </div>
+                        </article>
+                        <article>
+                            <h4>Paso C: Formulario</h4>
+                            <div class="code-block">
+&lt;form&gt;
+  &lt;label for="nombre"&gt;Nombre&lt;/label&gt;
+  &lt;input id="nombre" required&gt;
 &lt;/form&gt;
+                            </div>
+                        </article>
                     </div>
-                </div>
+                    <p class="html-lab-result">Resultado esperado: una pagina HTML5 semantica, valida y lista para aplicar estilos en CSS.</p>
+                </section>
             </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">11) Contenedores genéricos: div y span</button>
-                <div class="accordion-content">
-                    <p><code>&lt;div&gt;</code> agrupa bloques; <code>&lt;span&gt;</code> agrupa contenido en línea. Deben usarse cuando no exista etiqueta semántica más precisa.</p>
-                    <div class="code-block">
-&lt;div class="card"&gt;
-  Estado: &lt;span class="estado estado-ok"&gt;Activo&lt;/span&gt;
-&lt;/div&gt;
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">12) Atributos globales</button>
-                <div class="accordion-content">
-                    <p>Atributos como <code>id</code>, <code>class</code>, <code>title</code>, <code>lang</code>, <code>hidden</code>, <code>tabindex</code> y <code>data-*</code> aplican a múltiples elementos.</p>
-                    <div class="code-block">
-&lt;section id="intro" class="bloque" lang="es" data-modulo="html"&gt;...&lt;/section&gt;
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">13) HTML como lenguaje de marcas (parte 1, 2 y 3)</button>
-                <div class="accordion-content">
-                    <p>El desarrollo completo se articula en tres planos:</p>
-                    <ul>
-                        <li><strong>Parte 1:</strong> sintaxis y estructura mínima de un documento HTML5.</li>
-                        <li><strong>Parte 2:</strong> semántica de contenido y composición de secciones.</li>
-                        <li><strong>Parte 3:</strong> formularios, buenas prácticas y criterios de calidad.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">14) Buenas prácticas universitarias</button>
-                <div class="accordion-content">
-                    <ul>
-                        <li>Priorizar semántica antes que estilos visuales.</li>
-                        <li>Validar el HTML y evitar etiquetas obsoletas.</li>
-                        <li>Garantizar accesibilidad básica (alt, labels, orden lógico).</li>
-                        <li>Separar estructura (HTML), presentación (CSS) y lógica (JS).</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">15) Práctica integrada final</button>
-                <div class="accordion-content">
-                    <p>Proyecto recomendado: construir una página académica que incluya encabezados jerárquicos, navegación por enlaces, tabla de datos, formulario validado y metadatos completos en <code>&lt;head&gt;</code>.</p>
-                    <div class="code-block">
-Checklist de entrega:
-- Estructura HTML5 válida
-- Uso de etiquetas semánticas
-- Formularios con validación
-- Atributos globales bien aplicados
-- Accesibilidad mínima comprobada
-                    </div>
-                </div>
-            </div>
-        </div>
+        </section>
 
         <!-- Glosario (reutilizado de index.html) -->
         <div class="glossary-section" id="glosario">

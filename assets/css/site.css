@@ -1770,6 +1770,9 @@
 .support-note {
     position: relative;
     display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
     justify-content: center;
     margin-top: 0.25rem;
 }
@@ -1794,6 +1797,34 @@
     outline: 2px solid #00ff88;
     outline-offset: 3px;
     border-radius: 0.25rem;
+    color: #ffffff;
+}
+.support-paypal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.95rem;
+    height: 1.95rem;
+    border-radius: 999px;
+    border: 1px solid rgba(143, 216, 255, 0.45);
+    background: rgba(0, 112, 186, 0.3);
+    color: #ffffff;
+    text-decoration: none;
+    transition: transform 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+}
+.support-paypal i {
+    font-size: 1.05rem;
+    line-height: 1;
+}
+.support-paypal:hover {
+    color: #ffffff;
+    background: #0070ba;
+    box-shadow: 0 0 0 3px rgba(0, 112, 186, 0.28);
+    transform: translateY(-1px);
+}
+.support-paypal:focus-visible {
+    outline: 2px solid #8fd8ff;
+    outline-offset: 3px;
     color: #ffffff;
 }
 .support-note-tooltip {
