@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventoy - Tu Navaja Suiza de Arranque</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+    <div class="hero text-center">
+        <h1 class="display-5 fw-bold"><i class="bi bi-usb-drive"></i> Ventoy: Tu Navaja Suiza de Arranque</h1>
+        <p class="lead">Crea un USB multiboot simplemente copiando archivos ISO.</p>
+        <p class="hero-ai-note mb-0">Una herramienta indispensable para cualquier técnico o entusiasta.</p>
+    </div>
+
+    <div class="container py-4">
+
+        <div class="card-custom mb-4">
+            <div class="card-header-custom"><i class="bi bi-question-circle"></i> ¿Qué es Ventoy y por qué es tan útil?</div>
+            <div class="card-body">
+                <p><strong>Ventoy es una herramienta de código abierto que te permite crear una unidad USB de arranque para archivos ISO/WIM/IMG/VHD(x)/EFI.</strong> A diferencia de otras herramientas que requieren formatear el pendrive cada vez que quieres usar una nueva ISO, con Ventoy el proceso es radicalmente simple:</p>
+                <ol>
+                    <li>Instalas Ventoy en el USB una sola vez.</li>
+                    <li>Copias y pegas tantos archivos ISO como quepan en el pendrive.</li>
+                    <li>Arrancas el ordenador desde el USB y Ventoy te presentará un menú con todas las ISOs que has copiado, listas para ser ejecutadas.</li>
+                </ol>
+                <p class="mb-0">Esto lo convierte en una "navaja suiza" digital, permitiéndote llevar en un solo pendrive múltiples sistemas operativos (Windows, Linux), herramientas de diagnóstico y rescate.</p>
+            </div>
+        </div>
+
+        <h2 class="section-title mt-4"><i class="bi bi-gear-wide-connected"></i> Cómo crear tu USB con Ventoy</h2>
+        <div class="row g-4">
+            <div class="col-lg-7">
+                <div class="card-custom h-100">
+                    <div class="card-header-custom"><i class="bi bi-pc-display"></i> Pasos de Instalación</div>
+                    <div class="card-body">
+                        <p>El proceso es muy sencillo:</p>
+                        <ol>
+                            <li>Ve a la <a href="https://www.ventoy.net/en/download.html" target="_blank">página oficial de descargas de Ventoy</a> y baja la versión para tu sistema operativo (Windows o Linux).</li>
+                            <li>Descomprime el archivo y ejecuta <code>Ventoy2Disk.exe</code> (en Windows) o el script correspondiente en Linux.</li>
+                            <li>Asegúrate de que tu pendrive esté conectado. El programa debería detectarlo automáticamente.</li>
+                            <li>Haz clic en <strong>Install</strong>. <strong>¡Atención! Esto borrará todo el contenido del pendrive.</strong></li>
+                            <li>Una vez finalizado, tu pendrive tendrá dos particiones: una pequeña para Ventoy y el resto del espacio disponible para que arrastres tus archivos ISO.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="card-custom h-100">
+                     <div class="card-header-custom"><i class="bi bi-file-earmark-zip"></i> Medicat: El kit de herramientas definitivo</div>
+                     <div class="card-body">
+                         <p><strong>Medicat (o MediCat USB)</strong> es una colección masiva de herramientas de diagnóstico y reparación de ordenadores, empaquetada en una ISO de arranque.</p>
+                         <p>Es el compañero perfecto para Ventoy. Incluye:</p>
+                         <ul>
+                             <li>Antivirus y herramientas de eliminación de malware.</li>
+                             <li>Software de particionado y clonado de discos.</li>
+                             <li>Herramientas de recuperación de datos.</li>
+                             <li>Tests de estrés para hardware (RAM, CPU).</li>
+                             <li>Un entorno Windows PE para reparaciones.</li>
+                         </ul>
+                         <p class="mb-0">Simplemente descarga la ISO de Medicat y cópiala a tu pendrive Ventoy para tener un completo taller de reparación en tu bolsillo.</p>
+                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-custom mt-4">
+            <div class="card-header-custom"><i class="bi bi-shield-check"></i> La importancia de un arsenal actualizado</div>
+            <div class="card-body">
+                <p>Tener un pendrive con Ventoy no es solo para una emergencia. Es una herramienta proactiva. Se recomienda tener siempre:</p>
+                <ul>
+                    <li><strong>Últimas versiones de Windows:</strong> Para instalaciones limpias o reparaciones del sistema.</li>
+                    <li><strong>Distribuciones de Linux populares:</strong> Como Ubuntu, Mint o Manjaro. Son excelentes para recuperar datos de un sistema Windows que no arranca, o para mostrar a un cliente las bondades del software libre.</li>
+                    <li><strong>Herramientas de limpieza y rescate:</strong> Como la ya mencionada Medicat, o ISOs específicas como GParted (para particionar) o Clonezilla (para clonar discos).</li>
+                </ul>
+                <p class="mb-0">Mantener estas ISOs actualizadas te asegura estar preparado para casi cualquier escenario, desde un virus hasta un fallo de disco duro o una simple reinstalación.</p>
+            </div>
+        </div>
+        
+        <div class="card-custom mt-4">
+            <div class="card-header-custom"><i class="bi bi-bootstrap-reboot"></i> Arrancando desde el USB: Pasos en la BIOS/UEFI</div>
+            <div class="card-body">
+                <p>Para que el ordenador arranque desde tu pendrive Ventoy, necesitas indicárselo a la BIOS o UEFI (el sistema de arranque básico del ordenador).</p>
+                <div class="code-block"># Pasos Generales
+1) Inserta el USB en el ordenador APAGADO.
+2) Enciéndelo y presiona repetidamente la tecla de acceso a la BIOS/UEFI.
+   - Teclas comunes: Supr, F2, F10, F12, Esc. (Varía según el fabricante).
+
+3) Una vez dentro, busca la sección "Boot" o "Arranque".
+
+4) Cambia el orden de arranque (Boot Order / Boot Priority) para poner el USB en primer lugar.
+   - El pendrive puede aparecer como "USB-HDD", "USB Drive" o el nombre del dispositivo.
+
+5) Guarda los cambios y sal (Save & Exit). El ordenador se reiniciará.
+
+# Atajo: Menú de Arranque (Boot Menu)
+- Muchos equipos tienen un menú de arranque rápido (teclas comunes: F8, F11, F12, Esc).
+- Púlsala durante el inicio y podrás elegir el USB directamente sin cambiar la configuración de la BIOS.</div>
+                <p class="mb-0">Una vez el ordenador arranque desde el USB, verás el menú de Ventoy con la lista de tus ISOs. ¡Solo tienes que elegir una y empezar!</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/site-sfx.js"></script>
+    <script src="assets/js/site-theme.js"></script>
+</body>
+</html>
