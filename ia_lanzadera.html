@@ -13,8 +13,8 @@
 <body>
     <div class="hero text-center">
         <h1 class="display-5 fw-bold"><i class="bi bi-stars"></i> Lanzadera de IA</h1>
-        <p class="lead">Acceso rápido a asistentes y plataformas de IA actuales para estudiar, crear y automatizar.</p>
-        <p class="hero-ai-note mb-0">Hecha como panel central: chat IA, vídeo IA, OpenClaw y recursos clave.</p>
+        <p class="lead">Acceso rápido a las plataformas de IA que conozco.</p>
+        <p class="hero-ai-note mb-0">Deepseek ha conseguido que no tengamos que pagar subscripcion... de momento... Yo tengo ollama en mi maquina y vosotros?</p>
     </div>
 
     <div class="container py-4">
@@ -299,47 +299,29 @@ curl http://localhost:11434/api/generate -d "{\"model\":\"llama3.1\",\"prompt\":
             </div>
         </div>
 
-        <h2 class="section-title mt-4"><i class="bi bi-joystick"></i> OpenClaw: vídeos, descarga e instalación</h2>
+        <h2 class="section-title mt-4"><i class="bi bi-robot"></i> Clawdbot: vídeo y enlaces</h2>
         <div class="row g-4">
             <div class="col-lg-8">
                 <div class="video-embed ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/yLKuq6SpMfs" title="OpenClaw video" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/yLKuq6SpMfs" title="Clawdbot video" allowfullscreen></iframe>
                 </div>
-                <p class="mt-2 mb-0 small">Vídeo de referencia: OpenClaw (Captain Claw reimplementation).</p>
+                <p class="mt-2 mb-0 small">Vídeo de referencia del canal <a href="https://www.youtube.com/@InteligenciaArtificial" target="_blank" rel="noopener noreferrer">Inteligencia Artificial</a>.</p>
+                <div class="alert alert-warning mt-3">
+                    <i class="bi bi-exclamation-triangle-fill"></i> <strong>Nota:</strong> Si ves un "Error 153" o un error de configuración del reproductor, puedes <a href="https://www.youtube.com/watch?v=yLKuq6SpMfs" target="_blank" rel="noopener noreferrer">ver el vídeo directamente en YouTube</a>.
+                </div>
             </div>
             <div class="col-lg-4">
                 <div class="card-custom h-100">
-                    <div class="card-header-custom"><i class="bi bi-download"></i> Descarga</div>
+                    <div class="card-header-custom"><i class="bi bi-box-arrow-up-right"></i> Enlaces</div>
                     <div class="card-body">
-                        <p><a href="https://docs.openclaw.ai/install/index">Instalación OpenClaw (docs)</a></p>
-                        <p><a href="https://github.com/pjasicek/OpenClaw">Repositorio OpenClaw (GitHub)</a></p>
-                        <p><a href="https://www.youtube.com/results?search_query=OpenClaw+tutorial">Más vídeos OpenClaw (YouTube)</a></p>
+                        <p><a href="https://www.youtube.com/@InteligenciaArtificial" target="_blank" rel="noopener noreferrer">Canal de "Inteligencia Artificial" en YouTube</a></p>
+                        <p><a href="https://www.youtube.com/watch?v=yLKuq6SpMfs" target="_blank" rel="noopener noreferrer">Ver vídeo directamente en YouTube</a></p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="card-custom mt-4">
-            <div class="card-header-custom"><i class="bi bi-terminal"></i> Tutorial rápido de instalación OpenClaw</div>
-            <div class="card-body">
-                <p>Instalación orientada a CLI (según documentación pública):</p>
-                <div class="code-block"># 1) Instalar (macOS/Linux/WSL2)
-curl -fsSL https://openclaw.ai/install.sh | bash
 
-# En Windows PowerShell (alternativa)
-iwr -useb https://openclaw.ai/install.ps1 | iex
-
-# 2) Asistente de configuración
-openclaw onboard --install-daemon
-
-# 3) Comprobar estado del gateway
-openclaw gateway status
-
-# 4) Abrir panel local
-openclaw dashboard</div>
-                <p class="mb-0">Tip: en Windows normalmente se recomienda WSL2 para una instalación más estable.</p>
-            </div>
-        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
