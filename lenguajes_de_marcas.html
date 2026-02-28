@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -17,6 +17,28 @@
     <!-- Animacion Mr. Robot (se desvanece tras 15s) -->
     <div id="mr-robot-glitch">Hello, friend</div>
     <!-- Navbar Neón (idéntico al de las demás páginas) -->
+    <nav class="navbar-neon navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="neon-text" href="index.html">
+                <span class="brand-icon"><i class="bi bi-house-door"></i></span>
+                <span class="brand-label">SOURCE-IT</span>
+            </a>
+            <button class="navbar-toggler navbar-toggler-neon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHTML" aria-controls="navbarHTML" aria-expanded="false" aria-label="Abrir navegacion">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarHTML">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link-neon" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="dummies.html">Dummies Web</a></li>
+                    <li class="nav-item"><a class="nav-link-neon active" href="lenguajes_de_marcas.html">HTML</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="Css_basico.html">CSS</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="javascript.html">JavaScript</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="python.html">Python</a></li>
+                    <li class="nav-item"><a class="nav-link-neon" href="java.html">Java</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <!-- Hero -->
     <div class="hero text-center">
         <h1 class="display-4 fw-bold"><i class="bi bi-code-square"></i> Lenguajes de Marcas</h1>
@@ -514,6 +536,19 @@ Revision rapida:
                 </div>
             </div>
         </div>
+
+        <section class="fullstack-nav">
+            <div class="fullstack-nav-inner">
+                <div class="fullstack-nav-step">
+                    <span class="fullstack-nav-label">Paso anterior</span>
+                    <a href="dummies.html" class="fullstack-nav-title">Dummies Web</a>
+                </div>
+                <div class="fullstack-nav-step">
+                    <span class="fullstack-nav-label">Siguiente paso</span>
+                    <a href="Css_basico.html" class="fullstack-nav-title">CSS Básico</a>
+                </div>
+            </div>
+        </section>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

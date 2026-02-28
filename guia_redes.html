@@ -48,7 +48,221 @@
                 <p class="mb-0"><strong>Comprender la evolución de las redes te sitúa en contexto para dominar tecnologías como subnetting, DHCP, DNS y las futuras innovaciones.</strong></p>
             </div>
         </div>
-    
+            <!-- PARTE IV: SSH y Acceso Remoto -->
+        <h2 class="section-title" id="ssh"><i class="bi bi-shield-lock"></i> Parte IV: SSH y Acceso Remoto</h2>
+
+        <!-- 19. Qué es SSH e historia -->
+        <div class="card-custom">
+            <div class="card-header-custom">
+                <i class="bi bi-question-circle"></i> 19. ¿Qué es SSH?
+            </div>
+            <div class="card-body p-4">
+                <p>
+                    <strong>SSH (Secure Shell)</strong> es un protocolo que permite abrir una consola remota cifrada
+                    contra un equipo (router, switch, servidor…). Nació para sustituir a Telnet, que enviaba usuario
+                    y contraseña en texto plano.
+                </p>
+                <p>
+                    A mediados de los 90, <strong>Tatu Ylönen</strong> desarrolló SSH para proteger accesos remotos
+                    en redes inseguras. Desde entonces se ha convertido en el estándar para administrar sistemas Linux,
+                    routers y equipos de red a través de Internet o redes corporativas.
+                </p>
+                <ul>
+                    <li><strong>Puerto típico:</strong> 22/TCP (puede cambiarse por seguridad/política).</li>
+                    <li><strong>Autenticación:</strong> usuario/contraseña o claves públicas (llave privada + llave pública).</li>
+                    <li><strong>Usos:</strong> administración remota, túneles cifrados (port forwarding), copia de ficheros (SCP/SFTP).</li>
+                </ul>
+                <div class="alert alert-info-custom alert-custom mt-3">
+                    <strong>Idea clave:</strong> con SSH tienes una consola como si estuvieras delante del equipo, pero de forma cifrada.
+                </div>
+            </div>
+        </div>
+
+        <!-- 20. PuTTY: cliente SSH para Windows -->
+        <div class="card-custom">
+            <div class="card-header-custom">
+                <i class="bi bi-pc-display"></i> 20. PuTTY: cliente SSH para Windows
+            </div>
+            <div class="card-body p-4">
+                <p>
+                    <strong>PuTTY</strong> es uno de los clientes SSH más usados en Windows. Permite conectarse por
+                    SSH, Telnet, Serial, etc., a routers, switches y servidores.
+                </p>
+                <p>
+                    <strong>Descarga oficial:</strong>
+                    <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html" target="_blank" rel="noopener noreferrer">
+                        Página oficial de PuTTY
+                    </a>
+                </p>
+                <h5>Uso básico de PuTTY</h5>
+                <ol>
+                    <li>Instala PuTTY desde la web oficial (versión Windows 64‑bit recomendada).</li>
+                    <li>Abre <strong>PuTTY</strong>.</li>
+                    <li>En <strong>Host Name (or IP address)</strong>, pon la IP o nombre del equipo (ej. <code>192.168.1.1</code>).</li>
+                    <li>En <strong>Port</strong>, deja <code>22</code> salvo que el dispositivo use otro puerto.</li>
+                    <li>En <strong>Connection type</strong>, selecciona <strong>SSH</strong>.</li>
+                    <li>
+                        Opcional: en <strong>Saved Sessions</strong>, escribe un nombre (ej. <code>router-cisco-lab</code>) y pulsa
+                        <strong>Save</strong> para no reescribir datos cada vez.
+                    </li>
+                    <li>Pulsa <strong>Open</strong>, acepta la clave del host la primera vez y luego introduce usuario y contraseña.</li>
+                </ol>
+                <div class="code-block">
+# Ejemplos de sesiones típicas en PuTTY
+Host: 192.168.1.1   Port: 22   Connection type: SSH   (router Cisco)
+Host: 192.168.1.2   Port: 22   Connection type: SSH   (router Teldat)
+Host: 192.168.88.1  Port: 22   Connection type: SSH   (router MikroTik)
+                </div>
+            </div>
+        </div>
+
+        <!-- 21. Comandos SSH desde terminal -->
+        <div class="card-custom">
+            <div class="card-header-custom">
+                <i class="bi bi-terminal"></i> 21. Comandos SSH desde terminal
+            </div>
+            <div class="card-body p-4">
+                <p>
+                    En Linux, macOS o Windows con OpenSSH instalado puedes usar SSH directamente desde la consola:
+                </p>
+                <div class="code-block">
+# Conexión básica
+ssh usuario@192.168.1.1
+
+# Especificar puerto (ej. 2222)
+ssh -p 2222 usuario@192.168.1.1
+
+# Conexión con clave privada
+ssh -i ~/.ssh/id_rsa usuario@192.168.1.1
+                </div>
+                <p>
+                    Para usar claves, primero generas el par en tu equipo (por ejemplo, con <code>ssh-keygen</code>) y
+                    registras la clave pública en el dispositivo al que te conectas.
+                </p>
+            </div>
+        </div>
+
+        <!-- 22. Ejemplos con routers Cisco, Teldat y MikroTik -->
+        <div class="card-custom">
+            <div class="card-header-custom">
+                <i class="bi bi-router"></i> 22. Ejemplos SSH con routers (Cisco, Teldat, MikroTik)
+            </div>
+            <div class="card-body p-4">
+                <h5>Cisco IOS</h5>
+                <p><strong>Conexión:</strong></p>
+                <div class="code-block">
+ssh admin@192.168.1.1
+                </div>
+                <p><strong>Comandos básicos:</strong></p>
+                <div class="code-block">
+enable                     # modo privilegiado
+show running-config        # ver configuración actual
+show ip interface brief    # resumen interfaces
+configure terminal         # entrar en modo configuración
+write memory               # guardar cambios
+                </div>
+
+                <h5 class="mt-3">Teldat</h5>
+                <p><strong>Conexión:</strong></p>
+                <div class="code-block">
+ssh admin@192.168.1.2
+                </div>
+                <p><strong>Comandos típicos:</strong></p>
+                <div class="code-block">
+show running-config
+show ip interfaces
+configure terminal
+commit                     # confirmar cambios (en modelos que lo usan)
+                </div>
+
+                <h5 class="mt-3">MikroTik (RouterOS)</h5>
+                <p><strong>Conexión:</strong></p>
+                <div class="code-block">
+ssh admin@192.168.88.1
+                </div>
+                <p><strong>Comandos básicos RouterOS:</strong></p>
+                <div class="code-block">
+/interface print
+/ip address print
+/ip route print
+/user print
+/export hide-sensitive
+                </div>
+
+                <div class="alert alert-warning-custom alert-custom mt-3">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <strong>Buenas prácticas:</strong> cambia usuarios por defecto, usa contraseñas robustas,
+                    restringe el acceso SSH por IP y, si es posible, usa autenticación por clave pública.
+                </div>
+            </div>
+        </div>
+
+        <!-- 23. Buen uso y configuración segura de SSH -->
+        <div class="card-custom">
+            <div class="card-header-custom">
+                <i class="bi bi-gear"></i> 23. Buenas prácticas de uso de SSH
+            </div>
+            <div class="card-body p-4">
+                <ul>
+                    <li><strong>Desactiva Telnet</strong> cuando puedas; deja solo SSH para administración remota.</li>
+                    <li><strong>Crea usuarios específicos</strong> para administración en lugar de usar siempre el admin por defecto.</li>
+                    <li><strong>Restringe el acceso</strong> con ACL o firewall (por ejemplo, solo desde la red de administración).</li>
+                    <li><strong>Cambia el puerto</strong> por defecto si la política de la empresa lo permite y documenta el cambio.</li>
+                    <li><strong>Usa claves públicas</strong> en entornos críticos en vez de solo usuario/contraseña.</li>
+                    <li><strong>Documenta</strong> IP, puerto, usuarios y cambios hechos en cada router/servidor.</li>
+                </ul>
+                <div class="code-block">
+# Ejemplo (muy genérico) de pasos en un router:
+1) Habilitar SSH y crear usuario
+2) Deshabilitar Telnet en líneas VTY
+3) Limitar acceso SSH por ACL / firewall
+4) Probar acceso desde red de gestión
+5) Documentar cambios
+                </div>
+            </div>
+        </div>
+
+        <!-- 24. AnyDesk y asistencia remota -->
+        <div class="card-custom">
+            <div class="card-header-custom">
+                <i class="bi bi-person-video"></i> 24. AnyDesk y asistencia remota
+            </div>
+            <div class="card-body p-4">
+                <p>
+                    A veces, además de consola o SSH, necesitas ver el escritorio del usuario. Para eso se usan
+                    herramientas de <strong>asistencia remota</strong> como AnyDesk.
+                </p>
+                <p>
+                    <strong>Descarga AnyDesk:</strong>
+                    <a href="https://anydesk.com/es/downloads" target="_blank" rel="noopener noreferrer">
+                        Página oficial de descarga de AnyDesk
+                    </a>
+                </p>
+
+                <h5>Cómo recibir soporte (usuario final)</h5>
+                <ol>
+                    <li>Descarga e instala AnyDesk desde la página oficial.</li>
+                    <li>Abre AnyDesk y localiza tu <strong>dirección AnyDesk</strong> (código numérico o alfanumérico).</li>
+                    <li>Comparte ese código solo con la persona o empresa que te va a dar soporte.</li>
+                    <li>Cuando aparezca la solicitud de conexión, revisa el nombre del equipo remoto y pulsa <strong>Aceptar</strong>.</li>
+                    <li>Al terminar, cierra AnyDesk o revisa que no queden permisos activos que no necesites.</li>
+                </ol>
+
+                <h5>Cómo dar soporte remoto (técnico)</h5>
+                <ol>
+                    <li>Pide al usuario que instale/abra AnyDesk y te indique su dirección.</li>
+                    <li>En tu AnyDesk, escribe esa dirección y pulsa <strong>Conectar</strong>.</li>
+                    <li>Espera a que el usuario acepte la conexión y los permisos de control de teclado/ratón.</li>
+                    <li>Explica siempre qué vas a hacer (cambios en red, instalación de software, etc.).</li>
+                    <li>Al finalizar, cierra la sesión y verifica con el usuario que todo funciona correctamente.</li>
+                </ol>
+
+                <div class="alert alert-info-custom alert-custom mt-3">
+                    <strong>Seguridad:</strong> no guardes contraseñas en texto plano durante una sesión remota,
+                    pide autorización explícita para acceder a datos sensibles y respeta siempre la política de la empresa/cliente.
+                </div>
+            </div>
+        </div>
     <div class="container py-4">
         <!-- Aviso de VirtualBox -->
         <div class="alert alert-info d-flex align-items-center" role="alert">
