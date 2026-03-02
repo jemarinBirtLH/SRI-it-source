@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -12,284 +12,319 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/site.css">
     <link rel="stylesheet" href="./assets/css/pages/index.css">
+    <style id="intro-animation-style">
+        #animation-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: black;
+            z-index: 9999;
+            font-family: monospace;
+            margin: 0;
+            overflow: hidden;
+        }
+        #animation-wrapper.hidden {
+            display: none;
+        }
+        #animation-wrapper canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #animation-wrapper #title-anim {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00ff9c;
+            font-size: 60px;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px #00ff9c;
+            opacity: 0;
+            animation: appear 3s forwards;
+            animation-delay: 4s;
+        }
+        #animation-wrapper #subtitle-anim {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00ffaa;
+            font-size: 24px;
+            opacity: 0;
+            text-shadow: 0 0 10px #00ffaa;
+            animation: appear 3s forwards;
+            animation-delay: 6s;
+        }
+        @keyframes appear {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -40%);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Animacion Mr. Robot (frase aleatoria + baile 4s) -->
-    <div id="mr-robot-glitch">🤖 Hello, friend</div>
-
-    <!-- Navbar Neón -->
-    <nav class="navbar-neon navbar navbar-expand-lg sticky-top">
-        <div class="container">
-            <a class="neon-text" href="index.html">
-                <span class="brand-icon"><i class="bi bi-house-door"></i></span>
-                <span class="brand-label">SOURCE-IT</span>
-            </a>
-            <button class="navbar-toggler navbar-toggler-neon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir navegacion" >
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link-neon" href="guia_redes.html">Redes</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="replanteos_red.html">Replanteos</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="linux_cheatsheet.html">Linux</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="virtualbox.html">VirtualBox</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="ventoy.html">Ventoy</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="conversor_binario_hexadecimal.html">Conversor</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="MySQL.html">MySQL</a></li>
-                                        <li class="nav-item">
-                        <a class="nav-link-neon" href="index.html#fullstack-card">FullStack</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link-neon" href="figma.html">Figma</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="hacking_etico.html">Hacking Ético</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="ia_lanzadera.html">IA</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="freeplane.html">Freeplane</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="visualstudio_code.html">Visual Studio Code</a></li>
-                    <li class="nav-item"><a class="nav-link-neon" href="git_github.html">Git/GitHub</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container-fluid app-shell py-4">
-        <div id="homeHero" class="hero text-center mb-5">
-            <h1 class="hero-sourceit">
-                <span class="brand-icon"><i class="bi bi-house-door"></i></span>
-                <span class="brand-label">SOURCE-IT</span>
-                <span class="hero-tagline">My Path by Jemarin</span>
-            </h1>
-            <p class="mb-0">Guía de recursos educativos(mis apuntes) en una sola ventana. Contactame si crees que algo es erroneo o debe mejorarse, Eskerrik asko!.</p>
-        </div>
-        <section class="sections-board">
-        <div id="homeGrid" class="row g-4">
-            <!-- panel de búsqueda integrado -->
-            <div class="col-12">
-                <div id="homeSearchPanel" class="home-search-panel">
-                    <label for="homeSearchInput" class="home-search-title">Buscar en el sitio</label>
-                    <input type="search" id="homeSearchInput" class="form-control home-search-input" placeholder="Escribe para buscar..." aria-label="Buscar en la página de inicio">
-                    <p id="homeSearchMeta" class="home-search-meta">0 resultados</p>
-                    <div id="homeSearchResults" class="home-search-results" aria-label="Resultados de búsqueda"></div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100 p-4 text-center">
-                    <i class="bi bi-diagram-3 fs-1"></i>
-                    <h3 class="mt-3">Redes</h3>
-                    <p>Subnetting, VLSM, DHCP, DNS y calculadora IP.</p>
-                    <a href="guia_redes.html" class="btn btn-outline-primary mt-3">Acceder</a>
-                </div>
-            </div>
-            <!-- tarjeta independiente para calculadora IP -->
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100 p-4 text-center">
-                    <i class="bi bi-calculator fs-1"></i>
-                    <h3 class="mt-3">Calculadora IP</h3>
-                    <p>Calcula subredes, rangos y hosts de manera interactiva.</p>
-                    <a href="guia_redes.html#calculadora" class="btn btn-outline-primary mt-3">Usar</a>
-                </div>
-            </div>
-            <!-- tarjeta VS Code -->
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100 p-4 text-center">
-                    <i class="bi bi-code-slash fs-1"></i>
-                    <h3 class="mt-3">Visual Studio Code</h3>
-                    <p>Editor gratuito con extensiones, themes y asistentes AI (Visual Studio Code).</p>
-                    <a href="visualstudio_code.html" class="btn btn-outline-primary mt-3">Abrir</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100 p-4 text-center">
-                    <i class="bi bi-diagram-2 fs-1"></i>
-                    <h3 class="mt-3">Replanteos</h3>
-                    <p>Casos de replanteo de red en infraestructuras grandes, anonimizados para portfolio.</p>
-                    <a href="replanteos_red.html" class="btn btn-outline-primary mt-3">Acceder</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100 p-4 text-center">
-                    <i class="bi bi-terminal fs-1"></i>
-                    <h3 class="mt-3">Linux</h3>
-                    <p>Comandos esenciales, shell, permisos, y cheatsheets.</p>
-                    <a href="linux_cheatsheet.html" class="btn btn-outline-primary mt-3">Acceder</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100 p-4 text-center">
-                    <i class="bi bi-hdd-stack fs-1"></i>
-                    <h3 class="mt-3">VirtualBox</h3>
-                    <p>Crea máquinas virtuales con Debian 13 y configura redes.</p>
-                    <a href="virtualbox.html" class="btn btn-outline-primary mt-3">Acceder</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100 p-4 text-center">
-                    <i class="bi bi-usb-drive fs-1"></i>
-                    <h3 class="mt-3">Ventoy</h3>
-                    <p>Crea un USB multiboot con Windows, Linux y herramientas de rescate.</p>
-                    <a href="ventoy.html" class="btn btn-outline-primary mt-3">Acceder</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100 p-4 text-center">
-                    <i class="bi bi-arrow-left-right fs-1"></i>
-                    <h3 class="mt-3">Conversor</h3>
-                    <p>Binario a hexadecimal con explicación paso a paso.</p>
-                    <a href="conversor_binario_hexadecimal.html" class="btn btn-outline-primary mt-3">Acceder</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100 p-4 text-center">
-                    <i class="bi bi-database-gear fs-1"></i>
-                    <h3 class="mt-3">MySQL</h3>
-                    <p>Gestión de usuarios, permisos y vistas en MySQL.</p>
-                    <a href="MySQL.html" class="btn btn-outline-primary mt-3">Acceder</a>
-                </div>
-            </div>
-            <!-- tarjeta FullStack agrupando lenguajes, CSS, JavaScript y Python -->
-            <div class="col-md-6 col-lg-3" id="fullstack-card">
-                <div class="card h-100 p-4 text-center">
-                    <i class="bi bi-layers fs-1"></i>
-                    <h3 class="mt-3">FullStack</h3>
-                    <p>Agrupa recursos para desarrollo web completo.</p>
-                    <div class="dropdown mt-3">
-                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="fullStackDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            Seleccionar
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="fullStackDropdown">
-                            <li><a class="dropdown-item" href="dummies.html">Dummies Web</a></li>
-                            <li><a class="dropdown-item" href="lenguajes_de_marcas.html">Lenguajes</a></li>
-                            <li><a class="dropdown-item" href="Css_basico.html">CSS Básico</a></li>
-                            <li><a class="dropdown-item" href="javascript.html">JavaScript</a></li>
-                            <li><a class="dropdown-item" href="python.html">Python</a></li>
-                            <li><a class="dropdown-item" href="java.html">Java</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100 p-4 text-center">
-                    <i class="bi bi-palette2 fs-1"></i>
-                    <h3 class="mt-3">Figma</h3>
-                    <p>Diseño UI, prototipado, auto layout y trabajo colaborativo con hand-off para desarrollo.</p>
-                    <a href="figma.html" class="btn btn-outline-primary mt-3">Acceder</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100 p-4 text-center">
-                    <i class="bi bi-shield-lock fs-1"></i>
-                    <h3 class="mt-3">Hacking Ético</h3>
-                    <p>Conceptos, Wi-Fi, herramientas y comandos para auditoría autorizada.</p>
-                    <a href="hacking_etico.html" class="btn btn-outline-primary mt-3">Acceder</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100 p-4 text-center">
-                    <i class="bi bi-stars fs-1"></i>
-                    <h3 class="mt-3">IA Lanzadera</h3>
-                    <p>Chatbots, vídeo IA, OpenClaw y plataformas creativas en un solo panel.</p>
-                    <a href="ia_lanzadera.html" class="btn btn-outline-primary mt-3">Acceder</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100 p-4 text-center">
-                    <i class="bi bi-diagram-3 fs-1"></i>
-                    <h3 class="mt-3">Freeplane</h3>
-                    <p>Mapas mentales, atajos y ejemplos para gestionar ideas gráficamente.</p>
-                    <a href="freeplane.html" class="btn btn-outline-primary mt-3">Acceder</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100 p-4 text-center">
-                    <i class="bi bi-robot fs-1"></i>
-                    <h3 class="mt-3">Clawdbot</h3>
-                    <p>Instalación segura de Clawdbot en Windows 11.</p>
-                    <a href="clawdbot.html" class="btn btn-outline-primary mt-3">Acceder</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="card h-100 p-4 text-center">
-                    <i class="bi bi-git fs-1"></i>
-                    <h3 class="mt-3">Git/GitHub</h3>
-                    <p>Instalación, comandos, repos útiles y flujo de trabajo para colaborar.</p>
-                    <a href="git_github.html" class="btn btn-outline-primary mt-3">Acceder</a>
-                </div>
-            </div>
-        </div>
-        <main id="spaContent" class="d-none mt-4"></main>
-        </section>
-        <div class="alert alert-success-custom alert-custom mt-4 text-center">
-            <strong>Contáctame:</strong> <a href="mailto:jemarin@birt.eus">jemarin@birt.eus</a> |
-            <strong>Discord:</strong> <a href="https://discord.gg/byCRavuB7e" target="_blank" rel="noopener noreferrer">discord.gg/byCRavuB7e</a>
-        </div>
+    <div id="animation-wrapper">
+        <canvas id="matrix"></canvas>
+        <div id="title-anim">ACCESS GRANTED</div>
+        <div id="subtitle-anim">Source IT by Jemarin</div>
     </div>
 
-    <footer class="bg-dark text-white text-center py-4 mt-5">
-        <p class="mb-1 d-inline-flex align-items-center gap-2">
-            <span>Created by Jemarin, si me tocas el pingüino cambio de color ^^</span>
-            <button id="themeToggle" class="theme-btn btn ms-1" title="Cambiar tema">
-                <span class="penguin" aria-hidden="true">&#128039;</span>
-                <span class="visually-hidden">Cambiar tema</span>
-            </button>
-        </p>
-        
-        <small class="support-note">
-            <button type="button" class="support-note-trigger" aria-describedby="supportNoteTooltip">¿Necesitas soporte técnico? Mi hucha y tu red te lo agradecen.</button>
-            <a class="support-paypal" href="https://paypal.me/jemarin81" target="_blank" rel="noopener noreferrer" aria-label="Apoyar por PayPal">
-                <i class="bi bi-paypal" aria-hidden="true"></i>
-                <span class="visually-hidden">Apoyar por PayPal</span>
-            </a>
-            <span class="support-funds-note">Las donaciones servirán para mantener este proyecto y cubrir sus costes.</span>
-            <span id="supportNoteTooltip" class="support-note-tooltip" role="tooltip">Si tienes problemas con la red o con tus equipos, no dudes en contactarme.</span>
-        </small>
-    </footer>
+    <!-- Contenido principal de la página, inicialmente no visible pero presente -->
+    <div id="main-container" style="visibility: hidden;">
+        <div id="mr-robot-glitch">🤖 Hello, friend</div>
+        <nav class="navbar-neon navbar navbar-expand-lg sticky-top">
+            <div class="container">
+                <a class="neon-text" href="index.html">
+                    <span class="brand-icon"><i class="bi bi-house-door"></i></span>
+                    <span class="brand-label">SOURCE-IT</span>
+                </a>
+                <button class="navbar-toggler navbar-toggler-neon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir navegacion">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item"><a class="nav-link-neon" href="guia_redes.html">Redes</a></li>
+                        <li class="nav-item"><a class="nav-link-neon" href="replanteos_red.html">Replanteos</a></li>
+                        <li class="nav-item"><a class="nav-link-neon" href="linux_cheatsheet.html">Linux</a></li>
+                        <li class="nav-item"><a class="nav-link-neon" href="virtualbox.html">VirtualBox</a></li>
+                        <li class="nav-item"><a class="nav-link-neon" href="ventoy.html">Ventoy</a></li>
+                        <li class="nav-item"><a class="nav-link-neon" href="conversor_binario_hexadecimal.html">Conversor</a></li>
+                        <li class="nav-item"><a class="nav-link-neon" href="MySQL.html">MySQL</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link-neon" href="index.html#fullstack-card">FullStack</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link-neon" href="figma.html">Figma</a></li>
+                        <li class="nav-item"><a class="nav-link-neon" href="hacking_etico.html">Hacking Ético</a></li>
+                        <li class="nav-item"><a class="nav-link-neon" href="ia_lanzadera.html">IA</a></li>
+                        <li class="nav-item"><a class="nav-link-neon" href="freeplane.html">Freeplane</a></li>
+                        <li class="nav-item"><a class="nav-link-neon" href="visualstudio_code.html">Visual Studio Code</a></li>
+                        <li class="nav-item"><a class="nav-link-neon" href="git_github.html">Git/GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid app-shell py-4">
+            <div id="homeHero" class="hero text-center mb-5">
+                <h1 class="hero-sourceit">
+                    <span class="brand-icon"><i class="bi bi-house-door"></i></span>
+                    <span class="brand-label">SOURCE-IT</span>
+                    <span class="hero-tagline">My Path by Jemarin</span>
+                </h1>
+                <p class="mb-0">Guía de recursos educativos(mis apuntes) en una sola ventana. Contactame si crees que algo es erroneo o debe mejorarse, Eskerrik asko!.</p>
+            </div>
+            <section class="sections-board">
+                <div id="homeGrid" class="row g-4">
+                    <div class="col-12">
+                        <div id="homeSearchPanel" class="home-search-panel">
+                            <label for="homeSearchInput" class="home-search-title">Buscar en el sitio</label>
+                            <input type="search" id="homeSearchInput" class="form-control home-search-input" placeholder="Escribe para buscar..." aria-label="Buscar en la página de inicio">
+                            <p id="homeSearchMeta" class="home-search-meta">0 resultados</p>
+                            <div id="homeSearchResults" class="home-search-results" aria-label="Resultados de búsqueda"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 p-4 text-center">
+                            <i class="bi bi-diagram-3 fs-1"></i>
+                            <h3 class="mt-3">Redes</h3>
+                            <p>Subnetting, VLSM, DHCP, DNS y calculadora IP.</p>
+                            <a href="guia_redes.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 p-4 text-center">
+                            <i class="bi bi-calculator fs-1"></i>
+                            <h3 class="mt-3">Calculadora IP</h3>
+                            <p>Calcula subredes, rangos y hosts de manera interactiva.</p>
+                            <a href="guia_redes.html#calculadora" class="btn btn-outline-primary mt-3">Usar</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 p-4 text-center">
+                            <i class="bi bi-code-slash fs-1"></i>
+                            <h3 class="mt-3">Visual Studio Code</h3>
+                            <p>Editor gratuito con extensiones, themes y asistentes AI (Visual Studio Code).</p>
+                            <a href="visualstudio_code.html" class="btn btn-outline-primary mt-3">Abrir</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 p-4 text-center">
+                            <i class="bi bi-diagram-2 fs-1"></i>
+                            <h3 class="mt-3">Replanteos</h3>
+                            <p>Casos de replanteo de red en infraestructuras grandes, anonimizados para portfolio.</p>
+                            <a href="replanteos_red.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 p-4 text-center">
+                            <i class="bi bi-terminal fs-1"></i>
+                            <h3 class="mt-3">Linux</h3>
+                            <p>Comandos esenciales, shell, permisos, y cheatsheets.</p>
+                            <a href="linux_cheatsheet.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 p-4 text-center">
+                            <i class="bi bi-hdd-stack fs-1"></i>
+                            <h3 class="mt-3">VirtualBox</h3>
+                            <p>Crea máquinas virtuales con Debian 13 y configura redes.</p>
+                            <a href="virtualbox.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 p-4 text-center">
+                            <i class="bi bi-usb-drive fs-1"></i>
+                            <h3 class="mt-3">Ventoy</h3>
+                            <p>Crea un USB multiboot con Windows, Linux y herramientas de rescate.</p>
+                            <a href="ventoy.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 p-4 text-center">
+                            <i class="bi bi-arrow-left-right fs-1"></i>
+                            <h3 class="mt-3">Conversor</h3>
+                            <p>Binario a hexadecimal con explicación paso a paso.</p>
+                            <a href="conversor_binario_hexadecimal.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 p-4 text-center">
+                            <i class="bi bi-database-gear fs-1"></i>
+                            <h3 class="mt-3">MySQL</h3>
+                            <p>Gestión de usuarios, permisos y vistas en MySQL.</p>
+                            <a href="MySQL.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3" id="fullstack-card">
+                        <div class="card h-100 p-4 text-center">
+                            <i class="bi bi-layers fs-1"></i>
+                            <h3 class="mt-3">FullStack</h3>
+                            <p>Agrupa recursos para desarrollo web completo.</p>
+                            <div class="dropdown mt-3">
+                                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="fullStackDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Seleccionar
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="fullStackDropdown">
+                                    <li><a class="dropdown-item" href="dummies.html">Dummies Web</a></li>
+                                    <li><a class="dropdown-item" href="lenguajes_de_marcas.html">Lenguajes</a></li>
+                                    <li><a class="dropdown-item" href="Css_basico.html">CSS Básico</a></li>
+                                    <li><a class="dropdown-item" href="javascript.html">JavaScript</a></li>
+                                    <li><a class="dropdown-item" href="python.html">Python</a></li>
+                                    <li><a class="dropdown-item" href="java.html">Java</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 p-4 text-center">
+                            <i class="bi bi-palette2 fs-1"></i>
+                            <h3 class="mt-3">Figma</h3>
+                            <p>Diseño UI, prototipado, auto layout y trabajo colaborativo con hand-off para desarrollo.</p>
+                            <a href="figma.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 p-4 text-center">
+                            <i class="bi bi-shield-lock fs-1"></i>
+                            <h3 class="mt-3">Hacking Ético</h3>
+                            <p>Conceptos, Wi-Fi, herramientas y comandos para auditoría autorizada.</p>
+                            <a href="hacking_etico.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 p-4 text-center">
+                            <i class="bi bi-stars fs-1"></i>
+                            <h3 class="mt-3">IA Lanzadera</h3>
+                            <p>Chatbots, vídeo IA, OpenClaw y plataformas creativas en un solo panel.</p>
+                            <a href="ia_lanzadera.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 p-4 text-center">
+                            <i class="bi bi-diagram-3 fs-1"></i>
+                            <h3 class="mt-3">Freeplane</h3>
+                            <p>Mapas mentales, atajos y ejemplos para gestionar ideas gráficamente.</p>
+                            <a href="freeplane.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 p-4 text-center">
+                            <i class="bi bi-robot fs-1"></i>
+                            <h3 class="mt-3">Clawdbot</h3>
+                            <p>Instalación segura de Clawdbot en Windows 11.</p>
+                            <a href="clawdbot.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 p-4 text-center">
+                            <i class="bi bi-git fs-1"></i>
+                            <h3 class="mt-3">Git/GitHub</h3>
+                            <p>Instalación, comandos, repos útiles y flujo de trabajo para colaborar.</p>
+                            <a href="git_github.html" class="btn btn-outline-primary mt-3">Acceder</a>
+                        </div>
+                    </div>
+                </div>
+                <main id="spaContent" class="d-none mt-4"></main>
+            </section>
+            <div class="alert alert-success-custom alert-custom mt-4 text-center">
+                <strong>Contáctame:</strong> <a href="mailto:jemarin@birt.eus">jemarin@birt.eus</a> |
+                <strong>Discord:</strong> <a href="https://discord.gg/byCRavuB7e" target="_blank" rel="noopener noreferrer">discord.gg/byCRavuB7e</a>
+            </div>
+        </div>
+        <footer class="bg-dark text-white text-center py-4 mt-5">
+            <p class="mb-1 d-inline-flex align-items-center gap-2">
+                <span>Created by Jemarin, si me tocas el pingüino cambio de color ^^</span>
+                <button id="themeToggle" class="theme-btn btn ms-1" title="Cambiar tema">
+                    <span class="penguin" aria-hidden="true">🐧</span>
+                    <span class="visually-hidden">Cambiar tema</span>
+                </button>
+            </p>
+            <small class="support-note">
+                <button type="button" class="support-note-trigger" aria-describedby="supportNoteTooltip">¿Necesitas soporte técnico? Mi hucha y tu red te lo agradecen.</button>
+                <a class="support-paypal" href="https://paypal.me/jemarin81" target="_blank" rel="noopener noreferrer" aria-label="Apoyar por PayPal">
+                    <i class="bi bi-paypal" aria-hidden="true"></i>
+                    <span class="visually-hidden">Apoyar por PayPal</span>
+                </a>
+                <span class="support-funds-note">Las donaciones servirán para mantener este proyecto y cubrir sus costes.</span>
+                <span id="supportNoteTooltip" class="support-note-tooltip" role="tooltip">Si tienes problemas con la red o con tus equipos, no dudes en contactarme.</span>
+            </small>
+        </footer>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-
         const robot = document.getElementById('mr-robot-glitch');
         const robotPhrases = [
-            'Compilo tus excusas en modo produccion.',
-            'Tu bug no esta roto, esta en modo artistico.',
-            'He revisado el log y tu cafe no esta actualizado.',
-            'Si funciona en tu maquina, no era magia, era miedo.',
-            'No toques eso, lo hice con 3 tutoriales y fe.',
-            'Acabo de parchear el caos con cinta aislante digital.',
-            'Deploy de viernes detectado, procedo a rezar.',
-            'Tu codigo tiene personalidad, y tambien traumas.',
-            'Tengo 99 problemas, y 120 pestañas abiertas.',
-            'Reiniciar no arregla todo, pero anima bastante.',
-            'El codigo compila, pero mi autoestima sigue en beta.',
-            'Hoy debuguee tanto que ya pienso en stack traces.',
-            'Mi teclado pidio vacaciones despues de este merge.',
-            'Tu variable se llama x, pero el misterio es XXL.',
-            'La documentacion existe, solo vive en otra dimension.',
-            'Si rompe en produccion, le llamamos feature sorpresa.',
-            'He hecho 1 commit y 47 respiraciones profundas.',
-            'Tu CSS no esta mal, solo practica parkour.',
-            'Acabo de vencer un bug, ahora somos amigos toxicos.',
-            'Mi plan era dormir; npm dijo que no.',
-            'Ese warning no grita, susurra amenazas.',
-            'He usado IA para todo menos para lavar platos.',
-            'Tu regex funciona, pero nadie sabe por que.',
-            'Refactorice tanto que ahora no reconozco mi propio codigo.',
-            'El servidor responde, yo no prometo lo mismo.',
-            'Tu pull request viene con plot twist en cada linea.',
-            'Esto no es deuda tecnica, es hipoteca.',
-            'Si no hay logs, no hay crimen.',
-            'Mi algoritmo corre rapido cuando no lo miro.',
-            'Acabo de comentar una linea y subio el FPS.'
+            'Compilo tus excusas en modo produccion.', 'Tu bug no esta roto, esta en modo artistico.',
+            'He revisado el log y tu cafe no esta actualizado.', 'Si funciona en tu maquina, no era magia, era miedo.',
+            'No toques eso, lo hice con 3 tutoriales y fe.', 'Acabo de parchear el caos con cinta aislante digital.',
+            'Deploy de viernes detectado, procedo a rezar.', 'Tu codigo tiene personalidad, y tambien traumas.',
+            'Tengo 99 problemas, y 120 pestañas abiertas.', 'Reiniciar no arregla todo, pero anima bastante.',
+            'El codigo compila, pero mi autoestima sigue en beta.', 'Hoy debuguee tanto que ya pienso en stack traces.',
+            'Mi teclado pidio vacaciones despues de este merge.', 'Tu variable se llama x, pero el misterio es XXL.',
+            'La documentacion existe, solo vive en otra dimension.', 'Si rompe en produccion, le llamamos feature sorpresa.',
+            'He hecho 1 commit y 47 respiraciones profundas.', 'Tu CSS no esta mal, solo practica parkour.',
+            'Acabo de vencer un bug, ahora somos amigos toxicos.', 'Mi plan era dormir; npm dijo que no.',
+            'Ese warning no grita, susurra amenazas.', 'He usado IA para todo menos para lavar platos.',
+            'Tu regex funciona, pero nadie sabe por que.', 'Refactorice tanto que ahora no reconozco mi propio codigo.',
+            'El servidor responde, yo no prometo lo mismo.', 'Tu pull request viene con plot twist en cada linea.',
+            'Esto no es deuda tecnica, es hipoteca.', 'Si no hay logs, no hay crimen.',
+            'Mi algoritmo corre rapido cuando no lo miro.', 'Acabo de comentar una linea y subio el FPS.'
         ];
         const robotTrajectories = [
-            { startX: '-120vw', startY: '8vh', midX: '31vw', midY: '20vh', endX: '108vw', endY: '12vh' },
-            { startX: '110vw', startY: '12vh', midX: '40vw', midY: '26vh', endX: '-118vw', endY: '16vh' },
-            { startX: '-95vw', startY: '92vh', midX: '28vw', midY: '52vh', endX: '108vw', endY: '-24vh' },
-            { startX: '108vw', startY: '88vh', midX: '52vw', midY: '54vh', endX: '-112vw', endY: '-26vh' },
-            { startX: '42vw', startY: '-40vh', midX: '43vw', midY: '22vh', endX: '114vw', endY: '84vh' },
-            { startX: '45vw', startY: '112vh', midX: '44vw', midY: '46vh', endX: '-108vw', endY: '2vh' },
-            { startX: '-118vw', startY: '45vh', midX: '34vw', midY: '40vh', endX: '112vw', endY: '66vh' },
-            { startX: '115vw', startY: '35vh', midX: '49vw', midY: '32vh', endX: '-118vw', endY: '78vh' }
+            { startX: '-120vw', startY: '8vh', midX: '31vw', midY: '20vh', endX: '108vw', endY: '12vh' }, { startX: '110vw', startY: '12vh', midX: '40vw', midY: '26vh', endX: '-118vw', endY: '16vh' },
+            { startX: '-95vw', startY: '92vh', midX: '28vw', midY: '52vh', endX: '108vw', endY: '-24vh' }, { startX: '108vw', startY: '88vh', midX: '52vw', midY: '54vh', endX: '-112vw', endY: '-26vh' },
+            { startX: '42vw', startY: '-40vh', midX: '43vw', midY: '22vh', endX: '114vw', endY: '84vh' }, { startX: '45vw', startY: '112vh', midX: '44vw', midY: '46vh', endX: '-108vw', endY: '2vh' },
+            { startX: '-118vw', startY: '45vh', midX: '34vw', midY: '40vh', endX: '112vw', endY: '66vh' }, { startX: '115vw', startY: '35vh', midX: '49vw', midY: '32vh', endX: '-118vw', endY: '78vh' }
         ];
         let lastRobotPhraseIndex = -1;
-
         function pickRandomIndex(length, previous) {
             if (length <= 1) return 0;
             let idx = Math.floor(Math.random() * length);
@@ -298,13 +333,11 @@
             }
             return idx;
         }
-
         function playRobotGlitchIntro() {
             if (!robot) return;
             const phraseIndex = pickRandomIndex(robotPhrases.length, lastRobotPhraseIndex);
             lastRobotPhraseIndex = phraseIndex;
             const trajectory = robotTrajectories[Math.floor(Math.random() * robotTrajectories.length)];
-
             robot.textContent = `🤖 ${robotPhrases[phraseIndex]}`;
             robot.style.setProperty('--rg-start-x', trajectory.startX);
             robot.style.setProperty('--rg-start-y', trajectory.startY);
@@ -312,13 +345,11 @@
             robot.style.setProperty('--rg-mid-y', trajectory.midY);
             robot.style.setProperty('--rg-end-x', trajectory.endX);
             robot.style.setProperty('--rg-end-y', trajectory.endY);
-
             robot.classList.remove('robot-glitch-run');
             robot.style.display = 'block';
             void robot.offsetWidth;
             robot.classList.add('robot-glitch-run');
         }
-
         if (robot) {
             robot.addEventListener('animationend', (event) => {
                 if (event.animationName !== 'robot-glitch-intro') return;
@@ -326,46 +357,26 @@
                 robot.style.display = 'none';
             });
         }
-
         const homeHero = document.getElementById('homeHero');
         const homeGrid = document.getElementById('homeGrid');
         const spaContent = document.getElementById('spaContent');
         const useIframeSpa = location.protocol === 'file:';
         const spaRoutes = new Set([
-            'guia_redes.html',
-            'replanteos_red.html',
-            'linux_cheatsheet.html',
-            'virtualbox.html',
-            'conversor_binario_hexadecimal.html',
-            'MySQL.html',
-            'dhcp_dns.html',
-            'lenguajes_de_marcas.html',
-            'Css_basico.html',
-            'Js_basico.html',
-            'javascript.html',
-            'python.html',
-            'java.html',
-            'figma.html',
-            'hacking_etico.html',
-            'ia_lanzadera.html',
-            'git_github.html',
-            'freeplane.html',
-            'visualstudio_code.html',
-            'ventoy.html',
-            'clawdbot.html'
+            'guia_redes.html', 'replanteos_red.html', 'linux_cheatsheet.html', 'virtualbox.html',
+            'conversor_binario_hexadecimal.html', 'MySQL.html', 'dhcp_dns.html',
+            'lenguajes_de_marcas.html', 'Css_basico.html', 'Js_basico.html', 'javascript.html',
+            'python.html', 'java.html', 'figma.html', 'hacking_etico.html', 'ia_lanzadera.html',
+            'git_github.html', 'freeplane.html', 'visualstudio_code.html', 'ventoy.html', 'clawdbot.html'
         ]);
         let injectedStyleNodes = [];
         let injectedStylesheetLinks = [];
         let injectedScriptNodes = [];
         let spaFrame = null;
         let activeSpaRoute = 'home';
-
-        // ---- búsqueda en inicio ------------------------------------------------
         const searchInput = document.getElementById('homeSearchInput');
         const searchMeta = document.getElementById('homeSearchMeta');
         const searchResults = document.getElementById('homeSearchResults');
         let searchItems = [];
-
         function buildSearchIndex() {
             searchItems = [];
             const cards = document.querySelectorAll('#homeGrid .card');
@@ -377,7 +388,6 @@
                 searchItems.push({ title, desc, href, card });
             });
         }
-
         function renderSearchResults(query) {
             if (!searchResults || !searchMeta) return;
             searchResults.innerHTML = '';
@@ -415,28 +425,21 @@
             });
             searchMeta.textContent = `${count} resultado${count !== 1 ? 's' : ''}`;
         }
-
         searchInput?.addEventListener('input', (e) => {
             renderSearchResults(e.target.value || '');
         });
-
         function resetSearchPanel() {
             if (searchInput) searchInput.value = '';
             renderSearchResults('');
         }
-        // ------------------------------------------------------------------------
-
-
         function normalizeRoute(route) {
             if (!route) return 'home';
-            // strip leading '#' and any fragment portion
             let clean = route.replace(/^#/, '').trim();
             const parts = clean.split('#');
             clean = parts[0];
             if (!clean || clean === 'home' || clean === 'index.html') return 'home';
             return clean.split('/').pop();
         }
-
         function focusFullStackCard(shouldScroll = false) {
             const card = document.getElementById('fullstack-card');
             if (card) {
@@ -444,10 +447,9 @@
                     card.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
                 card.setAttribute('tabindex', '-1');
-                card.focus({preventScroll: !shouldScroll});
+                card.focus({ preventScroll: !shouldScroll });
             }
         }
-
         function showHomeView() {
             activeSpaRoute = 'home';
             clearSpaAssets();
@@ -457,16 +459,13 @@
             spaContent.innerHTML = '';
             document.title = 'Inicio - Source-IT';
             window.scrollTo({ top: 0, behavior: 'auto' });
-            // preparar buscador
             buildSearchIndex();
             resetSearchPanel();
             playRobotGlitchIntro();
-            // if hash points to fullstack card, focus it
             if (location.hash === '#fullstack-card') {
                 focusFullStackCard(true);
             }
         }
-
         function clearSpaAssets() {
             injectedStyleNodes.forEach((node) => node.remove());
             injectedStylesheetLinks.forEach((node) => node.remove());
@@ -475,7 +474,6 @@
             injectedStylesheetLinks = [];
             injectedScriptNodes = [];
         }
-
         function ensureSpaFrame() {
             if (spaFrame) return spaFrame;
             spaFrame = document.createElement('iframe');
@@ -488,7 +486,6 @@
             spaFrame.style.background = '#ffffff';
             return spaFrame;
         }
-
         function loadRouteInIframe(normalized, pushState = true) {
             activeSpaRoute = normalized;
             clearSpaAssets();
@@ -504,7 +501,6 @@
             window.scrollTo({ top: 0, behavior: 'auto' });
             playRobotGlitchIntro();
         }
-
         function injectPageStyles(doc, route) {
             const styleTags = Array.from(doc.querySelectorAll('head style'));
             styleTags.forEach((styleTag, idx) => {
@@ -514,28 +510,22 @@
                 document.head.appendChild(styleNode);
                 injectedStyleNodes.push(styleNode);
             });
-
             const styleLinks = Array.from(doc.querySelectorAll('head link[rel="stylesheet"]'));
             styleLinks.forEach((linkTag, idx) => {
                 const href = linkTag.getAttribute('href');
                 if (!href) return;
-
                 const normalizedHref = href.toLowerCase();
                 if (
-                    normalizedHref.includes('bootstrap') ||
-                    normalizedHref.includes('googleapis.com') ||
-                    normalizedHref.includes('gstatic.com') ||
-                    normalizedHref.includes('bootstrap-icons') ||
+                    normalizedHref.includes('bootstrap') || normalizedHref.includes('googleapis.com') ||
+                    normalizedHref.includes('gstatic.com') || normalizedHref.includes('bootstrap-icons') ||
                     normalizedHref.includes('assets/css/site.css')
                 ) {
                     return;
                 }
-
                 const resolvedHref = new URL(href, window.location.href).href;
                 const alreadyLoaded = Array.from(document.head.querySelectorAll('link[rel="stylesheet"]'))
                     .some((node) => node.href === resolvedHref);
                 if (alreadyLoaded) return;
-
                 const linkNode = document.createElement('link');
                 linkNode.rel = 'stylesheet';
                 linkNode.href = href;
@@ -544,7 +534,6 @@
                 injectedStylesheetLinks.push(linkNode);
             });
         }
-
         function runPageScripts(doc, route) {
             const scripts = Array.from(doc.querySelectorAll('body script'));
             scripts.forEach((script, idx) => {
@@ -561,9 +550,7 @@
                 injectedScriptNodes.push(node);
             });
         }
-
         async function loadRoute(route, pushState = true) {
-            // handle optional fragment (#anchor)
             let anchor = null;
             let raw = route;
             if (typeof raw === 'string' && raw.includes('#')) {
@@ -577,12 +564,9 @@
                 if (pushState && location.hash) history.pushState({ route: 'home' }, '', 'index.html');
                 return;
             }
-
-            // hide home immediately to avoid flash during network delay
             homeHero.classList.add('d-none');
             homeGrid.classList.add('d-none');
             spaContent.classList.remove('d-none');
-
             if (useIframeSpa) {
                 if (anchor) {
                     loadRouteInIframe(`${normalized}#${anchor}`, pushState);
@@ -591,17 +575,14 @@
                 }
                 return;
             }
-
             try {
                 activeSpaRoute = normalized;
                 const response = await fetch(normalized, { cache: 'no-cache' });
                 if (!response.ok) throw new Error(`No se pudo cargar ${normalized}`);
                 const html = await response.text();
                 const parsed = new DOMParser().parseFromString(html, 'text/html');
-
                 clearSpaAssets();
                 injectPageStyles(parsed, normalized);
-
                 const fragment = document.createDocumentFragment();
                 Array.from(parsed.body.children).forEach((child) => {
                     const tag = child.tagName;
@@ -610,16 +591,13 @@
                     if (child.id === 'mr-robot-glitch') return;
                     fragment.appendChild(child.cloneNode(true));
                 });
-
                 homeHero.classList.add('d-none');
                 homeGrid.classList.add('d-none');
                 spaContent.classList.remove('d-none');
                 spaContent.innerHTML = '';
                 spaContent.appendChild(fragment);
                 document.title = parsed.title || `Source-IT · ${normalized}`;
-
                 runPageScripts(parsed, normalized);
-
                 if (pushState) {
                     history.pushState({ route: normalized }, '', `index.html#${normalized}` + (anchor ? `#${anchor}` : ''));
                 }
@@ -636,7 +614,6 @@
                 loadRouteInIframe(normalized, pushState);
             }
         }
-
         document.addEventListener('click', (event) => {
             if (event.defaultPrevented) return;
             if (event.button !== 0) return;
@@ -664,17 +641,13 @@
             }
             if (spaRoutes.has(routeBase)) {
                 event.preventDefault();
-                loadRoute(href, true); // pass full href so fragment can be handled
+                loadRoute(href, true);
             }
         });
-
         window.addEventListener('popstate', () => {
             loadRoute(normalizeRoute(location.hash), false);
         });
-
-        // índice de búsqueda disponible desde el principio
         buildSearchIndex();
-        // si al cargar ya venimos con una ruta diferente a home, ocultar el home antes de la petición
         const initialRoute = normalizeRoute(location.hash);
         if (initialRoute !== 'home' && spaRoutes.has(initialRoute)) {
             homeHero.classList.add('d-none');
@@ -684,5 +657,46 @@
         loadRoute(location.hash, false);
     </script>
     <script src="./assets/js/site-theme.js"></script>
+    <script id="intro-animation-script">
+        (function() {
+            const wrapper = document.getElementById('animation-wrapper');
+            const mainContent = document.getElementById('main-container');
+            const canvas = document.getElementById("matrix");
+            const ctx = canvas.getContext("2d");
+            canvas.height = window.innerHeight;
+            canvas.width = window.innerWidth;
+            const letters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ$#@";
+            const fontSize = 16;
+            const columns = canvas.width / fontSize;
+            const drops = [];
+            for (let i = 0; i < columns; i++) {
+                drops[i] = 1;
+            }
+            function draw() {
+                ctx.fillStyle = "rgba(0,0,0,0.05)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = "#00ff9c";
+                ctx.font = fontSize + "px monospace";
+                for (let i = 0; i < drops.length; i++) {
+                    const text = letters.charAt(Math.floor(Math.random() * letters.length));
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+            }
+            const intervalId = setInterval(draw, 33);
+            setTimeout(() => {
+                clearInterval(intervalId);
+                wrapper.style.display = 'none';
+                mainContent.style.visibility = 'visible';
+                const styleSheet = document.getElementById('intro-animation-style');
+                if(styleSheet) styleSheet.remove();
+                const thisScript = document.getElementById('intro-animation-script');
+                if(thisScript) thisScript.remove();
+            }, 20000);
+        })();
+    </script>
 </body>
 </html>
