@@ -29,6 +29,7 @@ hacking_etico.html
 ia_lanzadera.html
 git_github.html
 freeplane.html
+clawdbot.html
 README.md
 assets/
   css/
@@ -133,6 +134,7 @@ Conjunto `spaRoutes` con paginas internas permitidas (ej. `guia_redes.html`, `fi
 | `hacking_etico.html` | Acordeon manual de items. |
 | `lenguajes_de_marcas.html` | Oculta animacion al finalizar + acordeon manual. |
 | `ia_lanzadera.html` | Fallback de logos rotos (`applyLogoFallback`). |
+| `clawdbot.html` | Mindmap interactivo con zoom, pan y seleccion de nodos. |
 
 ## 7. Convenciones actuales
 - Carga de scripts globales al final de cada pagina (`site-sfx.js`, `site-theme.js`).

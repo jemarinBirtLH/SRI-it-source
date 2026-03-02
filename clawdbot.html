@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Mental: Instalación Segura de Clawdbot</title>
+    <link rel="stylesheet" href="assets/css/pages/clawdbot.css">
+</head>
+<body>
+    <div class="toolbar">
+        <div class="toolbar-title">
+            🧠 Mapa Clawdbot <span>v1.0</span>
+        </div>
+        <div class="btn-group">
+            <button id="expandAllBtn"><span>🔽</span> Expandir todo</button>
+            <button id="collapseAllBtn"><span>🔼</span> Colapsar todo</button>
+            <button id="resetViewBtn"><span>🔄</span> Reiniciar vista</button>
+        </div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Buscar nodo...">
+            <button id="searchBtn">Ir</button>
+        </div>
+    </div>
+
+    <div class="main-layout">
+        <div id="mindmap-container"></div>
+        <div class="info-panel" id="infoPanel">
+            <h3>📋 Información del nodo</h3>
+            <div id="nodePath" class="node-path">🔖 Ninguno seleccionado</div>
+            <h3>📄 Contenido</h3>
+            <div id="nodeContent" class="info-content">—</div>
+            <h3 style="margin-top:1.5rem;">⚙️ Atajos</h3>
+            <ul style="padding-left:1.2rem; color:#334155;">
+                <li>Clic en nodo → seleccionar</li>
+                <li>Clic en [+]/[-] → expandir/colapsar</li>
+                <li>Doble clic en texto → copiar</li>
+                <li>Checkboxes interactivos</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Zona para la animación de letras flotantes -->
+    <div id="floatingLettersContainer" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:10000;"></div>
+
+    <script>
+        (function() {
+            // --------------------------------------------------------------
+            // DATOS DEL MAPA (convertidos del XML Freeplane) + intro y resumen
+            // --------------------------------------------------------------
+            const mapData = {
+                id: "ID_0",
+                text: "🔐 INSTALACIÓN SEGURA DE CLAWDBOT EN WINDOWS 11",
+                folded: false,
+                children: [
+                    // NODO ESPECIAL: INTRODUCCIÓN (no estaba en original)
+                    { id: "INTRO", text: "📌 INTRODUCCIÓN: QUÉ VAS A LOGRAR", folded: false, isIntro: true,
+                      content: "Construirás un entorno aislado de 3 capas para ejecutar Clawdbot sin riesgos. Usaremos VirtualBox, dos máquinas virtuales (Ubuntu Server para el bot, Alpine Linux como puente de archivos) y una carpeta compartida controlada. Al final, tendrás un laboratorio de IA seguro donde podrás experimentar sin exponer tus datos personales." },
+                    // (los nodos reales se insertarán aquí después)
+                ]
+            };
+
+            // el resto de hijos (copiamos del mapa anterior, pero omitimos INTRO si ya existe)
+            const realChildren = [
+                { id: "ID_1", text: "👁️ VISIÓN GENERAL DEL SISTEMA", folded: true, children: [
+                    { id: "ID_2", text: "Arquitectura de 3 Capas", folded: true, children: [
+                        { id: "ID_3", text: "CAPA 1: VirtualBox", folded: true, children: [
+                            { id: "ID_4", text: "Hipervisor que aísla todo" },
+                            { id: "ID_5", text: "Instalado en Windows 11" }
+                        ]},
+                        { id: "ID_6", text: "CAPA 2: VM2 - Puente de Archivos", folded: true, children: [
+                            { id: "ID_7", text: "Alpine Linux" },
+                            { id: "ID_8", text: "RAM: 512MB" },
+                            { id: "ID_9", text: "Disco: 8GB" },
+                            { id: "ID_10", text: "Red: Solo-Anfitrión" }
+                        ]},
+                        { id: "ID_11", text: "CAPA 3: VM1 - OpenClaw Lab", folded: true, children: [
+                            { id: "ID_12", text: "Ubuntu Server" },
+                            { id: "ID_13", text: "RAM: 4GB" },
+                            { id: "ID_14", text: "Disco: 50GB" },
+                            { id: "ID_15", text: "Red1: NAT (Internet)" },
+                            { id: "ID_16", text: "Red2: Solo-Anfitrión" }
+                        ]}
+                    ]},
+                    { id: "ID_17", text: "Flujo de Datos Seguro", folded: true, children: [
+                        { id: "ID_18", text: "Windows → Carpeta Compartida" },
+                        { id: "ID_19", text: "Carpeta Compartida → VM2" },
+                        { id: "ID_20", text: "VM2 → (SCP) → VM1" },
+                        { id: "ID_21", text: "VM1 → Clawdbot" }
+                    ]}
+                ]},
+                { id: "ID_22", text: "📋 FASE 0: PREPARACIÓN EN WINDOWS", folded: true, bgColor: "#ffff99", children: [
+                    { id: "ID_23", text: "Requisitos de Hardware", folded: true, children: [
+                        { id: "ID_24", text: "8GB RAM MÍNIMO (16GB recomendado)" },
+                        { id: "ID_25", text: "60GB espacio libre en disco" },
+                        { id: "ID_26", text: "Virtualización habilitada en BIOS", folded: true, children: [
+                            { id: "ID_27", text: "Intel VT-x" },
+                            { id: "ID_28", text: "AMD-V" }
+                        ]}
+                    ]},
+                    { id: "ID_29", text: "Crear Carpeta Compartida", folded: true, children: [
+                        { id: "ID_30", text: "Ruta: C:\\Compartida_VM" },
+                        { id: "ID_31", text: "Permisos: Lectura/Escritura" }
+                    ]},
+                    { id: "ID_32", text: "Descargas Necesarias", folded: true, children: [
+                        { id: "ID_33", text: "VirtualBox (virtualbox.org)", folded: true, children: [
+                            { id: "ID_34", text: "Instalador Windows" },
+                            { id: "ID_35", text: "Extension Pack" }
+                        ]},
+                        { id: "ID_36", text: "Ubuntu Server LTS (ubuntu.com)" },
+                        { id: "ID_37", text: "Alpine Linux (alpinelinux.org)" }
+                    ]},
+                    { id: "ID_38", text: "Preparar Claves API", folded: true, children: [
+                        { id: "ID_39", text: "OpenAI / Anthropic / Qwen" },
+                        { id: "ID_40", text: "Token de Telegram (opcional)" }
+                    ]}
+                ]},
+                { id: "ID_41", text: "🖥️ FASE 1: INSTALAR VIRTUALBOX", folded: true, bgColor: "#99ccff", children: [
+                    { id: "ID_42", text: "PASO 1: Ejecutar como ADMINISTRADOR", folded: true, children: [
+                        { id: "ID_43", text: "Clic derecho → Ejecutar como administrador" },
+                        { id: "ID_44", text: "Aceptar opciones por defecto" },
+                        { id: "ID_45", text: "PERMITIR controladores de red", fgColor: "#ff0000" }
+                    ]},
+                    { id: "ID_46", text: "PASO 2: Instalar Extension Pack", folded: true, children: [
+                        { id: "ID_47", text: "Doble clic en .vbox-extpack" },
+                        { id: "ID_48", text: "Aceptar licencia" }
+                    ]},
+                    { id: "ID_49", text: "PASO 3: Verificar instalación", folded: true, children: [
+                        { id: "ID_50", text: "Abrir VirtualBox" },
+                        { id: "ID_51", text: "Archivo → Preferencias → Extensiones" },
+                        { id: "ID_52", text: "Debe aparecer el Extension Pack" }
+                    ]}
+                ]},
+                { id: "ID_53", text: "🏰 FASE 2: VM1 - OPENCLAW LAB", folded: true, bgColor: "#ff9999", children: [
+                    { id: "ID_54", text: "Configuración Inicial", folded: true, children: [
+                        { id: "ID_55", text: "Nombre: OpenClaw Lab" },
+                        { id: "ID_56", text: "Tipo: Linux" },
+                        { id: "ID_57", text: "Versión: Ubuntu (64-bit)" },
+                        { id: "ID_58", text: "RAM: 4096 MB (4 GB)" },
+                        { id: "ID_59", text: "CPUs: 2" },
+                        { id: "ID_60", text: "Disco: 50 GB (VDI, dinámico)" }
+                    ]},
+                    { id: "ID_61", text: "Configuración de Red (¡CRÍTICO!)", fgColor: "#ff0000", folded: true, children: [
+                        { id: "ID_62", text: "ADAPTADOR 1: NAT", folded: true, children: [
+                            { id: "ID_63", text: "Para acceso a Internet" },
+                            { id: "ID_64", text: "Bloquea conexiones entrantes" }
+                        ]},
+                        { id: "ID_65", text: "ADAPTADOR 2: Solo-Anfitrión", folded: true, children: [
+                            { id: "ID_66", text: "Para comunicación interna" },
+                            { id: "ID_67", text: "Con VM2 y Windows" }
+                        ]}
+                    ]},
+                    { id: "ID_68", text: "Instalación Ubuntu Server", folded: true, children: [
+                        { id: "ID_69", text: "Montar ISO de Ubuntu" },
+                        { id: "ID_70", text: "Crear usuario SEGURO" },
+                        { id: "ID_71", text: "Contraseña FUERTE" },
+                        { id: "ID_72", text: "Nombre equipo: openclaw-vm" },
+                        { id: "ID_73", text: "NO instalar paquetes adicionales" },
+                        { id: "ID_74", text: "Activar actualizaciones automáticas" }
+                    ]},
+                    { id: "ID_75", text: "Comandos Post-Instalación", folded: true, children: [
+                        { id: "ID_76", text: "sudo apt update && sudo apt upgrade -y" },
+                        { id: "ID_77", text: "sudo apt install -y curl wget git net-tools" },
+                        { id: "ID_78", text: "ip addr show (para ver IP)" }
+                    ]}
+                ]},
+                { id: "ID_79", text: "🌉 FASE 3: VM2 - PUENTE DE ARCHIVOS", folded: true, bgColor: "#99ff99", children: [
+                    { id: "ID_80", text: "Configuración Inicial", folded: true, children: [
+                        { id: "ID_81", text: "Nombre: Puente de Archivos" },
+                        { id: "ID_82", text: "Tipo: Linux" },
+                        { id: "ID_83", text: "Versión: Linux 2.6/3.x/4.x (64-bit)" },
+                        { id: "ID_84", text: "RAM: 512 MB" },
+                        { id: "ID_85", text: "CPUs: 1" },
+                        { id: "ID_86", text: "Disco: 8 GB (VDI, dinámico)" }
+                    ]},
+                    { id: "ID_87", text: "Configuración de Red", folded: true, children: [
+                        { id: "ID_88", text: "ADAPTADOR 1: Solo-Anfitrión", folded: true, children: [
+                            { id: "ID_89", text: "SIN ACCESO A INTERNET", fgColor: "#ff0000" },
+                            { id: "ID_90", text: "Solo red interna" }
+                        ]}
+                    ]},
+                    { id: "ID_91", text: "Configuración Carpeta Compartida", folded: true, children: [
+                        { id: "ID_92", text: "Ruta: C:\\Compartida_VM" },
+                        { id: "ID_93", text: "Nombre: Compartida_VM" },
+                        { id: "ID_94", text: "✅ Montaje automático" },
+                        { id: "ID_95", text: "✅ Hacer permanente" }
+                    ]},
+                    { id: "ID_96", text: "Instalación Alpine Linux", folded: true, children: [
+                        { id: "ID_97", text: "Login: root (sin contraseña inicial)" },
+                        { id: "ID_98", text: "Comando: setup-alpine" },
+                        { id: "ID_99", text: "Configurar teclado, hostname, red" },
+                        { id: "ID_100", text: "Establecer contraseña root SEGURA" },
+                        { id: "ID_101", text: "Habilitar SSH (openssh)" }
+                    ]},
+                    { id: "ID_102", text: "Comandos Post-Instalación", folded: true, children: [
+                        { id: "ID_103", text: "apk add virtualbox-guest-additions" },
+                        { id: "ID_104", text: "apk add openssh-client" },
+                        { id: "ID_105", text: "ls /media/ (ver carpeta compartida)" }
+                    ]}
+                ]},
+                { id: "ID_106", text: "⚙️ FASE 4: CONFIGURAR UBUNTU (PRE-CLAWDBOT)", folded: true, bgColor: "#ffcc99", children: [
+                    { id: "ID_107", text: "Actualizar sistema", folded: true, children: [
+                        { id: "ID_108", text: "sudo apt update" },
+                        { id: "ID_109", text: "sudo apt upgrade -y" }
+                    ]},
+                    { id: "ID_110", text: "Herramientas básicas", folded: true, children: [
+                        { id: "ID_111", text: "sudo apt install -y curl wget git net-tools" }
+                    ]},
+                    { id: "ID_112", text: "Verificar red", folded: true, children: [
+                        { id: "ID_113", text: "ip addr show (ver IPs)" },
+                        { id: "ID_114", text: "ping -c 4 google.com (verificar internet)" }
+                    ]},
+                    { id: "ID_115", text: "ANOTAR IP SOLO-ANFITRIÓN", fgColor: "#ff0000", folded: true, children: [
+                        { id: "ID_116", text: "IP: 192.168.56.______" }
+                    ]}
+                ]},
+                { id: "ID_117", text: "⚙️ FASE 5: CONFIGURAR ALPINE (PRE-CLAWDBOT)", folded: true, bgColor: "#ccffcc", children: [
+                    { id: "ID_118", text: "Verificar carpeta compartida", folded: true, children: [
+                        { id: "ID_119", text: "ls /media/" },
+                        { id: "ID_120", text: "Debe aparecer sf_Compartida_VM" }
+                    ]},
+                    { id: "ID_121", text: "Verificar red con VM1", folded: true, children: [
+                        { id: "ID_122", text: "ping 192.168.56.[IP_VM1]" }
+                    ]},
+                    { id: "ID_123", text: "Instalar herramientas SCP", folded: true, children: [
+                        { id: "ID_124", text: "apk update" },
+                        { id: "ID_125", text: "apk add openssh-client" }
+                    ]}
+                ]},
+                { id: "ID_126", text: "✅ FASE 6: PRUEBA DEL SISTEMA DE INTERCAMBIO", folded: true, bgColor: "#ccff99", children: [
+                    { id: "ID_127", text: "Prueba 1: Windows → VM2", folded: true, children: [
+                        { id: "ID_128", text: "Crear archivo en C:\\Compartida_VM\\prueba.txt" },
+                        { id: "ID_129", text: "En VM2: ls /media/sf_Compartida_VM/" },
+                        { id: "ID_130", text: "En VM2: cat /media/sf_Compartida_VM/prueba.txt" }
+                    ]},
+                    { id: "ID_131", text: "Prueba 2: VM2 → VM1 (SCP)", folded: true, children: [
+                        { id: "ID_132", text: "En VM2:", children: [
+                            { id: "ID_133", text: "scp /media/sf_Compartida_VM/prueba.txt usuario@192.168.56.[IP_VM1]:/home/usuario/" }
+                        ]},
+                        { id: "ID_134", text: "En VM1:", children: [
+                            { id: "ID_135", text: "ls /home/usuario/" },
+                            { id: "ID_136", text: "cat /home/usuario/prueba.txt" }
+                        ]}
+                    ]},
+                    { id: "ID_137", text: "Prueba 3: Verificar aislamiento", folded: true, children: [
+                        { id: "ID_138", text: "En VM1: ping 192.168.56.1 (debe funcionar)" },
+                        { id: "ID_139", text: "En VM1: ls /mnt/c/ (NO debe existir)" }
+                    ]}
+                ]},
+                { id: "ID_140", text: "✅ LISTA DE VERIFICACIÓN: ENTORNO LISTO", folded: true, bgColor: "#00ff00", children: [
+                    { id: "ID_141", text: "VirtualBox instalado con Extension Pack", hasCheckbox: true },
+                    { id: "ID_143", text: "VM1 creada con Ubuntu Server", hasCheckbox: true },
+                    { id: "ID_145", text: "VM1: Adaptador1 NAT + Adaptador2 Solo-Anfitrión", hasCheckbox: true },
+                    { id: "ID_147", text: "VM2 creada con Alpine Linux", hasCheckbox: true },
+                    { id: "ID_149", text: "VM2: Adaptador1 Solo-Anfitrión (SIN internet)", hasCheckbox: true },
+                    { id: "ID_151", text: "Carpeta C:\\Compartida_VM creada en Windows", hasCheckbox: true },
+                    { id: "ID_153", text: "Carpeta compartida montada en VM2", hasCheckbox: true },
+                    { id: "ID_155", text: "VM1 y VM2 pueden hacerse ping", hasCheckbox: true },
+                    { id: "ID_157", text: "VM2 puede hacer SCP a VM1", hasCheckbox: true },
+                    { id: "ID_159", text: "VM1 tiene acceso a Internet", hasCheckbox: true },
+                    { id: "ID_161", text: "VM1 NO tiene acceso a discos de Windows", hasCheckbox: true },
+                    { id: "ID_163", text: "Claves API listas", hasCheckbox: true }
+                ]},
+                { id: "ID_165", text: "🚀 PRÓXIMOS PASOS: INSTALAR CLAWDBOT", folded: true, bgColor: "#ff9900", children: [
+                    { id: "ID_166", text: "En VM1 (Ubuntu):", children: [
+                        { id: "ID_167", text: "Instalar Node.js 22", children: [
+                            { id: "ID_168", text: "curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -" },
+                            { id: "ID_169", text: "sudo apt install -y nodejs" }
+                        ]},
+                        { id: "ID_170", text: "Instalar Docker", children: [
+                            { id: "ID_171", text: "sudo apt install -y docker.io" },
+                            { id: "ID_172", text: "sudo usermod -aG docker $USER" }
+                        ]},
+                        { id: "ID_173", text: "Instalar OpenClaw", children: [
+                            { id: "ID_174", text: "curl -fsSL https://openclaw.ai/install.sh | bash" }
+                        ]}
+                    ]},
+                    { id: "ID_175", text: "Usar VM2 para transferir archivos a Clawdbot", children: [
+                        { id: "ID_176", text: "Windows → VM2 (carpeta compartida)" },
+                        { id: "ID_177", text: "VM2 → VM1 (SCP)" }
+                    ]}
+                ]},
+                { id: "ID_178", text: "🛡️ MAPA DE CONFIANZA Y SEGURIDAD", folded: true, bgColor: "#cccccc", children: [
+                    { id: "ID_179", text: "ZONA ROJA (No confiable)", fgColor: "#ff0000", children: [
+                        { id: "ID_180", text: "Clawdbot (código no confiable)" },
+                        { id: "ID_181", text: "Puede tener malware" }
+                    ]},
+                    { id: "ID_182", text: "ZONA AMARILLA (Aislada)", fgColor: "#cccc00", children: [
+                        { id: "ID_183", text: "VM1 - Ubuntu" },
+                        { id: "ID_184", text: "No ve Windows" },
+                        { id: "ID_185", text: "Contenido en cápsula" }
+                    ]},
+                    { id: "ID_186", text: "ZONA VERDE CLARO (Controlada)", fgColor: "#00cc00", children: [
+                        { id: "ID_187", text: "VM2 - Alpine" },
+                        { id: "ID_188", text: "Solo ve carpeta compartida" },
+                        { id: "ID_189", text: "Actúa como filtro" }
+                    ]},
+                    { id: "ID_190", text: "ZONA VERDE OSCURO (Segura)", fgColor: "#006600", children: [
+                        { id: "ID_191", text: "Windows 11" },
+                        { id: "ID_192", text: "Datos personales a salvo" }
+                    ]},
+                    { id: "ID_193", text: "Flujo de ataque (si ocurre)", fgColor: "#ff0000", children: [
+                        { id: "ID_194", text: "Clawdbot malicioso → VM1 infectada → (No puede cruzar a VM2) → Windows a salvo" }
+                    ]}
+                ]},
+                { id: "ID_195", text: "📝 NOTAS IMPORTANTES", folded: true, children: [
+                    { id: "ID_196", text: "Este entorno está construido ANTES de instalar Clawdbot" },
+                    { id: "ID_197", text: "Tres capas de seguridad: VirtualBox + VM1 + VM2" },
+                    { id: "ID_198", text: "VM1 tiene Internet pero NO ve Windows" },
+                    { id: "ID_199", text: "VM2 NO tiene Internet, solo red interna" },
+                    { id: "ID_200", text: "Los archivos pasan por un proceso controlado: Windows → Carpeta Compartida → VM2 → SCP → VM1" }
+                ]}
+            ];
+
+            // Añadir los hijos reales después de la intro
+            mapData.children = mapData.children.concat(realChildren);
+
+            // Añadir nodo de resumen al final (como un hijo más)
+            mapData.children.push({
+                id: "SUMMARY",
+                text: "📌 RESUMEN DEL PROCESO PARA WINDOWS 11",
+                folded: false,
+                isSummary: true,
+                content: "1. Prepara Windows: crea C:\\Compartida_VM, descarga ISOs y VirtualBox.\n2. Instala VirtualBox con Extension Pack.\n3. Crea VM1 (Ubuntu): 4GB RAM, 50GB disco, red NAT + solo-anfitrión.\n4. Crea VM2 (Alpine): 512MB RAM, 8GB disco, red solo-anfitrión, carpeta compartida.\n5. Configura Ubuntu: actualiza, instala herramientas, anota IP.\n6. Configura Alpine: verifica carpeta, instala openssh, comprueba ping con VM1.\n7. Prueba scp desde VM2 a VM1.\n8. Instala Node.js 22, Docker y OpenClaw en VM1.\n9. Usa VM2 como puente para pasar archivos a Clawdbot.\n10. ¡Disfruta de un entorno aislado y seguro!"
+            });
+
+            // --------------------------------------------------------------
+            // RENDERIZADO Y ESTADO
+            // --------------------------------------------------------------
+            const container = document.getElementById('mindmap-container');
+            const nodePathDiv = document.getElementById('nodePath');
+            const nodeContentDiv = document.getElementById('nodeContent');
+            let selectedNodeId = null;
+
+            // Mapa de nodos por ID para búsquedas
+            const nodeMap = new Map();
+
+            function buildNodeMap(node, parentPath = '') {
+                const path = parentPath ? parentPath + ' → ' + node.text : node.text;
+                node.path = path;
+                nodeMap.set(node.id, node);
+                if (node.children) {
+                    node.children.forEach(child => buildNodeMap(child, path));
+                }
+            }
+            buildNodeMap(mapData);
+
+            // Determinar clase de color de fondo según bgColor (si está definido)
+            function getBgClass(node) {
+                if (!node.bgColor) return '';
+                if (node.bgColor === '#ffff99') return 'bg-soft-yellow';
+                if (node.bgColor === '#99ccff') return 'bg-soft-blue';
+                if (node.bgColor === '#ff9999') return 'bg-soft-red';
+                if (node.bgColor === '#99ff99') return 'bg-soft-green';
+                if (node.bgColor === '#ffcc99') return 'bg-soft-orange';
+                if (node.bgColor === '#ccffcc') return 'bg-soft-green';
+                if (node.bgColor === '#ccff99') return 'bg-soft-green';
+                if (node.bgColor === '#00ff00') return 'bg-soft-green';
+                if (node.bgColor === '#ff9900') return 'bg-soft-orange';
+                if (node.bgColor === '#cccccc') return 'bg-soft-purple';
+                return '';
+            }
+
+            // Render recursivo (con manejo de nodos especiales intro/summary)
+            function renderNode(node, isRoot = false) {
+                if (node.isIntro || node.isSummary) {
+                    // nodo especial de texto grande
+                    const wrapper = document.createElement('div');
+                    wrapper.className = node.isIntro ? 'intro-node' : 'summary-node';
+                    wrapper.dataset.nodeId = node.id;
+                    const h2 = document.createElement('h2');
+                    h2.textContent = node.text;
+                    wrapper.appendChild(h2);
+                    const para = document.createElement('div');
+                    para.style.whiteSpace = 'pre-line';
+                    para.textContent = node.content;
+                    wrapper.appendChild(para);
+                    wrapper.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        selectedNodeId = node.id;
+                        nodePathDiv.innerText = '🔖 ' + (node.path || node.text);
+                        nodeContentDiv.innerText = node.content || node.text;
+                        refreshView();
+                    });
+                    return wrapper;
+                }
+
+                const wrapper = document.createElement('div');
+                wrapper.className = 'node-wrapper';
+                wrapper.dataset.nodeId = node.id;
+
+                const row = document.createElement('div');
+                row.className = 'node-row';
+
+                const elem = document.createElement('div');
+                elem.className = 'node-element' + (selectedNodeId === node.id ? ' selected' : '') + (getBgClass(node) ? ' ' + getBgClass(node) : '');
+                if (node.fgColor) elem.style.color = node.fgColor;
+                elem.setAttribute('data-id', node.id);
+                elem.setAttribute('title', 'Clic para ver detalles');
+
+                // texto
+                const textSpan = document.createElement('span');
+                textSpan.textContent = node.text;
+                if (node.hasCheckbox) {
+                    const check = document.createElement('span');
+                    check.className = 'check-item';
+                    check.textContent = ' ☐';
+                    check.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        check.textContent = check.textContent === ' ☐' ? ' ☑' : ' ☐';
+                    });
+                    textSpan.appendChild(check);
+                }
+                elem.appendChild(textSpan);
+
+                // expander si tiene hijos
+                if (node.children && node.children.length > 0) {
+                    const exp = document.createElement('span');
+                    exp.className = 'expander';
+                    exp.textContent = node.folded ? ' [+]' : ' [–]';
+                    exp.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        node.folded = !node.folded;
+                        refreshView();
+                    });
+                    elem.appendChild(exp);
+                }
+
+                elem.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    selectedNodeId = node.id;
+                    nodePathDiv.innerText = '🔖 ' + (node.path || node.text);
+                    nodeContentDiv.innerText = node.content || node.text;
+                    refreshView();
+                });
+
+                row.appendChild(elem);
+                wrapper.appendChild(row);
+
+                // hijos si no está folded
+                if (node.children && node.children.length > 0 && !node.folded) {
+                    const childrenContainer = document.createElement('div');
+                    childrenContainer.className = 'children-container';
+                    node.children.forEach(child => {
+                        const col = document.createElement('div');
+                        col.className = 'child-column';
+                        col.appendChild(renderNode(child));
+                        childrenContainer.appendChild(col);
+                    });
+                    wrapper.appendChild(childrenContainer);
+                }
+
+                return wrapper;
+            }
+
+            function refreshView() {
+                container.innerHTML = '';
+                const rootElem = renderNode(mapData, true);
+                container.appendChild(rootElem);
+                // restaurar selección si existe
+                if (selectedNodeId) {
+                    const selected = nodeMap.get(selectedNodeId);
+                    if (selected) {
+                        nodePathDiv.innerText = '🔖 ' + (selected.path || selected.text);
+                        nodeContentDiv.innerText = selected.content || selected.text;
+                    }
+                }
+            }
+
+            // Expandir / colapsar todo
+            function setAllFolded(node, folded) {
+                if (!node.isIntro && !node.isSummary) node.folded = folded;
+                if (node.children) {
+                    node.children.forEach(child => setAllFolded(child, folded));
+                }
+            }
+
+            document.getElementById('expandAllBtn').addEventListener('click', () => {
+                setAllFolded(mapData, false);
+                refreshView();
+            });
+
+            document.getElementById('collapseAllBtn').addEventListener('click', () => {
+                setAllFolded(mapData, true);
+                refreshView();
+            });
+
+            document.getElementById('resetViewBtn').addEventListener('click', () => {
+                // restaurar plegados originales (todo true, raíz false, intro y summary false)
+                mapData.folded = false;
+                function resetFolded(node) {
+                    if (node.isIntro || node.isSummary) {
+                        node.folded = false;
+                    } else if (node.children) {
+                        node.children.forEach(resetFolded);
+                    }
+                    if (node.id !== 'ID_0' && !node.isIntro && !node.isSummary) node.folded = true;
+                }
+                resetFolded(mapData);
+                selectedNodeId = null;
+                nodePathDiv.innerText = '🔖 Ninguno seleccionado';
+                nodeContentDiv.innerText = '—';
+                refreshView();
+            });
+
+            // búsqueda simple (primer nodo que contenga texto)
+            document.getElementById('searchBtn').addEventListener('click', () => {
+                const query = document.getElementById('searchInput').value.toLowerCase();
+                if (!query) return;
+                let found = null;
+                for (let [id, nd] of nodeMap.entries()) {
+                    if (nd.text.toLowerCase().includes(query) || (nd.content && nd.content.toLowerCase().includes(query))) {
+                        found = nd;
+                        break;
+                    }
+                }
+                if (found) {
+                    setAllFolded(mapData, false); // expandir todo para poder verlo
+                    refreshView();
+                    selectedNodeId = found.id;
+                    nodePathDiv.innerText = '🔖 ' + (found.path || found.text);
+                    nodeContentDiv.innerText = found.content || found.text;
+                    refreshView();
+                    // desplazamiento suave
+                    setTimeout(() => {
+                        const el = document.querySelector(`[data-node-id="${found.id}"]`);
+                        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 100);
+                } else {
+                    alert('Nodo no encontrado');
+                }
+            });
+
+            // doble clic en texto copia (delegación)
+            container.addEventListener('dblclick', (e) => {
+                const nodeElem = e.target.closest('.node-element');
+                if (nodeElem) {
+                    const text = nodeElem.innerText.replace(/\[[+–-]\]/g,'').replace(/[☐☑]/g,'').trim();
+                    navigator.clipboard?.writeText(text).then(() => {
+                        nodeElem.style.transition = '0.1s';
+                        nodeElem.style.backgroundColor = '#d9f99d';
+                        setTimeout(() => { nodeElem.style.backgroundColor = ''; }, 150);
+                    }).catch(() => alert('No se pudo copiar'));
+                } else {
+                    // quizás intro/summary
+                    const introSum = e.target.closest('.intro-node, .summary-node');
+                    if (introSum) {
+                        const text = introSum.innerText;
+                        navigator.clipboard?.writeText(text).catch(() => {});
+                    }
+                }
+            });
+
+            // --------------------------------------------------------------
+            // ANIMACIÓN DE LETRAS FLOTANTES (made by jemarin)
+            // --------------------------------------------------------------
+            function startFloatingLetters() {
+                const container = document.getElementById('floatingLettersContainer');
+                const text = 'made by jemarin';
+                const colors = ['#ff0000', '#ff8800', '#ffff00', '#00ff00', '#0088ff', '#8800ff', '#ff00aa'];
+                const totalLetters = text.length;
+                const duration = 30 * 1000; // 30 segundos
+                const interval = 300; // crear una letra cada 300ms
+                const startTime = Date.now();
+
+                function createLetter(index) {
+                    if (Date.now() - startTime > duration) return;
+                    const letter = text[index % totalLetters];
+                    const span = document.createElement('span');
+                    span.className = 'floating-letter';
+                    span.textContent = letter;
+                    span.style.left = Math.random() * 100 + '%';
+                    span.style.top = Math.random() * 100 + '%';
+                    span.style.color = colors[Math.floor(Math.random() * colors.length)];
+                    const dx = (Math.random() - 0.5) * 400 + 'px';
+                    const dy = (Math.random() - 0.5) * 400 + 'px';
+                    const r = (Math.random() - 0.5) * 720 + 'deg';
+                    span.style.setProperty('--dx', dx);
+                    span.style.setProperty('--dy', dy);
+                    span.style.setProperty('--r', r);
+                    container.appendChild(span);
+                    setTimeout(() => { if (span.parentNode) span.remove(); }, 2800);
+                }
+
+                let count = 0;
+                const timer = setInterval(() => {
+                    if (Date.now() - startTime > duration) {
+                        clearInterval(timer);
+                        return;
+                    }
+                    createLetter(count++);
+                }, interval);
+
+                // también crear algunas al inicio rápidas
+                for (let i = 0; i < 10; i++) {
+                    setTimeout(() => createLetter(count++), i * 50);
+                }
+            }
+
+            window.addEventListener('load', startFloatingLetters);
+
+            // inicial
+            refreshView();
+        })();
+    </script>
+</body>
+</html>

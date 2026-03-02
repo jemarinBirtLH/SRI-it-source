@@ -17,6 +17,7 @@ El proyecto consta de los siguientes archivos HTML:
 - **virtualbox.html**: Guía y tutoriales sobre el uso de VirtualBox para virtualización. Cubre instalación, configuración de máquinas virtuales y troubleshooting.
 - **Js_basico.html**: Guía de JavaScript con fundamentos, DOM, asincronía, módulos y laboratorio práctico.
 - **freeplane.html**: Página dedicada a Freeplane con descripción, enlace de descarga, atajos de teclado y ejemplos en formato de mapa mental.
+- **clawdbot.html**: Mapa mental interactivo para la instalación segura de Clawdbot en Windows 11.
 
 Además, ahora se usa un archivo de estilos global:
 
