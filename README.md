@@ -1,52 +1,101 @@
-﻿# SRI-it-source
+﻿# Source-IT
 
-## Descripción
+Portal web estático con recursos prácticos de redes, sistemas, desarrollo web, herramientas y productividad técnica.
 
-Este proyecto es una página web estática dedicada a recursos y herramientas relacionadas con redes de computadoras. Está diseñado para estudiantes, profesionales y entusiastas de las redes que buscan guías prácticas, herramientas útiles y referencias rápidas.
+## Qué incluye
 
-La web incluye varias secciones que cubren temas como guías de redes, conversores de números, cheatsheets de Linux, tutoriales de VirtualBox y mapas mentales con Freeplane.
+- Navegación central desde `index.html` con carga dinámica de secciones (SPA ligera con `fetch` + fallback a `iframe`).
+- Guías de redes y administración: subnetting, DHCP, DNS, Linux, VirtualBox, Ventoy.
+- Bloque FullStack con contenidos de HTML/CSS/JS, Python y Java.
+- Secciones de herramientas y productividad: VS Code, Git/GitHub, Figma, Freeplane.
+- Recursos adicionales: IA, hacking ético, replanteos de red y mapa interactivo de Clawdbot.
+- Sistema visual global con temas (`assets/js/site-theme.js`) y efectos de sonido (`assets/js/site-sfx.js`).
 
-## Estructura del Proyecto
+## Estructura del proyecto
 
-El proyecto consta de los siguientes archivos HTML:
+```text
+.
+├── index.html
+├── guia_redes.html
+├── replanteos_red.html
+├── linux_cheatsheet.html
+├── virtualbox.html
+├── ventoy.html
+├── conversor_binario_hexadecimal.html
+├── MySQL.html
+├── dhcp_dns.html
+├── dummies.html
+├── lenguajes_de_marcas.html
+├── Css_basico.html
+├── Js_basico.html
+├── javascript.html
+├── python.html
+├── java.html
+├── figma.html
+├── hacking_etico.html
+├── ia_lanzadera.html
+├── freeplane.html
+├── visualstudio_code.html
+├── git_github.html
+├── clawdbot.html
+├── VisualStudioCode_cheatsheet.pdf
+└── assets
+    ├── css
+    │   ├── site.css
+    │   └── pages/*.css
+    └── js
+        ├── site-theme.js
+        └── site-sfx.js
+```
 
-- **index.html**: Página principal de la web. Sirve como punto de entrada y proporciona navegación a las demás secciones.
-- **guia_redes.html**: Guía completa sobre redes de computadoras. Incluye conceptos básicos, protocolos, configuraciones y mejores prácticas.
-- **conversor_binario_hexadecimal.html**: Herramienta interactiva para convertir números entre sistemas binario y hexadecimal. Útil para cálculos en redes y programación.
-- **linux_cheatsheet.html**: Hoja de referencia rápida con comandos esenciales de Linux. Ideal para administradores de sistemas y usuarios avanzados.
-- **virtualbox.html**: Guía y tutoriales sobre el uso de VirtualBox para virtualización. Cubre instalación, configuración de máquinas virtuales y troubleshooting.
-- **Js_basico.html**: Guía de JavaScript con fundamentos, DOM, asincronía, módulos y laboratorio práctico.
-- **freeplane.html**: Página dedicada a Freeplane con descripción, enlace de descarga, atajos de teclado y ejemplos en formato de mapa mental.
-- **clawdbot.html**: Mapa mental interactivo para la instalación segura de Clawdbot en Windows 11.
+## Mapa rápido de secciones
 
-Además, ahora se usa un archivo de estilos global:
+- **Redes y sistemas**: `guia_redes.html`, `replanteos_red.html`, `linux_cheatsheet.html`, `virtualbox.html`, `ventoy.html`, `dhcp_dns.html`.
+- **Utilidades técnicas**: `conversor_binario_hexadecimal.html`, `MySQL.html`.
+- **Ruta FullStack**: `dummies.html`, `lenguajes_de_marcas.html`, `Css_basico.html`, `Js_basico.html`, `javascript.html`, `python.html`, `java.html`.
+- **Herramientas y productividad**: `figma.html`, `visualstudio_code.html`, `git_github.html`, `freeplane.html`.
+- **Otros contenidos**: `hacking_etico.html`, `ia_lanzadera.html`, `clawdbot.html`.
 
-- **assets/css/site.css**: Hoja de estilos compartida por todas las páginas (efectos visuales, animaciones y estilos comunes).
+## Stack técnico
 
-## Cómo Usar
+- HTML5
+- CSS3 + Bootstrap 5 + Bootstrap Icons
+- JavaScript Vanilla
+- Google Fonts (CDN)
 
-1. **Clonar o Descargar**: Descarga los archivos HTML a tu máquina local.
-2. **Abrir en Navegador**: Abre cualquier archivo `.html` en tu navegador web preferido (Chrome, Firefox, etc.). No requiere servidor web ya que son páginas estáticas.
-3. **Navegación**: Usa la página `index.html` para acceder a las diferentes secciones mediante enlaces.
+## Ejecución local
 
-## Tecnologías Utilizadas
+### Opción 1 (rápida)
 
-- **HTML**: Lenguaje de marcado para la estructura de las páginas.
-- **CSS**: Estilos globales centralizados en `assets/css/site.css`.
-- **JavaScript** (si aplica): Para funcionalidades interactivas, como el conversor binario-hexadecimal.
+Abrir `index.html` directamente en el navegador.
 
-## Contribuciones
+### Opción 2 (recomendada)
 
-Si deseas contribuir con mejoras, correcciones o nuevas secciones, puedes:
-- Crear un fork del repositorio.
-- Hacer tus cambios.
-- Enviar un pull request.
+Levantar un servidor local para que el modo SPA funcione con `fetch` en todas las rutas:
 
-## Licencia
+```bash
+python -m http.server 5500
+```
 
-Este proyecto está bajo la licencia MIT. Consulta el archivo LICENSE para más detalles.
+Luego abrir:
 
-## Contacto
+```text
+http://localhost:5500/index.html
+```
 
-Para preguntas o sugerencias, contacta al autor del proyecto.
+## Notas de arquitectura
 
+- `index.html` es la entrada principal y actúa como router de navegación.
+- Si se abre en `file://`, la app usa fallback con `iframe`.
+- Los estilos globales viven en `assets/css/site.css` y se complementan con `assets/css/pages/`.
+- El README técnico de mantenimiento está en `README_DEV.md`.
+
+## Estado actual
+
+Proyecto educativo en evolución, con contenido modular por páginas y enfoque práctico.
+
+## Autor
+
+Jemarin
+
+Contacto disponible dentro de `index.html`.
